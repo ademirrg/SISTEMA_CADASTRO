@@ -61,7 +61,7 @@ public class CriaNovaSenha  extends JFrame implements ActionListener{
 			try {
 				cadastroVO.setPass(pass);
 				dao.atualizaSenhaNaBase(cadastroVO);
-				System.out.println("Senha alterada para o usuário " + NomeUserVO + ".");
+				System.out.println("Senha alterada para o usuário " + NomeUserVO + ", através da opção: ESQUECI MINHA SENHA.");
 				JOptionPane.showMessageDialog(null, "A SENHA FOI ALTERADA COM SUCESSO!" + System.lineSeparator() + "POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "ALTERAÇÃO DE SENHA", JOptionPane.INFORMATION_MESSAGE);
 				LoginUser login = new LoginUser();
 				login.criaTelaLoginUser();

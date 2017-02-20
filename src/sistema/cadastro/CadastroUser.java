@@ -87,6 +87,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 				try {
 					cadastroVO.setUser(user);
 					cadastroVO.setCPF(cpf);
+					cadastroVO.setDataNasc(data);
 					dao.insereDadosNaBase(cadastroVO);
 					System.out.println("Usuário "+ user.toUpperCase() + " cadastrado." );
 					JOptionPane.showMessageDialog(null,"USUÁRIO " + user.toUpperCase() +" CADASTRADO COM SUCESSO.", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
@@ -194,7 +195,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 				try {
 					cadastroVO.setPass(newPass);
 					dao.atualizaSenhaNaBase(cadastroVO);
-					System.out.println("O usuário " + oldUser + " alterou a senha.");
+					System.out.println("O usuário " + oldUser.toUpperCase() + " alterou a senha.");
 					JOptionPane.showMessageDialog(null, "A SENHA FOI ALTERADA COM SUCESSO!" + System.lineSeparator() + "POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "ALTERAÇÃO DE SENHA", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 					LoginUser login = new LoginUser();
