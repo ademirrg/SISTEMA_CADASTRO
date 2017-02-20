@@ -61,7 +61,7 @@ public class LoginMasterUser extends Login {
 
 		}
 
-		if (pass.length()==0 || pass.length() <5 || pass.length()>12){
+		else if (pass.length()==0 || pass.length() <5 || pass.length()>12){
 			JOptionPane.showMessageDialog(null, "CAMPO SENHA INVÁLIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
