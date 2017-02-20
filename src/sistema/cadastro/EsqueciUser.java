@@ -100,10 +100,9 @@ public class EsqueciUser extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "command_cancelar":
-			Login login = new Login(e.getActionCommand());
-			login.criaTela();
-			login.criaBotoesLogin();
-			login.setVisible(true);
+			Tela tela = new Tela();
+			tela.criaBotoes();
+			tela.setVisible(true);
 			dispose();
 			break;
 		case "command_encontrar_usuario":
