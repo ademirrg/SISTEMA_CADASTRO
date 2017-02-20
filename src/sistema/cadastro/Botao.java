@@ -63,8 +63,14 @@ public class Botao {
 		bt_salvar.addActionListener(telaUser);
 		bt_salvar.setActionCommand("command_salvar");
 		
+		bt_info = new JButton("?");
+		bt_info.setBounds(630, 20, 45, 30);
+		bt_info.addActionListener(telaUser);
+		bt_info.setActionCommand("command_info");
+		
 		frame.add(bt_voltar);
 		frame.add(bt_salvar);
+		frame.add(bt_info);
 
 	}
 	
