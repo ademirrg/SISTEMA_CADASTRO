@@ -13,7 +13,7 @@ public class CadastroCli extends JFrame implements ActionListener{
 	private JTextField t3 = new JTextField();
 	private JTextField t4 = new JTextField();
 	
-	CadastroCli(){
+	public void criaTelaCadastroCli(){
 	
 	//Tela
 	setTitle("CADASTRAMENTO DE CLIENTE");

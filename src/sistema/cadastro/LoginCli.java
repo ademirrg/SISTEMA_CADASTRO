@@ -98,6 +98,7 @@ public class LoginCli extends JFrame implements ActionListener{
 				cadastroVO.setOldUser(user);
 				System.out.println("Usuário " + user.toUpperCase() + " acessou tela de cadastramento de clientes.");
 				cadastroCli = new CadastroCli();
+				cadastroCli.criaTelaCadastroCli();
 				cadastroCli.criaBotoes();
 				cadastroCli.setVisible(true);
 				dispose();
