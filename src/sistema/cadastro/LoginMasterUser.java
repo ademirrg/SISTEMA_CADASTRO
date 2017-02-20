@@ -88,7 +88,7 @@ public class LoginMasterUser extends Login {
 			}	
 			
 			else if (pass.equals(SenhaMasterVO) == false){
-				System.out.println("Tentativa de login com o usuário " + user.toUpperCase() + ", senha incorreta.");
+				System.out.println("Tentativa de login com o usuário mestre, senha incorreta.");
 				JOptionPane.showMessageDialog(null, "SENHA INCORRETA.", "ERRO DE LOGIN", JOptionPane.ERROR_MESSAGE);
 			}
 			
