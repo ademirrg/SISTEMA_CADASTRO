@@ -1,5 +1,6 @@
 package sistema.cadastro;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -349,6 +350,26 @@ public class CadastroUser extends JFrame implements ActionListener {
 	public void criaBotoesAltera() {
 		
 		botoes.definirBotoesTelaAlteraUser(this, this);
+	}
+	
+	public void criaTelaConsultaUser(){
+		
+		JPanel painel = new JPanel();
+		painel.setLayout(new GridLayout(2,2));
+		JTable tabela = new JTable();
+		JScrollPane rolagem = new JScrollPane();
+		painel .add(rolagem);
+		
+		getContentPane().add(painel);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(700, 500);
+		setLocation(450, 100);
+		getContentPane().setBackground(Color.LIGHT_GRAY);
+		
+	}
+	
+	public void criaBotoesConsulta(){
+		botoes.definirBotoesTelaConsultaUser(this, this);
 	}
 }
 

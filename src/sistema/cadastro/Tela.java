@@ -11,8 +11,10 @@ public class Tela extends JFrame implements ActionListener {
 	private CadastroUser cadastroUser;
 	private CadastroCli cadastroCli;
 	private CadastroUser alteraUser;
+	private CadastroUser consultaUser;
 	private LoginUser loginUser;
 	private LoginMasterUser loginMasterUser;
+	private LoginMasterUserConsulta loginMasterUserConsulta;
 	private LoginCli loginCli;
 	
 	Botao botoes = new Botao();
@@ -47,6 +49,18 @@ public class Tela extends JFrame implements ActionListener {
 			loginMasterUser.setVisible(true);
 			dispose();
 			break;
+		case "command_alterar_usuario":
+			criaLoginUser();
+			loginUser.criaBotoesLogin();
+			loginUser.setVisible(true);
+			dispose();
+			break;
+		case "command_consultar_usuario":
+			criaLoginMasterUserConsulta();
+			loginMasterUserConsulta.criaBotoesLogin();
+			loginMasterUserConsulta.setVisible(true);
+			dispose();
+			break;
 		case "command_cadastro_cliente":
 			criaLoginCli();
 			loginCli.criaBotoesLogin();
@@ -56,12 +70,7 @@ public class Tela extends JFrame implements ActionListener {
 		case "command_info":
 			JOptionPane.showMessageDialog(null, "Versão: 0.1" + System.lineSeparator() + "Data de criação: 09/02/2017" + System.lineSeparator() + "Criado por: Ademir Rocha", "SOBRE",JOptionPane.INFORMATION_MESSAGE);
 			break;
-		case "command_alterar_usuario":
-			criaLoginUser();
-			loginUser.criaBotoesLogin();
-			loginUser.setVisible(true);
-			dispose();
-			break;
+
 		}
 	}
 
@@ -84,6 +93,14 @@ public class Tela extends JFrame implements ActionListener {
 			alteraUser.criaTelaAlteraUser();
 		}
 	}
+	
+	private void criaConsultaUser() {
+		if (consultaUser == null) {
+			consultaUser = new CadastroUser();
+			consultaUser.criaTelaConsultaUser();
+		}
+	}
+	
 	private void criaLoginUser() {
 		if (loginUser == null) {
 			loginUser = new LoginUser();
@@ -96,10 +113,18 @@ public class Tela extends JFrame implements ActionListener {
 			loginCli.criaTelaLoginCli();
 		}
 	}
+	
 	private void criaLoginMasterUser() {
 		if (loginMasterUser == null) {
 			loginMasterUser = new LoginMasterUser();
 			loginMasterUser.criaTelaLoginMasterUser();
+		}
+	}
+	
+	private void criaLoginMasterUserConsulta() {
+		if (loginMasterUserConsulta == null) {
+			loginMasterUserConsulta = new LoginMasterUserConsulta();
+			loginMasterUserConsulta.criaTelaLoginMasterUserConsulta();
 		}
 	}
 }

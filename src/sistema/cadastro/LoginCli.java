@@ -138,6 +138,6 @@ public class LoginCli extends JFrame implements ActionListener{
 	
 	public void criaBotoesLogin() {
 		
-		botoes.definirBotoesTelaLoginCli(this, this);
+		botoes.definirBotoesTelaLoginUser(this, this);
 	}
 }
