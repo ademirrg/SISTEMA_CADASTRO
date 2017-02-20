@@ -13,6 +13,7 @@ public class Tela extends JFrame implements ActionListener {
 	private CadastroUser alteraUser;
 	private LoginUser loginUser;
 	private LoginMasterUser loginMasterUser;
+	private LoginCli loginCli;
 	
 	Botao botoes = new Botao();
 
@@ -47,9 +48,9 @@ public class Tela extends JFrame implements ActionListener {
 			dispose();
 			break;
 		case "command_cadastro_cliente":
-			criaCadastroCli();
-			cadastroCli.criaBotoes();
-			cadastroCli.setVisible(true);
+			criaLoginCli();
+			loginCli.criaBotoesLogin();
+			loginCli.setVisible(true);
 			dispose();
 			break;
 		case "command_info":
@@ -87,6 +88,12 @@ public class Tela extends JFrame implements ActionListener {
 		if (loginUser == null) {
 			loginUser = new LoginUser();
 			loginUser.criaTelaLoginUser();
+		}
+	}
+	private void criaLoginCli() {
+		if (loginCli == null) {
+			loginCli = new LoginCli();
+			loginCli.criaTelaLoginCli();
 		}
 	}
 	private void criaLoginMasterUser() {

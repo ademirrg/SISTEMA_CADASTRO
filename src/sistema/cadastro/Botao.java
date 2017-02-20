@@ -145,6 +145,34 @@ public class Botao {
 
 	}
 	
+	public void definirBotoesTelaLoginCli(ActionListener loginCli, JFrame frame) {
+		bt_voltar = new JButton("Voltar");
+		bt_voltar.setBounds(600, 430, 75, 30);
+		bt_voltar.addActionListener(loginCli);
+		bt_voltar.setActionCommand("command_voltar");
+
+		bt_entrar = new JButton("Entrar");
+		bt_entrar.setBounds(150, 110, 75, 30);
+		bt_entrar.addActionListener(loginCli);
+		bt_entrar.setActionCommand("command_login_usuario");
+		
+		bt_consulta_user = new JButton("Encontrar");
+		bt_consulta_user.setBounds(565, 45, 90, 30);
+		bt_consulta_user.addActionListener(loginCli);
+		bt_consulta_user.setActionCommand("command_encontrar_usuario");
+		
+		bt_nova_senha = new JButton("Alterar");
+		bt_nova_senha.setBounds(565, 110, 90, 30);
+		bt_nova_senha.addActionListener(loginCli);
+		bt_nova_senha.setActionCommand("command_nova_senha");
+		
+		frame.add(bt_voltar);
+		frame.add(bt_entrar);
+		frame.add(bt_consulta_user);
+		frame.add(bt_nova_senha);
+
+	}
+	
 	public void definirBotoesTelaLoginMasterUser(ActionListener loginMasterUser, JFrame frame) {
 		bt_voltar = new JButton("Voltar");
 		bt_voltar.setBounds(600, 430, 75, 30);
