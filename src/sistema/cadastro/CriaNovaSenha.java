@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class CriaNovaSenha  extends JFrame implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
+	
 	private JTextField tPass = new JPasswordField();
 	private JTextField tPass2 = new JPasswordField();
 	private Botao botoes = new Botao();
@@ -41,11 +44,10 @@ public class CriaNovaSenha  extends JFrame implements ActionListener{
 				
 	}
 	
-	public void pegaValorTelaNovaSenha(){ 
+	public void pegaValorTelaNovaSenha(String evento){ 
 		String pass = tPass.getText();
 		String pass2 = tPass2.getText();
-		String SenhaUserVO = "";
-		String NomeUserVO = cadastroVO.getOldUser();
+		String NomeUserVO = CadastroUserVO.getOldUser();
 		
 		if (pass.length()==0 || pass.length() <5 || pass.length()>12){
 			JOptionPane.showMessageDialog(null, "CAMPO SENHA INVÁLIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
@@ -63,8 +65,8 @@ public class CriaNovaSenha  extends JFrame implements ActionListener{
 				dao.atualizaSenhaNaBase(cadastroVO);
 				System.out.println("Senha alterada para o usuário " + NomeUserVO + ", através da opção: ESQUECI MINHA SENHA.");
 				JOptionPane.showMessageDialog(null, "A SENHA FOI ALTERADA COM SUCESSO!" + System.lineSeparator() + "POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "ALTERAÇÃO DE SENHA", JOptionPane.INFORMATION_MESSAGE);
-				LoginUser login = new LoginUser();
-				login.criaTelaLoginUser();
+				Login login = new Login(evento);
+				login.criaTela();
 				login.criaBotoesLogin();
 				login.setVisible(true);
 				dispose();
@@ -80,14 +82,14 @@ public class CriaNovaSenha  extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "command_cancelar":
-			LoginUser login = new LoginUser();
-			login.criaTelaLoginUser();
+			Login login = new Login(e.getActionCommand());
+			login.criaTela();
 			login.criaBotoesLogin();
 			login.setVisible(true);
 			dispose();
 			break;
 		case "command_alterar_senha":
-			pegaValorTelaNovaSenha();
+			pegaValorTelaNovaSenha(e.getActionCommand());
 			break;
 		default:
 			break;

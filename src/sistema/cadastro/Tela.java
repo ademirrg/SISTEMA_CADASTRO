@@ -8,15 +8,6 @@ import javax.swing.*;
 public class Tela extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
-	private CadastroUser cadastroUser;
-	private CadastroCli cadastroCli;
-	private CadastroUser alteraUser;
-	private CadastroUser consultaUser;
-	private LoginUser loginUser;
-	private LoginMasterUser loginMasterUser;
-	private LoginMasterUserConsulta loginMasterUserConsulta;
-	private LoginCli loginCli;
-	
 	Botao botoes = new Botao();
 
 	public Tela() {
@@ -38,93 +29,35 @@ public class Tela extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		Login login = null;
 		
 		switch (e.getActionCommand()) {
+		
 		case "command_sair":
 			System.exit(0);
 			break;
 		case "command_cadastro_usuario":
-			criaLoginMasterUser();
-			loginMasterUser.criaBotoesLogin();
-			loginMasterUser.setVisible(true);
-			dispose();
+			login = new LoginMasterUser(e.getActionCommand());
 			break;
 		case "command_alterar_usuario":
-			criaLoginUser();
-			loginUser.criaBotoesLogin();
-			loginUser.setVisible(true);
-			dispose();
+			login = new Login(e.getActionCommand());
 			break;
 		case "command_consultar_usuario":
-			criaLoginMasterUserConsulta();
-			loginMasterUserConsulta.criaBotoesLogin();
-			loginMasterUserConsulta.setVisible(true);
-			dispose();
+			login = new LoginMasterUser(e.getActionCommand());
 			break;
 		case "command_cadastro_cliente":
-			criaLoginCli();
-			loginCli.criaBotoesLogin();
-			loginCli.setVisible(true);
-			dispose();
+			login = new Login(e.getActionCommand());
 			break;
 		case "command_info":
 			JOptionPane.showMessageDialog(null, "Versão: 0.1" + System.lineSeparator() + "Data de criação: 09/02/2017" + System.lineSeparator() + "Criado por: Ademir Rocha", "SOBRE",JOptionPane.INFORMATION_MESSAGE);
 			break;
-
 		}
-	}
-
-	private void criaCadastroUser() {
-		if (cadastroUser == null) {
-			cadastroUser = new CadastroUser();
-			cadastroUser.criaTelaCadastroUser();
-		}	
-	}
-	
-	private void criaCadastroCli() {
-		if (cadastroCli == null) {
-			cadastroCli = new CadastroCli();
-		}
-	}
-
-	private void criaAlteraUser() {
-		if (alteraUser == null) {
-			alteraUser = new CadastroUser();
-			alteraUser.criaTelaAlteraUser();
-		}
-	}
-	
-	private void criaConsultaUser() {
-		if (consultaUser == null) {
-			consultaUser = new CadastroUser();
-			consultaUser.criaTelaConsultaUser();
-		}
-	}
-	
-	private void criaLoginUser() {
-		if (loginUser == null) {
-			loginUser = new LoginUser();
-			loginUser.criaTelaLoginUser();
-		}
-	}
-	private void criaLoginCli() {
-		if (loginCli == null) {
-			loginCli = new LoginCli();
-			loginCli.criaTelaLoginCli();
-		}
-	}
-	
-	private void criaLoginMasterUser() {
-		if (loginMasterUser == null) {
-			loginMasterUser = new LoginMasterUser();
-			loginMasterUser.criaTelaLoginMasterUser();
-		}
-	}
-	
-	private void criaLoginMasterUserConsulta() {
-		if (loginMasterUserConsulta == null) {
-			loginMasterUserConsulta = new LoginMasterUserConsulta();
-			loginMasterUserConsulta.criaTelaLoginMasterUserConsulta();
+		
+		if (login != null) {
+			login.criaTela();
+			login.criaBotoesLogin();
+			login.setVisible(true);
+			dispose();
 		}
 	}
 }

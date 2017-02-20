@@ -59,15 +59,15 @@ public class CadastroUser extends JFrame implements ActionListener {
 		if (pass2.equals(pass) && user.length()>=4 && user.length()<=25 && pass.length()>=5 && pass.length()<=12 && nome.length()>=4 && nome.length()<=25 && cpf.length()==11 && data.length()==10){
 			cadastroVO.setUser(user);
 			cadastroVO.setPass(pass);
-			cadastroVO.setNome(nome);
-			cadastroVO.setDataNasc(data);
+			CadastroUserVO.setNome(nome);
+			CadastroUserVO.setDataNasc(data);
 			
 			//Realiza uma conulta no banco e verifica a disponibilidade do nome e cadastro por CPF
 			try {
 				dao.buscarDadosNaBaseUser(cadastroVO);
 				NomeUserVO = cadastroVO.getNomeUser();
 				dao.buscarDadosNaBaseCPF(cadastroVO);
-				CPFVO = cadastroVO.getCPF();
+				CPFVO = CadastroUserVO.getCPF();
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -87,8 +87,8 @@ public class CadastroUser extends JFrame implements ActionListener {
 				
 				try {
 					cadastroVO.setUser(user);
-					cadastroVO.setCPF(cpf);
-					cadastroVO.setDataNasc(data);
+					CadastroUserVO.setCPF(cpf);
+					CadastroUserVO.setDataNasc(data);
 					dao.insereDadosNaBase(cadastroVO);
 					System.out.println("Usuário "+ user.toUpperCase() + " cadastrado." );
 					JOptionPane.showMessageDialog(null,"USUÁRIO " + user.toUpperCase() +" CADASTRADO COM SUCESSO.", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
@@ -143,8 +143,8 @@ public class CadastroUser extends JFrame implements ActionListener {
 					System.out.println("Usuário "+ oldUser.toUpperCase() + " alterado para " + newUser.toUpperCase() + ".");
 					JOptionPane.showMessageDialog(null,"O USUÁRIO " + oldUser.toUpperCase() +" FOI ALTERADO PARA: " + newUser.toUpperCase() + "." + System.lineSeparator() + "POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
-					LoginUser login = new LoginUser();
-					login.criaTelaLoginUser();
+					Login login = new Login(Login.COMMAND_ALTERAR_USUARIO);
+					login.criaTela();
 					login.criaBotoesLogin();
 					login.setVisible(true);
 					cadastroVO.setNomeUser(newUser);//Para utilização na classe LoginUser, onde é comparada a variável NomeUser.
@@ -158,7 +158,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 	}
 
 	public void pegaValorTelaAlteraSenhaUser(){
-		String oldUser = cadastroVO.getOldUser();
+		String oldUser = CadastroUserVO.getOldUser();
 		String oldPass = tPass.getText();
 		String newPass = tPass2.getText();
 		String newPass2 = tPass3.getText();
@@ -199,8 +199,8 @@ public class CadastroUser extends JFrame implements ActionListener {
 					System.out.println("O usuário " + oldUser.toUpperCase() + " alterou a senha.");
 					JOptionPane.showMessageDialog(null, "A SENHA FOI ALTERADA COM SUCESSO!" + System.lineSeparator() + "POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "ALTERAÇÃO DE SENHA", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
-					LoginUser login = new LoginUser();
-					login.criaTelaLoginUser();
+					Login login = new Login(Login.COMMAND_ALTERAR_USUARIO);
+					login.criaTela();
 					login.criaBotoesLogin();
 					login.setVisible(true);
 					
@@ -236,25 +236,15 @@ public class CadastroUser extends JFrame implements ActionListener {
 			tela.setVisible(true);
 			dispose();
 			break;
-		case "command_voltar_login":
-			dispose();
-			LoginUser login = new LoginUser();
-			login.criaTelaLoginUser();
-			login.criaBotoesLogin();
-			login.setVisible(true);
-			break;
-		case "command_voltar_menu":
-			Tela telamenu = new Tela();
-			telamenu.criaBotoes();
-			telamenu.setVisible(true);
-			dispose();
-			break;
 		default:
 			break;
 		}
 	}
 	
 	public void criaTelaCadastroUser() {
+		//Regra de apresentação
+		System.out.println("Usuário mestre acessou tela de cadastro de usuários.");
+		JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE USUÁRIO:" + System.lineSeparator() + "O CAMPO USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO SENHA DEVE CONTER DE 5 A 12 CARACTERES." + System.lineSeparator() + "O CAMPO NOME DEVE CONTER DE 5 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO CPF DEVE SER PREENCHIDO COM APENAS NÚMEROS E DEVE CONTER 11 CARACTERES." + System.lineSeparator() + "O CAMPO DATA DE NASCIMENTO DEVE SER PREENCHIDO NO PADRÃO DD/MM/AAAA COM BARRAS." + System.lineSeparator() + "NÃO SERÁ REALIZADA VALIDAÇÃO DE LETRAS MAIÚSCULAS OU MINÚSCULAS PARA O USUÁRIO CRIADO, APENAS PARA SENHA.", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
 		
 		tUser.setBounds(150,50,120,25);
 		tPass.setBounds(150,80,120,25);
@@ -326,7 +316,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		l5.setBounds(25,15,615,30);
 		
 		//Tela
-		setTitle("ALTERAÇÃO DE USUÁRIO - USUÁRIO LOGADO: " + cadastroVO.getOldUser().toUpperCase());
+		setTitle("ALTERAÇÃO DE USUÁRIO - USUÁRIO LOGADO: " + CadastroUserVO.getOldUser().toUpperCase());
 		setSize(700, 500);
 		setLocation(450, 100);
 		setResizable(false);
@@ -353,6 +343,8 @@ public class CadastroUser extends JFrame implements ActionListener {
 	}
 	
 	public void criaTelaConsultaUser(){
+		
+		System.out.println("Usuário mestre acessou tela de consulta de usuários.");
 		
 		JPanel painel = new JPanel();
 		painel.setLayout(new GridLayout(2,2));

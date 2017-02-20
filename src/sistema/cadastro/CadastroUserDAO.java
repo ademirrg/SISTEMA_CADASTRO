@@ -39,7 +39,7 @@ public class CadastroUserDAO {
 		Connection conn = Conexao.abrir();
 		
 		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
-		comando.setString(1, cadastroVO.getCPF());
+		comando.setString(1, CadastroUserVO.getCPF());
 		ResultSet resultado = comando.executeQuery();
 		
 		if (resultado.next()){
@@ -47,8 +47,8 @@ public class CadastroUserDAO {
 			data = resultado.getString(8);
 			NomeUser = resultado.getString(1);
 		}
-		cadastroVO.setCPF(cpf);
-		cadastroVO.setDataNasc(data);
+		CadastroUserVO.setCPF(cpf);
+		CadastroUserVO.setDataNasc(data);
 		cadastroVO.setNomeUser(NomeUser);
 		
 		comando.close();
@@ -66,9 +66,9 @@ public class CadastroUserDAO {
 		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
 		comando.setString(1, cadastroVO.getUser().toUpperCase());
 		comando.setString(2, cadastroVO.getPass());
-		comando.setString(3, cadastroVO.getNome().toUpperCase());
-		comando.setString(4, cadastroVO.getCPF());
-		comando.setString(5, cadastroVO.getDataNasc());
+		comando.setString(3, CadastroUserVO.getNome().toUpperCase());
+		comando.setString(4, CadastroUserVO.getCPF());
+		comando.setString(5, CadastroUserVO.getDataNasc());
 		comando.execute();
 		comando.close();
 		System.out.println("Inserção realizada na base.");
@@ -86,7 +86,7 @@ public class CadastroUserDAO {
 		
 		PreparedStatement comando1 = (PreparedStatement) conn.prepareStatement(sql);
 		comando1.setString(1, cadastroVO.getUser().toUpperCase());
-		comando1.setString(2, cadastroVO.getOldUser().toUpperCase());
+		comando1.setString(2, CadastroUserVO.getOldUser().toUpperCase());
 		comando1.execute();
 		comando1.close();
 		
@@ -111,12 +111,12 @@ public class CadastroUserDAO {
 		
 		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
 		comando.setString(1, cadastroVO.getPass());
-		comando.setString(2, cadastroVO.getOldUser().toUpperCase());
+		comando.setString(2, CadastroUserVO.getOldUser().toUpperCase());
 		comando.execute();
 		comando.close();
 		
 		PreparedStatement comando2 = (PreparedStatement) conn.prepareStatement(sql2);	
-		comando2.setString(1, cadastroVO.getOldUser().toUpperCase());
+		comando2.setString(1, CadastroUserVO.getOldUser().toUpperCase());
 		comando2.execute();
 		comando2.close();
 		

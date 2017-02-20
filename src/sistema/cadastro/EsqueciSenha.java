@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class EsqueciSenha extends JFrame implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
 	
 	private JTextField tCPF = new JTextField();
 	private JTextField tData = new JTextField();
@@ -59,12 +61,12 @@ public class EsqueciSenha extends JFrame implements ActionListener{
 		
 		//Se todos os campos estiverem ok
 		if (cpf.length()==11 && data.length()==10){
-			cadastroVO.setCPF(cpf);
+			CadastroUserVO.setCPF(cpf);
 			
 			try {
 				dao.buscarDadosNaBaseCPF(cadastroVO);
-				CPFVO = cadastroVO.getCPF();
-				DataVO = cadastroVO.getDataNasc();
+				CPFVO = CadastroUserVO.getCPF();
+				DataVO = CadastroUserVO.getDataNasc();
 				NomeUserVO = cadastroVO.getNomeUser();
 				
 				if (cpf.equals(CPFVO)==false){
@@ -77,7 +79,7 @@ public class EsqueciSenha extends JFrame implements ActionListener{
 				}
 				
 				else {
-					cadastroVO.setOldUser(NomeUserVO); //Para uso DAO
+					CadastroUserVO.setOldUser(NomeUserVO); //Para uso DAO
 					CriaNovaSenha nova = new CriaNovaSenha();
 					nova.criaTelaNovaSenha();
 					nova.criaBotoesNovaSenha();
@@ -96,8 +98,8 @@ public class EsqueciSenha extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "command_cancelar":
-			LoginUser login = new LoginUser();
-			login.criaTelaLoginUser();
+			Login login = new Login(e.getActionCommand());
+			login.criaTela();
 			login.criaBotoesLogin();
 			login.setVisible(true);
 			dispose();

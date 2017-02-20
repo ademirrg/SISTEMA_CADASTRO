@@ -53,8 +53,8 @@ public class ScriptMaster {
 		if (resultado.next()){
 			MasterUser = resultado.getString(1);
 			SenhaMaster = resultado.getString(2);
-			cadastroVO.setMasterUser(MasterUser);
-			cadastroVO.setSenhaMaster(SenhaMaster);
+			CadastroUserVO.setMasterUser(MasterUser);
+			CadastroUserVO.setSenhaMaster(SenhaMaster);
 		}
 		
 		comando.close();

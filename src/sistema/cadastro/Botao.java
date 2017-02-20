@@ -98,11 +98,6 @@ public class Botao {
 	}
 	
 	public void definirBotoesTelaAlteraUser(ActionListener alteraUser, JFrame frame) {
-		bt_voltar = new JButton("Voltar");
-		bt_voltar.setBounds(600, 430, 75, 30);
-		bt_voltar.addActionListener(alteraUser);
-		bt_voltar.setActionCommand("command_voltar_login");
-
 		bt_alterar_user = new JButton("Alterar");
 		bt_alterar_user.setBounds(180, 80, 75, 30);
 		bt_alterar_user.addActionListener(alteraUser);
@@ -113,30 +108,23 @@ public class Botao {
 		bt_alterar_pass.addActionListener(alteraUser);
 		bt_alterar_pass.setActionCommand("command_alterar_senha");
 		
-		bt_menu = new JButton("Menu");
-		bt_menu.setBounds(520, 430, 75, 30);
-		bt_menu.addActionListener(alteraUser);
-		bt_menu.setActionCommand("command_voltar_menu");
+		bt_voltar = new JButton("Voltar");
+		bt_voltar.setBounds(600, 430, 75, 30);
+		bt_voltar.addActionListener(alteraUser);
+		bt_voltar.setActionCommand("command_voltar");
 		
-		frame.add(bt_voltar);
 		frame.add(bt_alterar_user);
 		frame.add(bt_alterar_pass);
-		frame.add(bt_menu);
+		frame.add(bt_voltar);
 	}
 	
 	public void definirBotoesTelaConsultaUser(ActionListener consultaUser, JFrame frame) {
 		bt_voltar = new JButton("Voltar");
 		bt_voltar.setBounds(600, 430, 75, 30);
 		bt_voltar.addActionListener(consultaUser);
-		bt_voltar.setActionCommand("command_voltar_login");
-	
-		bt_menu = new JButton("Menu");
-		bt_menu.setBounds(520, 430, 75, 30);
-		bt_menu.addActionListener(consultaUser);
-		bt_menu.setActionCommand("command_voltar_menu");
+		bt_voltar.setActionCommand("command_voltar");
 		
 		frame.add(bt_voltar);
-		frame.add(bt_menu);
 	}
 	
 	public void definirBotoesTelaLoginUser(ActionListener loginUser, JFrame frame) {

@@ -1,5 +1,4 @@
 package sistema.cadastro;
-import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
 
 public class Principal {

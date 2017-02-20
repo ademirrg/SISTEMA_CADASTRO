@@ -1,21 +1,24 @@
 package sistema.cadastro;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class LoginMasterUser extends JFrame implements ActionListener{
+public class LoginMasterUser extends Login {
 
-private static final long serialVersionUID = 1L; 
+	private static final long serialVersionUID = 1L; 
 	
 	private JTextField tUser = new JTextField();
 	private JTextField tPass = new JPasswordField();
 	private Botao botoes = new Botao();
 	private ScriptMaster dao = new ScriptMaster();
 	private CadastroUserVO cadastroVO = new CadastroUserVO();
-	private CadastroUser cadastroUser;
 	
-	public void criaTelaLoginMasterUser(){
+	public LoginMasterUser(String e) {
+	  super(e);
+	}
+
+	@Override
+	public void criaTela(){
 		
 		tUser.setBounds(150,50,120,25);
 		tPass.setBounds(150,80,120,25);
@@ -47,7 +50,7 @@ private static final long serialVersionUID = 1L;
 
 					
 	}
-	public void pegaValorTelaLoginMasterUser(){
+	public void pegaValorTela(){
 		String user = (tUser.getText());
 		String pass = (tPass.getText());
 		String MasterUserVO ="";
@@ -70,8 +73,8 @@ private static final long serialVersionUID = 1L;
 			//Realiza uma conulta no banco e verifica o usuário e senha informado.
 			try {
 				dao.buscarDadosNaBaseMaster(cadastroVO);
-				MasterUserVO = cadastroVO.getMasterUser();
-				SenhaMasterVO = cadastroVO.getSenhaMaster();
+				MasterUserVO = CadastroUserVO.getMasterUser();
+				SenhaMasterVO = CadastroUserVO.getSenhaMaster();
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -90,13 +93,7 @@ private static final long serialVersionUID = 1L;
 			}
 			
 			else {
-				System.out.println("Usuário mestre acessou tela de cadastramento de usuários.");
-				JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE USUÁRIO:" + System.lineSeparator() + "O CAMPO USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO SENHA DEVE CONTER DE 5 A 12 CARACTERES." + System.lineSeparator() + "O CAMPO NOME DEVE CONTER DE 5 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO CPF DEVE SER PREENCHIDO COM APENAS NÚMEROS E DEVE CONTER 11 CARACTERES." + System.lineSeparator() + "O CAMPO DATA DE NASCIMENTO DEVE SER PREENCHIDO NO PADRÃO DD/MM/AAAA COM BARRAS." + System.lineSeparator() + "NÃO SERÁ REALIZADA VALIDAÇÃO DE LETRAS MAIÚSCULAS OU MINÚSCULAS PARA O USUÁRIO CRIADO, APENAS PARA SENHA.", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
-				cadastroUser = new CadastroUser();
-				cadastroUser.criaTelaCadastroUser();
-				cadastroUser.criaBotoes();
-				cadastroUser.setVisible(true);
-				dispose();
+				criarTelaNova();
 			}
 		}
 	}
@@ -110,7 +107,7 @@ private static final long serialVersionUID = 1L;
 			dispose();
 			break;
 		case "command_login_usuario_master":
-			pegaValorTelaLoginMasterUser();
+			pegaValorTela();
 			break;
 		default:
 			break;

@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class EsqueciUser extends JFrame implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
 	
 	private JTextField tCPF = new JTextField();
 	private JTextField tData = new JTextField();
@@ -61,12 +63,12 @@ public class EsqueciUser extends JFrame implements ActionListener{
 		
 		//Se todos os campos estiverem ok
 		if (cpf.length()==11 && data.length()==10){
-			cadastroVO.setCPF(cpf);
+			CadastroUserVO.setCPF(cpf);
 			
 			try {
 				dao.buscarDadosNaBaseCPF(cadastroVO);
-				CPFVO = cadastroVO.getCPF();
-				DataVO = cadastroVO.getDataNasc();
+				CPFVO = CadastroUserVO.getCPF();
+				DataVO = CadastroUserVO.getDataNasc();
 				
 				if (cpf.equals(CPFVO)==false){
 					System.out.println("CPF não encontrado na base.");
@@ -80,8 +82,8 @@ public class EsqueciUser extends JFrame implements ActionListener{
 				else {
 					NomeUserVO = cadastroVO.getNomeUser();
 					JOptionPane.showMessageDialog(null, "SEU USUÁRIO É: " + NomeUserVO, "RECUPERAÇÃO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
-					LoginUser login = new LoginUser();
-					login.criaTelaLoginUser();
+					Login login = new Login(null);
+					login.criaTela();
 					login.criaBotoesLogin();
 					login.setVisible(true);
 					dispose();
@@ -98,8 +100,8 @@ public class EsqueciUser extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "command_cancelar":
-			LoginUser login = new LoginUser();
-			login.criaTelaLoginUser();
+			Login login = new Login(e.getActionCommand());
+			login.criaTela();
 			login.criaBotoesLogin();
 			login.setVisible(true);
 			dispose();
