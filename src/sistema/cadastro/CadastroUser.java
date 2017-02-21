@@ -351,8 +351,8 @@ public class CadastroUser extends JFrame implements ActionListener {
 		
 		//Tela
 		setTitle("CONSULTA DE USUÁRIOS");
-		setSize(1000, 500);
-		setLocation(450, 100);
+		setSize(1200, 500);
+		setLocation(200, 100);
 		setResizable(false);
 		getContentPane().setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -378,15 +378,15 @@ public class CadastroUser extends JFrame implements ActionListener {
 	            j++;
 	            tabela.setValueAt(consultaVO.getSenhaUser(), linha, j);
 	            j++;
-	            tabela.setValueAt(consultaVO.getDataNasc(), linha, j);
+	            tabela.setValueAt(consultaVO.getDataCadastro(), linha, j);
+	            j++;
+	            tabela.setValueAt(consultaVO.getDataAlteracaoUser(), linha, j);
+	            j++;
+	            tabela.setValueAt(consultaVO.getDataAlteracaoSenha(), linha, j);
 	            j++;
 	            tabela.setValueAt(consultaVO.getNome(), linha, j);
 	            j++;
 	            tabela.setValueAt(consultaVO.getCPF(), linha, j);
-	            j++;
-	            tabela.setValueAt(consultaVO.getDataNasc(), linha, j);
-	            j++;
-	            tabela.setValueAt(consultaVO.getDataNasc(), linha, j);
 	            j++;
 	            tabela.setValueAt(consultaVO.getDataNasc(), linha, j);
 	            

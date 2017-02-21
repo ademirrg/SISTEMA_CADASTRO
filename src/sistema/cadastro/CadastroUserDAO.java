@@ -141,42 +141,27 @@ public class CadastroUserDAO {
 //				return false;
 //			}
 //		};
-		String sql = "SELECT * FROM sistema_cadastro.usuario";
+		String sql = "SELECT * FROM sistema_cadastro.usuario order by DataCadastro desc";
 		
 		Connection conn = Conexao.abrir();
 		
 		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
 		ResultSet resultado = comando.executeQuery();
-		
-		//adiciona as colunas
-//		consultaTable.addColumn("NomeUser");
-//		consultaTable.addColumn("SenhaUser");
-//		consultaTable.addColumn("DataCadastro ");
-//		consultaTable.addColumn("DataAlteracaoUser");
-//		consultaTable.addColumn("DataAlteracaoSenha");
-//		consultaTable.addColumn("Nome");
-//		consultaTable.addColumn("CPF");
-//		consultaTable.addColumn("DataNasc");
-		
-		//pega os valores do bd para popular tabela
+
 		while (resultado.next()) {
 			ConsultaVO consultaVO = new ConsultaVO();
 			consultaVO.setNomeUser(resultado.getString("NomeUser"));
 			consultaVO.setSenhaUser(resultado.getString("SenhaUser"));
-			//cadastroVO.setDataNasc(resultado.getString("DataCadastro"));
-//			cadastroVO.addColumn("DataAlteracaoUser");
-//			cadastroVO.addColumn("DataAlteracaoSenha");
+			consultaVO.setDataCadastro(resultado.getString("DataCadastro"));
+			consultaVO.setDataAlteracaoUser(resultado.getString("DataAlteracaoUser"));
+			consultaVO.setDataAlteracaoSenha(resultado.getString("DataAlteracaoSenha"));
 			consultaVO.setNome(resultado.getString("Nome"));
 			consultaVO.setCPF(resultado.getString("CPF"));
 			consultaVO.setDataNasc(resultado.getString("DataNasc"));
 			
-			
 			lista.add(consultaVO);
 			
-			
-//			consultaTable.addRow(new String[] {resultado.getString("NomeUser"), resultado.getString("SenhaUser"), resultado.getString("DataCadastro"), resultado.getString("DataAlteracaoUser"), resultado.getString("DataAlteracaoSenha"), resultado.getString("Nome"), resultado.getString("CPF"), resultado.getString("DataNasc") });
 		}
-//		CadastroUserVO.setConsultaTable(consultaTable);
 		comando.close();
 		conn.close();
 		return lista;
