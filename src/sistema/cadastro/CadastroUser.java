@@ -364,7 +364,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 			tabela.setEnabled(false);
 			List<ConsultaVO> list = dao.consultaUsuario();
 	        
-	        
+		
 	        int linha = 0;
 	        int j;
 	        
