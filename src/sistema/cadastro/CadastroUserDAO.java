@@ -24,7 +24,7 @@ public class CadastroUserDAO {
 		cadastroVO.setSenhaUser(SenhaUser);
 		
 		comando.close();
-		System.out.println("Consulta realizada na base.");
+		System.out.println("Consulta de nome de usuário realizada na base.");
 		conn.close();
 		System.out.println("Conexão encerrada.");
 		
@@ -52,7 +52,7 @@ public class CadastroUserDAO {
 		cadastroVO.setNomeUser(NomeUser);
 		
 		comando.close();
-		System.out.println("Consulta realizada na base.");
+		System.out.println("Consulta de CPF realizada na base.");
 		conn.close();
 		System.out.println("Conexão encerrada.");
 		

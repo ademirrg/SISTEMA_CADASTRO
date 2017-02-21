@@ -164,6 +164,9 @@ public class Login extends JFrame implements ActionListener {
 			System.exit(0);
 			break;
 		case COMMAND_CADASTRO_USUARIO:
+			//Regra de apresentação
+			System.out.println("Usuário mestre acessou tela de cadastro de usuários.");
+			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE USUÁRIO:" + System.lineSeparator() + "O CAMPO USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO SENHA DEVE CONTER DE 5 A 12 CARACTERES." + System.lineSeparator() + "O CAMPO NOME DEVE CONTER DE 5 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO CPF DEVE SER PREENCHIDO COM APENAS NÚMEROS E DEVE CONTER 11 CARACTERES." + System.lineSeparator() + "O CAMPO DATA DE NASCIMENTO DEVE SER PREENCHIDO NO PADRÃO DD/MM/AAAA COM BARRAS." + System.lineSeparator() + "NÃO SERÁ REALIZADA VALIDAÇÃO DE LETRAS MAIÚSCULAS OU MINÚSCULAS PARA O USUÁRIO CRIADO, APENAS PARA SENHA.", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
 			cadastroUser = new CadastroUser();
 			cadastroUser.criaTelaCadastroUser();
 			cadastroUser.criaBotoes();
@@ -178,9 +181,10 @@ public class Login extends JFrame implements ActionListener {
 			dispose();
 			break;
 		case COMMAND_CONSULTAR_USUARIO:			
+			System.out.println("Usuário mestre acessou tela de consulta de usuários.");
 			cadastroUser = new CadastroUser();
 			cadastroUser.criaTelaConsultaUser();
-			cadastroUser.criaBotoesConsulta();
+			//cadastroUser.criaBotoesConsulta();
 			cadastroUser.setVisible(true);
 			dispose();
 			break;

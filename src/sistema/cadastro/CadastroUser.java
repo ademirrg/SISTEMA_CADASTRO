@@ -61,6 +61,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 			cadastroVO.setPass(pass);
 			CadastroUserVO.setNome(nome);
 			CadastroUserVO.setDataNasc(data);
+			CadastroUserVO.setCPF(cpf);
 			
 			//Realiza uma conulta no banco e verifica a disponibilidade do nome e cadastro por CPF
 			try {
@@ -241,11 +242,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		}
 	}
 	
-	public void criaTelaCadastroUser() {
-		//Regra de apresentação
-		System.out.println("Usuário mestre acessou tela de cadastro de usuários.");
-		JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE USUÁRIO:" + System.lineSeparator() + "O CAMPO USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO SENHA DEVE CONTER DE 5 A 12 CARACTERES." + System.lineSeparator() + "O CAMPO NOME DEVE CONTER DE 5 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO CPF DEVE SER PREENCHIDO COM APENAS NÚMEROS E DEVE CONTER 11 CARACTERES." + System.lineSeparator() + "O CAMPO DATA DE NASCIMENTO DEVE SER PREENCHIDO NO PADRÃO DD/MM/AAAA COM BARRAS." + System.lineSeparator() + "NÃO SERÁ REALIZADA VALIDAÇÃO DE LETRAS MAIÚSCULAS OU MINÚSCULAS PARA O USUÁRIO CRIADO, APENAS PARA SENHA.", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
-		
+	public void criaTelaCadastroUser() {	
 		tUser.setBounds(150,50,120,25);
 		tPass.setBounds(150,80,120,25);
 		tPass2.setBounds(150,110,120,25);
@@ -344,19 +341,22 @@ public class CadastroUser extends JFrame implements ActionListener {
 	
 	public void criaTelaConsultaUser(){
 		
-		System.out.println("Usuário mestre acessou tela de consulta de usuários.");
-		
+		//Tela
+		setTitle("CONSULTA DE USUÁRIOS");
+		setSize(700, 500);
+		setLocation(450, 100);
+		setResizable(false);
+		getContentPane().setBackground(Color.LIGHT_GRAY);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		JPanel painel = new JPanel();
-		painel.setLayout(new GridLayout(2,2));
+		painel.setLayout(new GridLayout(5,8));
 		JTable tabela = new JTable();
 		JScrollPane rolagem = new JScrollPane();
 		painel .add(rolagem);
 		
+		//Add
 		getContentPane().add(painel);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(700, 500);
-		setLocation(450, 100);
-		getContentPane().setBackground(Color.LIGHT_GRAY);
+		
 		
 	}
 	
