@@ -2,12 +2,8 @@ package sistema.cadastro;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.table.DefaultTableModel;
-
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-
 
 public class CadastroUserDAO {
 	
@@ -134,13 +130,7 @@ public class CadastroUserDAO {
 	
 	public List<ConsultaVO> consultaUsuario() throws Exception{
 		List<ConsultaVO> lista = new ArrayList<ConsultaVO>();
-//		DefaultTableModel consultaTable = new DefaultTableModel() {
-//			private static final long serialVersionUID = 1L;
-//
-//			public boolean isCellEditable(int row, int column) {
-//				return false;
-//			}
-//		};
+
 		String sql = "SELECT * FROM sistema_cadastro.usuario order by DataCadastro desc";
 		
 		Connection conn = Conexao.abrir();

@@ -1,8 +1,5 @@
 package sistema.cadastro;
 
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
 public class CadastroUserVO {
 	
 	private static String user;
