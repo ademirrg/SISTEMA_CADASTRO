@@ -1,5 +1,10 @@
 package sistema.cadastro;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
+
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
@@ -125,6 +130,56 @@ public class CadastroUserDAO {
 		conn.close();
 		System.out.println("Conexão encerrada.");
 	
+	}
+	
+	public List<ConsultaVO> consultaUsuario() throws Exception{
+		List<ConsultaVO> lista = new ArrayList<ConsultaVO>();
+//		DefaultTableModel consultaTable = new DefaultTableModel() {
+//			private static final long serialVersionUID = 1L;
+//
+//			public boolean isCellEditable(int row, int column) {
+//				return false;
+//			}
+//		};
+		String sql = "SELECT * FROM sistema_cadastro.usuario";
+		
+		Connection conn = Conexao.abrir();
+		
+		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
+		ResultSet resultado = comando.executeQuery();
+		
+		//adiciona as colunas
+//		consultaTable.addColumn("NomeUser");
+//		consultaTable.addColumn("SenhaUser");
+//		consultaTable.addColumn("DataCadastro ");
+//		consultaTable.addColumn("DataAlteracaoUser");
+//		consultaTable.addColumn("DataAlteracaoSenha");
+//		consultaTable.addColumn("Nome");
+//		consultaTable.addColumn("CPF");
+//		consultaTable.addColumn("DataNasc");
+		
+		//pega os valores do bd para popular tabela
+		while (resultado.next()) {
+			ConsultaVO consultaVO = new ConsultaVO();
+			consultaVO.setNomeUser(resultado.getString("NomeUser"));
+			consultaVO.setSenhaUser(resultado.getString("SenhaUser"));
+			//cadastroVO.setDataNasc(resultado.getString("DataCadastro"));
+//			cadastroVO.addColumn("DataAlteracaoUser");
+//			cadastroVO.addColumn("DataAlteracaoSenha");
+			consultaVO.setNome(resultado.getString("Nome"));
+			consultaVO.setCPF(resultado.getString("CPF"));
+			consultaVO.setDataNasc(resultado.getString("DataNasc"));
+			
+			
+			lista.add(consultaVO);
+			
+			
+//			consultaTable.addRow(new String[] {resultado.getString("NomeUser"), resultado.getString("SenhaUser"), resultado.getString("DataCadastro"), resultado.getString("DataAlteracaoUser"), resultado.getString("DataAlteracaoSenha"), resultado.getString("Nome"), resultado.getString("CPF"), resultado.getString("DataNasc") });
+		}
+//		CadastroUserVO.setConsultaTable(consultaTable);
+		comando.close();
+		conn.close();
+		return lista;
 	}
 	
 }

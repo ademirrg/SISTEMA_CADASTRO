@@ -1,9 +1,17 @@
 package sistema.cadastro;
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
+import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 public class CadastroUser extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -343,21 +351,54 @@ public class CadastroUser extends JFrame implements ActionListener {
 		
 		//Tela
 		setTitle("CONSULTA DE USUÁRIOS");
-		setSize(700, 500);
+		setSize(1000, 500);
 		setLocation(450, 100);
 		setResizable(false);
 		getContentPane().setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		JPanel painel = new JPanel();
-		painel.setLayout(new GridLayout(5,8));
-		JTable tabela = new JTable();
-		JScrollPane rolagem = new JScrollPane();
-		painel .add(rolagem);
-		
-		//Add
-		getContentPane().add(painel);
+		painel.setSize(120,150);
+		painel.setLayout(null);
 		
 		
+		try {
+			JTable tabela = new JTable(20,8);
+			tabela.setEnabled(false);
+			List<ConsultaVO> list = dao.consultaUsuario();
+	        
+	        
+	        int linha = 0;
+	        int j;
+	        
+	        for(ConsultaVO consultaVO: list){
+	            
+	            j = 0;
+	
+	            tabela.setValueAt(consultaVO.getNomeUser(), linha, j);
+	            j++;
+	            tabela.setValueAt(consultaVO.getSenhaUser(), linha, j);
+	            j++;
+	            tabela.setValueAt(consultaVO.getDataNasc(), linha, j);
+	            j++;
+	            tabela.setValueAt(consultaVO.getNome(), linha, j);
+	            j++;
+	            tabela.setValueAt(consultaVO.getCPF(), linha, j);
+	            j++;
+	            tabela.setValueAt(consultaVO.getDataNasc(), linha, j);
+	            j++;
+	            tabela.setValueAt(consultaVO.getDataNasc(), linha, j);
+	            j++;
+	            tabela.setValueAt(consultaVO.getDataNasc(), linha, j);
+	            
+	            linha++;              
+	        }
+
+	        getContentPane().add(tabela);
+		
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 	
 	public void criaBotoesConsulta(){

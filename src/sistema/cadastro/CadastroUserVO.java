@@ -1,5 +1,8 @@
 package sistema.cadastro;
 
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 public class CadastroUserVO {
 	
 	private static String user;
@@ -12,6 +15,7 @@ public class CadastroUserVO {
 	private static String Nome;
 	private static String CPF; //Para uso DAO
 	private static String DataNasc;
+
 	
 	public String getUser() {
 		return user;
@@ -86,4 +90,5 @@ public class CadastroUserVO {
 	public static void setDataNasc(String DataNasc){
 		CadastroUserVO.DataNasc = DataNasc;
 	}
+
 }
