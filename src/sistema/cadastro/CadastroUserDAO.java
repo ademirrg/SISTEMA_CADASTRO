@@ -140,8 +140,8 @@ public class CadastroUserDAO {
 
 		while (resultado.next()) {
 			ConsultaVO consultaVO = new ConsultaVO();
+			
 			consultaVO.setNomeUser(resultado.getString("NomeUser"));
-			consultaVO.setSenhaUser(resultado.getString("SenhaUser"));
 			consultaVO.setDataCadastro(resultado.getString("DataCadastro"));
 			consultaVO.setDataAlteracaoUser(resultado.getString("DataAlteracaoUser"));
 			consultaVO.setDataAlteracaoSenha(resultado.getString("DataAlteracaoSenha"));

@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -355,26 +357,36 @@ public class CadastroUser extends JFrame implements ActionListener {
 		getContentPane().setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		JPanel painel = new JPanel();
+		setContentPane(painel);
 		painel.setSize(120,150);
 		painel.setLayout(null);
 		
 		
 		try {
-			JTable tabela = new JTable(20,8);
+			JTable tabela = new JTable(20,7);
 			tabela.setEnabled(false);
 			List<ConsultaVO> list = dao.consultaUsuario();
-	        
+			tabela.setBounds(20, 50,1150,320);
 		
-	        int linha = 0;
+			//Colunas
+	        tabela.setValueAt("NOME USUÁRIO", 0, 0);
+        	tabela.setValueAt("DATA CRIAÇÃO", 0, 1);
+        	tabela.setValueAt("ALTERAÇÃO USUÁRIO", 0, 2);
+        	tabela.setValueAt("ALTERAÇÃO SENHA", 0, 3);
+        	tabela.setValueAt("NOME", 0, 4);
+        	tabela.setValueAt("CPF", 0, 5);
+        	tabela.setValueAt("DATA NASCIMENTO", 0, 6);
+        	//tabela.setGridColor(Color.DARK_GRAY);
+      
+        	
+	        int linha = 1;
 	        int j;
-	        
+        	
 	        for(ConsultaVO consultaVO: list){
 	            
 	            j = 0;
 	
 	            tabela.setValueAt(consultaVO.getNomeUser(), linha, j);
-	            j++;
-	            tabela.setValueAt(consultaVO.getSenhaUser(), linha, j);
 	            j++;
 	            tabela.setValueAt(consultaVO.getDataCadastro(), linha, j);
 	            j++;
@@ -390,7 +402,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 	            
 	            linha++;              
 	        }
-
+	        
 	        getContentPane().add(tabela);
 		
 		} 

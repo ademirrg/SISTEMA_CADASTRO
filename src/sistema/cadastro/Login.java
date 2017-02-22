@@ -184,7 +184,7 @@ public class Login extends JFrame implements ActionListener {
 			System.out.println("Usuário mestre acessou tela de consulta de usuários.");
 			cadastroUser = new CadastroUser();
 			cadastroUser.criaTelaConsultaUser();
-			//cadastroUser.criaBotoesConsulta();
+			cadastroUser.criaBotoesConsulta();
 			cadastroUser.setVisible(true);
 			dispose();
 			break;
