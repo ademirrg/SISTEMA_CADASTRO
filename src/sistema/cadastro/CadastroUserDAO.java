@@ -140,17 +140,15 @@ public class CadastroUserDAO {
 
 		while (resultado.next()) {
 			ConsultaVO consultaVO = new ConsultaVO();
-			
-			consultaVO.setNomeUser(resultado.getString("NomeUser"));
-			consultaVO.setDataCadastro(resultado.getString("DataCadastro"));
-			consultaVO.setDataAlteracaoUser(resultado.getString("DataAlteracaoUser"));
-			consultaVO.setDataAlteracaoSenha(resultado.getString("DataAlteracaoSenha"));
-			consultaVO.setNome(resultado.getString("Nome"));
-			consultaVO.setCPF(resultado.getString("CPF"));
-			consultaVO.setDataNasc(resultado.getString("DataNasc"));
+			consultaVO.setNomeUser(resultado.getString(1));
+			consultaVO.setDataCadastro(resultado.getString(3));
+			consultaVO.setDataAlteracaoUser(resultado.getString(4));
+			consultaVO.setDataAlteracaoSenha(resultado.getString(5));
+			consultaVO.setNome(resultado.getString(6));
+			consultaVO.setCPF(resultado.getString(7));
+			consultaVO.setDataNasc(resultado.getString(8));
 			
 			lista.add(consultaVO);
-			
 		}
 		comando.close();
 		conn.close();

@@ -1,17 +1,23 @@
 package sistema.cadastro;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 public class CadastroUser extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -358,56 +364,86 @@ public class CadastroUser extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		JPanel painel = new JPanel();
 		setContentPane(painel);
-		painel.setSize(120,150);
+		//painel.setSize(1200,320);
 		painel.setLayout(null);
-		
-		
+
 		try {
-			JTable tabela = new JTable(20,7);
-			tabela.setEnabled(false);
 			List<ConsultaVO> list = dao.consultaUsuario();
+			
+			//Tabela
+			JTable tabela = new JTable();//list.size(),6
+			tabela.setEnabled(false);
 			tabela.setBounds(20, 50,1150,320);
-		
-			//Colunas
-	        tabela.setValueAt("NOME USUÁRIO", 0, 0);
-        	tabela.setValueAt("DATA CRIAÇÃO", 0, 1);
-        	tabela.setValueAt("ALTERAÇÃO USUÁRIO", 0, 2);
-        	tabela.setValueAt("ALTERAÇÃO SENHA", 0, 3);
-        	tabela.setValueAt("NOME", 0, 4);
-        	tabela.setValueAt("CPF", 0, 5);
-        	tabela.setValueAt("DATA NASCIMENTO", 0, 6);
-        	//tabela.setGridColor(Color.DARK_GRAY);
-      
-        	
-	        int linha = 1;
-	        int j;
-        	
-	        for(ConsultaVO consultaVO: list){
-	            
-	            j = 0;
-	
-	            tabela.setValueAt(consultaVO.getNomeUser(), linha, j);
-	            j++;
-	            tabela.setValueAt(consultaVO.getDataCadastro(), linha, j);
-	            j++;
-	            tabela.setValueAt(consultaVO.getDataAlteracaoUser(), linha, j);
-	            j++;
-	            tabela.setValueAt(consultaVO.getDataAlteracaoSenha(), linha, j);
-	            j++;
-	            tabela.setValueAt(consultaVO.getNome(), linha, j);
-	            j++;
-	            tabela.setValueAt(consultaVO.getCPF(), linha, j);
-	            j++;
-	            tabela.setValueAt(consultaVO.getDataNasc(), linha, j);
-	            
-	            linha++;              
-	        }
-	        
+			//tabela.setGridColor(Color.blue);
+	        tabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);     
+			JScrollPane scrool = new JScrollPane(tabela);
+			
+			
+			
+	        //Add
 	        getContentPane().add(tabela);
-		
-		} 
+	        painel.add(scrool);
+	        
+			//Mouse Scroll
+//			 MouseMotionAdapter doScrollRectToVisible = new MouseMotionAdapter() {
+//			     public void mouseDragged(MouseEvent e) {
+//			        Rectangle r = new Rectangle(e.getX(), e.getY(), 1, 1);
+//			        ((JPanel)e.getSource()).scrollRectToVisible(r);
+//			    }
+//			 };
+//			 tabela.addMouseMotionListener(doScrollRectToVisible);
+			
+			//Definir colunas
+			Object[] cabecalho = {"NOME USUÁRIO", "DATA CRIAÇÃO", "DATA ALTERAÇÃO USUÁRIO", "DATA ALTERAÇÃO SENHA", "NOME",  "CPF", "DATA NASCIMENTO"};
+			List<Object[]> linhas = new ArrayList<Object[]>();
+			
+			Object[][] cabecalhoTopoEEsquerdo= new Object[1][];
+			cabecalhoTopoEEsquerdo[0] = cabecalho;
+			tabela.setModel(new DefaultTableModel(cabecalhoTopoEEsquerdo, cabecalho));
+
+			//Popular linhas
+	        for(ConsultaVO consultaVO: list){
+	            linhas.add(new Object[]{consultaVO.getNomeUser(), consultaVO.getDataCadastro(), consultaVO.getDataAlteracaoUser(), consultaVO.getDataAlteracaoSenha(),
+	            		consultaVO.getNome(), consultaVO.getCPF(), consultaVO.getDataNasc()});
+	        }        
+	        
+	        for(Object[] linha : linhas) {
+	        	((DefaultTableModel)tabela.getModel()).addRow(linha);
+	        	
+	        }  
+	        
+	        //Modificador cabeçalho
+	        final TableCellRenderer hr = tabela.getTableHeader().getDefaultRenderer();
+	        JTableHeader th = tabela.getTableHeader();
+	        TableColumnModel tcm = th.getColumnModel();
+	        
+	        for(int i=0; i < 7;i++) {
+	        	TableColumn tc = tcm.getColumn(i);
+	        	
+	        	 tc.setCellRenderer(new TableCellRenderer() {
+	 				
+	 	        	@Override
+	 	        	public Component getTableCellRendererComponent(JTable table, Object value,
+	 	        			boolean isSelected, boolean hasFocus, int row, int column) {
+	 	        		Component c = hr.getTableCellRendererComponent(table,
+	 	        				value, isSelected, hasFocus, row, column);
+
+	 	        			if(row == 0) {
+	 		        			c.setBackground(Color.DARK_GRAY);
+	 		        			c.setForeground(Color.white);
+	 	        			} else {
+	 	        				c.setBackground(Color.white);
+	 		        			c.setForeground(Color.black);
+	 	        			}
+	 	        			return c;
+	 	        	}
+	 			});
+	        }    
+
+		}
 		catch (Exception e) {
 			System.out.println(e);
+			JOptionPane.showMessageDialog(null, "ERRO AO CONSULTAR USUÁRIOS.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	

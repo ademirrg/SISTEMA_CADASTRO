@@ -7,8 +7,8 @@ public class LoginMasterUser extends Login {
 
 	private static final long serialVersionUID = 1L; 
 	
-	private JTextField tUser = new JTextField();
-	private JTextField tPass = new JPasswordField();
+	private JTextField tUser = new JTextField("admin");
+	private JTextField tPass = new JPasswordField("admin");
 	private Botao botoes = new Botao();
 	private ScriptMaster dao = new ScriptMaster();
 	private CadastroUserVO cadastroVO = new CadastroUserVO();
