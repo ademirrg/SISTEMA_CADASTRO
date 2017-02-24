@@ -151,7 +151,9 @@ public class CadastroUserDAO {
 			lista.add(consultaVO);
 		}
 		comando.close();
+		System.out.println("Consulta de usuários realizada na base.");
 		conn.close();
+		System.out.println("Conexão encerrada.");
 		return lista;
 	}
 	

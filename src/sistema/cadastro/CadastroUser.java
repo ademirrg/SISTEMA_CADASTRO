@@ -1,6 +1,9 @@
 package sistema.cadastro;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -13,6 +16,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JViewport;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
@@ -354,36 +359,44 @@ public class CadastroUser extends JFrame implements ActionListener {
 	}
 	
 	public void criaTelaConsultaUser(){
-		
-		//Tela
-		setTitle("CONSULTA DE USUÁRIOS");
-		setSize(1200, 500);
-		setLocation(200, 100);
-		setResizable(false);
-		getContentPane().setBackground(Color.LIGHT_GRAY);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		JPanel painel = new JPanel();
-		setContentPane(painel);
-		//painel.setSize(1200,320);
-		painel.setLayout(null);
 
 		try {
 			List<ConsultaVO> list = dao.consultaUsuario();
+						
+			//Tela
+			setTitle("CONSULTA DE USUÁRIOS");
+			setSize(1200, 500);
+			setLocation(200, 100);
+			setResizable(false);
+			getContentPane().setBackground(Color.LIGHT_GRAY);
+			setDefaultCloseOperation(EXIT_ON_CLOSE);
+			JPanel painel = new JPanel();
+			setContentPane(painel);
+			JLabel l1 = new JLabel("CONSULTA DE USUÁRIOS CADASTRADOS");
+			l1.setFont(new Font("Dialog",Font.PLAIN, 15));
+			l1.setBounds(400,15,300,30);
+			//setLocationRelativeTo(null);
+			//painel.setSize(1200,320);
+			painel.setLayout(null);
 			
+		
 			//Tabela
 			JTable tabela = new JTable();//list.size(),6
-			tabela.setEnabled(false);
+			//tabela.setEnabled(false);
 			tabela.setBounds(20, 50,1150,320);
-			//tabela.setGridColor(Color.blue);
-	        tabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);     
-			JScrollPane scrool = new JScrollPane(tabela);
-			
-			
-			
+			//tabela.setGridColor(Color.blue);   
+	        tabela.setAutoResizeMode (JTable.AUTO_RESIZE_OFF); 
+ 			
+//	        JScrollPane scroll = new JScrollPane(tabela);
+// 			scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+ 			
+
+ 			
 	        //Add
 	        getContentPane().add(tabela);
-	        painel.add(scrool);
-	        
+	        getContentPane().add(l1);
+//	        getContentPane().add(scroll);
+
 			//Mouse Scroll
 //			 MouseMotionAdapter doScrollRectToVisible = new MouseMotionAdapter() {
 //			     public void mouseDragged(MouseEvent e) {
@@ -400,7 +413,8 @@ public class CadastroUser extends JFrame implements ActionListener {
 			Object[][] cabecalhoTopoEEsquerdo= new Object[1][];
 			cabecalhoTopoEEsquerdo[0] = cabecalho;
 			tabela.setModel(new DefaultTableModel(cabecalhoTopoEEsquerdo, cabecalho));
-
+			
+			
 			//Popular linhas
 	        for(ConsultaVO consultaVO: list){
 	            linhas.add(new Object[]{consultaVO.getNomeUser(), consultaVO.getDataCadastro(), consultaVO.getDataAlteracaoUser(), consultaVO.getDataAlteracaoSenha(),
@@ -428,22 +442,21 @@ public class CadastroUser extends JFrame implements ActionListener {
 	 	        		Component c = hr.getTableCellRendererComponent(table,
 	 	        				value, isSelected, hasFocus, row, column);
 
-	 	        			if(row == 0) {
-	 		        			c.setBackground(Color.DARK_GRAY);
-	 		        			c.setForeground(Color.white);
-	 	        			} else {
-	 	        				c.setBackground(Color.white);
-	 		        			c.setForeground(Color.black);
-	 	        			}
-	 	        			return c;
+ 	        			if(row == 0) {
+ 		        			c.setBackground(Color.DARK_GRAY);
+ 		        			c.setForeground(Color.white);
+ 	        			} else {
+ 	        				c.setBackground(Color.white);
+ 		        			c.setForeground(Color.black);
+ 	        			}
+ 	        			return c;
 	 	        	}
 	 			});
 	        }    
-
 		}
 		catch (Exception e) {
 			System.out.println(e);
-			JOptionPane.showMessageDialog(null, "ERRO AO CONSULTAR USUÁRIOS.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "ERRO AO CONSULTAR USUÁRIOS.", "ERRO", JOptionPane.ERROR_MESSAGE);		
 		}
 	}
 	

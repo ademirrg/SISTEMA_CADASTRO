@@ -3,6 +3,7 @@ package sistema.cadastro;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -181,12 +182,31 @@ public class Login extends JFrame implements ActionListener {
 			dispose();
 			break;
 		case COMMAND_CONSULTAR_USUARIO:			
-			System.out.println("Usuário mestre acessou tela de consulta de usuários.");
-			cadastroUser = new CadastroUser();
-			cadastroUser.criaTelaConsultaUser();
-			cadastroUser.criaBotoesConsulta();
-			cadastroUser.setVisible(true);
-			dispose();
+			try {
+				List<ConsultaVO> list = dao.consultaUsuario();
+				
+				if (list.size()==0){
+					System.out.println("Não existem usuários cadastrados na base.");
+					JOptionPane.showMessageDialog(null, "NÃO EXISTEM USUÁRIOS CADASTRADOS NA BASE.", "INFO", JOptionPane.INFORMATION_MESSAGE);
+					Tela tela = new Tela();
+					tela.criaBotoes();
+					tela.setVisible(true);
+					dispose();
+				}
+				
+				else{
+					System.out.println("Usuário mestre acessou tela de consulta de usuários.");
+					cadastroUser = new CadastroUser();
+					cadastroUser.criaTelaConsultaUser();
+					cadastroUser.criaBotoesConsulta();
+					cadastroUser.setVisible(true);
+					dispose();
+				}
+			}
+				catch (Exception e) {
+					System.out.println(e);
+					JOptionPane.showMessageDialog(null, "ERRO AO CONSULTAR USUÁRIOS.", "ERRO", JOptionPane.ERROR_MESSAGE);		
+				}
 			break;
 		case COMMAND_CADASTRO_CLIENTE:
 			CadastroCli cadastroCli = new CadastroCli();
