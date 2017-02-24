@@ -369,7 +369,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 			setContentPane(painel);
 			JLabel l1 = new JLabel("CONSULTA DE USUÁRIOS CADASTRADOS");
 			l1.setFont(new Font("Dialog",Font.PLAIN, 15));
-			l1.setBounds(400,15,300,30);
+			l1.setBounds(430,15,300,30);
 			//setLocationRelativeTo(null);
 			//painel.setSize(1200,320);
 			painel.setLayout(null);
@@ -377,15 +377,19 @@ public class CadastroUser extends JFrame implements ActionListener {
 		
 			//Tabela
 			JTable tabela = new JTable();//list.size(),6
-			//tabela.setEnabled(false);
 			tabela.setBounds(20, 50,1150,320);
-			//tabela.setGridColor(Color.blue);   
-	        tabela.setAutoResizeMode (JTable.AUTO_RESIZE_OFF); 
- 			
+			tabela.setAutoResizeMode (JTable.AUTO_RESIZE_OFF); 
+			tabela.setEnabled(false);
+//			tabela.setCellSelectionEnabled(true);
+//			tabela.setSelectionBackground(Color.black);
+//			tabela.setSelectionForeground(Color.black);
+//			tabela.setRowSelectionAllowed(false);
+//			tabela.setCellSelectionEnabled(false);
+//			tabela.setGridColor(Color.blue);   
+	        
 //	        JScrollPane scroll = new JScrollPane(tabela);
 // 			scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
  			
-
  			
 	        //Add
 	        getContentPane().add(tabela);

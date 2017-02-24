@@ -120,7 +120,7 @@ public class Botao {
 	
 	public void definirBotoesTelaConsultaUser(ActionListener consultaUser, JFrame frame) {
 		bt_voltar = new JButton("Voltar");
-		bt_voltar.setBounds(600, 430, 75, 30);
+		bt_voltar.setBounds(550, 430, 75, 30);
 		bt_voltar.addActionListener(consultaUser);
 		bt_voltar.setActionCommand("command_voltar");
 		
