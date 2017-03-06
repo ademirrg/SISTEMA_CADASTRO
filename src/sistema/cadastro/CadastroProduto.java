@@ -91,8 +91,10 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		else if(fimVig.length()<10 || fimVig.length()>10){
 			JOptionPane.showMessageDialog(null, "CAMPO INÍCIO DE VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + "O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM BARRAS.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
-		
-		
+		//Se todos os campos estiverem ok
+		if(nome.length()>=4 && nome.length()<=25 && segmento.length()==3 && inicioVig.length()==10 && fimVig.length()==10){
+			//DAO
+		}
 	}
 	public void criaBotoes() {
 		
