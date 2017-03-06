@@ -13,7 +13,7 @@ public class Tela extends JFrame implements ActionListener {
 	public Tela() {
 
 		// Tela
-		setTitle("SISTEMA DE CADASTRAMENTO - USUÁRIO / CLIENTE");
+		setTitle("SISTEMA DE CADASTRAMENTO");
 		setSize(700, 500);
 		setLocation(450, 100);
 		setResizable(false);
@@ -45,7 +45,10 @@ public class Tela extends JFrame implements ActionListener {
 		case "command_consultar_usuario":
 			login = new LoginMasterUser(e.getActionCommand());
 			break;
-		case "command_cadastro_cliente":
+		case "command_cadastro_vendedor":
+			login = new Login(e.getActionCommand());
+			break;
+		case "command_cadastro_produto":
 			login = new Login(e.getActionCommand());
 			break;
 		case "command_info":

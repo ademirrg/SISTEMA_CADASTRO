@@ -4,19 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class CadastroCli extends JFrame implements ActionListener{
+public class CadastroVendedor extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private Botao botoes = new Botao();
-	private JTextField t1 = new JTextField();
-	private JTextField t2 = new JTextField();
-	private JTextField t3 = new JTextField();
-	private JTextField t4 = new JTextField();
+	private JTextField tNome = new JTextField();
+	private JTextField tEnd = new JTextField();
+	private JTextField tData = new JTextField();
+	private JTextField tCPF = new JTextField();
 	
-	public void criaTelaCadastroCli(){
+	public void criaTelaCadastroVend(){
 	
 	//Tela
-	setTitle("CADASTRAMENTO DE CLIENTE");
+	setTitle("CADASTRAMENTO DE VENDEDOR");
 	setSize(700, 500);
 	setLocation(450, 100);
 	setResizable(false);
@@ -25,19 +25,31 @@ public class CadastroCli extends JFrame implements ActionListener{
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
 	//Label
+	tNome.setBounds(100,50,500,25);
+	tEnd.setBounds(100,80,500,25);
+	tData.setBounds(100,110,500,25);
+	tCPF.setBounds(100,140,500,25);
 	JLabel l1 = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
 	l1.setBounds(30,15,330,30);
 	JLabel l2 = new JLabel("NOME:");
 	l2.setBounds(58,50,60,30);
 	JLabel l3 = new JLabel("ENDEREÇO:");
-	l3.setBounds(30,80,85,30);
-	t1.setBounds(100,50,500,25);
+	l3.setBounds(20,80,85,30);
+	JLabel l4 = new JLabel("DATA NASC.:");
+	l4.setBounds(20,110,85,30);
+	JLabel l5 = new JLabel("CPF:");
+	l5.setBounds(60,140,85,30);
 	
 	//Add
+	getContentPane().add(tNome);
+	getContentPane().add(tEnd);
+	getContentPane().add(tData);
+	getContentPane().add(tCPF);
 	getContentPane().add(l1);
 	getContentPane().add(l2);
 	getContentPane().add(l3);
-	getContentPane().add(t1);
+	getContentPane().add(l4);
+	getContentPane().add(l5);
 	}
 
 	public void actionPerformed(ActionEvent e){
@@ -51,19 +63,17 @@ public class CadastroCli extends JFrame implements ActionListener{
 			tela.setVisible(true);
 			dispose();
 			break;
-		default:
-			break;
 		}
 	}
 
 	public void pegaValor(){
-		String nome = t1.getText();
-		String endereco = t2.getText();
-		String cpf = t3.getText();
-		String dtnasc = t4.getText();
+		String nome = tNome.getText();
+		String endereco = tEnd.getText();
+		String dtnasc = tData.getText();
+		String cpf = tCPF.getText();
 	}
 	public void criaBotoes() {
 		
-		botoes.definirBotoesTelaCadastroCli(this, this);
+		botoes.definirBotoesTelaCadastroVend(this, this);
 	}
 }

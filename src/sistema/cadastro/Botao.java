@@ -13,7 +13,8 @@ public class Botao {
 	JButton bt_alterar_pass;
 	JButton bt_voltar;
 	JButton bt_info;
-	JButton bt_cadastro_cli;
+	JButton bt_cadastro_vend;
+	JButton bt_cadastro_prod;
 	JButton bt_entrar;
 	JButton bt_menu;
 	JButton bt_consulta_user;
@@ -27,24 +28,29 @@ public class Botao {
 		bt_sair.setActionCommand("command_sair");
 
 		bt_cadastro_user = new JButton("Cadastrar Usuário");
-		bt_cadastro_user.setBounds(20, 20, 138, 30);
+		bt_cadastro_user.setBounds(20, 20, 150, 30);
 		bt_cadastro_user.addActionListener(tela);
 		bt_cadastro_user.setActionCommand("command_cadastro_usuario");
 		
 		bt_altera_user = new JButton("Alterar Usuário");
-		bt_altera_user.setBounds(20, 60, 138, 30);
+		bt_altera_user.setBounds(20, 60, 150, 30);
 		bt_altera_user.addActionListener(tela);
 		bt_altera_user.setActionCommand("command_alterar_usuario");
 		
 		bt_consulta_user = new JButton("Consultar Usuário");
-		bt_consulta_user.setBounds(20, 100, 138, 30);
+		bt_consulta_user.setBounds(20, 100, 150, 30);
 		bt_consulta_user.addActionListener(tela);
 		bt_consulta_user.setActionCommand("command_consultar_usuario");
 		
-		bt_cadastro_cli = new JButton("Cadastrar Cliente");
-		bt_cadastro_cli.setBounds(20, 140, 138, 30);
-		bt_cadastro_cli.addActionListener(tela);
-		bt_cadastro_cli.setActionCommand("command_cadastro_cliente");
+		bt_cadastro_vend = new JButton("Cadastrar Vendedor");
+		bt_cadastro_vend.setBounds(20, 140, 150, 30);
+		bt_cadastro_vend.addActionListener(tela);
+		bt_cadastro_vend.setActionCommand("command_cadastro_vendedor");
+		
+		bt_cadastro_prod = new JButton("Cadastrar Produto");
+		bt_cadastro_prod.setBounds(20, 180, 150, 30);
+		bt_cadastro_prod.addActionListener(tela);
+		bt_cadastro_prod.setActionCommand("command_cadastro_produto");
 		
 		bt_info = new JButton("?");
 		bt_info.setBounds(630, 20, 45, 30);
@@ -55,7 +61,8 @@ public class Botao {
 		frame.add(bt_cadastro_user);
 		frame.add(bt_altera_user);
 		frame.add(bt_consulta_user);
-		frame.add(bt_cadastro_cli);
+		frame.add(bt_cadastro_vend);
+		frame.add(bt_cadastro_prod);
 		frame.add(bt_info);
 	}
 
@@ -81,19 +88,41 @@ public class Botao {
 
 	}
 	
-	public void definirBotoesTelaCadastroCli(ActionListener cadastroCli, JFrame frame) {
+	public void definirBotoesTelaCadastroVend(ActionListener cadastroVend, JFrame frame) {
 		bt_voltar = new JButton("Voltar");
 		bt_voltar.setBounds(600, 430, 75, 30);
-		bt_voltar.addActionListener(cadastroCli);
+		bt_voltar.addActionListener(cadastroVend);
 		bt_voltar.setActionCommand("command_voltar");
 
 		bt_salvar = new JButton("Salvar");
 		bt_salvar.setBounds(20, 420, 75, 30);
-		bt_salvar.addActionListener(cadastroCli);
+		bt_salvar.addActionListener(cadastroVend);
 		bt_salvar.setActionCommand("command_salvar");
 		
 		frame.add(bt_voltar);
 		frame.add(bt_salvar);
+
+	}
+	
+	public void definirBotoesTelaCadastroProd(ActionListener cadastroProd, JFrame frame) {
+		bt_voltar = new JButton("Voltar");
+		bt_voltar.setBounds(600, 430, 75, 30);
+		bt_voltar.addActionListener(cadastroProd);
+		bt_voltar.setActionCommand("command_voltar");
+
+		bt_salvar = new JButton("Salvar");
+		bt_salvar.setBounds(20, 420, 75, 30);
+		bt_salvar.addActionListener(cadastroProd);
+		bt_salvar.setActionCommand("command_salvar");
+		
+		bt_info = new JButton("?");
+		bt_info.setBounds(630, 20, 45, 30);
+		bt_info.addActionListener(cadastroProd);
+		bt_info.setActionCommand("command_info");
+		
+		frame.add(bt_voltar);
+		frame.add(bt_salvar);
+		frame.add(bt_info);
 
 	}
 	

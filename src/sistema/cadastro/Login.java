@@ -14,7 +14,8 @@ import javax.swing.JTextField;
 public class Login extends JFrame implements ActionListener {
 
 	public static final String COMMAND_INFO = "command_info";
-	public static final String COMMAND_CADASTRO_CLIENTE = "command_cadastro_cliente";
+	public static final String COMMAND_CADASTRO_VENDEDOR = "command_cadastro_vendedor";
+	public static final String COMMAND_CADASTRO_PRODUTO = "command_cadastro_produto";
 	public static final String COMMAND_CONSULTAR_USUARIO = "command_consultar_usuario";
 	public static final String COMMAND_ALTERAR_USUARIO = "command_alterar_usuario";
 	public static final String COMMAND_CADASTRO_USUARIO = "command_cadastro_usuario";
@@ -23,8 +24,8 @@ public class Login extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L; 
 	
-	private JTextField tUser = new JTextField();
-	private JTextField tPass = new JPasswordField();
+	private JTextField tUser = new JTextField("ademir");
+	private JTextField tPass = new JPasswordField("teste");
 	private CadastroUserVO cadastroVO = new CadastroUserVO();
 	private CadastroUserDAO dao = new CadastroUserDAO();
 	private Botao botoes = new Botao();
@@ -208,11 +209,18 @@ public class Login extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "ERRO AO CONSULTAR USUÁRIOS.", "ERRO", JOptionPane.ERROR_MESSAGE);		
 				}
 			break;
-		case COMMAND_CADASTRO_CLIENTE:
-			CadastroCli cadastroCli = new CadastroCli();
-			cadastroCli.criaTelaCadastroCli();
-			cadastroCli.criaBotoes();
-			cadastroCli.setVisible(true);
+		case COMMAND_CADASTRO_VENDEDOR:
+			CadastroVendedor cadastroVend = new CadastroVendedor();
+			cadastroVend.criaTelaCadastroVend();
+			cadastroVend.criaBotoes();
+			cadastroVend.setVisible(true);
+			dispose();
+			break;
+		case COMMAND_CADASTRO_PRODUTO:
+			CadastroProduto cadastroProd = new CadastroProduto();
+			cadastroProd.criaTelaCadastroProd();
+			cadastroProd.criaBotoes();
+			cadastroProd.setVisible(true);
 			dispose();
 			break;
 		case COMMAND_INFO:
