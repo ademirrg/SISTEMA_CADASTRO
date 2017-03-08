@@ -35,12 +35,12 @@ public class CadastroUser extends JFrame implements ActionListener {
 
 	
 	public void pegaValorTelaCadastroUser(){
-		String user = (tUser.getText());
-		String pass = (tPass.getText());
-		String pass2 = (tPass2.getText());
-		String nome = (tNome.getText());
-		String cpf = (tCPF.getText());
-		String data = (tData.getText());
+		String user = tUser.getText();
+		String pass = tPass.getText();
+		String pass2 = tPass2.getText();
+		String nome = tNome.getText();
+		String cpf = tCPF.getText();
+		String data = tData.getText();
 		String NomeUserVO = "";
 		String CPFVO = "";
 
@@ -250,8 +250,6 @@ public class CadastroUser extends JFrame implements ActionListener {
 			tela.criaBotoes();
 			tela.setVisible(true);
 			dispose();
-			break;
-		default:
 			break;
 		}
 	}

@@ -13,6 +13,8 @@ public class ScriptMaster {
 		String sqlSCHEMA = "CREATE SCHEMA `Sistema_Cadastro`";
 		String sqlTable1 = "CREATE TABLE `sistema_cadastro`.`master` (`MasterUser` VARCHAR(25) NOT NULL,`SenhaMaster` VARCHAR(12) NULL,`DataCri` DATETIME NULL,PRIMARY KEY (`MasterUser`));";
 		String sqlTable2 = "CREATE TABLE `sistema_cadastro`.`usuario` (`NomeUser` VARCHAR(25) NULL,`SenhaUser` VARCHAR(12) NULL,`DataCadastro` DATETIME NULL,`DataAlteracaoUser` DATETIME NULL,`DataAlteracaoSenha` DATETIME NULL,`Nome` VARCHAR(25) NULL,`CPF` VARCHAR(11) NOT NULL,`DataNasc` VARCHAR(10) NULL,PRIMARY KEY (`CPF`));";
+		String sqlTable3 = "CREATE TABLE `sistema_cadastro`.`produto` (`CodPRD` VARCHAR(3) NOT NULL, `NomePRD` VARCHAR(25) NULL,`InicioVigencia` DATE NULL,`FimVigencia` DATE NULL,`CodSegmento` VARCHAR(3) NULL,`PRDSTA` VARCHAR(1) NULL,PRIMARY KEY (`CodPRD`));";
+		String sqlTable4 = "CREATE TABLE `sistema_cadastro`.`segmento` (`CodSegmento` VARCHAR(3) NOT NULL,`NomeSegmento` VARCHAR(25) NULL,`TPContrato` VARCHAR(25) NULL,`TPPessoa` VARCHAR(2) NULL, `SEGSTA` VARCHAR(1) NULL, PRIMARY KEY (`CodSegmento`));";
 		String sqlInsert = "INSERT INTO sistema_cadastro.master VALUES ('admin','admin',now())";
 		
 		Connection conn = Conexao.abrir();
@@ -29,9 +31,17 @@ public class ScriptMaster {
 		comando3.execute();
 		comando3.close();
 		
-		PreparedStatement comando4 = (PreparedStatement) conn.prepareStatement(sqlInsert);
+		PreparedStatement comando4 = (PreparedStatement) conn.prepareStatement(sqlTable3);
 		comando4.execute();
 		comando4.close();
+		
+		PreparedStatement comando5 = (PreparedStatement) conn.prepareStatement(sqlTable4);
+		comando5.execute();
+		comando5.close();
+		
+		PreparedStatement comando6 = (PreparedStatement) conn.prepareStatement(sqlInsert);
+		comando6.execute();
+		comando6.close();
 		
 		System.out.println("Banco de dados criado.");
 		conn.close();
