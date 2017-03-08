@@ -90,7 +90,7 @@ public class CadastroProdutoDAO {
 	
 	}
 	
-	public void atualizaUsuarioNaBase (CadastroUserVO cadastroVO) throws Exception{
+	public void atualizaPrdNaBase (CadastroUserVO cadastroVO) throws Exception{
 		
 		String sql = "UPDATE sistema_cadastro.usuario SET NomeUser = (?) WHERE NomeUser = (?)";
 		String sql2 = "UPDATE sistema_cadastro.usuario SET DataAlteracaoUser = now() WHERE NomeUser = (?)";
@@ -115,32 +115,8 @@ public class CadastroProdutoDAO {
 	
 	}
 	
-	public void atualizaSenhaNaBase (CadastroUserVO cadastroVO) throws Exception{
-		
-		String sql = "UPDATE sistema_cadastro.usuario SET SenhaUser = (?) WHERE NomeUser = (?)";
-		String sql2 = "UPDATE sistema_cadastro.usuario SET DataAlteracaoSenha = now() WHERE NomeUser = (?)";
-		
-		Connection conn = Conexao.abrir();
-		
-		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
-		comando.setString(1, cadastroVO.getPass());
-		comando.setString(2, CadastroUserVO.getOldUser().toUpperCase());
-		comando.execute();
-		comando.close();
-		
-		PreparedStatement comando2 = (PreparedStatement) conn.prepareStatement(sql2);	
-		comando2.setString(1, CadastroUserVO.getOldUser().toUpperCase());
-		comando2.execute();
-		comando2.close();
-		
-		
-		System.out.println("Atualização realizada na base.");
-		conn.close();
-		System.out.println("Conexão encerrada.");
 	
-	}
-	
-	public List<ConsultaVO> consultaUsuario() throws Exception{
+	public List<ConsultaVO> consultaProduto() throws Exception{
 		List<ConsultaVO> lista = new ArrayList<ConsultaVO>();
 
 		String sql = "SELECT * FROM sistema_cadastro.usuario order by DataCadastro desc";
