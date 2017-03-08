@@ -7,7 +7,7 @@ import com.mysql.jdbc.PreparedStatement;
 
 public class CadastroProdutoDAO {
 	
-	public void buscarDadosNaBasePRD(CadastroPRDVO cadastroVO) throws Exception{
+	public void buscarDadosNaBasePRD(CadastroProdutoVO cadastroVO) throws Exception{
 		String sql = "SELECT * FROM sistema_cadastro.produto WHERE CodPRD = (?)";
 		String CodPRD = "";
 		String NomePRD = "";

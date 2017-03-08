@@ -14,7 +14,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 	private JTextField tInicioVig = new JTextField("01/01/1990");
 	private JTextField tFimVig = new JTextField("01/01/1990");
 	CadastroProdutoDAO dao = new CadastroProdutoDAO();
-	CadastroPRDVO cadastroVO;
+	CadastroProdutoVO cadastroVO;
 	
 	public void criaTelaCadastroProd(){
 	
@@ -109,9 +109,9 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		
 		//Se todos os campos estiverem ok
 		if(nome.length()>=4 && nome.length()<=25 && cod.length()==3 && segmento.length()==3 && inicioVig.length()==10 && fimVig.length()==10){
-			//cadastroVO.setCodPRD(cod);
+			cadastroVO.setCodPRD(cod);
 			
-			//Busca código do produtgo na base
+			//Busca código e nome do produto na base
 			try {
 				dao.buscarDadosNaBasePRD(cadastroVO);
 				codVO = cadastroVO.getCodPRD();

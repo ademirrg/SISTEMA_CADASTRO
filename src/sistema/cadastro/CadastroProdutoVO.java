@@ -1,6 +1,7 @@
 package sistema.cadastro;
 
-public class CadastroPRDVO {
+public class CadastroProdutoVO {
+	
 	private String NomePRD;
 	private String CodPRD;
 	private String CodSeg;
