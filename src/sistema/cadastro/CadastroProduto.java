@@ -8,13 +8,13 @@ public class CadastroProduto extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private Botao botoes = new Botao();
-	private JTextField tNome = new JTextField("teste");
-	private JTextField tCod = new JTextField("123");
-	private JTextField tSeg = new JTextField("100");
-	private JTextField tInicioVig = new JTextField("01/01/1990");
-	private JTextField tFimVig = new JTextField("01/01/1990");
+	private JTextField tNome = new JTextField();
+	private JTextField tCod = new JTextField();
+	private JTextField tSeg = new JTextField();
+	private JTextField tInicioVig = new JTextField();
+	private JTextField tFimVig = new JTextField();
 	CadastroProdutoDAO dao = new CadastroProdutoDAO();
-	CadastroProdutoVO cadastroVO;
+	CadastroProdutoVO cadastroVO = new CadastroProdutoVO();
 	
 	public void criaTelaCadastroProd(){
 	
@@ -73,7 +73,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			dispose();
 			break;
 		case "command_info":
-			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE PRODUTO:" + System.lineSeparator() + "O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO COD. DO PRODUTO DEVE CONTER 3 CARACTERES." + System.lineSeparator() + "O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES." + System.lineSeparator() + "O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM BARRAS.","INFO", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE PRODUTO:" + System.lineSeparator() + "O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO COD. DO PRODUTO DEVE CONTER 3 CARACTERES." + System.lineSeparator() + "O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES E DEVE EXISTIR NA TABELA DE SEGMENTOS." + System.lineSeparator() + "O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM BARRAS.","INFO", JOptionPane.WARNING_MESSAGE);
 			break;
 		}
 	}
@@ -86,6 +86,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		String fimVig = tFimVig.getText();
 		String codVO = "";
 		String nomeVO = "";
+		String prdsta = "1";
 		
 		if(nome.length()<4 || nome.length()>25){
 			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO INVÁLIDO!" + System.lineSeparator() + "O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
@@ -110,30 +111,57 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		//Se todos os campos estiverem ok
 		if(nome.length()>=4 && nome.length()<=25 && cod.length()==3 && segmento.length()==3 && inicioVig.length()==10 && fimVig.length()==10){
 			cadastroVO.setCodPRD(cod);
+			cadastroVO.setNomePRD(nome);
 			
 			//Busca código e nome do produto na base
 			try {
-				dao.buscarDadosNaBasePRD(cadastroVO);
+				dao.buscarCodNaBasePRD(cadastroVO);
 				codVO = cadastroVO.getCodPRD();
+				dao.buscarNomeNaBasePRD(cadastroVO);
 				nomeVO = cadastroVO.getNomePRD();
 				
-				if (cod.equals(codVO)){
+				if(cod.equals(codVO)){
 					JOptionPane.showMessageDialog(null, "JÁ EXISTE UM PRODUTO CADASTRADO PARA ESTE CÓDIGO, POR FAVOR, ESCOLHA OUTRO CÓDIGO PARA O PRODUTO.", "ERRO", JOptionPane.ERROR_MESSAGE);
 				}
-				else if (nome.equals(nomeVO)){
+				else if (nome.equalsIgnoreCase(nomeVO)){
 					JOptionPane.showMessageDialog(null, "JÁ EXISTE UM PRODUTO CADASTRADO COM ESTE NOME, POR FAVOR ESCOLHA OUTRO NOME DE PRODUTO.", "ERRO", JOptionPane.ERROR_MESSAGE);
 				}
 				
-				else {
-					//dao consulta segmento
+				else if(cod.equals(codVO)==false && nome.equalsIgnoreCase(nomeVO)==false) {
+					cadastroVO.setCodSeg(segmento);
+					//Verifica se existe o segmento informado
+					dao.buscarDadosNaBaseSeg(cadastroVO);
+					segmento = cadastroVO.getCodSeg();
+					
+					if(segmento.length()==0){
+						JOptionPane.showMessageDialog(null, "O SEGMENTO INFORMADO NÃO EXISTE NA BASE.", "ERRO", JOptionPane.ERROR_MESSAGE);
+					}
+					else{
+						cadastroVO.setCodPRD(cod);
+						cadastroVO.setNomePRD(nome);
+						cadastroVO.setInicioVig(inicioVig);
+						cadastroVO.setFimVig(fimVig);
+						cadastroVO.setCodSeg(segmento);
+						cadastroVO.setPRDSTA(prdsta);
+						//Insere dados na base
+						dao.insereDadosNaBasePRD(cadastroVO);
+						JOptionPane.showMessageDialog(null, "O PRODUTO: " + cod + " - " + nome.toUpperCase() + " FOI CADASTRADO COM SUCESSO.","CADASTRAMENTO DE PRODUTO", JOptionPane.INFORMATION_MESSAGE);
+						dispose();
+						CadastroProduto tela = new CadastroProduto();
+						tela.criaTelaCadastroProd();
+						tela.criaBotoes();
+						tela.setVisible(true);
+						
+					}
 				}
 				
-			} catch (Exception e) {
+			} catch (Exception exception) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				exception.printStackTrace();
 			}
 		}
 	}
+	
 	public void criaBotoes() {
 		
 		botoes.definirBotoesTelaCadastroProd(this, this);

@@ -7,10 +7,9 @@ import com.mysql.jdbc.PreparedStatement;
 
 public class CadastroProdutoDAO {
 	
-	public void buscarDadosNaBasePRD(CadastroProdutoVO cadastroVO) throws Exception{
+	public void buscarCodNaBasePRD(CadastroProdutoVO cadastroVO) throws Exception{
 		String sql = "SELECT * FROM sistema_cadastro.produto WHERE CodPRD = (?)";
 		String CodPRD = "";
-		String NomePRD = "";
 		
 		Connection conn = Conexao.abrir();
 		
@@ -20,10 +19,8 @@ public class CadastroProdutoDAO {
 		
 		if (resultado.next()){
 			CodPRD = resultado.getString(1);
-			NomePRD = resultado.getString(2);
 		}
 		cadastroVO.setCodPRD(CodPRD);
-		cadastroVO.setNomePRD(NomePRD);
 		comando.close();
 		System.out.println("Consulta de código de produto realizada na base.");
 		conn.close();
@@ -31,45 +28,60 @@ public class CadastroProdutoDAO {
 		
 		}
 	
-	public void buscarDadosNaBaseCPF(CadastroUserVO cadastroVO) throws Exception{
-		String sql = "SELECT * FROM sistema_cadastro.usuario WHERE cpf = (?)";
-		String cpf = "";
-		String data = "";
-		String NomeUser = ""; //Para recuperação de usuário no login - Esqueci meu usuário
+	public void buscarNomeNaBasePRD(CadastroProdutoVO cadastroVO) throws Exception{
+		String sql = "SELECT * FROM sistema_cadastro.produto WHERE NomePRD = (?)";
+		String NomePRD = "";
 		
 		Connection conn = Conexao.abrir();
 		
 		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
-		comando.setString(1, CadastroUserVO.getCPF());
+		comando.setString(1, cadastroVO.getNomePRD());
 		ResultSet resultado = comando.executeQuery();
 		
 		if (resultado.next()){
-			cpf = resultado.getString(7);
-			data = resultado.getString(8);
-			NomeUser = resultado.getString(1);
+			NomePRD = resultado.getString(2);
 		}
-		CadastroUserVO.setCPF(cpf);
-		CadastroUserVO.setDataNasc(data);
-		cadastroVO.setNomeUser(NomeUser);
-		
+		cadastroVO.setNomePRD(NomePRD);
 		comando.close();
-		System.out.println("Consulta de CPF realizada na base.");
+		System.out.println("Consulta de nome de produto realizada na base.");
+		conn.close();
+		System.out.println("Conexão encerrada.");
+		
+		}
+	
+	public void buscarDadosNaBaseSeg(CadastroProdutoVO cadastroVO) throws Exception{
+		String sql = "SELECT * FROM sistema_cadastro.segmento WHERE CodSegmento = (?)";
+		String seg = "";
+		
+		Connection conn = Conexao.abrir();
+		
+		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
+		comando.setString(1, cadastroVO.getCodSeg());
+		ResultSet resultado = comando.executeQuery();
+		
+		if (resultado.next()){
+			seg = resultado.getString(1);
+		}
+		cadastroVO.setCodSeg(seg);
+		comando.close();
+		System.out.println("Consulta de segmento realizada na base.");
 		conn.close();
 		System.out.println("Conexão encerrada.");
 		
 		}
 		
-	public void insereDadosNaBase (CadastroUserVO cadastroVO) throws Exception{
+	public void insereDadosNaBasePRD (CadastroProdutoVO cadastroVO) throws Exception{
 		
-		String sql = "INSERT INTO sistema_cadastro.usuario values (?, ?, now(), now(), now(), ?, ?, ?)";
+		String sql = "INSERT INTO sistema_cadastro.produto values (?, ?, ?, ?, ?, ?, now())";
 		
 		Connection conn = Conexao.abrir();
 		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
-		comando.setString(1, cadastroVO.getUser().toUpperCase());
-		comando.setString(2, cadastroVO.getPass());
-		comando.setString(3, CadastroUserVO.getNome().toUpperCase());
-		comando.setString(4, CadastroUserVO.getCPF());
-		comando.setString(5, CadastroUserVO.getDataNasc());
+		comando.setString(1, cadastroVO.getCodPRD());
+		comando.setString(2, cadastroVO.getNomePRD().toUpperCase());
+		comando.setString(3, cadastroVO.getInicioVig());
+		comando.setString(4, cadastroVO.getFimVig());
+		comando.setString(5, cadastroVO.getCodSeg());
+		comando.setString(6, cadastroVO.getPRDSTA());
 		comando.execute();
 		comando.close();
 		System.out.println("Inserção realizada na base.");
