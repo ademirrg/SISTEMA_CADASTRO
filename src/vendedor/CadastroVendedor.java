@@ -1,8 +1,11 @@
-package sistema.cadastro;
+package vendedor;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
+import sistema.cadastro.Botao;
+import sistema.cadastro.Tela;
 
 public class CadastroVendedor extends JFrame implements ActionListener{
 

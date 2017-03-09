@@ -1,7 +1,12 @@
-package sistema.cadastro;
+package login;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
+
+import sistema.cadastro.Botao;
+import sistema.cadastro.ScriptMaster;
+import sistema.cadastro.Tela;
+import usuario.CadastroUserVO;
 
 public class LoginMasterUser extends Login {
 

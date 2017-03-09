@@ -1,4 +1,4 @@
-package sistema.cadastro;
+package segmento;
 
 public class CadastroSegmentoVO {
 	

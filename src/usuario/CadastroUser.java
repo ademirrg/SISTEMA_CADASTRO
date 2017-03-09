@@ -1,4 +1,4 @@
-package sistema.cadastro;
+package usuario;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -18,6 +18,10 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
+
+import login.Login;
+import sistema.cadastro.Botao;
+import sistema.cadastro.Tela;
 
 public class CadastroUser extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;

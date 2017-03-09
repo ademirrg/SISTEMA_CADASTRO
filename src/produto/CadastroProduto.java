@@ -1,8 +1,11 @@
-package sistema.cadastro;
+package produto;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
+import sistema.cadastro.Botao;
+import sistema.cadastro.Tela;
 
 public class CadastroProduto extends JFrame implements ActionListener{
 

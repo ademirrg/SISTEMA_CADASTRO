@@ -1,14 +1,59 @@
-package sistema.cadastro;
+package produto;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
-public class CadastroSegmentoDAO {
-	
+import sistema.cadastro.Conexao;
+import usuario.CadastroUserVO;
+import usuario.ConsultaVO;
 
-	public void buscarCodNaBaseSeg(CadastroSegmentoVO cadastroVO) throws Exception{
+public class CadastroProdutoDAO {
+	
+	public void buscarCodNaBasePRD(CadastroProdutoVO cadastroVO) throws Exception{
+		String sql = "SELECT * FROM sistema_cadastro.produto WHERE CodPRD = (?)";
+		String CodPRD = "";
+		
+		Connection conn = Conexao.abrir();
+		
+		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
+		comando.setString(1, cadastroVO.getCodPRD());
+		ResultSet resultado = comando.executeQuery();
+		
+		if (resultado.next()){
+			CodPRD = resultado.getString(1);
+		}
+		cadastroVO.setCodPRD(CodPRD);
+		comando.close();
+		System.out.println("Consulta de código de produto realizada na base.");
+		conn.close();
+		System.out.println("Conexão encerrada.");
+		
+		}
+	
+	public void buscarNomeNaBasePRD(CadastroProdutoVO cadastroVO) throws Exception{
+		String sql = "SELECT * FROM sistema_cadastro.produto WHERE NomePRD = (?)";
+		String NomePRD = "";
+		
+		Connection conn = Conexao.abrir();
+		
+		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
+		comando.setString(1, cadastroVO.getNomePRD());
+		ResultSet resultado = comando.executeQuery();
+		
+		if (resultado.next()){
+			NomePRD = resultado.getString(2);
+		}
+		cadastroVO.setNomePRD(NomePRD);
+		comando.close();
+		System.out.println("Consulta de nome de produto realizada na base.");
+		conn.close();
+		System.out.println("Conexão encerrada.");
+		
+		}
+	
+	public void buscarDadosNaBaseSeg(CadastroProdutoVO cadastroVO) throws Exception{
 		String sql = "SELECT * FROM sistema_cadastro.segmento WHERE CodSegmento = (?)";
 		String seg = "";
 		
@@ -29,17 +74,18 @@ public class CadastroSegmentoDAO {
 		
 		}
 		
-	public void insereDadosNaBaseSeg (CadastroSegmentoVO cadastroVO) throws Exception{
+	public void insereDadosNaBasePRD (CadastroProdutoVO cadastroVO) throws Exception{
 		
-		String sql = "INSERT INTO sistema_cadastro.segmento values (?, ?, ?, ?, ?, now())";
+		String sql = "INSERT INTO sistema_cadastro.produto values (?, ?, ?, ?, ?, ?, now())";
 		
 		Connection conn = Conexao.abrir();
 		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
-		comando.setString(1, cadastroVO.getCodSeg());
-		comando.setString(2, cadastroVO.getNomeSeg().toUpperCase());
-		comando.setString(3, cadastroVO.getTpCtt().toUpperCase());
-		comando.setString(4, cadastroVO.getTpPessoa().toUpperCase());
-		comando.setString(5, cadastroVO.getSegSta());
+		comando.setString(1, cadastroVO.getCodPRD());
+		comando.setString(2, cadastroVO.getNomePRD().toUpperCase());
+		comando.setString(3, cadastroVO.getInicioVig());
+		comando.setString(4, cadastroVO.getFimVig());
+		comando.setString(5, cadastroVO.getCodSeg());
+		comando.setString(6, cadastroVO.getPRDSTA());
 		comando.execute();
 		comando.close();
 		System.out.println("Inserção realizada na base.");
@@ -48,7 +94,7 @@ public class CadastroSegmentoDAO {
 	
 	}
 	
-	public void atualizaSegNaBase (CadastroUserVO cadastroVO) throws Exception{
+	public void atualizaPrdNaBase (CadastroUserVO cadastroVO) throws Exception{
 		
 		String sql = "UPDATE sistema_cadastro.usuario SET NomeUser = (?) WHERE NomeUser = (?)";
 		String sql2 = "UPDATE sistema_cadastro.usuario SET DataAlteracaoUser = now() WHERE NomeUser = (?)";
@@ -74,7 +120,7 @@ public class CadastroSegmentoDAO {
 	}
 	
 	
-	public List<ConsultaVO> consultaSegmento() throws Exception{
+	public List<ConsultaVO> consultaProduto() throws Exception{
 		List<ConsultaVO> lista = new ArrayList<ConsultaVO>();
 
 		String sql = "SELECT * FROM sistema_cadastro.usuario order by DataCadastro desc";

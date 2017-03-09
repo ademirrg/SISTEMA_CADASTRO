@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
+import usuario.CadastroUserVO;
+
 public class ScriptMaster {
 	//Script Master - Cria Base de dados e popula tabela de usuário master
 		

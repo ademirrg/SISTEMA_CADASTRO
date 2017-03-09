@@ -1,4 +1,4 @@
-package sistema.cadastro;
+package usuario;
 
 public class CadastroUserVO {
 	

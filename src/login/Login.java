@@ -1,4 +1,4 @@
-package sistema.cadastro;
+package login;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -10,6 +10,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import produto.CadastroProduto;
+import segmento.CadastroSegmento;
+import sistema.cadastro.Botao;
+import sistema.cadastro.Tela;
+import usuario.CadastroUser;
+import usuario.CadastroUserDAO;
+import usuario.CadastroUserVO;
+import usuario.ConsultaVO;
+import usuario.EsqueciSenha;
+import usuario.EsqueciUser;
 
 public class Login extends JFrame implements ActionListener {
 

@@ -1,9 +1,11 @@
-package sistema.cadastro;
+package usuario;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
+
+import sistema.cadastro.Conexao;
 
 public class CadastroUserDAO {
 	

@@ -1,4 +1,4 @@
-package sistema.cadastro;
+package produto;
 
 public class CadastroProdutoVO {
 	

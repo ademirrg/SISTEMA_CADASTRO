@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import login.Login;
+import login.LoginMasterUser;
+
 public class Tela extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
