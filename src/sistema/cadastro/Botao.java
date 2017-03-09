@@ -147,6 +147,28 @@ public class Botao {
 
 	}
 	
+	public void definirBotoesTelaCadastroSeg(ActionListener cadastroSeg, JFrame frame) {
+		bt_voltar = new JButton("Voltar");
+		bt_voltar.setBounds(600, 430, 75, 30);
+		bt_voltar.addActionListener(cadastroSeg);
+		bt_voltar.setActionCommand("command_voltar");
+
+		bt_salvar = new JButton("Salvar");
+		bt_salvar.setBounds(20, 420, 75, 30);
+		bt_salvar.addActionListener(cadastroSeg);
+		bt_salvar.setActionCommand("command_salvar");
+		
+		bt_info = new JButton("?");
+		bt_info.setBounds(630, 20, 45, 30);
+		bt_info.addActionListener(cadastroSeg);
+		bt_info.setActionCommand("command_info");
+		
+		frame.add(bt_voltar);
+		frame.add(bt_salvar);
+		frame.add(bt_info);
+
+	}
+	
 	public void definirBotoesTelaAlteraUser(ActionListener alteraUser, JFrame frame) {
 		bt_alterar_user = new JButton("Alterar");
 		bt_alterar_user.setBounds(180, 80, 75, 30);

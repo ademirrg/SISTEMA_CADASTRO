@@ -16,6 +16,7 @@ public class Login extends JFrame implements ActionListener {
 	public static final String COMMAND_INFO = "command_info";
 	public static final String COMMAND_CADASTRO_VENDEDOR = "command_cadastro_vendedor";
 	public static final String COMMAND_CADASTRO_PRODUTO = "command_cadastro_produto";
+	public static final String COMMAND_CADASTRO_SEGMENTO = "command_cadastro_segmento";
 	public static final String COMMAND_CONSULTAR_USUARIO = "command_consultar_usuario";
 	public static final String COMMAND_ALTERAR_USUARIO = "command_alterar_usuario";
 	public static final String COMMAND_CADASTRO_USUARIO = "command_cadastro_usuario";
@@ -221,6 +222,13 @@ public class Login extends JFrame implements ActionListener {
 			cadastroProd.criaTelaCadastroProd();
 			cadastroProd.criaBotoes();
 			cadastroProd.setVisible(true);
+			dispose();
+			break;
+		case COMMAND_CADASTRO_SEGMENTO:
+			CadastroSegmento cadastroSeg = new CadastroSegmento();
+			cadastroSeg.criaTelaCadastroSeg();
+			cadastroSeg.criaBotoes();
+			cadastroSeg.setVisible(true);
 			dispose();
 			break;
 		case COMMAND_INFO:
