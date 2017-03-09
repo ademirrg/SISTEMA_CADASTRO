@@ -23,6 +23,8 @@ public class Botao {
 	JButton bt_consulta_prod;
 	JButton bt_cadastro_seg;
 	JButton bt_consulta_seg;
+	JButton bt_altera_prod;
+	JButton bt_altera_seg;
 
 	public void definirBotoesTelaPrincipal(ActionListener tela, JFrame frame) {
 		bt_sair = new JButton("Sair");
@@ -45,28 +47,38 @@ public class Botao {
 		bt_consulta_user.addActionListener(tela);
 		bt_consulta_user.setActionCommand("command_consultar_usuario");
 		
-		bt_cadastro_vend = new JButton("Cadastrar Vendedor");
-		bt_cadastro_vend.setBounds(20, 140, 152, 30);
-		bt_cadastro_vend.addActionListener(tela);
-		bt_cadastro_vend.setActionCommand("command_cadastro_vendedor");
+//		bt_cadastro_vend = new JButton("Cadastrar Vendedor");
+//		bt_cadastro_vend.setBounds(20, 140, 152, 30);
+//		bt_cadastro_vend.addActionListener(tela);
+//		bt_cadastro_vend.setActionCommand("command_cadastro_vendedor");
 		
 		bt_cadastro_prod = new JButton("Cadastrar Produto");
 		bt_cadastro_prod.setBounds(220, 20, 152, 30);
 		bt_cadastro_prod.addActionListener(tela);
 		bt_cadastro_prod.setActionCommand("command_cadastro_produto");
 		
+		bt_altera_prod = new JButton("Alterar Produto");
+		bt_altera_prod.setBounds(220, 60, 152, 30);
+		bt_altera_prod.addActionListener(tela);
+		bt_altera_prod.setActionCommand("command_alterar_produto");
+		
 		bt_consulta_prod = new JButton("Consultar Produto");
-		bt_consulta_prod.setBounds(220, 60, 152, 30);
+		bt_consulta_prod.setBounds(220, 100, 152, 30);
 		bt_consulta_prod.addActionListener(tela);
 		bt_consulta_prod.setActionCommand("command_consultar_produto");
 		
 		bt_cadastro_seg= new JButton("Cadastrar Segmento");
-		bt_cadastro_seg.setBounds(220, 100, 152, 30);
+		bt_cadastro_seg.setBounds(420, 20, 152, 30);
 		bt_cadastro_seg.addActionListener(tela);
 		bt_cadastro_seg.setActionCommand("command_cadastro_segmento");
 		
+		bt_altera_seg = new JButton("Alterar Segmento");
+		bt_altera_seg.setBounds(420, 60, 152, 30);
+		bt_altera_seg.addActionListener(tela);
+		bt_altera_seg.setActionCommand("command_alterar_segmento");
+		
 		bt_consulta_seg = new JButton("Consultar Segmento");
-		bt_consulta_seg.setBounds(220, 140, 152, 30);
+		bt_consulta_seg.setBounds(420, 100, 152, 30);
 		bt_consulta_seg.addActionListener(tela);
 		bt_consulta_seg.setActionCommand("command_consultar_segmento");
 		
@@ -79,10 +91,12 @@ public class Botao {
 		frame.add(bt_cadastro_user);
 		frame.add(bt_altera_user);
 		frame.add(bt_consulta_user);
-		frame.add(bt_cadastro_vend);
+		//frame.add(bt_cadastro_vend);
 		frame.add(bt_cadastro_prod);
+		frame.add(bt_altera_prod);
 		frame.add(bt_consulta_prod);
 		frame.add(bt_cadastro_seg);
+		frame.add(bt_altera_seg);
 		frame.add(bt_consulta_seg);
 		frame.add(bt_info);
 	}

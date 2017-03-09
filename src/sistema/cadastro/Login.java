@@ -13,15 +13,20 @@ import javax.swing.JTextField;
 
 public class Login extends JFrame implements ActionListener {
 
-	public static final String COMMAND_INFO = "command_info";
-	public static final String COMMAND_CADASTRO_VENDEDOR = "command_cadastro_vendedor";
-	public static final String COMMAND_CADASTRO_PRODUTO = "command_cadastro_produto";
-	public static final String COMMAND_CADASTRO_SEGMENTO = "command_cadastro_segmento";
-	public static final String COMMAND_CONSULTAR_USUARIO = "command_consultar_usuario";
-	public static final String COMMAND_ALTERAR_USUARIO = "command_alterar_usuario";
 	public static final String COMMAND_CADASTRO_USUARIO = "command_cadastro_usuario";
+	public static final String COMMAND_ALTERAR_USUARIO = "command_alterar_usuario";
+	public static final String COMMAND_CONSULTAR_USUARIO = "command_consultar_usuario";
+	public static final String COMMAND_CADASTRO_PRODUTO = "command_cadastro_produto";
+	public static final String COMMAND_ALTERAR_PRODUTO = "command_alterar_produto";
+	public static final String COMMAND_CONSULTAR_PRODUTO = "command_consultar_produto";
+	public static final String COMMAND_CADASTRO_SEGMENTO = "command_cadastro_segmento";
+	public static final String COMMAND_ALTERAR_SEGMENTO = "command_alterar_segmento";
+	public static final String COMMAND_CONSULTAR_SEGMENTO = "command_consultar_segmento";
 	public static final String COMMAND_SAIR = "command_sair";
 	public static final String COMMAND_TELA_INICIAL = "command_inicial" ;
+	public static final String COMMAND_INFO = "command_info";
+	//public static final String COMMAND_CADASTRO_VENDEDOR = "command_cadastro_vendedor";
+
 
 	private static final long serialVersionUID = 1L; 
 	
@@ -210,13 +215,13 @@ public class Login extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "ERRO AO CONSULTAR USUÁRIOS.", "ERRO", JOptionPane.ERROR_MESSAGE);		
 				}
 			break;
-		case COMMAND_CADASTRO_VENDEDOR:
-			CadastroVendedor cadastroVend = new CadastroVendedor();
-			cadastroVend.criaTelaCadastroVend();
-			cadastroVend.criaBotoes();
-			cadastroVend.setVisible(true);
-			dispose();
-			break;
+//		case COMMAND_CADASTRO_VENDEDOR:
+//			CadastroVendedor cadastroVend = new CadastroVendedor();
+//			cadastroVend.criaTelaCadastroVend();
+//			cadastroVend.criaBotoes();
+//			cadastroVend.setVisible(true);
+//			dispose();
+//			break;
 		case COMMAND_CADASTRO_PRODUTO:
 			CadastroProduto cadastroProd = new CadastroProduto();
 			cadastroProd.criaTelaCadastroProd();

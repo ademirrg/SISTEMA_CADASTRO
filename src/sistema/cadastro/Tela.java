@@ -45,19 +45,25 @@ public class Tela extends JFrame implements ActionListener {
 		case "command_consultar_usuario":
 			login = new LoginMasterUser(e.getActionCommand());
 			break;
-		case "command_cadastro_vendedor":
-			login = new Login(e.getActionCommand());
-			break;
+//		case "command_cadastro_vendedor":
+//			login = new Login(e.getActionCommand());
+//			break;
 		case "command_cadastro_produto":
 			login = new Login(e.getActionCommand());
 			break;
 		case "command_consultar_produto":
 			login = new Login(e.getActionCommand());
 			break;
+		case "command_alterar_produto":
+			login = new Login(e.getActionCommand());
+			break;
 		case "command_cadastro_segmento":
 			login = new Login(e.getActionCommand());
 			break;
 		case "command_consultar_segmento":
+			login = new Login(e.getActionCommand());
+			break;
+		case "command_alterar_segmento":
 			login = new Login(e.getActionCommand());
 			break;
 		case "command_info":
