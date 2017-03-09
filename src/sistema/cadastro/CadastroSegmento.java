@@ -27,10 +27,10 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
 	//Label
-	tNome.setBounds(150,50,165,25);
-	tCod.setBounds(150,80,70,25);
-	tTpCtt.setBounds(150,110,70,25);
-	tTpPessoa.setBounds(150,140,70,25);
+	tNome.setBounds(157,50,165,25);
+	tCod.setBounds(157,80,70,25);
+	tTpCtt.setBounds(157,110,70,25);
+	tTpPessoa.setBounds(157,140,70,25);
 	JLabel l1 = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
 	l1.setBounds(30,15,330,30);
 	JLabel l2 = new JLabel("NOME DO SEGMENTO:");
@@ -38,9 +38,9 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	JLabel l3 = new JLabel("COD. DO SEGMENTO:");
 	l3.setBounds(36,80,200,30);
 	JLabel l4 = new JLabel("TIPO CONTRATO:");
-	l4.setBounds(80,110,85,30);
+	l4.setBounds(57,110,200,30);
 	JLabel l5 = new JLabel("TIPO PESSOA:");
-	l5.setBounds(91,140,85,30);
+	l5.setBounds(73,140,200,30);
 	
 	//Add
 	getContentPane().add(tNome);
