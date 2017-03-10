@@ -130,6 +130,9 @@ public class CadastroProdutoDAO {
 		
 		String sqlNome = "UPDATE sistema_cadastro.produto SET NomePRD = (?) WHERE CodPRD = (?)";
 		String sqlIniVig = "UPDATE sistema_cadastro.produto SET InicioVigencia = (?) WHERE CodPRD = (?)";
+		String sqlFimVig = "UPDATE sistema_cadastro.produto SET FimVigencia = (?) WHERE CodPRD = (?)";
+		String sqlCodSeg = "UPDATE sistema_cadastro.produto SET CodSegmento = (?) WHERE CodPRD = (?)";
+		String sqlPrdSta = "UPDATE sistema_cadastro.produto SET PRDSTA = (?) WHERE CodPRD = (?)";
 		String sqlDtAlt = "UPDATE sistema_cadastro.produto SET DataAlteracao = now() WHERE NomeUser = (?)";
 		
 		Connection conn = Conexao.abrir();
@@ -146,6 +149,23 @@ public class CadastroProdutoDAO {
 		comando2.execute();
 		comando2.close();
 		
+		PreparedStatement comando3 = (PreparedStatement) conn.prepareStatement(sqlFimVig);	
+		comando3.setString(1, cadastroVO.getFimVig());
+		comando3.setString(2, cadastroVO.getCodPRD());
+		comando3.execute();
+		comando3.close();
+		
+		PreparedStatement comando4 = (PreparedStatement) conn.prepareStatement(sqlCodSeg);	
+		comando4.setString(1, cadastroVO.getCodSeg());
+		comando4.setString(2, cadastroVO.getCodPRD());
+		comando4.execute();
+		comando4.close();
+		
+		PreparedStatement comando5 = (PreparedStatement) conn.prepareStatement(sqlPrdSta);	
+		comando5.setString(1, cadastroVO.getPRDSTA());
+		comando5.setString(2, cadastroVO.getCodPRD());
+		comando5.execute();
+		comando5.close();
 		
 		System.out.println("Atualização realizada na base.");
 		conn.close();
