@@ -240,6 +240,13 @@ public class Login extends JFrame implements ActionListener {
 			cadastroProd.setVisible(true);
 			dispose();
 			break;
+		case COMMAND_ALTERAR_PRODUTO:
+			CadastroProduto alteraProd = new CadastroProduto();
+			alteraProd.criaTelaBuscaProd();
+			alteraProd.criaBotoesBuscaProd();
+			alteraProd.setVisible(true);
+			dispose();
+			break;
 		case COMMAND_CADASTRO_SEGMENTO:
 			CadastroSegmento cadastroSeg = new CadastroSegmento();
 			cadastroSeg.criaTelaCadastroSeg();

@@ -25,6 +25,7 @@ public class Botao {
 	JButton bt_consulta_seg;
 	JButton bt_altera_prod;
 	JButton bt_altera_seg;
+	JButton bt_alterar_prod;
 
 	public void definirBotoesTelaPrincipal(ActionListener tela, JFrame frame) {
 		bt_sair = new JButton("Sair");
@@ -157,6 +158,50 @@ public class Botao {
 		
 		frame.add(bt_voltar);
 		frame.add(bt_salvar);
+		frame.add(bt_info);
+
+	}
+	
+	public void definirBotoesTelaAlteraProd(ActionListener alteraProd, JFrame frame) {
+		bt_voltar = new JButton("Voltar");
+		bt_voltar.setBounds(600, 430, 75, 30);
+		bt_voltar.addActionListener(alteraProd);
+		bt_voltar.setActionCommand("command_voltar");
+
+		bt_alterar_prod = new JButton("Alterar");
+		bt_alterar_prod.setBounds(20, 420, 75, 30);
+		bt_alterar_prod.addActionListener(alteraProd);
+		bt_alterar_prod.setActionCommand("command_alterar_prod");
+		
+		bt_info = new JButton("?");
+		bt_info.setBounds(630, 20, 45, 30);
+		bt_info.addActionListener(alteraProd);
+		bt_info.setActionCommand("command_info");
+		
+		frame.add(bt_voltar);
+		frame.add(bt_alterar_prod);
+		frame.add(bt_info);
+
+	}
+	
+	public void definirBotoesTelaBuscaProd(ActionListener buscaProd, JFrame frame) {
+		bt_voltar = new JButton("Voltar");
+		bt_voltar.setBounds(600, 430, 75, 30);
+		bt_voltar.addActionListener(buscaProd);
+		bt_voltar.setActionCommand("command_voltar");
+
+		bt_alterar_prod = new JButton("Buscar");
+		bt_alterar_prod.setBounds(20, 420, 75, 30);
+		bt_alterar_prod.addActionListener(buscaProd);
+		bt_alterar_prod.setActionCommand("command_buscar_prod");
+		
+		bt_info = new JButton("?");
+		bt_info.setBounds(630, 20, 45, 30);
+		bt_info.addActionListener(buscaProd);
+		bt_info.setActionCommand("command_info");
+		
+		frame.add(bt_voltar);
+		frame.add(bt_alterar_prod);
 		frame.add(bt_info);
 
 	}

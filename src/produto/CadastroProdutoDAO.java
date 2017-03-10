@@ -13,8 +13,13 @@ public class CadastroProdutoDAO {
 	
 	public void buscarCodNaBasePRD(CadastroProdutoVO cadastroVO) throws Exception{
 		String sql = "SELECT * FROM sistema_cadastro.produto WHERE CodPRD = (?)";
-		String CodPRD = "";
-		
+		String codPRD = "";
+		String nomePRD = "";
+		String inicioVig = "";
+		String fimVig = "";
+		String codSeg = "";
+		String prdSta = "";
+
 		Connection conn = Conexao.abrir();
 		
 		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
@@ -22,9 +27,20 @@ public class CadastroProdutoDAO {
 		ResultSet resultado = comando.executeQuery();
 		
 		if (resultado.next()){
-			CodPRD = resultado.getString(1);
+			codPRD = resultado.getString(1);
+			nomePRD = resultado.getString(2);
+			inicioVig = resultado.getString(3);
+			fimVig = resultado.getString(4);
+			codSeg = resultado.getString(5);
+			prdSta = resultado.getString(6);
 		}
-		cadastroVO.setCodPRD(CodPRD);
+		cadastroVO.setCodPRD(codPRD);
+		cadastroVO.setNomePRD(nomePRD);
+		cadastroVO.setInicioVig(inicioVig);
+		cadastroVO.setFimVig(fimVig);
+		cadastroVO.setCodSeg(codSeg);
+		cadastroVO.setPRDSTA(prdSta);
+		
 		comando.close();
 		System.out.println("Consulta de código de produto realizada na base.");
 		conn.close();
@@ -34,7 +50,12 @@ public class CadastroProdutoDAO {
 	
 	public void buscarNomeNaBasePRD(CadastroProdutoVO cadastroVO) throws Exception{
 		String sql = "SELECT * FROM sistema_cadastro.produto WHERE NomePRD = (?)";
-		String NomePRD = "";
+		String codPRD = "";
+		String nomePRD = "";
+		String inicioVig = "";
+		String fimVig = "";
+		String codSeg = "";
+		String prdSta = "";
 		
 		Connection conn = Conexao.abrir();
 		
@@ -43,9 +64,20 @@ public class CadastroProdutoDAO {
 		ResultSet resultado = comando.executeQuery();
 		
 		if (resultado.next()){
-			NomePRD = resultado.getString(2);
+			codPRD = resultado.getString(1);
+			nomePRD = resultado.getString(2);
+			inicioVig = resultado.getString(3);
+			fimVig = resultado.getString(4);
+			codSeg = resultado.getString(5);
+			prdSta = resultado.getString(6);
 		}
-		cadastroVO.setNomePRD(NomePRD);
+		cadastroVO.setCodPRD(codPRD);
+		cadastroVO.setNomePRD(nomePRD);
+		cadastroVO.setInicioVig(inicioVig);
+		cadastroVO.setFimVig(fimVig);
+		cadastroVO.setCodSeg(codSeg);
+		cadastroVO.setPRDSTA(prdSta);
+		
 		comando.close();
 		System.out.println("Consulta de nome de produto realizada na base.");
 		conn.close();
@@ -94,21 +126,23 @@ public class CadastroProdutoDAO {
 	
 	}
 	
-	public void atualizaPrdNaBase (CadastroUserVO cadastroVO) throws Exception{
+	public void atualizaDadosNaBasePRD (CadastroProdutoVO cadastroVO) throws Exception{
 		
-		String sql = "UPDATE sistema_cadastro.usuario SET NomeUser = (?) WHERE NomeUser = (?)";
-		String sql2 = "UPDATE sistema_cadastro.usuario SET DataAlteracaoUser = now() WHERE NomeUser = (?)";
+		String sqlNome = "UPDATE sistema_cadastro.produto SET NomePRD = (?) WHERE CodPRD = (?)";
+		String sqlIniVig = "UPDATE sistema_cadastro.produto SET InicioVigencia = (?) WHERE CodPRD = (?)";
+		String sqlDtAlt = "UPDATE sistema_cadastro.produto SET DataAlteracao = now() WHERE NomeUser = (?)";
 		
 		Connection conn = Conexao.abrir();
 		
-		PreparedStatement comando1 = (PreparedStatement) conn.prepareStatement(sql);
-		comando1.setString(1, cadastroVO.getUser().toUpperCase());
-		comando1.setString(2, CadastroUserVO.getOldUser().toUpperCase());
+		PreparedStatement comando1 = (PreparedStatement) conn.prepareStatement(sqlNome);
+		comando1.setString(1, cadastroVO.getNomePRD());
+		comando1.setString(2, cadastroVO.getCodPRD());
 		comando1.execute();
 		comando1.close();
 		
-		PreparedStatement comando2 = (PreparedStatement) conn.prepareStatement(sql2);	
-		comando2.setString(1, cadastroVO.getUser().toUpperCase());
+		PreparedStatement comando2 = (PreparedStatement) conn.prepareStatement(sqlIniVig);	
+		comando2.setString(1, cadastroVO.getInicioVig());
+		comando2.setString(2, cadastroVO.getCodPRD());
 		comando2.execute();
 		comando2.close();
 		

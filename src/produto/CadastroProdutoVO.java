@@ -2,48 +2,48 @@ package produto;
 
 public class CadastroProdutoVO {
 	
-	private String NomePRD;
-	private String CodPRD;
-	private String CodSeg;
-	private String InicioVig;
-	private String FimVig;
-	private String PRDSTA;
+	private static String NomePRD;
+	private static String CodPRD;
+	private static String CodSeg;
+	private static String InicioVig;
+	private static String FimVig;
+	private static String PRDSTA;
 
 	
 	public String getNomePRD() {
 		return NomePRD;
 	}
 	public void setNomePRD(String nomePRD) {
-		this.NomePRD = nomePRD;
+		CadastroProdutoVO.NomePRD = nomePRD;
 	}
 	public String getCodPRD() {
 		return CodPRD;
 	}
 	public void setCodPRD(String codPRD) {
-		this.CodPRD = codPRD;
+		CadastroProdutoVO.CodPRD = codPRD;
 	}
 	public String getCodSeg() {
 		return CodSeg;
 	}
 	public void setCodSeg(String codSeg) {
-		this.CodSeg = codSeg;
+		CadastroProdutoVO.CodSeg = codSeg;
 	}
 	public String getInicioVig() {
 		return InicioVig;
 	}
 	public void setInicioVig(String inicioVig) {
-		this.InicioVig = inicioVig;
+		CadastroProdutoVO.InicioVig = inicioVig;
 	}
 	public String getFimVig() {
 		return FimVig;
 	}
 	public void setFimVig(String fimVig) {
-		this.FimVig = fimVig;
+		CadastroProdutoVO.FimVig = fimVig;
 	}
 	public String getPRDSTA() {
 		return PRDSTA;
 	}
 	public void setPRDSTA(String prdsta) {
-		this.PRDSTA = prdsta;
+		CadastroProdutoVO.PRDSTA = prdsta;
 	}
 }
