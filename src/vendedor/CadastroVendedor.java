@@ -71,10 +71,10 @@ public class CadastroVendedor extends JFrame implements ActionListener{
 	}
 
 	public void pegaValor(){
-		String nome = tNome.getText();
-		String endereco = tEnd.getText();
-		String dtnasc = tData.getText();
-		String cpf = tCPF.getText();
+//		String nome = tNome.getText();
+//		String endereco = tEnd.getText();
+//		String dtnasc = tData.getText();
+//		String cpf = tCPF.getText();
 	}
 	public void criaBotoes() {
 		
