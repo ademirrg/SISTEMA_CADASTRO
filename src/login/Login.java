@@ -256,6 +256,13 @@ public class Login extends JFrame implements ActionListener {
 			cadastroSeg.setVisible(true);
 			dispose();
 			break;
+		case COMMAND_ALTERAR_SEGMENTO:
+			CadastroSegmento alteraSeg = new CadastroSegmento();
+			alteraSeg.criaTelaBuscaSeg();
+			alteraSeg.criaBotoesBuscaSeg();
+			alteraSeg.setVisible(true);
+			dispose();
+			break;
 		case COMMAND_INFO:
 			JOptionPane.showMessageDialog(null, "Versão: 0.1" + System.lineSeparator() + "Data de criação: 09/02/2017" + System.lineSeparator() + "Criado por: Ademir Rocha", "SOBRE",JOptionPane.INFORMATION_MESSAGE);
 			break;

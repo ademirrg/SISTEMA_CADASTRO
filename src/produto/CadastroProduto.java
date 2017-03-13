@@ -151,6 +151,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 	getContentPane().add(l2);
 	}
 
+	//Ação dos botões
 	public void actionPerformed(ActionEvent e){
 		switch (e.getActionCommand()) {
 		case "command_salvar":
@@ -185,6 +186,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 	}
 
+	//Cadastro de produto
 	public void pegaValor(){
 		String nomePRD = tNome.getText();
 		String codPRD = tCod.getText();
@@ -273,7 +275,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		botoes.definirBotoesTelaCadastroProd(this, this);
 	}
 	
-	
+	//Busca de produto
 	public void pegaValorTelaBuscaProd(){
 		String nomeCodPRD = tNome.getText();
 		String nomePRDVO = "";
@@ -332,6 +334,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		botoes.definirBotoesTelaBuscaProd(this, this);
 	}
 	
+	//Alteração de produto
 	public void pegaValorTelaAlteraProd(){
 		String nomePRD = tAltNome.getText();
 		String codPRD = tAltCod.getText();
@@ -397,9 +400,9 @@ public class CadastroProduto extends JFrame implements ActionListener{
 							dao.atualizaDadosNaBasePRD(cadastroVO);
 							JOptionPane.showMessageDialog(null, "O PRODUTO: " + codPRD + " - " + nomePRD.toUpperCase() + " FOI ALTERADO COM SUCESSO.","ALTERAÇÃO DE PRODUTO", JOptionPane.INFORMATION_MESSAGE);
 							dispose();
-							Tela tela = new Tela();
-							tela.criaTela();
-							tela.criaBotoes();
+							CadastroProduto tela = new CadastroProduto();
+							tela.criaTelaAlteraProd();
+							tela.criaBotoesAlteraProd();
 							tela.setVisible(true);
 						}
 					}
