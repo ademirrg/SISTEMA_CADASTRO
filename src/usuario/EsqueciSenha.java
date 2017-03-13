@@ -102,6 +102,7 @@ public class EsqueciSenha extends JFrame implements ActionListener{
 		switch (e.getActionCommand()) {
 		case "command_cancelar":
 			Tela tela = new Tela();
+			tela.criaTela();
 			tela.criaBotoes();
 			tela.setVisible(true);
 			dispose();

@@ -13,7 +13,7 @@ public class Tela extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	Botao botoes = new Botao();
 
-	public Tela() {
+	public void criaTela() {
 
 		// Tela
 		setTitle("SISTEMA DE CADASTRAMENTO");

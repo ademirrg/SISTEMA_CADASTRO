@@ -91,6 +91,7 @@ public class Login extends JFrame implements ActionListener {
 		switch (e.getActionCommand()) {
 		case "command_voltar":
 			Tela tela = new Tela();
+			tela.criaTela();
 			tela.criaBotoes();
 			tela.setVisible(true);
 			dispose();
@@ -207,6 +208,7 @@ public class Login extends JFrame implements ActionListener {
 					System.out.println("Não existem usuários cadastrados na base.");
 					JOptionPane.showMessageDialog(null, "NÃO EXISTEM USUÁRIOS CADASTRADOS NA BASE.", "INFO", JOptionPane.INFORMATION_MESSAGE);
 					Tela tela = new Tela();
+					tela.criaTela();
 					tela.criaBotoes();
 					tela.setVisible(true);
 					dispose();

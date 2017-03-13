@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-
 import sistema.cadastro.Conexao;
-import usuario.CadastroUserVO;
 import usuario.ConsultaVO;
 
 public class CadastroProdutoDAO {
@@ -46,7 +44,7 @@ public class CadastroProdutoDAO {
 		conn.close();
 		System.out.println("Conexão encerrada.");
 		
-		}
+	}
 	
 	public void buscarNomeNaBasePRD(CadastroProdutoVO cadastroVO) throws Exception{
 		String sql = "SELECT * FROM sistema_cadastro.produto WHERE NomePRD = (?)";
@@ -83,7 +81,7 @@ public class CadastroProdutoDAO {
 		conn.close();
 		System.out.println("Conexão encerrada.");
 		
-		}
+	}
 	
 	public void buscarDadosNaBaseSeg(CadastroProdutoVO cadastroVO) throws Exception{
 		String sql = "SELECT * FROM sistema_cadastro.segmento WHERE CodSegmento = (?)";
@@ -104,7 +102,7 @@ public class CadastroProdutoDAO {
 		conn.close();
 		System.out.println("Conexão encerrada.");
 		
-		}
+	}
 		
 	public void insereDadosNaBasePRD (CadastroProdutoVO cadastroVO) throws Exception{
 		

@@ -35,7 +35,7 @@ public class CadastroSegmentoDAO {
 		
 	public void insereDadosNaBaseSeg (CadastroSegmentoVO cadastroVO) throws Exception{
 		
-		String sql = "INSERT INTO sistema_cadastro.segmento values (?, ?, ?, ?, ?, now())";
+		String sql = "INSERT INTO sistema_cadastro.segmento values (?, ?, ?, ?, ?, now(), now())";
 		
 		Connection conn = Conexao.abrir();
 		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);

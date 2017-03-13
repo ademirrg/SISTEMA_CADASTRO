@@ -107,6 +107,7 @@ public class LoginMasterUser extends Login {
 		switch (e.getActionCommand()) {
 		case "command_voltar":
 			Tela tela = new Tela();
+			tela.criaTela();
 			tela.criaBotoes();
 			tela.setVisible(true);
 			dispose();

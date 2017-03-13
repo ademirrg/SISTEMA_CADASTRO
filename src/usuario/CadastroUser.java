@@ -251,6 +251,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 			break;
 		case "command_voltar":
 			Tela tela = new Tela();
+			tela.criaTela();
 			tela.criaBotoes();
 			tela.setVisible(true);
 			dispose();

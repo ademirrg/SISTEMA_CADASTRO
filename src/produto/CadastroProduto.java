@@ -164,6 +164,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			break;
 		case "command_voltar":
 			Tela tela = new Tela();
+			tela.criaTela();
 			tela.criaBotoes();
 			tela.setVisible(true);
 			dispose();
@@ -386,9 +387,9 @@ public class CadastroProduto extends JFrame implements ActionListener{
 							dao.atualizaDadosNaBasePRD(cadastroVO);
 							JOptionPane.showMessageDialog(null, "O PRODUTO: " + codPRD + " - " + nomePRD.toUpperCase() + " FOI ALTERADO COM SUCESSO.","ALTERAÇÃO DE PRODUTO", JOptionPane.INFORMATION_MESSAGE);
 							dispose();
-							CadastroProduto tela = new CadastroProduto();
-							tela.criaTelaAlteraProd();
-							tela.criaBotoesAlteraProd();
+							Tela tela = new Tela();
+							tela.criaTela();
+							tela.criaBotoes();
 							tela.setVisible(true);
 						}
 					}

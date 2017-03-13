@@ -10,6 +10,7 @@ public class Principal {
 			
 			// Chama Tela
 			Tela tela = new Tela();
+			tela.criaTela();
 			tela.criaBotoes();
 			tela.setVisible(true);
 		}
@@ -21,6 +22,7 @@ public class Principal {
 				System.out.println("Banco de dados já existente.");
 				// Chama Tela
 				Tela tela = new Tela();
+				tela.criaTela();
 				tela.criaBotoes();
 				tela.setVisible(true);
 			}
