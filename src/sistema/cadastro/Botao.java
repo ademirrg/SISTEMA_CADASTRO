@@ -166,7 +166,7 @@ public class Botao {
 		bt_voltar = new JButton("Voltar");
 		bt_voltar.setBounds(600, 430, 75, 30);
 		bt_voltar.addActionListener(alteraProd);
-		bt_voltar.setActionCommand("command_voltar");
+		bt_voltar.setActionCommand("command_voltar_busca");
 
 		bt_alterar_prod = new JButton("Alterar");
 		bt_alterar_prod.setBounds(20, 420, 75, 30);
@@ -176,7 +176,7 @@ public class Botao {
 		bt_info = new JButton("?");
 		bt_info.setBounds(630, 20, 45, 30);
 		bt_info.addActionListener(alteraProd);
-		bt_info.setActionCommand("command_info");
+		bt_info.setActionCommand("command_info_altera");
 		
 		frame.add(bt_voltar);
 		frame.add(bt_alterar_prod);
@@ -194,15 +194,9 @@ public class Botao {
 		bt_alterar_prod.setBounds(20, 420, 75, 30);
 		bt_alterar_prod.addActionListener(buscaProd);
 		bt_alterar_prod.setActionCommand("command_buscar_prod");
-		
-		bt_info = new JButton("?");
-		bt_info.setBounds(630, 20, 45, 30);
-		bt_info.addActionListener(buscaProd);
-		bt_info.setActionCommand("command_info");
-		
+			
 		frame.add(bt_voltar);
 		frame.add(bt_alterar_prod);
-		frame.add(bt_info);
 
 	}
 	
