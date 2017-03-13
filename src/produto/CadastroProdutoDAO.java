@@ -108,7 +108,7 @@ public class CadastroProdutoDAO {
 		
 	public void insereDadosNaBasePRD (CadastroProdutoVO cadastroVO) throws Exception{
 		
-		String sql = "INSERT INTO sistema_cadastro.produto values (?, ?, ?, ?, ?, ?, now())";
+		String sql = "INSERT INTO sistema_cadastro.produto values (?, ?, ?, ?, ?, ?, now(), now())";
 		
 		Connection conn = Conexao.abrir();
 		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
@@ -133,7 +133,7 @@ public class CadastroProdutoDAO {
 		String sqlFimVig = "UPDATE sistema_cadastro.produto SET FimVigencia = (?) WHERE CodPRD = (?)";
 		String sqlCodSeg = "UPDATE sistema_cadastro.produto SET CodSegmento = (?) WHERE CodPRD = (?)";
 		String sqlPrdSta = "UPDATE sistema_cadastro.produto SET PRDSTA = (?) WHERE CodPRD = (?)";
-		String sqlDtAlt = "UPDATE sistema_cadastro.produto SET DataAlteracao = now() WHERE NomeUser = (?)";
+		String sqlDtAlt = "UPDATE sistema_cadastro.produto SET DataAlteracao = now() WHERE CodPRD = (?)";
 		
 		Connection conn = Conexao.abrir();
 		
@@ -166,6 +166,11 @@ public class CadastroProdutoDAO {
 		comando5.setString(2, cadastroVO.getCodPRD());
 		comando5.execute();
 		comando5.close();
+		
+		PreparedStatement comando6 = (PreparedStatement) conn.prepareStatement(sqlDtAlt);	
+		comando6.setString(1, cadastroVO.getCodPRD());
+		comando6.execute();
+		comando6.close();
 		
 		System.out.println("Atualização realizada na base.");
 		conn.close();
