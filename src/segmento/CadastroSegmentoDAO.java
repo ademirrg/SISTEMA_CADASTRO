@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-
 import sistema.cadastro.Conexao;
-import usuario.CadastroUserVO;
 import usuario.ConsultaVO;
 
 public class CadastroSegmentoDAO {
