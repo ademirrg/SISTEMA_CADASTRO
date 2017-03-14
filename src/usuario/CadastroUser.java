@@ -50,7 +50,6 @@ public class CadastroUser extends JFrame implements ActionListener {
 
 		if (user.length()==0 || user.length() <4 || user.length()>25){
 			JOptionPane.showMessageDialog(null, "CAMPO USUÁRIO INVÁLIDO!" + System.lineSeparator() +"O USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
-
 		}
 
 		else if (pass.length()==0 || pass.length() <5 || pass.length()>12){
