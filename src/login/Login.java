@@ -138,7 +138,7 @@ public class Login extends JFrame implements ActionListener {
 		}
 
 		// Se todos os campos estiverem ok
-		if (user.length() >= 4 && user.length() <= 25 && pass.length() >= 5 && pass.length() <= 12) {
+		else {
 			cadastroVO.setUser(user);
 			cadastroVO.setPass(pass);
 
@@ -214,7 +214,7 @@ public class Login extends JFrame implements ActionListener {
 					dispose();
 				}
 				
-				else{
+				else {
 					System.out.println("Usuário mestre acessou tela de consulta de usuários.");
 					cadastroUser = new CadastroUser();
 					cadastroUser.criaTelaConsultaUser();

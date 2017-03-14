@@ -57,7 +57,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "CAMPO SENHA INVÁLIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
-		else if(pass.equals(pass2)==false){
+		else if (pass.equals(pass2)==false){
 			JOptionPane.showMessageDialog(null, "AS SENHAS DIGITADAS NÃO CONFEREM!" + System.lineSeparator() +"POR FAVOR, DIGITE NOVAMENTE.","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
@@ -74,7 +74,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		}
 		
 		//Se todos os campos estiverem ok
-		if (pass2.equals(pass) && user.length()>=4 && user.length()<=25 && pass.length()>=5 && pass.length()<=12 && nome.length()>=4 && nome.length()<=25 && cpf.length()==11 && data.length()==10){
+		else {
 			cadastroVO.setUser(user);
 			cadastroVO.setPass(pass);
 			CadastroUserVO.setNome(nome);
@@ -102,7 +102,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null,"JÁ EXISTE UM USUÁRIO " + user.toUpperCase() +" CADASTRADO." + System.lineSeparator() + "POR FAVOR, ESCOLHA OUTRO NOME DE USUÁRIO.", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
-			else{
+			else {
 				
 				try {
 					cadastroVO.setUser(user);
@@ -138,7 +138,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		}
 
 		//Se todos os campos estiverem ok
-		if (newUser.length()>=4 && newUser.length()<=25){
+		else {
 			cadastroVO.setUser(newUser);
 			
 			//Realiza uma conulta no banco e verifica a disponibilidade do nome
@@ -196,7 +196,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		}
 		
 		//Se todos os campos estiverem ok
-		if (newPass.equals(newPass2) && newPass.length()>=5 && newPass.length()<=12 && oldPass.length()>=5 && newPass.length()<=12){
+		else {
 			
 			try {
 				dao.buscarDadosNaBaseUser(cadastroVO);
@@ -211,7 +211,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null,"A SENHA ANTIGA INFORMADA ESTÁ INCORRETA!", "ERRO", JOptionPane.ERROR_MESSAGE);
 			}
 			
-			else{
+			else {
 				try {
 					cadastroVO.setPass(newPass);
 					dao.atualizaSenhaNaBase(cadastroVO);

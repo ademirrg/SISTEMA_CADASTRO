@@ -61,17 +61,17 @@ public class LoginMasterUser extends Login {
 		String MasterUserVO ="";
 		String SenhaMasterVO ="";
 		
-		if (user.length()==0 || user.length() <4 || user.length()>25){
+		if(user.length()==0 || user.length() <4 || user.length()>25){
 			JOptionPane.showMessageDialog(null, "CAMPO USUÁRIO INVÁLIDO!" + System.lineSeparator() +"O USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
 
 		}
 
-		else if (pass.length()==0 || pass.length() <5 || pass.length()>12){
+		else if(pass.length()==0 || pass.length() <5 || pass.length()>12){
 			JOptionPane.showMessageDialog(null, "CAMPO SENHA INVÁLIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
-		if (user.length()>=4 && user.length()<=25 && pass.length()>=5 && pass.length()<=12){
+		else {
 			cadastroVO.setUser(user);
 			cadastroVO.setPass(pass);
 			
@@ -86,13 +86,13 @@ public class LoginMasterUser extends Login {
 				e.printStackTrace();
 			}
 			
-			if (user.equalsIgnoreCase(MasterUserVO) == false){
+			if(user.equalsIgnoreCase(MasterUserVO) == false){
 				System.out.println("Tentativa de login com o usuário mestre: " + user.toUpperCase() + ", usuário mestre inválido.");
 				JOptionPane.showMessageDialog(null,"O USUÁRIO " + user.toUpperCase() + " NÃO ESTÁ CADASTRADO COMO USUÁRIO MESTRE.", "ERRO DE LOGIN", JOptionPane.ERROR_MESSAGE);
 			
 			}	
 			
-			else if (pass.equals(SenhaMasterVO) == false){
+			else if(pass.equals(SenhaMasterVO) == false){
 				System.out.println("Tentativa de login com o usuário mestre, senha incorreta.");
 				JOptionPane.showMessageDialog(null, "SENHA INCORRETA.", "ERRO DE LOGIN", JOptionPane.ERROR_MESSAGE);
 			}

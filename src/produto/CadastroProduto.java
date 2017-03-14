@@ -197,28 +197,28 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		String nomePRDVO = "";
 		String prdsta = "1";
 		
-		if(nomePRD.length()<4 || nomePRD.length()>25){
+		if (nomePRD.length()<4 || nomePRD.length()>25){
 			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO INVÁLIDO!" + System.lineSeparator() + "O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		else if(codPRD.length()<3 || segmento.length()>3){
+		else if (codPRD.length()<3 || segmento.length()>3){
 			JOptionPane.showMessageDialog(null, "CAMPO COD. DO PRODUTO INVÁLIDO!" + System.lineSeparator() + "O CAMPO COD. DO PRODUTO DEVE CONTER 3 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		else if(segmento.length()<3 || segmento.length()>3){
+		else if (segmento.length()<3 || segmento.length()>3){
 			JOptionPane.showMessageDialog(null, "CAMPO SEGMENTO INVÁLIDO!" + System.lineSeparator() + "O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		else if(inicioVig.length()<10 || inicioVig.length()>10){
+		else if (inicioVig.length()<10 || inicioVig.length()>10){
 			JOptionPane.showMessageDialog(null, "CAMPO INÍCIO DE VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + "O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM BARRAS.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		else if(fimVig.length()<10 || fimVig.length()>10){
+		else if (fimVig.length()<10 || fimVig.length()>10){
 			JOptionPane.showMessageDialog(null, "CAMPO INÍCIO DE VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + "O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM BARRAS.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
-		if(nomePRD.length()>=4 && nomePRD.length()<=25 && codPRD.length()==3 && segmento.length()==3 && inicioVig.length()==10 && fimVig.length()==10){
+		else {
 			
 			//Busca código e nome do produto na base
 			try {
@@ -230,19 +230,19 @@ public class CadastroProduto extends JFrame implements ActionListener{
 				dao.buscarNomeNaBasePRD(cadastroVO);
 				nomePRDVO = cadastroVO.getNomePRD();
 				
-				if(codPRD.equals(codPRDVO)){
+				if (codPRD.equals(codPRDVO)){
 					JOptionPane.showMessageDialog(null, "JÁ EXISTE UM PRODUTO CADASTRADO PARA ESTE CÓDIGO, POR FAVOR, ESCOLHA OUTRO CÓDIGO PARA O PRODUTO.", "ERRO", JOptionPane.ERROR_MESSAGE);
 				}
 				else if (nomePRD.equalsIgnoreCase(nomePRDVO)){
 					JOptionPane.showMessageDialog(null, "JÁ EXISTE UM PRODUTO CADASTRADO COM ESTE NOME, POR FAVOR ESCOLHA OUTRO NOME DE PRODUTO.", "ERRO", JOptionPane.ERROR_MESSAGE);
 				}
-				else if(codPRD.equals(codPRDVO)==false && nomePRD.equalsIgnoreCase(nomePRDVO)==false) {
+				else if (codPRD.equals(codPRDVO)==false && nomePRD.equalsIgnoreCase(nomePRDVO)==false) {
 					cadastroVO.setCodSeg(segmento);
 					//Verifica se existe o segmento informado
 					dao.buscarDadosNaBaseSeg(cadastroVO);
 					segmento = cadastroVO.getCodSeg();
 					
-					if(segmento.length()==0){
+					if (segmento.length()==0){
 						JOptionPane.showMessageDialog(null, "O SEGMENTO INFORMADO NÃO EXISTE NA BASE.", "ERRO", JOptionPane.ERROR_MESSAGE);
 					}
 					else{
@@ -281,12 +281,12 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		String nomePRDVO = "";
 		String codPRDVO = "";
 		
-		if(nomeCodPRD.length()<3 || nomeCodPRD.length()>25){
+		if (nomeCodPRD.length()<3 || nomeCodPRD.length()>25){
 			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO/COD. INVÁLIDO!" + System.lineSeparator() + "O CAMPO NOME/COD. DO PRODUTO DEVE CONTER DE 3 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
-		if(nomeCodPRD.length()>=3 && nomeCodPRD.length()<=25){
+		else {
 			
 			//Busca código e nome do produto na base
 			try {
@@ -298,10 +298,10 @@ public class CadastroProduto extends JFrame implements ActionListener{
 				dao.buscarNomeNaBasePRD(cadastroVO);
 				nomePRDVO = cadastroVO.getNomePRD();
 				
-				if(codPRDVO.length()==0 && nomePRDVO.length()==0){
+				if (codPRDVO.length()==0 && nomePRDVO.length()==0){
 					JOptionPane.showMessageDialog(null, "O PRODUTO INFORMADO NÃO EXISTE NA BASE.", "CONSULTA DE PRODUTO", JOptionPane.INFORMATION_MESSAGE);
 				}
-				else if(nomeCodPRD.equalsIgnoreCase(codPRDVO)){
+				else if (nomeCodPRD.equalsIgnoreCase(codPRDVO)){
 					//Chamada DAO para atualização dos valores VO
 					cadastroVO.setCodPRD(nomeCodPRD);
 					dao.buscarCodNaBasePRD(cadastroVO);
@@ -311,7 +311,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 					altera.criaBotoesAlteraProd();
 					altera.setVisible(true);
 				}
-				else if(nomeCodPRD.equalsIgnoreCase(nomePRDVO)){
+				else if (nomeCodPRD.equalsIgnoreCase(nomePRDVO)){
 					//Chamada DAO para atualização dos valores VO
 					cadastroVO.setNomePRD(nomeCodPRD);
 					dao.buscarNomeNaBasePRD(cadastroVO);
@@ -345,28 +345,28 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		String nomePRDVO = "";
 		String nomeOldPrd = cadastroVO.getNomePRD();
 		
-		if(nomePRD.length()<4 || nomePRD.length()>25){
+		if (nomePRD.length()<4 || nomePRD.length()>25){
 			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO INVÁLIDO!" + System.lineSeparator() + "O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 			
-		else if(segmento.length()<3 || segmento.length()>3){
+		else if (segmento.length()<3 || segmento.length()>3){
 			JOptionPane.showMessageDialog(null, "CAMPO SEGMENTO INVÁLIDO!" + System.lineSeparator() + "O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		else if(inicioVig.length()<10 || inicioVig.length()>10){
+		else if (inicioVig.length()<10 || inicioVig.length()>10){
 			JOptionPane.showMessageDialog(null, "CAMPO INÍCIO DE VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + "O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM BARRAS.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		else if(fimVig.length()<10 || fimVig.length()>10){
+		else if (fimVig.length()<10 || fimVig.length()>10){
 			JOptionPane.showMessageDialog(null, "CAMPO INÍCIO DE VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + "O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM BARRAS.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		else if(prdsta.equals("1")==false && prdsta.equals("0")==false){
+		else if (prdsta.equals("1")==false && prdsta.equals("0")==false){
 			JOptionPane.showMessageDialog(null, "CAMPO STATUS INVÁLIDO!" + System.lineSeparator() + "O CAMPO STATUS DEVE CONTER 1 CARACTERE, INDICANDO STATUS ATIVO/INATIVO (1/0).", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
-		if(nomePRD.length()>=4 && nomePRD.length()<=25 && segmento.length()==3 && inicioVig.length()==10 && fimVig.length()==10 && prdsta.equals("1") || prdsta.equals("0")){
+		else {
 			cadastroVO.setNomePRD(nomePRD);
 			
 			//Busca nome do produto na base
@@ -374,13 +374,13 @@ public class CadastroProduto extends JFrame implements ActionListener{
 				dao.buscarNomeNaBasePRD(cadastroVO);
 				nomePRDVO = cadastroVO.getNomePRD();
 				
-				if(nomePRD.equalsIgnoreCase(nomeOldPrd)==false){
+				if (nomePRD.equalsIgnoreCase(nomeOldPrd)==false){
 					
 					if (nomePRD.equalsIgnoreCase(nomePRDVO)){
 						JOptionPane.showMessageDialog(null, "JÁ EXISTE UM PRODUTO CADASTRADO COM ESTE NOME, POR FAVOR ESCOLHA OUTRO NOME DE PRODUTO.", "ERRO", JOptionPane.ERROR_MESSAGE);
 					}
 					
-					else if(nomePRD.equalsIgnoreCase(nomePRDVO)==false) {
+					else if (nomePRD.equalsIgnoreCase(nomePRDVO)==false) {
 						cadastroVO.setCodSeg(segmento);
 						//Verifica se existe o segmento informado
 						dao.buscarDadosNaBaseSeg(cadastroVO);
@@ -389,7 +389,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 						if(segmento.length()==0){
 							JOptionPane.showMessageDialog(null, "O SEGMENTO INFORMADO NÃO EXISTE NA BASE.", "ERRO", JOptionPane.ERROR_MESSAGE);
 						}
-						else{
+						else {
 							cadastroVO.setCodPRD(codPRD);
 							cadastroVO.setNomePRD(nomePRD);
 							cadastroVO.setInicioVig(inicioVig);
@@ -408,7 +408,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 					}
 				}
 				
-				else if(nomePRD.equalsIgnoreCase(nomeOldPrd)){
+				else if (nomePRD.equalsIgnoreCase(nomeOldPrd)){
 					cadastroVO.setCodSeg(segmento);
 					//Verifica se existe o segmento informado
 					dao.buscarDadosNaBaseSeg(cadastroVO);
@@ -417,7 +417,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 					if(segmento.length()==0){
 						JOptionPane.showMessageDialog(null, "O SEGMENTO INFORMADO NÃO EXISTE NA BASE.", "ERRO", JOptionPane.ERROR_MESSAGE);
 					}
-					else{
+					else {
 						cadastroVO.setCodPRD(codPRD);
 						cadastroVO.setNomePRD(nomePRD);
 						cadastroVO.setInicioVig(inicioVig);
