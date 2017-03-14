@@ -70,6 +70,7 @@ public class Botao {
 		bt_consulta_prod.setBounds(220, 100, 152, 30);
 		bt_consulta_prod.addActionListener(tela);
 		bt_consulta_prod.setActionCommand("command_consultar_produto");
+		bt_consulta_prod.setEnabled(false);
 		
 		bt_cadastro_seg= new JButton("Cadastrar Segmento");
 		bt_cadastro_seg.setBounds(420, 20, 152, 30);
@@ -85,6 +86,7 @@ public class Botao {
 		bt_consulta_seg.setBounds(420, 100, 152, 30);
 		bt_consulta_seg.addActionListener(tela);
 		bt_consulta_seg.setActionCommand("command_consultar_segmento");
+		bt_consulta_seg.setEnabled(false);
 		
 		bt_info = new JButton("?");
 		bt_info.setBounds(630, 20, 45, 30);
