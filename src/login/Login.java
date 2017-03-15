@@ -41,8 +41,8 @@ public class Login extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L; 
 	
-	private JTextField tUser = new JTextField("ademir");
-	private JTextField tPass = new JPasswordField("teste");
+	private JTextField tUser = new JTextField();
+	private JTextField tPass = new JPasswordField();
 	private CadastroUserVO cadastroVO = new CadastroUserVO();
 	private CadastroUserDAO dao = new CadastroUserDAO();
 	private Botao botoes = new Botao();
