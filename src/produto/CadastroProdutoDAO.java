@@ -136,7 +136,7 @@ public class CadastroProdutoDAO {
 		Connection conn = Conexao.abrir();
 		
 		PreparedStatement comando1 = (PreparedStatement) conn.prepareStatement(sqlNome);
-		comando1.setString(1, cadastroVO.getNomePRD());
+		comando1.setString(1, cadastroVO.getNomePRD().toUpperCase());
 		comando1.setString(2, cadastroVO.getCodPRD());
 		comando1.execute();
 		comando1.close();
