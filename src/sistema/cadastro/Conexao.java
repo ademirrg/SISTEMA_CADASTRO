@@ -10,7 +10,7 @@ public class Conexao {
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 
 	public static Connection abrir() throws Exception {
-		System.out.println("Tentando conexão com o banco.");
+		System.out.println("Tentando conexão com o servidor...");
 		// Registrar o driver
 		Class.forName(DRIVER);
 		

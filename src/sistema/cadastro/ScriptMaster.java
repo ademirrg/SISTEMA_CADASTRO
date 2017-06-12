@@ -19,6 +19,8 @@ public class ScriptMaster {
 		String sqlTable4 = "CREATE TABLE `sistema_cadastro`.`segmento` (`CodSegmento` VARCHAR(3) NOT NULL,`NomeSegmento` VARCHAR(25) NULL,`TPContrato` VARCHAR(25) NULL,`TPPessoa` VARCHAR(2) NULL, `SEGSTA` VARCHAR(1) NULL,`DataCadastro` DATETIME NULL,`DataAlteracao` DATETIME NULL, PRIMARY KEY (`CodSegmento`));";
 		String sqlInsert = "INSERT INTO sistema_cadastro.master VALUES ('admin','admin',now())";
 		
+		System.out.println("Criando banco de dados...");
+		
 		Connection conn = Conexao.abrir();
 		
 		PreparedStatement comando1 = (PreparedStatement) conn.prepareStatement(sqlSCHEMA);
@@ -45,7 +47,7 @@ public class ScriptMaster {
 		comando6.execute();
 		comando6.close();
 		
-		System.out.println("Banco de dados criado.");
+		System.out.println("Banco de dados criado com sucesso.");
 		conn.close();
 		System.out.println("Conexão encerrada.");
 	
