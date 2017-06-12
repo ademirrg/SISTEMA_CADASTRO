@@ -34,7 +34,8 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	//Tela
 	setTitle("CADASTRAMENTO DE SEGMENTO");
 	setSize(700, 500);
-	setLocation(450, 100);
+	//setLocation(450, 100);
+	setLocationRelativeTo(null);
 	setResizable(false);
 	setLayout(null);
 	getContentPane().setBackground(Color.LIGHT_GRAY);
@@ -73,7 +74,8 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	//Tela
 	setTitle("ALTERAÇÃO DE SEGMENTO");
 	setSize(700, 500);
-	setLocation(450, 100);
+	//setLocation(450, 100);
+	setLocationRelativeTo(null);
 	setResizable(false);
 	setLayout(null);
 	getContentPane().setBackground(Color.LIGHT_GRAY);
@@ -97,7 +99,8 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	//Tela
 	setTitle("ALTERAÇÃO DO PRODUTO: " + altCodSeg + " - " + altNomeSeg);
 	setSize(700, 500);
-	setLocation(450, 100);
+	//setLocation(450, 100);
+	setLocationRelativeTo(null);
 	setResizable(false);
 	setLayout(null);
 	getContentPane().setBackground(Color.LIGHT_GRAY);

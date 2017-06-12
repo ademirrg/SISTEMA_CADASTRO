@@ -70,7 +70,8 @@ public class Login extends JFrame implements ActionListener {
 		// Tela
 		setTitle("LOGIN DE USUÁRIO");
 		setSize(700, 500);
-		setLocation(450, 100);
+		//setLocation(450, 100);
+		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(null);
 		getContentPane().setBackground(Color.LIGHT_GRAY);

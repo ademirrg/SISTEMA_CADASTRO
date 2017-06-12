@@ -284,7 +284,8 @@ public class CadastroUser extends JFrame implements ActionListener {
 		//Tela
 		setTitle("CADASTRAMENTO DE USUÁRIO");
 		setSize(700, 500);
-		setLocation(450, 100);
+		//setLocation(450, 100);
+		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(null);
 		getContentPane().setBackground(Color.LIGHT_GRAY);
@@ -331,7 +332,8 @@ public class CadastroUser extends JFrame implements ActionListener {
 		//Tela
 		setTitle("ALTERAÇÃO DE USUÁRIO - USUÁRIO LOGADO: " + CadastroUserVO.getOldUser().toUpperCase());
 		setSize(700, 500);
-		setLocation(450, 100);
+		//setLocation(450, 100);
+		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(null);
 		getContentPane().setBackground(Color.LIGHT_GRAY);
@@ -363,7 +365,8 @@ public class CadastroUser extends JFrame implements ActionListener {
 			//Tela
 			setTitle("CONSULTA DE USUÁRIOS");
 			setSize(1200, 500);
-			setLocation(200, 100);
+			//setLocation(200, 100);
+			setLocationRelativeTo(null);
 			setResizable(false);
 			getContentPane().setBackground(Color.LIGHT_GRAY);
 			setDefaultCloseOperation(EXIT_ON_CLOSE);

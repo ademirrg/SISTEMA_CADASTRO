@@ -40,7 +40,8 @@ public class LoginMasterUser extends Login {
 		//Tela
 		setTitle("LOGIN DE USUÁRIO MASTER");
 		setSize(700, 500);
-		setLocation(450, 100);
+		//setLocation(450, 100);
+		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(null);
 		getContentPane().setBackground(Color.DARK_GRAY);
