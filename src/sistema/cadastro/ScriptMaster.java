@@ -1,9 +1,7 @@
 package sistema.cadastro;
 import java.sql.ResultSet;
-
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-
 import usuario.CadastroUserVO;
 
 public class ScriptMaster {
