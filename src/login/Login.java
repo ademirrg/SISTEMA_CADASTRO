@@ -148,6 +148,7 @@ public class Login extends JFrame implements ActionListener {
 
 		// Se todos os campos estiverem ok
 		else {
+			user = user.trim();
 			cadastroVO.setUser(user);
 
 			//Gera hash da senha para comparação com o banco

@@ -149,11 +149,11 @@ public class CadastroUser extends JFrame implements ActionListener {
 		
 		if (newUser.length()==0 || newUser.length() <4 || newUser.length()>25){
 			JOptionPane.showMessageDialog(null, "CAMPO USUÁRIO INVÁLIDO!" + System.lineSeparator() +"O USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
-
 		}
 
 		//Se todos os campos estiverem ok
 		else {
+			newUser = newUser.trim();
 			cadastroVO.setUser(newUser);
 			
 			//Realiza uma conulta no banco e verifica a disponibilidade do nome
@@ -172,6 +172,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 			else {
 			
 				try {
+					
 					cadastroVO.setUser(newUser);
 					dao.atualizaUsuarioNaBase(cadastroVO);
 					System.out.println("Usuário "+ oldUser.toUpperCase() + " alterado para " + newUser.toUpperCase() + ".");
