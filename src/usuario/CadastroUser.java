@@ -45,7 +45,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		String user = tUser.getText().trim();
 		String pass = tPass.getText();
 		String pass2 = tPass2.getText();
-		String nome = tNome.getText();
+		String nome = tNome.getText().trim();
 		String cpf = tCPF.getText();
 		String data = tData.getText();
 		String NomeUserVO = "";

@@ -191,7 +191,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 
 	//Cadastro de produto
 	public void pegaValor(){
-		String nomePRD = tNome.getText();
+		String nomePRD = tNome.getText().trim();
 		String codPRD = tCod.getText();
 		String segmento = tSeg.getText();
 		String inicioVig = tInicioVig.getText();

@@ -176,7 +176,7 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	
 	//Cadastro de segmento
 	public void pegaValor(){
-		String nomeSeg = tNome.getText();
+		String nomeSeg = tNome.getText().trim();
 		String codSeg = tCod.getText();
 		String tpCtt = tTpCtt.getText();
 		String tpPessoa = tTpPessoa.getText();
@@ -184,7 +184,7 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 		String segSta = "1";
 		
 		if (nomeSeg.length()<4 || nomeSeg.length()>25){
-			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO INVÁLIDO!" + System.lineSeparator() + "O CAMPO NOME DO SEGMENTO DEVE CONTER DE 4 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "NOME DO SEGMENTO INVÁLIDO!" + System.lineSeparator() + "O CAMPO NOME DO SEGMENTO DEVE CONTER DE 4 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (codSeg.length()<3 || codSeg.length()>3){
