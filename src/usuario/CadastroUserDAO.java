@@ -63,7 +63,7 @@ public class CadastroUserDAO {
 		
 	public void insereDadosNaBase (CadastroUserVO cadastroVO) throws Exception{
 		
-		String sql = "INSERT INTO sistema_cadastro.usuario values (?, ?, now(), now(), now(), ?, ?, ?)";
+		String sql = "INSERT INTO sistema_cadastro.usuario values (?, (?), now(), now(), now(), ?, ?, ?)";
 		
 		Connection conn = Conexao.abrir();
 		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);

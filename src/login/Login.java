@@ -3,6 +3,9 @@ package login;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -98,7 +101,12 @@ public class Login extends JFrame implements ActionListener {
 			dispose();
 			break;
 		case "command_login_usuario":
-			pegaValorTela();
+			try {
+				pegaValorTela();
+			} catch (NoSuchAlgorithmException | UnsupportedEncodingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			break;
 		case "command_encontrar_usuario":
 			EsqueciUser encontrar = new EsqueciUser();
@@ -119,7 +127,7 @@ public class Login extends JFrame implements ActionListener {
 		}
 	}
 
-	public void pegaValorTela() {
+	public void pegaValorTela() throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		String user = (gettUser().getText());
 		String pass = (gettPass().getText());
 		String NomeUserVO = "";
@@ -141,6 +149,17 @@ public class Login extends JFrame implements ActionListener {
 		// Se todos os campos estiverem ok
 		else {
 			cadastroVO.setUser(user);
+
+			//Gera hash da senha para comparação com o banco
+			MessageDigest algorithm = MessageDigest.getInstance("MD5");
+			byte messageDigest[] = algorithm.digest(pass.getBytes("UTF-8"));
+			
+			StringBuilder hashPass = new StringBuilder();
+			for (byte b : messageDigest) {
+				hashPass.append(String.format("%02X", 0xFF & b));
+			}
+			pass = hashPass.toString();
+			
 			cadastroVO.setPass(pass);
 
 			// Realiza uma conulta no banco e verifica o usuário e senha

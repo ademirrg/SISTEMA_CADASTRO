@@ -4,6 +4,9 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
@@ -38,7 +41,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 	private CadastroUserDAO dao = new CadastroUserDAO();
 
 	
-	public void pegaValorTelaCadastroUser(){
+	public void pegaValorTelaCadastroUser() throws NoSuchAlgorithmException, UnsupportedEncodingException{
 		String user = tUser.getText();
 		String pass = tPass.getText();
 		String pass2 = tPass2.getText();
@@ -75,7 +78,19 @@ public class CadastroUser extends JFrame implements ActionListener {
 		//Se todos os campos estiverem ok
 		else {
 			cadastroVO.setUser(user);
+			
+			//Gera hash da senha para inserção no banco
+			MessageDigest algorithm = MessageDigest.getInstance("MD5");
+			byte messageDigest[] = algorithm.digest(pass.getBytes("UTF-8"));
+			
+			StringBuilder hashPass = new StringBuilder();
+			for (byte b : messageDigest) {
+				hashPass.append(String.format("%02X", 0xFF & b));
+			}
+			pass = hashPass.toString();
+			
 			cadastroVO.setPass(pass);
+			
 			CadastroUserVO.setNome(nome);
 			CadastroUserVO.setDataNasc(data);
 			CadastroUserVO.setCPF(cpf);
@@ -198,6 +213,15 @@ public class CadastroUser extends JFrame implements ActionListener {
 		else {
 			
 			try {
+				//Gera hash da senha antiga para comparação com banco
+				MessageDigest algorithm = MessageDigest.getInstance("MD5");
+				byte messageDigest[] = algorithm.digest(oldPass.getBytes("UTF-8"));
+				
+				StringBuilder hashPass = new StringBuilder();
+				for (byte b : messageDigest) {
+					hashPass.append(String.format("%02X", 0xFF & b));
+				}
+				oldPass = hashPass.toString();
 				dao.buscarDadosNaBaseUser(cadastroVO);
 				SenhaUserVO = cadastroVO.getSenhaUser();
 			} catch (Exception e) {
@@ -212,6 +236,15 @@ public class CadastroUser extends JFrame implements ActionListener {
 			
 			else {
 				try {
+					//Gera hash da senha para inserção no banco
+					MessageDigest algorithm = MessageDigest.getInstance("MD5");
+					byte messageDigest[] = algorithm.digest(newPass.getBytes("UTF-8"));
+					
+					StringBuilder hashPass = new StringBuilder();
+					for (byte b : messageDigest) {
+						hashPass.append(String.format("%02X", 0xFF & b));
+					}
+					newPass = hashPass.toString();
 					cadastroVO.setPass(newPass);
 					dao.atualizaSenhaNaBase(cadastroVO);
 					System.out.println("O usuário " + oldUser.toUpperCase() + " alterou a senha.");
@@ -237,7 +270,12 @@ public class CadastroUser extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "command_salvar":
-			pegaValorTelaCadastroUser();
+			try {
+				pegaValorTelaCadastroUser();
+			} catch (NoSuchAlgorithmException | UnsupportedEncodingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			break;
 		case "command_info":
 			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE USUÁRIO:" + System.lineSeparator() + "O CAMPO USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO SENHA DEVE CONTER DE 5 A 12 CARACTERES." + System.lineSeparator() + "O CAMPO NOME DEVE CONTER DE 5 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO CPF DEVE SER PREENCHIDO COM APENAS NÚMEROS E DEVE CONTER 11 CARACTERES." + System.lineSeparator() + "O CAMPO DATA DE NASCIMENTO DEVE SER PREENCHIDO NO PADRÃO DD/MM/AAAA COM BARRAS." + System.lineSeparator() + "NÃO SERÁ REALIZADA VALIDAÇÃO DE LETRAS MAIÚSCULAS OU MINÚSCULAS PARA O USUÁRIO CRIADO, APENAS PARA SENHA.", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);

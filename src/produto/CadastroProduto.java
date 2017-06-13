@@ -38,7 +38,8 @@ public class CadastroProduto extends JFrame implements ActionListener{
 	//Tela
 	setTitle("CADASTRAMENTO DE PRODUTO");
 	setSize(700, 500);
-	setLocation(450, 100);
+	//setLocation(450, 100);
+	setLocationRelativeTo(null);
 	setResizable(false);
 	setLayout(null);
 	getContentPane().setBackground(Color.LIGHT_GRAY);
