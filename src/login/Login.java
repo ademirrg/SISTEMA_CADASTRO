@@ -128,7 +128,7 @@ public class Login extends JFrame implements ActionListener {
 	}
 
 	public void pegaValorTela() throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		String user = (gettUser().getText());
+		String user = (gettUser().getText()).trim();
 		String pass = (gettPass().getText());
 		String NomeUserVO = "";
 		String SenhaUserVO = "";
@@ -148,7 +148,6 @@ public class Login extends JFrame implements ActionListener {
 
 		// Se todos os campos estiverem ok
 		else {
-			user = user.trim();
 			cadastroVO.setUser(user);
 
 			//Gera hash da senha para comparação com o banco

@@ -42,7 +42,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 
 	
 	public void pegaValorTelaCadastroUser() throws NoSuchAlgorithmException, UnsupportedEncodingException{
-		String user = tUser.getText();
+		String user = tUser.getText().trim();
 		String pass = tPass.getText();
 		String pass2 = tPass2.getText();
 		String nome = tNome.getText();
@@ -77,7 +77,6 @@ public class CadastroUser extends JFrame implements ActionListener {
 		
 		//Se todos os campos estiverem ok
 		else {
-			user = user.trim();
 			cadastroVO.setUser(user);
 			
 			//Gera hash da senha para inserção no banco
@@ -144,7 +143,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 	
 	public void pegaValorTelaAlteraNomeUser(){
 		String oldUser = CadastroUserVO.getOldUser();
-		String newUser = tUser.getText();
+		String newUser = tUser.getText().trim();
 		String NomeUserVO = "";
 		
 		if (newUser.length()==0 || newUser.length() <4 || newUser.length()>25){
@@ -153,7 +152,6 @@ public class CadastroUser extends JFrame implements ActionListener {
 
 		//Se todos os campos estiverem ok
 		else {
-			newUser = newUser.trim();
 			cadastroVO.setUser(newUser);
 			
 			//Realiza uma conulta no banco e verifica a disponibilidade do nome
@@ -172,7 +170,6 @@ public class CadastroUser extends JFrame implements ActionListener {
 			else {
 			
 				try {
-					
 					cadastroVO.setUser(newUser);
 					dao.atualizaUsuarioNaBase(cadastroVO);
 					System.out.println("Usuário "+ oldUser.toUpperCase() + " alterado para " + newUser.toUpperCase() + ".");
