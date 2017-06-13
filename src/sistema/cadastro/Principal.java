@@ -5,7 +5,7 @@ public class Principal {
 		
 	public static void main(String args[]){
 		try {
-			//Executar script de criação da base de dados			
+			//Executar script de criação da base de dados	
 			ScriptMaster.executaScriptMaster(null);
 			
 			// Chama Tela
