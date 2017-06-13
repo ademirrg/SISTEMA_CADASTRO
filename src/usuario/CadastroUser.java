@@ -77,6 +77,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		
 		//Se todos os campos estiverem ok
 		else {
+			user = user.trim();
 			cadastroVO.setUser(user);
 			
 			//Gera hash da senha para inserção no banco
@@ -246,6 +247,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 					}
 					newPass = hashPass.toString();
 					cadastroVO.setPass(newPass);
+					
 					dao.atualizaSenhaNaBase(cadastroVO);
 					System.out.println("O usuário " + oldUser.toUpperCase() + " alterou a senha.");
 					JOptionPane.showMessageDialog(null, "A SENHA FOI ALTERADA COM SUCESSO!" + System.lineSeparator() + "POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "ALTERAÇÃO DE SENHA", JOptionPane.INFORMATION_MESSAGE);
