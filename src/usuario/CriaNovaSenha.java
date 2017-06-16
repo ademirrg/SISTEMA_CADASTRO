@@ -2,10 +2,10 @@ package usuario;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.MessageDigest;
 import javax.swing.*;
-
-import login.Login;
 import sistema.cadastro.Botao;
+import sistema.cadastro.Tela;
 
 public class CriaNovaSenha  extends JFrame implements ActionListener{
 
@@ -65,14 +65,24 @@ public class CriaNovaSenha  extends JFrame implements ActionListener{
 		if (pass.equals(pass2) && pass.length()>=5 && pass.length()<=12 && pass2.length()>=5 && pass2.length()<=12){
 			
 			try {
+				//Gera hash da senha para inserção no banco
+				MessageDigest algorithm = MessageDigest.getInstance("MD5");
+				byte messageDigest[] = algorithm.digest(pass.getBytes("UTF-8"));
+				
+				StringBuilder hashPass = new StringBuilder();
+				for (byte b : messageDigest) {
+					hashPass.append(String.format("%02X", 0xFF & b));
+				}
+				pass = hashPass.toString();
+				
 				cadastroVO.setPass(pass);
 				dao.atualizaSenhaNaBase(cadastroVO);
 				System.out.println("Senha alterada para o usuário " + NomeUserVO + ", através da opção: ESQUECI MINHA SENHA.");
 				JOptionPane.showMessageDialog(null, "A SENHA FOI ALTERADA COM SUCESSO!" + System.lineSeparator() + "POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "ALTERAÇÃO DE SENHA", JOptionPane.INFORMATION_MESSAGE);
-				Login login = new Login(evento);
-				login.criaTela();
-				login.criaBotoesLogin();
-				login.setVisible(true);
+				Tela tela = new Tela();
+				tela.criaTela();
+				tela.criaBotoes();
+				tela.setVisible(true);
 				dispose();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -86,10 +96,10 @@ public class CriaNovaSenha  extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "command_cancelar":
-			Login login = new Login(e.getActionCommand());
-			login.criaTela();
-			login.criaBotoesLogin();
-			login.setVisible(true);
+			Tela tela = new Tela();
+			tela.criaTela();
+			tela.criaBotoes();
+			tela.setVisible(true);
 			dispose();
 			break;
 		case "command_alterar_senha":

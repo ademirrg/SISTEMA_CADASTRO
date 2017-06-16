@@ -3,8 +3,6 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-
-import login.Login;
 import sistema.cadastro.Botao;
 import sistema.cadastro.Tela;
 
@@ -87,10 +85,10 @@ public class EsqueciUser extends JFrame implements ActionListener{
 				else {
 					NomeUserVO = cadastroVO.getNomeUser();
 					JOptionPane.showMessageDialog(null, "SEU USUÁRIO É: " + NomeUserVO, "RECUPERAÇÃO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
-					Login login = new Login(null);
-					login.criaTela();
-					login.criaBotoesLogin();
-					login.setVisible(true);
+					Tela tela = new Tela();
+					tela.criaTela();
+					tela.criaBotoes();
+					tela.setVisible(true);
 					dispose();
 				}
 				
