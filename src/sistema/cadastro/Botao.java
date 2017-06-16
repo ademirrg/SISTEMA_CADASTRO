@@ -1,8 +1,10 @@
 package sistema.cadastro;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+
 
 public class Botao {
 	JButton bt_cadastro_user;
@@ -35,7 +37,8 @@ public class Botao {
 		bt_sair.setBounds(600, 430, 75, 30);
 		bt_sair.addActionListener(tela);
 		bt_sair.setActionCommand("command_sair");
-
+		bt_sair.setMnemonic(KeyEvent.VK_Q);
+		
 		bt_cadastro_user = new JButton("Cadastrar Usuário");
 		bt_cadastro_user.setBounds(20, 20, 152, 30);
 		bt_cadastro_user.addActionListener(tela);
@@ -92,6 +95,7 @@ public class Botao {
 		bt_info.setBounds(630, 20, 45, 30);
 		bt_info.addActionListener(tela);
 		bt_info.setActionCommand("command_info");
+		bt_info.setMnemonic(KeyEvent.VK_F1);
 
 		frame.add(bt_sair);
 		frame.add(bt_cadastro_user);
@@ -112,16 +116,19 @@ public class Botao {
 		bt_voltar.setBounds(600, 430, 75, 30);
 		bt_voltar.addActionListener(cadastroUser);
 		bt_voltar.setActionCommand("command_voltar");
+		bt_voltar.setMnemonic(KeyEvent.VK_Q);
 
 		bt_salvar = new JButton("Salvar");
 		bt_salvar.setBounds(150, 230, 75, 30);
 		bt_salvar.addActionListener(cadastroUser);
 		bt_salvar.setActionCommand("command_salvar");
+		bt_salvar.setMnemonic(KeyEvent.VK_ENTER);
 		
 		bt_info = new JButton("?");
 		bt_info.setBounds(630, 20, 45, 30);
 		bt_info.addActionListener(cadastroUser);
 		bt_info.setActionCommand("command_info");
+		bt_info.setMnemonic(KeyEvent.VK_F1);
 		
 		frame.add(bt_voltar);
 		frame.add(bt_salvar);
@@ -134,11 +141,13 @@ public class Botao {
 		bt_voltar.setBounds(600, 430, 75, 30);
 		bt_voltar.addActionListener(cadastroVend);
 		bt_voltar.setActionCommand("command_voltar");
-
+		bt_voltar.setMnemonic(KeyEvent.VK_Q);
+		
 		bt_salvar = new JButton("Salvar");
 		bt_salvar.setBounds(20, 420, 75, 30);
 		bt_salvar.addActionListener(cadastroVend);
 		bt_salvar.setActionCommand("command_salvar");
+		bt_salvar.setMnemonic(KeyEvent.VK_ENTER);
 		
 		frame.add(bt_voltar);
 		frame.add(bt_salvar);
@@ -150,16 +159,19 @@ public class Botao {
 		bt_voltar.setBounds(600, 430, 75, 30);
 		bt_voltar.addActionListener(cadastroProd);
 		bt_voltar.setActionCommand("command_voltar");
-
+		bt_voltar.setMnemonic(KeyEvent.VK_Q);
+		
 		bt_salvar = new JButton("Salvar");
 		bt_salvar.setBounds(20, 420, 75, 30);
 		bt_salvar.addActionListener(cadastroProd);
-		bt_salvar.setActionCommand("command_salvar");
+		bt_salvar.setActionCommand("command_salvar");	
+		bt_salvar.setMnemonic(KeyEvent.VK_ENTER);
 		
 		bt_info = new JButton("?");
 		bt_info.setBounds(630, 20, 45, 30);
 		bt_info.addActionListener(cadastroProd);
 		bt_info.setActionCommand("command_info");
+		bt_info.setMnemonic(KeyEvent.VK_F1);
 		
 		frame.add(bt_voltar);
 		frame.add(bt_salvar);
@@ -172,11 +184,13 @@ public class Botao {
 		bt_voltar.setBounds(600, 430, 75, 30);
 		bt_voltar.addActionListener(buscaProd);
 		bt_voltar.setActionCommand("command_voltar");
+		bt_voltar.setMnemonic(KeyEvent.VK_Q);
 
 		bt_buscar_prod = new JButton("Buscar");
 		bt_buscar_prod.setBounds(20, 420, 75, 30);
 		bt_buscar_prod.addActionListener(buscaProd);
 		bt_buscar_prod.setActionCommand("command_buscar_prod");
+		bt_buscar_prod.setMnemonic(KeyEvent.VK_ENTER);
 			
 		frame.add(bt_voltar);
 		frame.add(bt_buscar_prod);
@@ -188,16 +202,19 @@ public class Botao {
 		bt_voltar.setBounds(600, 430, 75, 30);
 		bt_voltar.addActionListener(alteraProd);
 		bt_voltar.setActionCommand("command_voltar_busca");
+		bt_voltar.setMnemonic(KeyEvent.VK_Q);
 
 		bt_alterar_prod = new JButton("Alterar");
 		bt_alterar_prod.setBounds(20, 420, 75, 30);
 		bt_alterar_prod.addActionListener(alteraProd);
 		bt_alterar_prod.setActionCommand("command_alterar_prod");
+		bt_alterar_prod.setMnemonic(KeyEvent.VK_ENTER);
 		
 		bt_info = new JButton("?");
 		bt_info.setBounds(630, 20, 45, 30);
 		bt_info.addActionListener(alteraProd);
 		bt_info.setActionCommand("command_info_altera");
+		bt_info.setMnemonic(KeyEvent.VK_F1);
 		
 		frame.add(bt_voltar);
 		frame.add(bt_alterar_prod);
@@ -210,16 +227,19 @@ public class Botao {
 		bt_voltar.setBounds(600, 430, 75, 30);
 		bt_voltar.addActionListener(cadastroSeg);
 		bt_voltar.setActionCommand("command_voltar");
+		bt_voltar.setMnemonic(KeyEvent.VK_Q);
 
 		bt_salvar = new JButton("Salvar");
 		bt_salvar.setBounds(20, 420, 75, 30);
 		bt_salvar.addActionListener(cadastroSeg);
 		bt_salvar.setActionCommand("command_salvar");
+		bt_salvar.setMnemonic(KeyEvent.VK_ENTER);
 		
 		bt_info = new JButton("?");
 		bt_info.setBounds(630, 20, 45, 30);
 		bt_info.addActionListener(cadastroSeg);
 		bt_info.setActionCommand("command_info");
+		bt_info.setMnemonic(KeyEvent.VK_F1);
 		
 		frame.add(bt_voltar);
 		frame.add(bt_salvar);
@@ -232,11 +252,13 @@ public class Botao {
 		bt_voltar.setBounds(600, 430, 75, 30);
 		bt_voltar.addActionListener(buscaSeg);
 		bt_voltar.setActionCommand("command_voltar");
+		bt_voltar.setMnemonic(KeyEvent.VK_Q);
 
 		bt_busca_seg = new JButton("Buscar");
 		bt_busca_seg.setBounds(20, 420, 75, 30);
 		bt_busca_seg.addActionListener(buscaSeg);
 		bt_busca_seg.setActionCommand("command_buscar_seg");
+		bt_busca_seg.setMnemonic(KeyEvent.VK_ENTER);
 			
 		frame.add(bt_voltar);
 		frame.add(bt_busca_seg);
@@ -248,16 +270,19 @@ public class Botao {
 		bt_voltar.setBounds(600, 430, 75, 30);
 		bt_voltar.addActionListener(alteraSeg);
 		bt_voltar.setActionCommand("command_voltar_busca");
+		bt_voltar.setMnemonic(KeyEvent.VK_Q);
 
 		bt_alterar_seg = new JButton("Alterar");
 		bt_alterar_seg.setBounds(20, 420, 75, 30);
 		bt_alterar_seg.addActionListener(alteraSeg);
 		bt_alterar_seg.setActionCommand("command_alterar_seg");
+		bt_alterar_seg.setMnemonic(KeyEvent.VK_ENTER);
 		
 		bt_info = new JButton("?");
 		bt_info.setBounds(630, 20, 45, 30);
 		bt_info.addActionListener(alteraSeg);
 		bt_info.setActionCommand("command_info_altera");
+		bt_info.setMnemonic(KeyEvent.VK_F1);
 		
 		frame.add(bt_voltar);
 		frame.add(bt_alterar_seg);
@@ -280,6 +305,7 @@ public class Botao {
 		bt_voltar.setBounds(600, 430, 75, 30);
 		bt_voltar.addActionListener(alteraUser);
 		bt_voltar.setActionCommand("command_voltar");
+		bt_voltar.setMnemonic(KeyEvent.VK_Q);
 		
 		frame.add(bt_alterar_user);
 		frame.add(bt_alterar_pass);
@@ -291,6 +317,7 @@ public class Botao {
 		bt_voltar.setBounds(550, 430, 75, 30);
 		bt_voltar.addActionListener(consultaUser);
 		bt_voltar.setActionCommand("command_voltar");
+		bt_voltar.setMnemonic(KeyEvent.VK_Q);
 		
 		frame.add(bt_voltar);
 	}
@@ -300,11 +327,13 @@ public class Botao {
 		bt_voltar.setBounds(600, 430, 75, 30);
 		bt_voltar.addActionListener(loginUser);
 		bt_voltar.setActionCommand("command_voltar");
+		bt_voltar.setMnemonic(KeyEvent.VK_Q);
 
 		bt_entrar = new JButton("Entrar");
 		bt_entrar.setBounds(150, 110, 75, 30);
 		bt_entrar.addActionListener(loginUser);
 		bt_entrar.setActionCommand("command_login_usuario");
+		bt_entrar.setMnemonic(KeyEvent.VK_ENTER);
 		
 		bt_consulta_user = new JButton("Encontrar");
 		bt_consulta_user.setBounds(565, 45, 90, 30);
@@ -328,11 +357,13 @@ public class Botao {
 		bt_voltar.setBounds(600, 430, 75, 30);
 		bt_voltar.addActionListener(loginMasterUser);
 		bt_voltar.setActionCommand("command_voltar");
-
+		bt_voltar.setMnemonic(KeyEvent.VK_Q);
+		
 		bt_entrar = new JButton("Entrar");
 		bt_entrar.setBounds(150, 110, 75, 30);
 		bt_entrar.addActionListener(loginMasterUser);
 		bt_entrar.setActionCommand("command_login_usuario_master");
+		bt_entrar.setMnemonic(KeyEvent.VK_ENTER);
 		
 		frame.add(bt_voltar);
 		frame.add(bt_entrar);
@@ -344,13 +375,13 @@ public class Botao {
 		bt_voltar.setBounds(600, 430, 85, 30);
 		bt_voltar.addActionListener(esqueciUser);
 		bt_voltar.setActionCommand("command_cancelar");
-
+		bt_voltar.setMnemonic(KeyEvent.VK_Q);
 
 		bt_consulta_user = new JButton("Encontrar");
 		bt_consulta_user.setBounds(150, 110, 90, 30);
 		bt_consulta_user.addActionListener(esqueciUser);
 		bt_consulta_user.setActionCommand("command_encontrar_usuario");
-		
+		bt_consulta_user.setMnemonic(KeyEvent.VK_ENTER);
 		
 		frame.add(bt_voltar);
 		frame.add(bt_consulta_user);
@@ -362,13 +393,13 @@ public class Botao {
 		bt_voltar.setBounds(600, 430, 85, 30);
 		bt_voltar.addActionListener(esqueciSenha);
 		bt_voltar.setActionCommand("command_cancelar");
-
+		bt_voltar.setMnemonic(KeyEvent.VK_Q);
 
 		bt_alterar_pass = new JButton("Alterar");
 		bt_alterar_pass.setBounds(150, 110, 85, 30);
 		bt_alterar_pass.addActionListener(esqueciSenha);
 		bt_alterar_pass.setActionCommand("command_alterar_senha");
-		
+		bt_alterar_pass.setMnemonic(KeyEvent.VK_ENTER);
 		
 		frame.add(bt_voltar);
 		frame.add(bt_alterar_pass);
@@ -380,13 +411,13 @@ public class Botao {
 		bt_voltar.setBounds(600, 430, 85, 30);
 		bt_voltar.addActionListener(novaSenha);
 		bt_voltar.setActionCommand("command_cancelar");
-
+		bt_voltar.setMnemonic(KeyEvent.VK_Q);
 
 		bt_alterar_pass = new JButton("Alterar");
 		bt_alterar_pass.setBounds(180, 110, 85, 30);
 		bt_alterar_pass.addActionListener(novaSenha);
 		bt_alterar_pass.setActionCommand("command_alterar_senha");
-		
+		bt_alterar_pass.setMnemonic(KeyEvent.VK_ENTER);
 		
 		frame.add(bt_voltar);
 		frame.add(bt_alterar_pass);
