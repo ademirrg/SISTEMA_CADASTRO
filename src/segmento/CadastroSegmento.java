@@ -97,7 +97,7 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	public void criaTelaAlteraSeg(){
 		
 	//Tela
-	setTitle("ALTERAÇÃO DO PRODUTO: " + altCodSeg + " - " + altNomeSeg);
+	setTitle("ALTERAÇÃO DO SEGMENTO: " + altCodSeg + " - " + altNomeSeg);
 	setSize(700, 500);
 	//setLocation(450, 100);
 	setLocationRelativeTo(null);
