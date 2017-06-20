@@ -9,12 +9,46 @@ public class ScriptMaster {
 		
 	public static void executaScriptMaster (CadastroUserVO cadastroVO) throws Exception{
 		
-		
 		String sqlSCHEMA = "CREATE SCHEMA `Sistema_Cadastro`";
-		String sqlTable1 = "CREATE TABLE `sistema_cadastro`.`master` (`MasterUser` VARCHAR(25) NOT NULL,`SenhaMaster` VARCHAR(12) NULL,`DataCri` DATETIME NULL,PRIMARY KEY (`MasterUser`));";
-		String sqlTable2 = "CREATE TABLE `sistema_cadastro`.`usuario` (`NomeUser` VARCHAR(25) NULL,`SenhaUser` VARCHAR(32) NULL,`DataCadastro` DATETIME NULL,`DataAlteracaoUser` DATETIME NULL,`DataAlteracaoSenha` DATETIME NULL,`Nome` VARCHAR(25) NULL,`CPF` VARCHAR(11) NOT NULL,`DataNasc` VARCHAR(10) NULL,PRIMARY KEY (`CPF`));";
-		String sqlTable3 = "CREATE TABLE `sistema_cadastro`.`produto` (`CodPRD` VARCHAR(3) NOT NULL, `NomePRD` VARCHAR(25) NULL,`InicioVigencia` VARCHAR(10) NULL,`FimVigencia` VARCHAR(10) NULL,`CodSegmento` VARCHAR(3) NULL,`PRDSTA` VARCHAR(1) NULL,`DataCadastro` DATETIME NULL,`DataAlteracao` DATETIME NULL,PRIMARY KEY (`CodPRD`));";
-		String sqlTable4 = "CREATE TABLE `sistema_cadastro`.`segmento` (`CodSegmento` VARCHAR(3) NOT NULL,`NomeSegmento` VARCHAR(25) NULL,`TPContrato` VARCHAR(25) NULL,`TPPessoa` VARCHAR(2) NULL, `SEGSTA` VARCHAR(1) NULL,`DataCadastro` DATETIME NULL,`DataAlteracao` DATETIME NULL, PRIMARY KEY (`CodSegmento`));";
+		
+		String sqlTable1 = "CREATE TABLE `sistema_cadastro`.`master` ("
+				+ "`MasterUser` VARCHAR(25) NOT NULL,"
+				+ "`SenhaMaster` VARCHAR(12) NULL,"
+				+ "`DataCri` DATETIME NULL,"
+				+ "PRIMARY KEY (`MasterUser`));";
+		
+		String sqlTable2 = "CREATE TABLE `sistema_cadastro`.`usuario` ("
+				+ "`NomeUser` VARCHAR(25) NULL,"
+				+ "`SenhaUser` VARCHAR(32) NULL,"
+				+ "`DataCadastro` DATETIME NULL,"
+				+ "`DataAlteracaoUser` DATETIME NULL,"
+				+ "`DataAlteracaoSenha` DATETIME NULL,"
+				+ "`Nome` VARCHAR(25) NULL,"
+				+ "`CPF` VARCHAR(11) NOT NULL,"
+				+ "`DataNasc` VARCHAR(10) NULL,"
+				+ "PRIMARY KEY (`CPF`));";
+		
+		String sqlTable3 = "CREATE TABLE `sistema_cadastro`.`produto` ("
+				+ "`CodPRD` INT NOT NULL AUTO_INCREMENT, "
+				+ "`NomePRD` VARCHAR(25) NULL,"
+				+ "`InicioVigencia` VARCHAR(10) NULL,"
+				+ "`FimVigencia` VARCHAR(10) NULL,"
+				+ "`CodSegmento` VARCHAR(3) NULL,"
+				+ "`PRDSTA` VARCHAR(1) NULL,"
+				+ "`DataCadastro` DATETIME NULL,"
+				+ "`DataAlteracao` DATETIME NULL,"
+				+ "PRIMARY KEY (`CodPRD`)) AUTO_INCREMENT = 10;";
+		
+		String sqlTable4 = "CREATE TABLE `sistema_cadastro`.`segmento` ("
+				+ "`CodSegmento` INT NOT NULL AUTO_INCREMENT,"
+				+ "`NomeSegmento` VARCHAR(25) NULL,"
+				+ "`TPContrato` VARCHAR(25) NULL,"
+				+ "`TPPessoa` VARCHAR(2) NULL, "
+				+ "`SEGSTA` VARCHAR(1) NULL,"
+				+ "`DataCadastro` DATETIME NULL,"
+				+ "`DataAlteracao` DATETIME NULL, "
+				+ "PRIMARY KEY (`CodSegmento`)) AUTO_INCREMENT = 100;";
+		
 		String sqlInsert = "INSERT INTO sistema_cadastro.master VALUES ('admin','admin',now())";
 		
 		System.out.println("Criando banco de dados...");

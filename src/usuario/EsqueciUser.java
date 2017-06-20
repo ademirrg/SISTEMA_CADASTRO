@@ -57,15 +57,18 @@ public class EsqueciUser extends JFrame implements ActionListener{
 		String DataVO = "";
 		
 		if (cpf.length()==0 || cpf.length() <11 || cpf.length()>11){
-			JOptionPane.showMessageDialog(null, "CAMPO CPF INVÁLIDO!" + System.lineSeparator() +"O CPF DEVE CONTER 11 CARACTERES, SOMENTE NÚMEROS","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO CPF INVÁLIDO!" + System.lineSeparator() +
+					"O CPF DEVE CONTER 11 CARACTERES, SOMENTE NÚMEROS","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (data.length()==0 || data.length() <10 || data.length()>10){
-			JOptionPane.showMessageDialog(null, "CAMPO DATA INVÁLIDO!" + System.lineSeparator() +"A DATA DEVE SER PREENCHIDA NO PADRÃO DD/MM/AAAA COM BARRAS","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO DATA INVÁLIDO!" + System.lineSeparator() +
+					"A DATA DEVE SER PREENCHIDA NO PADRÃO DD/MM/AAAA COM BARRAS","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
-		if (cpf.length()==11 && data.length()==10){
+		else{
+			
 			CadastroUserVO.setCPF(cpf);
 			
 			try {

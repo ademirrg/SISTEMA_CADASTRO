@@ -80,15 +80,14 @@ public class CadastroSegmentoDAO {
 		
 	public void insereDadosNaBaseSeg (CadastroSegmentoVO cadastroVO) throws Exception{
 		
-		String sql = "INSERT INTO sistema_cadastro.segmento values (?, ?, ?, ?, ?, now(), now())";
+		String sql = "INSERT INTO sistema_cadastro.segmento values (null, ?, ?, ?, ?, now(), now())";
 		
 		Connection conn = Conexao.abrir();
 		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
-		comando.setString(1, cadastroVO.getCodSeg());
-		comando.setString(2, cadastroVO.getNomeSeg().toUpperCase());
-		comando.setString(3, cadastroVO.getTpCtt().toUpperCase());
-		comando.setString(4, cadastroVO.getTpPessoa().toUpperCase());
-		comando.setString(5, cadastroVO.getSegSta());
+		comando.setString(1, cadastroVO.getNomeSeg().toUpperCase());
+		comando.setString(2, cadastroVO.getTpCtt().toUpperCase());
+		comando.setString(3, cadastroVO.getTpPessoa().toUpperCase());
+		comando.setString(4, cadastroVO.getSegSta());
 		comando.execute();
 		comando.close();
 		System.out.println("Inserção realizada na base.");

@@ -54,15 +54,17 @@ public class CriaNovaSenha  extends JFrame implements ActionListener{
 		String NomeUserVO = CadastroUserVO.getOldUser();
 		
 		if (pass.length()==0 || pass.length() <5 || pass.length()>12){
-			JOptionPane.showMessageDialog(null, "CAMPO SENHA INVÁLIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO SENHA INVÁLIDO!" + System.lineSeparator() +
+					"A SENHA DEVE CONTER DE 5 A 12 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 			
 		else if (pass2.equals(pass)==false){
-			JOptionPane.showMessageDialog(null, "AS SENHAS DIGITADAS NÃO CONFEREM!" + System.lineSeparator() +"POR FAVOR, DIGITE NOVAMENTE.","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "AS SENHAS DIGITADAS NÃO CONFEREM!" + System.lineSeparator() +
+					"POR FAVOR, DIGITE NOVAMENTE.","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
-		if (pass.equals(pass2) && pass.length()>=5 && pass.length()<=12 && pass2.length()>=5 && pass2.length()<=12){
+		else{
 			
 			try {
 				//Gera hash da senha para inserção no banco
@@ -78,7 +80,8 @@ public class CriaNovaSenha  extends JFrame implements ActionListener{
 				cadastroVO.setPass(pass);
 				dao.atualizaSenhaNaBase(cadastroVO);
 				System.out.println("Senha alterada para o usuário " + NomeUserVO + ", através da opção: ESQUECI MINHA SENHA.");
-				JOptionPane.showMessageDialog(null, "A SENHA FOI ALTERADA COM SUCESSO!" + System.lineSeparator() + "POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "ALTERAÇÃO DE SENHA", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "A SENHA FOI ALTERADA COM SUCESSO!" + System.lineSeparator() + 
+						"POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "ALTERAÇÃO DE SENHA", JOptionPane.INFORMATION_MESSAGE);
 				Tela tela = new Tela();
 				tela.criaTela();
 				tela.criaBotoes();

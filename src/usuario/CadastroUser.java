@@ -52,27 +52,33 @@ public class CadastroUser extends JFrame implements ActionListener {
 		String CPFVO = "";
 
 		if (user.length()==0 || user.length() <4 || user.length()>25){
-			JOptionPane.showMessageDialog(null, "CAMPO USUÁRIO INVÁLIDO!" + System.lineSeparator() +"O USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO USUÁRIO INVÁLIDO!" + System.lineSeparator() +
+					"O USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 
 		else if (pass.length()==0 || pass.length() <5 || pass.length()>12){
-			JOptionPane.showMessageDialog(null, "CAMPO SENHA INVÁLIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO SENHA INVÁLIDO!" + System.lineSeparator() +
+					"A SENHA DEVE CONTER DE 5 A 12 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (pass.equals(pass2)==false){
-			JOptionPane.showMessageDialog(null, "AS SENHAS DIGITADAS NÃO CONFEREM!" + System.lineSeparator() +"POR FAVOR, DIGITE NOVAMENTE.","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "AS SENHAS DIGITADAS NÃO CONFEREM!" + System.lineSeparator() +
+					"POR FAVOR, DIGITE NOVAMENTE.","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (nome.length()==0 || nome.length() <4 || nome.length()>25){
-			JOptionPane.showMessageDialog(null, "CAMPO NOME INVÁLIDO!" + System.lineSeparator() +"A NOME DEVE CONTER DE 4 A 25 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO NOME INVÁLIDO!" + System.lineSeparator() +
+					"A NOME DEVE CONTER DE 4 A 25 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (cpf.length()==0 || cpf.length() <11 || cpf.length()>11){
-			JOptionPane.showMessageDialog(null, "CAMPO CPF INVÁLIDO!" + System.lineSeparator() +"O CPF DEVE CONTER 11 CARACTERES, SOMENTE NÚMEROS","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO CPF INVÁLIDO!" + System.lineSeparator() +
+					"O CPF DEVE CONTER 11 CARACTERES, SOMENTE NÚMEROS","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (data.length()==0 || data.length() <10 || data.length()>10){
-			JOptionPane.showMessageDialog(null, "CAMPO DATA INVÁLIDO!" + System.lineSeparator() +"A DATA DEVE SER PREENCHIDA NO PADRÃO DD/MM/AAAA COM BARRAS","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO DATA INVÁLIDO!" + System.lineSeparator() +
+					"A DATA DEVE SER PREENCHIDA NO PADRÃO DD/MM/AAAA COM BARRAS","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
@@ -108,12 +114,15 @@ public class CadastroUser extends JFrame implements ActionListener {
 			}
 			if (cpf.equals(CPFVO)){
 				System.out.println("Já existe um usuário para o CPF informado: " + cpf);
-				JOptionPane.showMessageDialog(null,"JÁ EXISTE UM USUÁRIO CADASTRADO PARA O CPF: " + cpf + System.lineSeparator() + "POR FAVOR, CASO SEJA NECESSÁRIO ALTERAR O NOME DE USUÁRIO, VÁ AO MENU PRINCIPAL E SELECIONE E OPÇÃO ALTERAR USUÁRIO", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null,"JÁ EXISTE UM USUÁRIO CADASTRADO PARA O CPF: " + cpf + System.lineSeparator() + 
+						"POR FAVOR, CASO SEJA NECESSÁRIO ALTERAR O NOME DE USUÁRIO, VÁ AO MENU PRINCIPAL E SELECIONE E OPÇÃO ALTERAR USUÁRIO", 
+						"CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
 			else if (user.equalsIgnoreCase(NomeUserVO)){
 				System.out.println("Usuário "+ user.toUpperCase() + " já existe na base." );
-				JOptionPane.showMessageDialog(null,"JÁ EXISTE UM USUÁRIO " + user.toUpperCase() +" CADASTRADO." + System.lineSeparator() + "POR FAVOR, ESCOLHA OUTRO NOME DE USUÁRIO.", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null,"JÁ EXISTE UM USUÁRIO " + user.toUpperCase() +" CADASTRADO." + System.lineSeparator() + 
+						"POR FAVOR, ESCOLHA OUTRO NOME DE USUÁRIO.", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
 			else {
@@ -124,7 +133,8 @@ public class CadastroUser extends JFrame implements ActionListener {
 					CadastroUserVO.setDataNasc(data);
 					dao.insereDadosNaBase(cadastroVO);
 					System.out.println("Usuário "+ user.toUpperCase() + " cadastrado." );
-					JOptionPane.showMessageDialog(null,"USUÁRIO " + user.toUpperCase() +" CADASTRADO COM SUCESSO.", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"USUÁRIO " + user.toUpperCase() +" CADASTRADO COM SUCESSO.", 
+							"CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 					CadastroUser cadastroUser = new CadastroUser();
 					cadastroUser.criaTelaCadastroUser();
@@ -147,7 +157,8 @@ public class CadastroUser extends JFrame implements ActionListener {
 		String NomeUserVO = "";
 		
 		if (newUser.length()==0 || newUser.length() <4 || newUser.length()>25){
-			JOptionPane.showMessageDialog(null, "CAMPO USUÁRIO INVÁLIDO!" + System.lineSeparator() +"O USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO USUÁRIO INVÁLIDO!" + System.lineSeparator() +"O USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES",
+					"ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 
 		//Se todos os campos estiverem ok
@@ -165,7 +176,8 @@ public class CadastroUser extends JFrame implements ActionListener {
 			}
 			if (newUser.equalsIgnoreCase(NomeUserVO)){
 				System.out.println("Usuário "+ newUser.toUpperCase() + " já existe na base." );
-				JOptionPane.showMessageDialog(null,"JÁ EXISTE UM USUÁRIO " + newUser.toUpperCase() +" CADASTRADO." + System.lineSeparator() + "POR FAVOR, ESCOLHA OUTRO NOME DE USUÁRIO.", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null,"JÁ EXISTE UM USUÁRIO " + newUser.toUpperCase() +" CADASTRADO." + System.lineSeparator() + 
+						"POR FAVOR, ESCOLHA OUTRO NOME DE USUÁRIO.", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
 			
@@ -173,7 +185,8 @@ public class CadastroUser extends JFrame implements ActionListener {
 					cadastroVO.setUser(newUser);
 					dao.atualizaUsuarioNaBase(cadastroVO);
 					System.out.println("Usuário "+ oldUser.toUpperCase() + " alterado para " + newUser.toUpperCase() + ".");
-					JOptionPane.showMessageDialog(null,"O USUÁRIO " + oldUser.toUpperCase() +" FOI ALTERADO PARA: " + newUser.toUpperCase() + "." + System.lineSeparator() + "POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"O USUÁRIO " + oldUser.toUpperCase() +" FOI ALTERADO PARA: " + newUser.toUpperCase() + "." + System.lineSeparator() + 
+							"POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 					Login login = new Login(Login.COMMAND_ALTERAR_USUARIO);
 					login.criaTela();
@@ -197,15 +210,18 @@ public class CadastroUser extends JFrame implements ActionListener {
 		String SenhaUserVO = "";
 		
 		if (oldPass.length()==0 || oldPass.length() <5 || oldPass.length()>12){
-			JOptionPane.showMessageDialog(null, "CAMPO SENHA INVÁLIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO SENHA INVÁLIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES",
+					"ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (newPass.length()==0 || newPass.length() <5 || newPass.length()>12){
-			JOptionPane.showMessageDialog(null, "CAMPO NOVA SENHA INVÁLIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO NOVA SENHA INVÁLIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES",
+					"ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (newPass.equals(newPass2)==false){
-			JOptionPane.showMessageDialog(null, "AS SENHAS DIGITADAS NÃO CONFEREM!" + System.lineSeparator() +"POR FAVOR, DIGITE NOVAMENTE.","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "AS SENHAS DIGITADAS NÃO CONFEREM!" + System.lineSeparator() +"POR FAVOR, DIGITE NOVAMENTE.",
+					"ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
@@ -248,7 +264,8 @@ public class CadastroUser extends JFrame implements ActionListener {
 					
 					dao.atualizaSenhaNaBase(cadastroVO);
 					System.out.println("O usuário " + oldUser.toUpperCase() + " alterou a senha.");
-					JOptionPane.showMessageDialog(null, "A SENHA FOI ALTERADA COM SUCESSO!" + System.lineSeparator() + "POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "ALTERAÇÃO DE SENHA", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "A SENHA FOI ALTERADA COM SUCESSO!" + System.lineSeparator() + 
+							"POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "ALTERAÇÃO DE SENHA", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 					Login login = new Login(Login.COMMAND_ALTERAR_USUARIO);
 					login.criaTela();
@@ -278,7 +295,13 @@ public class CadastroUser extends JFrame implements ActionListener {
 			}
 			break;
 		case "command_info":
-			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE USUÁRIO:" + System.lineSeparator() + "O CAMPO USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO SENHA DEVE CONTER DE 5 A 12 CARACTERES." + System.lineSeparator() + "O CAMPO NOME DEVE CONTER DE 5 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO CPF DEVE SER PREENCHIDO COM APENAS NÚMEROS E DEVE CONTER 11 CARACTERES." + System.lineSeparator() + "O CAMPO DATA DE NASCIMENTO DEVE SER PREENCHIDO NO PADRÃO DD/MM/AAAA COM BARRAS." + System.lineSeparator() + "NÃO SERÁ REALIZADA VALIDAÇÃO DE LETRAS MAIÚSCULAS OU MINÚSCULAS PARA O USUÁRIO CRIADO, APENAS PARA SENHA.", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE USUÁRIO:" + System.lineSeparator() + 
+					"O CAMPO USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO SENHA DEVE CONTER DE 5 A 12 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO NOME DEVE CONTER DE 5 A 25 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO CPF DEVE SER PREENCHIDO COM APENAS NÚMEROS E DEVE CONTER 11 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO DATA DE NASCIMENTO DEVE SER PREENCHIDO NO PADRÃO DD/MM/AAAA COM BARRAS." + System.lineSeparator() + 
+					"NÃO SERÁ REALIZADA VALIDAÇÃO DE LETRAS MAIÚSCULAS OU MINÚSCULAS PARA O USUÁRIO CRIADO, APENAS PARA SENHA.", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
 			break;
 		case "command_alterar_usuario":
 			pegaValorTelaAlteraNomeUser();

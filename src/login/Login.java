@@ -211,7 +211,13 @@ public class Login extends JFrame implements ActionListener {
 			cadastroUser.setVisible(true);
 			dispose();
 			System.out.println("Usuário mestre acessou tela de cadastro de usuários.");
-			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE USUÁRIO:" + System.lineSeparator() + "O CAMPO USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO SENHA DEVE CONTER DE 5 A 12 CARACTERES." + System.lineSeparator() + "O CAMPO NOME DEVE CONTER DE 5 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO CPF DEVE SER PREENCHIDO COM APENAS NÚMEROS E DEVE CONTER 11 CARACTERES." + System.lineSeparator() + "O CAMPO DATA DE NASCIMENTO DEVE SER PREENCHIDO NO PADRÃO DD/MM/AAAA COM BARRAS." + System.lineSeparator() + "NÃO SERÁ REALIZADA VALIDAÇÃO DE LETRAS MAIÚSCULAS OU MINÚSCULAS PARA O USUÁRIO CRIADO, APENAS PARA SENHA.", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE USUÁRIO:" + System.lineSeparator() + 
+					"O CAMPO USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO SENHA DEVE CONTER DE 5 A 12 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO NOME DEVE CONTER DE 5 A 25 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO CPF DEVE SER PREENCHIDO COM APENAS NÚMEROS E DEVE CONTER 11 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO DATA DE NASCIMENTO DEVE SER PREENCHIDO NO PADRÃO DD/MM/AAAA COM BARRAS." + System.lineSeparator() + 
+					"NÃO SERÁ REALIZADA VALIDAÇÃO DE LETRAS MAIÚSCULAS OU MINÚSCULAS PARA O USUÁRIO CRIADO, APENAS PARA SENHA.", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
 			break;
 		case COMMAND_ALTERAR_USUARIO:
 			cadastroUser = new CadastroUser();
@@ -261,7 +267,10 @@ public class Login extends JFrame implements ActionListener {
 			cadastroProd.criaBotoes();
 			cadastroProd.setVisible(true);
 			dispose();
-			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE PRODUTO:" + System.lineSeparator() + "O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO COD. DO PRODUTO DEVE CONTER 3 CARACTERES." + System.lineSeparator() + "O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES E DEVE EXISTIR NA TABELA DE SEGMENTOS." + System.lineSeparator() + "O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM BARRAS.","INFO", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE PRODUTO:" + System.lineSeparator() + 
+					"O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES E DEVE EXISTIR NA TABELA DE SEGMENTOS." + System.lineSeparator() + 
+					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM BARRAS.","INFO", JOptionPane.WARNING_MESSAGE);
 			break;
 		case COMMAND_ALTERAR_PRODUTO:
 			CadastroProduto alteraProd = new CadastroProduto();
@@ -276,7 +285,10 @@ public class Login extends JFrame implements ActionListener {
 			cadastroSeg.criaBotoes();
 			cadastroSeg.setVisible(true);
 			dispose();
-			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE SEGMENTO:" + System.lineSeparator() + "O CAMPO NOME DO SEGMENTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO COD. DO SEGMENTO DEVE CONTER 3 CARACTERES." + System.lineSeparator() + "O CAMPO TIPO CONTRATO DEVE CONTER 3 CARACTERES (CDC OU LSG)." + System.lineSeparator() + "O CAMPO TIPO PESSOA DEVE CONTER 2 CARACTERES (PF OU PJ).","INFO", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE SEGMENTO:" + System.lineSeparator() + 
+					"O CAMPO NOME DO SEGMENTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO TIPO CONTRATO DEVE CONTER 3 CARACTERES (CDC OU LSG)." + System.lineSeparator() + 
+					"O CAMPO TIPO PESSOA DEVE CONTER 2 CARACTERES (PF OU PJ).","INFO", JOptionPane.WARNING_MESSAGE);
 			break;
 		case COMMAND_ALTERAR_SEGMENTO:
 			CadastroSegmento alteraSeg = new CadastroSegmento();
@@ -286,7 +298,9 @@ public class Login extends JFrame implements ActionListener {
 			dispose();
 			break;
 		case COMMAND_INFO:
-			JOptionPane.showMessageDialog(null, "Versão: 0.1" + System.lineSeparator() + "Data de criação: 09/02/2017" + System.lineSeparator() + "Criado por: Ademir Rocha", "SOBRE",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Versão: 0.1" + System.lineSeparator() + 
+					"Data de criação: 09/02/2017" + System.lineSeparator() + 
+					"Criado por: Ademir Rocha", "SOBRE",JOptionPane.INFORMATION_MESSAGE);
 			break;
 		}
 		

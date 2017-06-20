@@ -77,7 +77,7 @@ public class CadastroProdutoDAO {
 		cadastroVO.setPRDSTA(prdSta);
 		
 		comando.close();
-		System.out.println("Consulta de nome de produto realizada na base.");
+		System.out.println("Consulta de produto realizada na base.");
 		conn.close();
 		System.out.println("Conexão encerrada.");
 		
@@ -106,16 +106,15 @@ public class CadastroProdutoDAO {
 		
 	public void insereDadosNaBasePRD (CadastroProdutoVO cadastroVO) throws Exception{
 		
-		String sql = "INSERT INTO sistema_cadastro.produto values (?, ?, ?, ?, ?, ?, now(), now())";
+		String sql = "INSERT INTO sistema_cadastro.produto values (null, ?, ?, ?, ?, ?, now(), now())";
 		
 		Connection conn = Conexao.abrir();
 		PreparedStatement comando = (PreparedStatement) conn.prepareStatement(sql);
-		comando.setString(1, cadastroVO.getCodPRD());
-		comando.setString(2, cadastroVO.getNomePRD().toUpperCase());
-		comando.setString(3, cadastroVO.getInicioVig());
-		comando.setString(4, cadastroVO.getFimVig());
-		comando.setString(5, cadastroVO.getCodSeg());
-		comando.setString(6, cadastroVO.getPRDSTA());
+		comando.setString(1, cadastroVO.getNomePRD().toUpperCase());
+		comando.setString(2, cadastroVO.getInicioVig());
+		comando.setString(3, cadastroVO.getFimVig());
+		comando.setString(4, cadastroVO.getCodSeg());
+		comando.setString(5, cadastroVO.getPRDSTA());
 		comando.execute();
 		comando.close();
 		System.out.println("Inserção realizada na base.");

@@ -11,7 +11,6 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private Botao botoes = new Botao();
 	private JTextField tNome = new JTextField();
-	private JTextField tCod = new JTextField();
 	private JTextField tTpCtt = new JTextField();
 	private JTextField tTpPessoa = new JTextField();
 	CadastroSegmentoDAO dao = new CadastroSegmentoDAO();
@@ -43,30 +42,25 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	
 	//Label
 	tNome.setBounds(157,50,165,25);
-	tCod.setBounds(157,80,70,25);
-	tTpCtt.setBounds(157,110,70,25);
-	tTpPessoa.setBounds(157,140,70,25);
+	tTpCtt.setBounds(157,80,70,25);
+	tTpPessoa.setBounds(157,110,70,25);
 	JLabel l1 = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
 	l1.setBounds(30,15,330,30);
 	JLabel l2 = new JLabel("NOME DO SEGMENTO:");
 	l2.setBounds(30,50,200,30);
-	JLabel l3 = new JLabel("COD. DO SEGMENTO:");
-	l3.setBounds(36,80,200,30);
-	JLabel l4 = new JLabel("TIPO CONTRATO:");
-	l4.setBounds(57,110,200,30);
-	JLabel l5 = new JLabel("TIPO PESSOA:");
-	l5.setBounds(73,140,200,30);
+	JLabel l3 = new JLabel("TIPO CONTRATO:");
+	l3.setBounds(57,80,200,30);
+	JLabel l4 = new JLabel("TIPO PESSOA:");
+	l4.setBounds(73,110,200,30);
 	
 	//Add
 	getContentPane().add(tNome);
-	getContentPane().add(tCod);
 	getContentPane().add(tTpCtt);
 	getContentPane().add(tTpPessoa);
 	getContentPane().add(l1);
 	getContentPane().add(l2);
 	getContentPane().add(l3);
 	getContentPane().add(l4);
-	getContentPane().add(l5);
 	}
 
 	public void criaTelaBuscaSeg(){
@@ -166,10 +160,17 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 			dispose();
 			break;
 		case "command_info":
-			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE SEGMENTO:" + System.lineSeparator() + "O CAMPO NOME DO SEGMENTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO COD. DO SEGMENTO DEVE CONTER 3 CARACTERES." + System.lineSeparator() + "O CAMPO TIPO CONTRATO DEVE CONTER 3 CARACTERES (CDC OU LSG)." + System.lineSeparator() + "O CAMPO TIPO PESSOA DEVE CONTER 2 CARACTERES (PF OU PJ).","INFO", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE SEGMENTO:" + System.lineSeparator() + 
+					"O CAMPO NOME DO SEGMENTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO TIPO CONTRATO DEVE CONTER 3 CARACTERES (CDC OU LSG)." + System.lineSeparator() + 
+					"O CAMPO TIPO PESSOA DEVE CONTER 2 CARACTERES (PF OU PJ).","INFO", JOptionPane.WARNING_MESSAGE);
 			break;
 		case "command_info_altera":
-			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O ALTERAÇÃO DE SEGMENTO:" + System.lineSeparator() + "O CAMPO NOME DO SEGMENTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + "O CAMPO TIPO CONTRATO DEVE CONTER 3 CARACTERES (CDC OU LSG)." + System.lineSeparator() + "O CAMPO TIPO PESSOA DEVE CONTER 2 CARACTERES (PF OU PJ)." + System.lineSeparator() + "O CAMPO STATUS DEVE CONTER 1 CARACTERE, INDICANDO STATUS ATIVO/INATIVO (1/0).","INFO", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O ALTERAÇÃO DE SEGMENTO:" + System.lineSeparator() + 
+					"O CAMPO NOME DO SEGMENTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO TIPO CONTRATO DEVE CONTER 3 CARACTERES (CDC OU LSG)." + System.lineSeparator() + 
+					"O CAMPO TIPO PESSOA DEVE CONTER 2 CARACTERES (PF OU PJ)." + System.lineSeparator() + 
+					"O CAMPO STATUS DEVE CONTER 1 CARACTERE, INDICANDO STATUS ATIVO/INATIVO (1/0).","INFO", JOptionPane.WARNING_MESSAGE);
 			break;
 		}
 	}
@@ -177,55 +178,64 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	//Cadastro de segmento
 	public void pegaValor(){
 		String nomeSeg = tNome.getText().trim();
-		String codSeg = tCod.getText();
 		String tpCtt = tTpCtt.getText();
 		String tpPessoa = tTpPessoa.getText();
-		String codSegVO = "";
 		String segSta = "1";
+		String nomeSegVO = "";
+		String codSegVO = "";
 		
 		if (nomeSeg.length()<4 || nomeSeg.length()>25){
-			JOptionPane.showMessageDialog(null, "NOME DO SEGMENTO INVÁLIDO!" + System.lineSeparator() + "O CAMPO NOME DO SEGMENTO DEVE CONTER DE 4 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
-		}
-		
-		else if (codSeg.length()<3 || codSeg.length()>3){
-			JOptionPane.showMessageDialog(null, "CAMPO COD. DO SEGMENTO INVÁLIDO!" + System.lineSeparator() + "O CAMPO COD. DO SEGMENTO DEVE CONTER 3 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "NOME DO SEGMENTO INVÁLIDO!" + System.lineSeparator() + 
+					"O CAMPO NOME DO SEGMENTO DEVE CONTER DE 4 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (tpCtt.equalsIgnoreCase("CDC")==false && tpCtt.equalsIgnoreCase("LSG")==false){
-			JOptionPane.showMessageDialog(null, "TIPO DE CONTRATO INVÁLIDO!" + System.lineSeparator() + "O CAMPO TIPO CONTRATO DEVE CONTER 3 CARACTERES (CDC OU LSG).", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "TIPO DE CONTRATO INVÁLIDO!" + System.lineSeparator() + 
+					"O CAMPO TIPO CONTRATO DEVE CONTER 3 CARACTERES (CDC OU LSG).", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (tpPessoa.equalsIgnoreCase("PF")==false && tpPessoa.equalsIgnoreCase("PJ")==false){
-			JOptionPane.showMessageDialog(null, "CAMPO TIPO DE PESSOA INVÁLIDO!" + System.lineSeparator() + "O CAMPO TIPO PESSOA DEVE CONTER 2 CARACTERES (PF OU PJ).", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO TIPO DE PESSOA INVÁLIDO!" + System.lineSeparator() + 
+					"O CAMPO TIPO PESSOA DEVE CONTER 2 CARACTERES (PF OU PJ).", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
-		else if(nomeSeg.length()>=4 && nomeSeg.length()<=25 && codSeg.length()==3 && tpCtt.equalsIgnoreCase("CDC")==true || tpCtt.equalsIgnoreCase("LSG") && tpPessoa.equalsIgnoreCase("PF") || tpPessoa.equalsIgnoreCase("PJ")){
-			cadastroVO.setCodSeg(codSeg);
+		else if(nomeSeg.length()>=4 && nomeSeg.length()<=25 && tpCtt.equalsIgnoreCase("CDC")==true || tpCtt.equalsIgnoreCase("LSG") && 
+				tpPessoa.equalsIgnoreCase("PF") || tpPessoa.equalsIgnoreCase("PJ")){
 			
-			//Busca código e nome do produto na base
 			try {
-				dao.buscarCodNaBaseSeg(cadastroVO);
-				codSegVO = cadastroVO.getCodSeg();
+				cadastroVO.setNomeSeg(nomeSeg);
+				cadastroVO.setTpCtt(tpCtt);
+				cadastroVO.setTpPessoa(tpPessoa);
+				cadastroVO.setSegSta(segSta);
 				
-				if(codSeg.equals(codSegVO)){
-					JOptionPane.showMessageDialog(null, "JÁ EXISTE UM SEGMENTO CADASTRADO PARA ESTE CÓDIGO, POR FAVOR, ESCOLHA OUTRO CÓDIGO PARA O SEGMENTO.", "ERRO", JOptionPane.ERROR_MESSAGE);
+				//Busca nome na base
+				dao.buscarNomeNaBaseSeg(cadastroVO);
+				nomeSegVO = cadastroVO.getNomeSeg();
+				
+				if(nomeSeg.equalsIgnoreCase(nomeSegVO)){
+					JOptionPane.showMessageDialog(null, "JÁ EXISTE UM SEGMENTO CADASTRADO COM ESTE NOME, POR FAVOR ESCOLHA OUTRO NOME DE SEGMENTO.", 
+							"ERRO", JOptionPane.ERROR_MESSAGE);
 				}
-
-				else {
-					cadastroVO.setCodSeg(codSeg);
+				
+				else{
+					//Insere dados na base
 					cadastroVO.setNomeSeg(nomeSeg);
 					cadastroVO.setTpCtt(tpCtt);
 					cadastroVO.setTpPessoa(tpPessoa);
 					cadastroVO.setSegSta(segSta);
-					//Insere dados na base
 					dao.insereDadosNaBaseSeg(cadastroVO);
-					JOptionPane.showMessageDialog(null, "O SEGMENTO: " + codSeg + " - " + nomeSeg.toUpperCase() + " FOI CADASTRADO COM SUCESSO.","CADASTRAMENTO DE SEGMENTO", JOptionPane.INFORMATION_MESSAGE);
+					
+					//Pega cod gerado para apresentação em tela
+					dao.buscarNomeNaBaseSeg(cadastroVO);
+					codSegVO = cadastroVO.getCodSeg();
+					JOptionPane.showMessageDialog(null, "O SEGMENTO: " + nomeSeg.toUpperCase() + " FOI CADASTRADO COM SUCESSO." + System.lineSeparator() + 
+							"O CÓDIGO DESTE SEGMENTO É: " + codSegVO + ".","CADASTRAMENTO DE SEGMENTO", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 					CadastroSegmento tela = new CadastroSegmento();
 					tela.criaTelaCadastroSeg();
 					tela.criaBotoes();
-					tela.setVisible(true);
+					tela.setVisible(true);	
 				}
 				
 			} catch (Exception exception) {
@@ -247,7 +257,8 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 		String codSegVO = "";
 		
 		if (nomeCodSeg.length()<3 || nomeCodSeg.length()>25){
-			JOptionPane.showMessageDialog(null, "NOME DO SEGMENTO/COD. INVÁLIDO!" + System.lineSeparator() + "O CAMPO NOME/COD. DO SEGMENTO DEVE CONTER DE 3 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "NOME DO SEGMENTO/COD. INVÁLIDO!" + System.lineSeparator() + 
+					"O CAMPO NOME/COD. DO SEGMENTO DEVE CONTER DE 3 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
@@ -266,7 +277,7 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 				if (codSegVO.length()==0 && nomeSegVO.length()==0){
 					JOptionPane.showMessageDialog(null, "O SEGMENTO INFORMADO NÃO EXISTE NA BASE.", "CONSULTA DE SEGMENTO", JOptionPane.INFORMATION_MESSAGE);
 				}
-				else if (nomeCodSeg.equalsIgnoreCase(codSegVO)){
+				else if (nomeCodSeg.equals(codSegVO)){
 					//Chamada DAO para atualização dos valores VO
 					cadastroVO.setCodSeg(nomeCodSeg);
 					dao.buscarCodNaBaseSeg(cadastroVO);
@@ -302,7 +313,7 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	//Alteração de segmento
 	public void pegaValorTelaAlteraSeg(){
 		String nomeSeg = tAltNome.getText();
-		String codSeg = tAltCod.getText();
+		String codSeg = cadastroVO.getCodSeg();
 		String tpCtt = tAltTpCtt.getText();
 		String tpPessoa = tAltTpPessoa.getText();
 		String segSta = tAltSegSta.getText();
@@ -310,26 +321,30 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 		String nomeOldSeg = cadastroVO.getNomeSeg();
 		
 		if (nomeSeg.length()<4 || nomeSeg.length()>25){
-			JOptionPane.showMessageDialog(null, "NOME DO SEGMENTO INVÁLIDO!" + System.lineSeparator() + "O CAMPO NOME DO SEGMENTO DEVE CONTER DE 4 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "NOME DO SEGMENTO INVÁLIDO!" + System.lineSeparator() + 
+					"O CAMPO NOME DO SEGMENTO DEVE CONTER DE 4 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (tpCtt.equalsIgnoreCase("CDC")==false && tpCtt.equalsIgnoreCase("LSG")==false){
-			JOptionPane.showMessageDialog(null, "CAMPO TIPO DE CONTRATO INVÁLIDO!" + System.lineSeparator() + "O CAMPO TIPO CONTRATO DEVE CONTER 3 CARACTERES (CDC OU LSG).", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO TIPO DE CONTRATO INVÁLIDO!" + System.lineSeparator() + 
+					"O CAMPO TIPO CONTRATO DEVE CONTER 3 CARACTERES (CDC OU LSG).", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (tpPessoa.equalsIgnoreCase("PF")==false && tpPessoa.equalsIgnoreCase("PJ")==false){
-			JOptionPane.showMessageDialog(null, "CAMPO INÍCIO DE VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + "O CAMPO TIPO PESSOA DEVE CONTER 2 CARACTERES (PF OU PJ).", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO INÍCIO DE VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + 
+					"O CAMPO TIPO PESSOA DEVE CONTER 2 CARACTERES (PF OU PJ).", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (segSta.equals("1")==false && segSta.equals("0")==false){
-			JOptionPane.showMessageDialog(null, "CAMPO STATUS INVÁLIDO!" + System.lineSeparator() + "O CAMPO STATUS DEVE CONTER 1 CARACTERE, INDICANDO STATUS ATIVO/INATIVO (1/0).", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO STATUS INVÁLIDO!" + System.lineSeparator() + 
+					"O CAMPO STATUS DEVE CONTER 1 CARACTERE, INDICANDO STATUS ATIVO/INATIVO (1/0).", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
 		else {
 			cadastroVO.setNomeSeg(nomeSeg);
 			
-			//Busca nome do produto na base
+			//Busca nome do segmento na base
 			try {
 				dao.buscarNomeNaBaseSeg(cadastroVO);
 				nomeSegVO = cadastroVO.getNomeSeg();
@@ -337,11 +352,11 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 				if(nomeSeg.equalsIgnoreCase(nomeOldSeg)==false){
 					
 					if(nomeSeg.equalsIgnoreCase(nomeSegVO)){
-						JOptionPane.showMessageDialog(null, "JÁ EXISTE UM SEGMENTO CADASTRADO COM ESTE NOME, POR FAVOR ESCOLHA OUTRO NOME DE SEGMENTO.", "ERRO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "JÁ EXISTE UM SEGMENTO CADASTRADO COM ESTE NOME, POR FAVOR ESCOLHA OUTRO NOME DE SEGMENTO.", 
+								"ERRO", JOptionPane.ERROR_MESSAGE);
 					}
 					
 					else if(nomeSeg.equalsIgnoreCase(nomeSegVO)==false) {
-
 						cadastroVO.setCodSeg(codSeg);
 						cadastroVO.setNomeSeg(nomeSeg);
 						cadastroVO.setTpCtt(tpCtt);
@@ -349,18 +364,17 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 						cadastroVO.setSegSta(segSta);
 						//Atualiza dados na base
 						dao.atualizaDadosNaBaseSeg(cadastroVO);
-						JOptionPane.showMessageDialog(null, "O SEGMENTO: " + codSeg + " - " + nomeSeg.toUpperCase() + " FOI ALTERADO COM SUCESSO.","ALTERAÇÃO DE SEGMENTO", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "O SEGMENTO: " + codSeg + " - " + nomeSeg.toUpperCase() + 
+								" FOI ALTERADO COM SUCESSO.","ALTERAÇÃO DE SEGMENTO", JOptionPane.INFORMATION_MESSAGE);
 						dispose();
 						CadastroSegmento tela = new CadastroSegmento();
 						tela.criaTelaAlteraSeg();
 						tela.criaBotoesAlteraSeg();
-						tela.setVisible(true);
-						
+						tela.setVisible(true);	
 					}
 				}
 				
 				else if (nomeSeg.equalsIgnoreCase(nomeOldSeg)){
-
 					cadastroVO.setCodSeg(codSeg);
 					cadastroVO.setNomeSeg(nomeSeg);
 					cadastroVO.setTpCtt(tpCtt);
@@ -368,7 +382,8 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 					cadastroVO.setSegSta(segSta);
 					//Atualiza dados na base
 					dao.atualizaDadosNaBaseSeg(cadastroVO);
-					JOptionPane.showMessageDialog(null, "O SEGMENTO: " + codSeg + " - " + nomeSeg.toUpperCase() + " FOI ALTERADO COM SUCESSO.","ALTERAÇÃO DE SEGMENTO", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "O SEGMENTO: " + codSeg + " - " + nomeSeg.toUpperCase() + 
+							" FOI ALTERADO COM SUCESSO.","ALTERAÇÃO DE SEGMENTO", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 					CadastroSegmento tela = new CadastroSegmento();
 					tela.criaTelaAlteraSeg();
