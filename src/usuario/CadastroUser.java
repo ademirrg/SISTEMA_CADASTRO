@@ -7,8 +7,10 @@ import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,27 +23,281 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-
+import javax.swing.text.MaskFormatter;
 import login.Login;
 import sistema.cadastro.Botao;
 import sistema.cadastro.Tela;
 
 public class CadastroUser extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	
 	private JTextField tUser = new JTextField();
 	private JTextField tPass = new JPasswordField();
 	private JTextField tPass2 = new JPasswordField();
 	private JTextField tPass3 = new JPasswordField();
 	private JTextField tNome = new JTextField();
-	private JTextField tCPF = new JTextField();
+	private JFormattedTextField tCPF = new JFormattedTextField();
 	private JTextField tData = new JTextField();
 	private Botao botoes = new Botao();
 	private CadastroUserVO cadastroVO = new CadastroUserVO();
 	private CadastroUserDAO dao = new CadastroUserDAO();
-
 	
-	public void pegaValorTelaCadastroUser() throws NoSuchAlgorithmException, UnsupportedEncodingException{
+	public void criaTelaCadastroUser() {
+		
+		//Cria campos formatados
+		try {
+			MaskFormatter cpf;
+			cpf = new MaskFormatter( "###.###.###-##" );
+			cpf.setValidCharacters("0123456789");
+			tCPF = new JFormattedTextField(cpf);
+			
+			MaskFormatter data;
+			data = new MaskFormatter( "##/##/####" );
+			data.setValidCharacters("0123456789");
+			tData = new JFormattedTextField(data);	
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		tUser.setBounds(150,50,120,25);
+		tPass.setBounds(150,80,120,25);
+		tPass2.setBounds(150,110,120,25);
+		tNome.setBounds(150,140,120,25);
+		tCPF.setBounds(150,170,120,25);
+		tData.setBounds(150,200,120,25);
+		JLabel l1 = new JLabel("USUÁRIO:");
+		l1.setBounds(90,50,60,30);
+		JLabel l2 = new JLabel("SENHA:");
+		l2.setBounds(103,80,47,30);
+		JLabel l3 = new JLabel("CONFIRME A SENHA:");
+		l3.setBounds(31,110,120,30);
+		JLabel l5 = new JLabel("NOME:");
+		l5.setBounds(109,140,45,30);
+		JLabel l6 = new JLabel("CPF:");
+		l6.setBounds(120,170,30,30);
+		JLabel l7 = new JLabel("DATA DE NASC.:");
+		l7.setBounds(55,200,120,30);
+		JLabel l4 = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
+		l4.setBounds(31,15,330,30);
+		
+		//Tela
+		setTitle("CADASTRAMENTO DE USUÁRIO");
+		setSize(700, 500);
+		//setLocation(450, 100);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setLayout(null);
+		getContentPane().setBackground(Color.LIGHT_GRAY);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		//Add
+		getContentPane().add(l1);
+		getContentPane().add(l2);
+		getContentPane().add(l3);
+		getContentPane().add(l4);
+		getContentPane().add(l5);
+		getContentPane().add(l6);
+		getContentPane().add(l7);
+		getContentPane().add(tUser);
+		getContentPane().add(tPass);
+		getContentPane().add(tPass2);
+		getContentPane().add(tNome);
+		getContentPane().add(tCPF);
+		getContentPane().add(tData);
+	}
+	
+	public void criaBotoes() {	
+		botoes.definirBotoesTelaCadastroUser(this, this);
+	}
+	
+	public void criaTelaAlteraUser(){	
+		tUser.setBounds(180,50,120,25);
+		tPass.setBounds(180,130,120,25);
+		tPass2.setBounds(180,160,120,25);
+		tPass3.setBounds(180,190,120,25);
+		JLabel l1 = new JLabel("NOVO USUÁRIO:");
+		l1.setBounds(84,50,120,30);
+		JLabel l2 = new JLabel("SENHA ANTIGA:");
+		l2.setBounds(88,130,100,30);
+		JLabel l3 = new JLabel("NOVA SENHA:");
+		l3.setBounds(97,160,120,30);
+		JLabel l4 = new JLabel("CONFIRME A NOVA SENHA:");
+		l4.setBounds(25,190,160,30);
+		JLabel l5 = new JLabel("PARA ALTERAÇÃO DE NOME DE USUÁRIO OU SENHA, INFORME OS DADOS ABAIXO E PRESSIONE ALTERAR.");
+		l5.setBounds(25,15,615,30);
+		
+		//Tela
+		setTitle("ALTERAÇÃO DE USUÁRIO - USUÁRIO LOGADO: " + CadastroUserVO.getOldUser().toUpperCase());
+		setSize(700, 500);
+		//setLocation(450, 100);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setLayout(null);
+		getContentPane().setBackground(Color.LIGHT_GRAY);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		//Add
+		getContentPane().add(l1);
+		getContentPane().add(l2);
+		getContentPane().add(l3);
+		getContentPane().add(l4);
+		getContentPane().add(l5);
+		getContentPane().add(tUser);
+		getContentPane().add(tPass);
+		getContentPane().add(tPass2);
+		getContentPane().add(tPass3);	
+	}
+	
+	public void criaBotoesAltera() {
+		botoes.definirBotoesTelaAlteraUser(this, this);
+	}
+	
+	public void criaTelaConsultaUser(){
+		
+		try {
+			List<ConsultaVO> list = dao.consultaUsuario();
+			
+			//Tela
+			setTitle("CONSULTA DE USUÁRIOS");
+			setSize(1200, 500);
+			//setLocation(200, 100);
+			setLocationRelativeTo(null);
+			setResizable(false);
+			getContentPane().setBackground(Color.LIGHT_GRAY);
+			setDefaultCloseOperation(EXIT_ON_CLOSE);
+			JPanel painel = new JPanel();
+			setContentPane(painel);
+			JLabel l1 = new JLabel("CONSULTA DE USUÁRIOS CADASTRADOS");
+			l1.setFont(new Font("Dialog",Font.PLAIN, 15));
+			l1.setBounds(430,15,300,30);
+			//setLocationRelativeTo(null);
+			//painel.setSize(1200,320);
+			painel.setLayout(null);
+				
+			//Tabela
+			JTable tabela = new JTable();//list.size(),6
+			tabela.setBounds(20, 50,1150,320);
+			tabela.setAutoResizeMode (JTable.AUTO_RESIZE_OFF); 
+			tabela.setEnabled(false);
+//			tabela.setCellSelectionEnabled(true);
+//			tabela.setSelectionBackground(Color.black);
+//			tabela.setSelectionForeground(Color.black);
+//			tabela.setRowSelectionAllowed(false);
+//			tabela.setCellSelectionEnabled(false);
+//			tabela.setGridColor(Color.blue);   
+			
+//	        JScrollPane scroll = new JScrollPane(tabela);
+// 			scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+				
+			//Add
+			getContentPane().add(tabela);
+			getContentPane().add(l1);
+//	        getContentPane().add(scroll);
+			
+			//Mouse Scroll
+//			 MouseMotionAdapter doScrollRectToVisible = new MouseMotionAdapter() {
+//			     public void mouseDragged(MouseEvent e) {
+//			        Rectangle r = new Rectangle(e.getX(), e.getY(), 1, 1);
+//			        ((JPanel)e.getSource()).scrollRectToVisible(r);
+//			    }
+//			 };
+//			 tabela.addMouseMotionListener(doScrollRectToVisible);
+			
+			//Definir colunas
+			Object[] cabecalho = {"NOME USUÁRIO", "DATA CRIAÇÃO", "DATA ALTERAÇÃO USUÁRIO", "DATA ALTERAÇÃO SENHA", "NOME",  "CPF", "DATA NASCIMENTO"};
+			List<Object[]> linhas = new ArrayList<Object[]>();
+			
+			Object[][] cabecalhoTopoEEsquerdo= new Object[1][];
+			cabecalhoTopoEEsquerdo[0] = cabecalho;
+			tabela.setModel(new DefaultTableModel(cabecalhoTopoEEsquerdo, cabecalho));
+					
+			//Popular linhas
+			for(ConsultaVO consultaVO: list){
+				linhas.add(new Object[]{consultaVO.getNomeUser(), consultaVO.getDataCadastro(), consultaVO.getDataAlteracaoUser(), consultaVO.getDataAlteracaoSenha(),
+						consultaVO.getNome(), consultaVO.getCPF(), consultaVO.getDataNasc()});
+			}        
+			
+			for(Object[] linha : linhas) {
+				((DefaultTableModel)tabela.getModel()).addRow(linha);
+				
+			}  
+			
+			//Modificador cabeçalho
+			final TableCellRenderer hr = tabela.getTableHeader().getDefaultRenderer();
+			JTableHeader th = tabela.getTableHeader();
+			TableColumnModel tcm = th.getColumnModel();
+			
+			for(int i=0; i < 7;i++) {
+				TableColumn tc = tcm.getColumn(i);
+				
+				tc.setCellRenderer(new TableCellRenderer() {
+					
+					@Override
+					public Component getTableCellRendererComponent(JTable table, Object value,
+							boolean isSelected, boolean hasFocus, int row, int column) {
+						Component c = hr.getTableCellRendererComponent(table,
+								value, isSelected, hasFocus, row, column);
+						
+						if(row == 0) {
+							c.setBackground(Color.DARK_GRAY);
+							c.setForeground(Color.white);
+						} else {
+							c.setBackground(Color.white);
+							c.setForeground(Color.black);
+						}
+						return c;
+					}
+				});
+			}    
+		}
+		catch (Exception e) {
+			System.out.println(e);
+			JOptionPane.showMessageDialog(null, "ERRO AO CONSULTAR USUÁRIOS.", "ERRO", JOptionPane.ERROR_MESSAGE);		
+		}
+	}
+	
+	public void criaBotoesConsulta(){
+		botoes.definirBotoesTelaConsultaUser(this, this);
+	}
+
+	//Ação dos botões
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch (e.getActionCommand()) {
+		case "command_salvar":
+			try {
+				pegaValorTelaCadastroUser();
+			} catch (NoSuchAlgorithmException | UnsupportedEncodingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			break;
+		case "command_info":
+			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE USUÁRIO:" + System.lineSeparator() + 
+					"O CAMPO USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO SENHA DEVE CONTER DE 5 A 12 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO NOME DEVE CONTER DE 5 A 25 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO CPF DEVE SER PREENCHIDO COM APENAS NÚMEROS E DEVE CONTER 11 CARACTERES." + System.lineSeparator() + 
+					"O CAMPO DATA DE NASCIMENTO DEVE SER PREENCHIDO NO PADRÃO DD/MM/AAAA COM BARRAS." + System.lineSeparator() + 
+					"NÃO SERÁ REALIZADA VALIDAÇÃO DE LETRAS MAIÚSCULAS OU MINÚSCULAS PARA O USUÁRIO CRIADO, APENAS PARA SENHA.", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+			break;
+		case "command_alterar_usuario":
+			pegaValorTelaAlteraNomeUser();
+			break;
+		case "command_alterar_senha":
+			pegaValorTelaAlteraSenhaUser();
+			break;
+		case "command_voltar":
+			Tela tela = new Tela();
+			tela.criaTela();
+			tela.criaBotoes();
+			tela.setVisible(true);
+			dispose();
+			break;
+		}
+	}
+	
+	public void pegaValorTelaCadastroUser() throws NoSuchAlgorithmException, UnsupportedEncodingException{	
 		String user = tUser.getText().trim();
 		String pass = tPass.getText();
 		String pass2 = tPass2.getText();
@@ -282,251 +538,5 @@ public class CadastroUser extends JFrame implements ActionListener {
 		}
 	}
 
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		switch (e.getActionCommand()) {
-		case "command_salvar":
-			try {
-				pegaValorTelaCadastroUser();
-			} catch (NoSuchAlgorithmException | UnsupportedEncodingException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			break;
-		case "command_info":
-			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE USUÁRIO:" + System.lineSeparator() + 
-					"O CAMPO USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO SENHA DEVE CONTER DE 5 A 12 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO NOME DEVE CONTER DE 5 A 25 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO CPF DEVE SER PREENCHIDO COM APENAS NÚMEROS E DEVE CONTER 11 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO DATA DE NASCIMENTO DEVE SER PREENCHIDO NO PADRÃO DD/MM/AAAA COM BARRAS." + System.lineSeparator() + 
-					"NÃO SERÁ REALIZADA VALIDAÇÃO DE LETRAS MAIÚSCULAS OU MINÚSCULAS PARA O USUÁRIO CRIADO, APENAS PARA SENHA.", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
-			break;
-		case "command_alterar_usuario":
-			pegaValorTelaAlteraNomeUser();
-			break;
-		case "command_alterar_senha":
-			pegaValorTelaAlteraSenhaUser();
-			break;
-		case "command_voltar":
-			Tela tela = new Tela();
-			tela.criaTela();
-			tela.criaBotoes();
-			tela.setVisible(true);
-			dispose();
-			break;
-		}
-	}
-	
-	public void criaTelaCadastroUser() {	
-		tUser.setBounds(150,50,120,25);
-		tPass.setBounds(150,80,120,25);
-		tPass2.setBounds(150,110,120,25);
-		tNome.setBounds(150,140,120,25);
-		tCPF.setBounds(150,170,120,25);
-		tData.setBounds(150,200,120,25);
-		JLabel l1 = new JLabel("USUÁRIO:");
-		l1.setBounds(90,50,60,30);
-		JLabel l2 = new JLabel("SENHA:");
-		l2.setBounds(103,80,47,30);
-		JLabel l3 = new JLabel("CONFIRME A SENHA:");
-		l3.setBounds(31,110,120,30);
-		JLabel l5 = new JLabel("NOME:");
-		l5.setBounds(109,140,45,30);
-		JLabel l6 = new JLabel("CPF:");
-		l6.setBounds(120,170,30,30);
-		JLabel l7 = new JLabel("DATA DE NASC.:");
-		l7.setBounds(55,200,120,30);
-		JLabel l4 = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
-		l4.setBounds(31,15,330,30);
-		
-		
-		//Tela
-		setTitle("CADASTRAMENTO DE USUÁRIO");
-		setSize(700, 500);
-		//setLocation(450, 100);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setLayout(null);
-		getContentPane().setBackground(Color.LIGHT_GRAY);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		//Add
-		getContentPane().add(l1);
-		getContentPane().add(l2);
-		getContentPane().add(l3);
-		getContentPane().add(l4);
-		getContentPane().add(l5);
-		getContentPane().add(l6);
-		getContentPane().add(l7);
-		getContentPane().add(tUser);
-		getContentPane().add(tPass);
-		getContentPane().add(tPass2);
-		getContentPane().add(tNome);
-		getContentPane().add(tCPF);
-		getContentPane().add(tData);
-	}
-	
-	public void criaBotoes() {
-		
-		botoes.definirBotoesTelaCadastroUser(this, this);
-	}
-	
-	public void criaTelaAlteraUser(){
-		
-		tUser.setBounds(180,50,120,25);
-		tPass.setBounds(180,130,120,25);
-		tPass2.setBounds(180,160,120,25);
-		tPass3.setBounds(180,190,120,25);
-		JLabel l1 = new JLabel("NOVO USUÁRIO:");
-		l1.setBounds(84,50,120,30);
-		JLabel l2 = new JLabel("SENHA ANTIGA:");
-		l2.setBounds(88,130,100,30);
-		JLabel l3 = new JLabel("NOVA SENHA:");
-		l3.setBounds(97,160,120,30);
-		JLabel l4 = new JLabel("CONFIRME A NOVA SENHA:");
-		l4.setBounds(25,190,160,30);
-		JLabel l5 = new JLabel("PARA ALTERAÇÃO DE NOME DE USUÁRIO OU SENHA, INFORME OS DADOS ABAIXO E PRESSIONE ALTERAR.");
-		l5.setBounds(25,15,615,30);
-		
-		//Tela
-		setTitle("ALTERAÇÃO DE USUÁRIO - USUÁRIO LOGADO: " + CadastroUserVO.getOldUser().toUpperCase());
-		setSize(700, 500);
-		//setLocation(450, 100);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setLayout(null);
-		getContentPane().setBackground(Color.LIGHT_GRAY);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		//Add
-		getContentPane().add(l1);
-		getContentPane().add(l2);
-		getContentPane().add(l3);
-		getContentPane().add(l4);
-		getContentPane().add(l5);
-		getContentPane().add(tUser);
-		getContentPane().add(tPass);
-		getContentPane().add(tPass2);
-		getContentPane().add(tPass3);
-					
-	}
-	
-	public void criaBotoesAltera() {
-		
-		botoes.definirBotoesTelaAlteraUser(this, this);
-	}
-	
-	public void criaTelaConsultaUser(){
-
-		try {
-			List<ConsultaVO> list = dao.consultaUsuario();
-						
-			//Tela
-			setTitle("CONSULTA DE USUÁRIOS");
-			setSize(1200, 500);
-			//setLocation(200, 100);
-			setLocationRelativeTo(null);
-			setResizable(false);
-			getContentPane().setBackground(Color.LIGHT_GRAY);
-			setDefaultCloseOperation(EXIT_ON_CLOSE);
-			JPanel painel = new JPanel();
-			setContentPane(painel);
-			JLabel l1 = new JLabel("CONSULTA DE USUÁRIOS CADASTRADOS");
-			l1.setFont(new Font("Dialog",Font.PLAIN, 15));
-			l1.setBounds(430,15,300,30);
-			//setLocationRelativeTo(null);
-			//painel.setSize(1200,320);
-			painel.setLayout(null);
-			
-		
-			//Tabela
-			JTable tabela = new JTable();//list.size(),6
-			tabela.setBounds(20, 50,1150,320);
-			tabela.setAutoResizeMode (JTable.AUTO_RESIZE_OFF); 
-			tabela.setEnabled(false);
-//			tabela.setCellSelectionEnabled(true);
-//			tabela.setSelectionBackground(Color.black);
-//			tabela.setSelectionForeground(Color.black);
-//			tabela.setRowSelectionAllowed(false);
-//			tabela.setCellSelectionEnabled(false);
-//			tabela.setGridColor(Color.blue);   
-	        
-//	        JScrollPane scroll = new JScrollPane(tabela);
-// 			scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
- 			
- 			
-	        //Add
-	        getContentPane().add(tabela);
-	        getContentPane().add(l1);
-//	        getContentPane().add(scroll);
-
-			//Mouse Scroll
-//			 MouseMotionAdapter doScrollRectToVisible = new MouseMotionAdapter() {
-//			     public void mouseDragged(MouseEvent e) {
-//			        Rectangle r = new Rectangle(e.getX(), e.getY(), 1, 1);
-//			        ((JPanel)e.getSource()).scrollRectToVisible(r);
-//			    }
-//			 };
-//			 tabela.addMouseMotionListener(doScrollRectToVisible);
-			
-			//Definir colunas
-			Object[] cabecalho = {"NOME USUÁRIO", "DATA CRIAÇÃO", "DATA ALTERAÇÃO USUÁRIO", "DATA ALTERAÇÃO SENHA", "NOME",  "CPF", "DATA NASCIMENTO"};
-			List<Object[]> linhas = new ArrayList<Object[]>();
-			
-			Object[][] cabecalhoTopoEEsquerdo= new Object[1][];
-			cabecalhoTopoEEsquerdo[0] = cabecalho;
-			tabela.setModel(new DefaultTableModel(cabecalhoTopoEEsquerdo, cabecalho));
-			
-			
-			//Popular linhas
-	        for(ConsultaVO consultaVO: list){
-	            linhas.add(new Object[]{consultaVO.getNomeUser(), consultaVO.getDataCadastro(), consultaVO.getDataAlteracaoUser(), consultaVO.getDataAlteracaoSenha(),
-	            		consultaVO.getNome(), consultaVO.getCPF(), consultaVO.getDataNasc()});
-	        }        
-	        
-	        for(Object[] linha : linhas) {
-	        	((DefaultTableModel)tabela.getModel()).addRow(linha);
-	        	
-	        }  
-	        
-	        //Modificador cabeçalho
-	        final TableCellRenderer hr = tabela.getTableHeader().getDefaultRenderer();
-	        JTableHeader th = tabela.getTableHeader();
-	        TableColumnModel tcm = th.getColumnModel();
-	        
-	        for(int i=0; i < 7;i++) {
-	        	TableColumn tc = tcm.getColumn(i);
-	        	
-	        	 tc.setCellRenderer(new TableCellRenderer() {
-	 				
-	 	        	@Override
-	 	        	public Component getTableCellRendererComponent(JTable table, Object value,
-	 	        			boolean isSelected, boolean hasFocus, int row, int column) {
-	 	        		Component c = hr.getTableCellRendererComponent(table,
-	 	        				value, isSelected, hasFocus, row, column);
-
- 	        			if(row == 0) {
- 		        			c.setBackground(Color.DARK_GRAY);
- 		        			c.setForeground(Color.white);
- 	        			} else {
- 	        				c.setBackground(Color.white);
- 		        			c.setForeground(Color.black);
- 	        			}
- 	        			return c;
-	 	        	}
-	 			});
-	        }    
-		}
-		catch (Exception e) {
-			System.out.println(e);
-			JOptionPane.showMessageDialog(null, "ERRO AO CONSULTAR USUÁRIOS.", "ERRO", JOptionPane.ERROR_MESSAGE);		
-		}
-	}
-	
-	public void criaBotoesConsulta(){
-		botoes.definirBotoesTelaConsultaUser(this, this);
-	}
 }
 

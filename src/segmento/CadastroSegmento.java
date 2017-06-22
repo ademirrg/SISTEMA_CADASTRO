@@ -62,6 +62,10 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	getContentPane().add(l3);
 	getContentPane().add(l4);
 	}
+	
+	public void criaBotoes() {	
+		botoes.definirBotoesTelaCadastroSeg(this, this);
+	}
 
 	public void criaTelaBuscaSeg(){
 		
@@ -86,6 +90,10 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	getContentPane().add(tNome);
 	getContentPane().add(l1);
 	getContentPane().add(l2);
+	}
+	
+	public void criaBotoesBuscaSeg() {
+		botoes.definirBotoesTelaBuscaSeg(this, this);
 	}
 	
 	public void criaTelaAlteraSeg(){
@@ -133,6 +141,11 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	getContentPane().add(l5);
 	getContentPane().add(l6);
 	}
+	
+	public void criaBotoesAlteraSeg() {
+		botoes.definirBotoesTelaAlteraSeg(this, this);
+	}
+	
 	
 	public void actionPerformed(ActionEvent e){
 		switch (e.getActionCommand()) {
@@ -245,11 +258,6 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 		}
 	}
 	
-	public void criaBotoes() {
-		
-		botoes.definirBotoesTelaCadastroSeg(this, this);
-	}
-	
 	//Busca de segmento
 	public void pegaValorTelaBuscaSeg(){
 		String nomeCodSeg = tNome.getText();
@@ -303,11 +311,6 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 				exception.printStackTrace();
 			}
 		}
-	}
-	
-	public void criaBotoesBuscaSeg() {
-		
-		botoes.definirBotoesTelaBuscaSeg(this, this);
 	}
 	
 	//Alteração de segmento
@@ -390,8 +393,7 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 					tela.criaBotoesAlteraSeg();
 					tela.setVisible(true);
 				}
-				
-				
+					
 			} catch (Exception exception) {
 				// TODO Auto-generated catch block
 				exception.printStackTrace();
@@ -399,10 +401,4 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 		}
 	}
 	
-	public void criaBotoesAlteraSeg() {
-		
-		botoes.definirBotoesTelaAlteraSeg(this, this);
-	}
 }
-
-

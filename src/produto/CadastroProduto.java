@@ -72,6 +72,39 @@ public class CadastroProduto extends JFrame implements ActionListener{
 	getContentPane().add(l5);
 	}
 	
+	public void criaBotoes() {
+		botoes.definirBotoesTelaCadastroProd(this, this);
+	}
+	
+	public void criaTelaBuscaProd(){
+		
+		//Tela
+		setTitle("ALTERAÇÃO DE PRODUTO");
+		setSize(700, 500);
+		//setLocation(450, 100);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setLayout(null);
+		getContentPane().setBackground(Color.LIGHT_GRAY);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		//Label
+		tNome.setBounds(200,50,165,25);
+		JLabel l1 = new JLabel("INFORME OS DADOS DO PRODUTO QUE DESEJA ALTERAR E PRESSIONE BUSCAR.");
+		l1.setBounds(30,15,500,30);
+		JLabel l2 = new JLabel("NOME OU COD. DO PRODUTO:");
+		l2.setBounds(30,50,250,30);
+		
+		//Add
+		getContentPane().add(tNome);
+		getContentPane().add(l1);
+		getContentPane().add(l2);
+	}
+	
+	public void criaBotoesBuscaProd() {
+		botoes.definirBotoesTelaBuscaProd(this, this);
+	}
+	
 	public void criaTelaAlteraProd(){
 
 	//Tela
@@ -123,31 +156,10 @@ public class CadastroProduto extends JFrame implements ActionListener{
 	getContentPane().add(l7);
 	}
 	
-	public void criaTelaBuscaProd(){
-		
-	//Tela
-	setTitle("ALTERAÇÃO DE PRODUTO");
-	setSize(700, 500);
-	//setLocation(450, 100);
-	setLocationRelativeTo(null);
-	setResizable(false);
-	setLayout(null);
-	getContentPane().setBackground(Color.LIGHT_GRAY);
-	setDefaultCloseOperation(EXIT_ON_CLOSE);
-	
-	//Label
-	tNome.setBounds(200,50,165,25);
-	JLabel l1 = new JLabel("INFORME OS DADOS DO PRODUTO QUE DESEJA ALTERAR E PRESSIONE BUSCAR.");
-	l1.setBounds(30,15,500,30);
-	JLabel l2 = new JLabel("NOME OU COD. DO PRODUTO:");
-	l2.setBounds(30,50,250,30);
-
-	//Add
-	getContentPane().add(tNome);
-	getContentPane().add(l1);
-	getContentPane().add(l2);
+	public void criaBotoesAlteraProd() {
+		botoes.definirBotoesTelaAlteraProd(this, this);
 	}
-
+	
 	//Ação dos botões
 	public void actionPerformed(ActionEvent e){
 		switch (e.getActionCommand()) {
@@ -273,10 +285,6 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 	}
 	
-	public void criaBotoes() {
-		
-		botoes.definirBotoesTelaCadastroProd(this, this);
-	}
 	
 	//Busca de produto
 	public void pegaValorTelaBuscaProd(){
@@ -333,10 +341,6 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 	}
 	
-	public void criaBotoesBuscaProd() {
-		
-		botoes.definirBotoesTelaBuscaProd(this, this);
-	}
 	
 	//Alteração de produto
 	public void pegaValorTelaAlteraProd(){
@@ -455,8 +459,4 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 	}
 	
-	public void criaBotoesAlteraProd() {
-		
-		botoes.definirBotoesTelaAlteraProd(this, this);
-	}
 }
