@@ -9,6 +9,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -278,7 +279,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 					"O CAMPO SENHA DEVE CONTER DE 5 A 12 CARACTERES." + System.lineSeparator() + 
 					"O CAMPO NOME DEVE CONTER DE 5 A 25 CARACTERES." + System.lineSeparator() + 
 					"O CAMPO CPF DEVE SER PREENCHIDO COM APENAS NÚMEROS E DEVE CONTER 11 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO DATA DE NASCIMENTO DEVE SER PREENCHIDO NO PADRÃO DD/MM/AAAA COM BARRAS." + System.lineSeparator() + 
+					"O CAMPO DATA DE NASCIMENTO DEVE SER PREENCHIDO NO PADRÃO DD/MM/AAAA COM APENAS NÚMEROS." + System.lineSeparator() + 
 					"NÃO SERÁ REALIZADA VALIDAÇÃO DE LETRAS MAIÚSCULAS OU MINÚSCULAS PARA O USUÁRIO CRIADO, APENAS PARA SENHA.", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
 			break;
 		case "command_alterar_usuario":
@@ -303,9 +304,21 @@ public class CadastroUser extends JFrame implements ActionListener {
 		String pass2 = tPass2.getText();
 		String nome = tNome.getText().trim();
 		String cpf = tCPF.getText();
+		cpf = cpf.replaceAll("[.-]", "");
 		String data = tData.getText();
 		String NomeUserVO = "";
 		String CPFVO = "";
+		
+		//Para validação de data
+		String[] separador = data.split("/");
+		String dia = separador[0];
+		String mes = separador[1];
+		String ano = separador[2];
+		
+		//Para validação de maioridade
+		int anoVigente = Calendar.getInstance().get(Calendar.YEAR);
+		int anoMinimiPermitido = anoVigente - 120;
+		int anoMaximoPermitido = anoVigente - 18;
 
 		if (user.length()==0 || user.length() <4 || user.length()>25){
 			JOptionPane.showMessageDialog(null, "CAMPO USUÁRIO INVÁLIDO!" + System.lineSeparator() +
@@ -334,7 +347,23 @@ public class CadastroUser extends JFrame implements ActionListener {
 		
 		else if (data.length()==0 || data.length() <10 || data.length()>10){
 			JOptionPane.showMessageDialog(null, "CAMPO DATA INVÁLIDO!" + System.lineSeparator() +
-					"A DATA DEVE SER PREENCHIDA NO PADRÃO DD/MM/AAAA COM BARRAS","ERRO",JOptionPane.ERROR_MESSAGE);
+					"A DATA DEVE SER PREENCHIDA NO PADRÃO DD/MM/AAAA COM APENAS NÚMEROS","ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(dia) < 1 || (Integer.parseInt(dia) > 31)){
+			JOptionPane.showMessageDialog(null,  "DIA DE NASCIMENTO INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(mes) < 1 || Integer.parseInt(mes) > 12){
+			JOptionPane.showMessageDialog(null, "MÊS DE NASCIMENTO INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(ano) < anoMinimiPermitido){
+			JOptionPane.showMessageDialog(null, "ANO DE NASCIMENTO INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(ano) > anoMaximoPermitido){
+			JOptionPane.showMessageDialog(null, "CADASTRO PERMITIDO APENAS PARA MAIORES DE 18 ANOS.", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
@@ -386,6 +415,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 				try {
 					cadastroVO.setUser(user);
 					CadastroUserVO.setCPF(cpf);
+					data = ano + "-" + mes + "-" + dia;
 					CadastroUserVO.setDataNasc(data);
 					dao.insereDadosNaBase(cadastroVO);
 					System.out.println("Usuário "+ user.toUpperCase() + " cadastrado." );

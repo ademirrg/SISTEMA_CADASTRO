@@ -71,7 +71,7 @@ public class Tela extends JFrame implements ActionListener {
 			login = new Login(e.getActionCommand());
 			break;
 		case "command_info":
-			JOptionPane.showMessageDialog(null, "Versão: 0.3" + System.lineSeparator() + 
+			JOptionPane.showMessageDialog(null, "Versão: 1.1" + System.lineSeparator() + 
 					"Data de criação: 09/02/2017" + System.lineSeparator() + 
 					"Criado por: Ademir Rocha" + System.lineSeparator() + 
 					"STAFF: Kaiservog, RCToscano, Soldado, Kyoshi, MajorGalopante", "SOBRE",JOptionPane.INFORMATION_MESSAGE);
