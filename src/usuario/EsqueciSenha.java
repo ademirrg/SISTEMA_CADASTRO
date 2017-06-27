@@ -2,7 +2,11 @@ package usuario;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.util.Calendar;
+
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 
 import sistema.cadastro.Botao;
 import sistema.cadastro.Tela;
@@ -18,6 +22,22 @@ public class EsqueciSenha extends JFrame implements ActionListener{
 	private CadastroUserDAO dao = new CadastroUserDAO();
 	
 	public void criaTelaEsqueciSenha(){
+		
+		//Cria campos formatados
+		try {
+			MaskFormatter cpf;
+			cpf = new MaskFormatter( "###.###.###-##" );
+			cpf.setValidCharacters("0123456789");
+			tCPF = new JFormattedTextField(cpf);
+			
+			MaskFormatter data;
+			data = new MaskFormatter( "##/##/####" );
+			data.setValidCharacters("0123456789");
+			tData = new JFormattedTextField(data);	
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		tCPF.setBounds(150,50,120,25);
 		tData.setBounds(150,80,120,25);
@@ -50,19 +70,59 @@ public class EsqueciSenha extends JFrame implements ActionListener{
 	
 	public void pegaValorTelaEsqueciSenha(){
 		String cpf = tCPF.getText();
+		cpf = cpf.replaceAll("[.-]", "");
+		cpf = cpf.trim();
 		String data = tData.getText();
 		String CPFVO = "";
 		String NomeUserVO = "";
 		String DataVO = "";
+		String retornoValidador = "";
+		
+		//Valida número do CPF
+		CadastroUserVO.setCPF(cpf);
+		retornoValidador = ValidaCPF.validaCPF();
+		
+		//Para validação de data
+		String[] separador = data.split("/");
+		String dia = separador[0];
+		String mes = separador[1];
+		String ano = separador[2];
+		data = ano + "-" + mes + "-" + dia;
+		data = data.trim();
+		
+		//Para validação de maioridade
+		int anoVigente = Calendar.getInstance().get(Calendar.YEAR);
+		int anoMinimiPermitido = anoVigente - 120;
+		int anoMaximoPermitido = anoVigente - 18;
 		
 		if (cpf.length()==0 || cpf.length() <11 || cpf.length()>11){
 			JOptionPane.showMessageDialog(null, "CAMPO CPF INVÁLIDO!" + System.lineSeparator() +
 					"O CPF DEVE CONTER 11 CARACTERES, SOMENTE NÚMEROS","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
+		else if (retornoValidador.equals("NOK")){
+			JOptionPane.showMessageDialog(null, "O CPF INFORMADO NÃO É VÁLIDO!", "ERRO", JOptionPane.ERROR_MESSAGE);
+		}
+		
 		else if (data.length()==0 || data.length() <10 || data.length()>10){
 			JOptionPane.showMessageDialog(null, "CAMPO DATA INVÁLIDO!" + System.lineSeparator() +
 					"A DATA DEVE SER PREENCHIDA NO PADRÃO DD/MM/AAAA COM BARRAS","ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(dia) < 1 || (Integer.parseInt(dia) > 31)){
+			JOptionPane.showMessageDialog(null,  "DIA DE NASCIMENTO INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(mes) < 1 || Integer.parseInt(mes) > 12){
+			JOptionPane.showMessageDialog(null, "MÊS DE NASCIMENTO INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(ano) < anoMinimiPermitido || Integer.parseInt(ano) >= anoVigente){
+			JOptionPane.showMessageDialog(null, "ANO DE NASCIMENTO INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(ano) > anoMaximoPermitido){
+			JOptionPane.showMessageDialog(null, "CADASTRO PERMITIDO APENAS PARA MAIORES DE 18 ANOS.", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
