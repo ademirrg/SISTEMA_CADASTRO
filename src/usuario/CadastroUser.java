@@ -308,6 +308,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		String data = tData.getText();
 		String NomeUserVO = "";
 		String CPFVO = "";
+		String retornoValidador = "";
 		
 		//Para validação de data
 		String[] separador = data.split("/");
@@ -386,53 +387,62 @@ public class CadastroUser extends JFrame implements ActionListener {
 			CadastroUserVO.setDataNasc(data);
 			CadastroUserVO.setCPF(cpf);
 			
-			//Realiza uma conulta no banco e verifica a disponibilidade do nome e cadastro por CPF
-			try {
-				dao.buscarDadosNaBaseUser(cadastroVO);
-				NomeUserVO = cadastroVO.getNomeUser();
-				dao.buscarDadosNaBaseCPF(cadastroVO);
-				CPFVO = CadastroUserVO.getCPF();
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if (cpf.equals(CPFVO)){
-				System.out.println("Já existe um usuário para o CPF informado: " + cpf);
-				JOptionPane.showMessageDialog(null,"JÁ EXISTE UM USUÁRIO CADASTRADO PARA O CPF: " + cpf + System.lineSeparator() + 
-						"POR FAVOR, CASO SEJA NECESSÁRIO ALTERAR O NOME DE USUÁRIO, VÁ AO MENU PRINCIPAL E SELECIONE E OPÇÃO ALTERAR USUÁRIO", 
-						"CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
-			}
-			
-			else if (user.equalsIgnoreCase(NomeUserVO)){
-				System.out.println("Usuário "+ user.toUpperCase() + " já existe na base." );
-				JOptionPane.showMessageDialog(null,"JÁ EXISTE UM USUÁRIO " + user.toUpperCase() +" CADASTRADO." + System.lineSeparator() + 
-						"POR FAVOR, ESCOLHA OUTRO NOME DE USUÁRIO.", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
+			//Valida número do CPF
+			retornoValidador = ValidaCPF.validaCPF();
+			if (retornoValidador.equals("NOK")){
+				JOptionPane.showMessageDialog(null, "O CPF INFORMADO NÃO É VÁLIDO!", "ERRO", JOptionPane.ERROR_MESSAGE);
 			}
 			
 			else {
 				
+				//Realiza uma conulta no banco e verifica a disponibilidade do nome e cadastro por CPF
 				try {
-					cadastroVO.setUser(user);
-					CadastroUserVO.setCPF(cpf);
-					data = ano + "-" + mes + "-" + dia;
-					CadastroUserVO.setDataNasc(data);
-					dao.insereDadosNaBase(cadastroVO);
-					System.out.println("Usuário "+ user.toUpperCase() + " cadastrado." );
-					JOptionPane.showMessageDialog(null,"USUÁRIO " + user.toUpperCase() +" CADASTRADO COM SUCESSO.", 
-							"CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
-					dispose();
-					CadastroUser cadastroUser = new CadastroUser();
-					cadastroUser.criaTelaCadastroUser();
-					cadastroUser.criaBotoes();
-					cadastroUser.setVisible(true);
-				
-				} catch (Exception e1) {
+					dao.buscarDadosNaBaseUser(cadastroVO);
+					NomeUserVO = cadastroVO.getNomeUser();
+					dao.buscarDadosNaBaseCPF(cadastroVO);
+					CPFVO = CadastroUserVO.getCPF();
+					
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
-
+					e.printStackTrace();
 				}
-			}	
+				if (cpf.equals(CPFVO)){
+					System.out.println("Já existe um usuário para o CPF informado: " + cpf);
+					JOptionPane.showMessageDialog(null,"JÁ EXISTE UM USUÁRIO CADASTRADO PARA O CPF: " + cpf + System.lineSeparator() + 
+							"POR FAVOR, CASO SEJA NECESSÁRIO ALTERAR O NOME DE USUÁRIO, VÁ AO MENU PRINCIPAL E SELECIONE E OPÇÃO ALTERAR USUÁRIO", 
+							"CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+				else if (user.equalsIgnoreCase(NomeUserVO)){
+					System.out.println("Usuário "+ user.toUpperCase() + " já existe na base." );
+					JOptionPane.showMessageDialog(null,"JÁ EXISTE UM USUÁRIO " + user.toUpperCase() +" CADASTRADO." + System.lineSeparator() + 
+							"POR FAVOR, ESCOLHA OUTRO NOME DE USUÁRIO.", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+				else {
+					
+					try {
+						cadastroVO.setUser(user);
+						CadastroUserVO.setCPF(cpf);
+						data = ano + "-" + mes + "-" + dia;
+						CadastroUserVO.setDataNasc(data);
+						dao.insereDadosNaBase(cadastroVO);
+						System.out.println("Usuário "+ user.toUpperCase() + " cadastrado." );
+						JOptionPane.showMessageDialog(null,"USUÁRIO " + user.toUpperCase() +" CADASTRADO COM SUCESSO.", 
+								"CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
+						dispose();
+						CadastroUser cadastroUser = new CadastroUser();
+						cadastroUser.criaTelaCadastroUser();
+						cadastroUser.criaBotoes();
+						cadastroUser.setVisible(true);
+					
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+	
+					}
+				}	
+			}
 		}
 		
 	}
