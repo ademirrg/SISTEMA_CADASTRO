@@ -21,40 +21,49 @@ public class ValidaCPF {
 		int n10 = Integer.parseInt(numeroSeparado[9]);
 		int n11 = Integer.parseInt(numeroSeparado[10]);
 		
-		int soma = n9 * 2 + n8 * 3 + n7 * 4 + n6 * 5 + n5 * 6 + n4 * 7 + n3 * 8 + n2 * 9 + n1 * 10;
-		int valor = (soma / 11) * 11;
-		digito1 = soma - valor;
-		
-		// Primeiro resto da divisão por 11.
-		resto = (digito1 % 11);
-		if (digito1 < 2) {
-			digito1 = 0;
-		} 
-		else {
-			digito1 = 11 - resto;
-		}
-		
-		int soma2 = digito1 * 2 + n9 * 3 + n8 * 4 + n7 * 5 + n6 * 6 + n5 * 7 + n4 * 8 + n3 * 9 + n2 * 10 + n1 * 11;
-		int valor2 = (soma2 / 11) * 11;
-		digito2 = soma2 - valor2;
-		
-		// Primeiro resto da divisão por 11.
-		resto = (digito2 % 11);
-		if (digito2 < 2) {
-			digito2 = 0;
-		} 
-		else {
-			digito2 = 11 - resto;
-		}
-	     
-		if (n10 != digito1 || n11 != digito2){
+		if(numeroDigitado.equals("00000000000") || numeroDigitado.equals("11111111111") || 
+				numeroDigitado.equals("22222222222") || numeroDigitado.equals("33333333333") || 
+				numeroDigitado.equals("44444444444") || numeroDigitado.equals("55555555555") || 
+				numeroDigitado.equals("66666666666") || numeroDigitado.equals("77777777777") || 
+				numeroDigitado.equals("88888888888") || numeroDigitado.equals("99999999999")){
 			cpfValido = "NOK";
+			
+			return cpfValido;
 		}
 		
 		else {
-			cpfValido = "OK";
+			
+			int soma = n1 * 10 + n2 * 9 + n3 * 8 + n4 * 7 + n5 * 6 + n6 * 5 + n7 * 4 + n8 * 3 + n9 * 2;
+			
+			// Primeiro resto da divisão por 11.
+			resto = (soma % 11);
+			if (resto < 2) {
+				digito1 = 0;
+			} 
+			else {
+				digito1 = 11 - resto;
+			}
+			
+			int soma2 = n1 * 11 + n2 * 10 + n3 * 9 + n4 * 8 + n5 * 7 + n6 * 6 + n7 * 5 + n8 * 4 + n9 * 3 + digito1 * 2;
+			
+			// Segundo resto da divisão por 11.
+			resto = (soma2 % 11);
+			if (resto < 2) {
+				digito2 = 0;
+			} 
+			else {
+				digito2 = 11 - resto;
+			}
+		     
+			if (n10 != digito1 || n11 != digito2){
+				cpfValido = "NOK";
+			}
+			
+			else {
+				cpfValido = "OK";
+			}
+			
+			return cpfValido;
 		}
-		
-		return cpfValido;
 	}
 }
