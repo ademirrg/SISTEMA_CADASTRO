@@ -34,9 +34,8 @@ public class ValidaCPF {
 			int n10 = Integer.parseInt(numeroSeparado[9]);
 			int n11 = Integer.parseInt(numeroSeparado[10]);
 			
-			int soma = n1 * 10 + n2 * 9 + n3 * 8 + n4 * 7 + n5 * 6 + n6 * 5 + n7 * 4 + n8 * 3 + n9 * 2;
-			
-			// Primeiro resto da divisão por 11.
+			//Digito 1.
+			int soma = n1 * 10 + n2 * 9 + n3 * 8 + n4 * 7 + n5 * 6 + n6 * 5 + n7 * 4 + n8 * 3 + n9 * 2;			
 			resto = (soma % 11);
 			if (resto < 2) {
 				digito1 = 0;
@@ -45,9 +44,8 @@ public class ValidaCPF {
 				digito1 = 11 - resto;
 			}
 			
-			int soma2 = n1 * 11 + n2 * 10 + n3 * 9 + n4 * 8 + n5 * 7 + n6 * 6 + n7 * 5 + n8 * 4 + n9 * 3 + digito1 * 2;
-			
-			// Segundo resto da divisão por 11.
+			//Digito 2.
+			int soma2 = n1 * 11 + n2 * 10 + n3 * 9 + n4 * 8 + n5 * 7 + n6 * 6 + n7 * 5 + n8 * 4 + n9 * 3 + digito1 * 2;			
 			resto = (soma2 % 11);
 			if (resto < 2) {
 				digito2 = 0;
