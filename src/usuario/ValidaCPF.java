@@ -8,30 +8,31 @@ public class ValidaCPF {
 		String[] numeroSeparado = numeroDigitado.split("");
 		String cpfValido = "";
 	
-		//Números separados
-		int n1 = Integer.parseInt(numeroSeparado[0]);
-		int n2 = Integer.parseInt(numeroSeparado[1]);
-		int n3 = Integer.parseInt(numeroSeparado[2]);
-		int n4 = Integer.parseInt(numeroSeparado[3]);
-		int n5 = Integer.parseInt(numeroSeparado[4]);
-		int n6 = Integer.parseInt(numeroSeparado[5]);
-		int n7 = Integer.parseInt(numeroSeparado[6]);
-		int n8 = Integer.parseInt(numeroSeparado[7]);
-		int n9 = Integer.parseInt(numeroSeparado[8]);
-		int n10 = Integer.parseInt(numeroSeparado[9]);
-		int n11 = Integer.parseInt(numeroSeparado[10]);
-		
 		if(numeroDigitado.equals("00000000000") || numeroDigitado.equals("11111111111") || 
 				numeroDigitado.equals("22222222222") || numeroDigitado.equals("33333333333") || 
 				numeroDigitado.equals("44444444444") || numeroDigitado.equals("55555555555") || 
 				numeroDigitado.equals("66666666666") || numeroDigitado.equals("77777777777") || 
-				numeroDigitado.equals("88888888888") || numeroDigitado.equals("99999999999")){
+				numeroDigitado.equals("88888888888") || numeroDigitado.equals("99999999999") || 
+				numeroDigitado.length()==0){
 			cpfValido = "NOK";
 			
 			return cpfValido;
 		}
 		
 		else {
+			
+			//Números separados
+			int n1 = Integer.parseInt(numeroSeparado[0]);
+			int n2 = Integer.parseInt(numeroSeparado[1]);
+			int n3 = Integer.parseInt(numeroSeparado[2]);
+			int n4 = Integer.parseInt(numeroSeparado[3]);
+			int n5 = Integer.parseInt(numeroSeparado[4]);
+			int n6 = Integer.parseInt(numeroSeparado[5]);
+			int n7 = Integer.parseInt(numeroSeparado[6]);
+			int n8 = Integer.parseInt(numeroSeparado[7]);
+			int n9 = Integer.parseInt(numeroSeparado[8]);
+			int n10 = Integer.parseInt(numeroSeparado[9]);
+			int n11 = Integer.parseInt(numeroSeparado[10]);
 			
 			int soma = n1 * 10 + n2 * 9 + n3 * 8 + n4 * 7 + n5 * 6 + n6 * 5 + n7 * 4 + n8 * 3 + n9 * 2;
 			

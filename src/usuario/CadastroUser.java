@@ -305,22 +305,29 @@ public class CadastroUser extends JFrame implements ActionListener {
 		String nome = tNome.getText().trim();
 		String cpf = tCPF.getText();
 		cpf = cpf.replaceAll("[.-]", "");
+		cpf = cpf.trim();
 		String data = tData.getText();
 		String NomeUserVO = "";
 		String CPFVO = "";
 		String retornoValidador = "";
+		
+		//Valida número do CPF
+		CadastroUserVO.setCPF(cpf);
+		retornoValidador = ValidaCPF.validaCPF();
 		
 		//Para validação de data
 		String[] separador = data.split("/");
 		String dia = separador[0];
 		String mes = separador[1];
 		String ano = separador[2];
+		data = ano + "-" + mes + "-" + dia;
+		data = data.trim();
 		
 		//Para validação de maioridade
 		int anoVigente = Calendar.getInstance().get(Calendar.YEAR);
 		int anoMinimiPermitido = anoVigente - 120;
 		int anoMaximoPermitido = anoVigente - 18;
-
+		
 		if (user.length()==0 || user.length() <4 || user.length()>25){
 			JOptionPane.showMessageDialog(null, "CAMPO USUÁRIO INVÁLIDO!" + System.lineSeparator() +
 					"O USUÁRIO DEVE CONTER DE 4 A 25 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
@@ -346,7 +353,11 @@ public class CadastroUser extends JFrame implements ActionListener {
 					"O CPF DEVE CONTER 11 CARACTERES, SOMENTE NÚMEROS","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
-		else if (data.length()==0 || data.length() <10 || data.length()>10){
+		else if (retornoValidador.equals("NOK")){
+			JOptionPane.showMessageDialog(null, "O CPF INFORMADO NÃO É VÁLIDO!", "ERRO", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (data.length() <10 || data.length()>10){
 			JOptionPane.showMessageDialog(null, "CAMPO DATA INVÁLIDO!" + System.lineSeparator() +
 					"A DATA DEVE SER PREENCHIDA NO PADRÃO DD/MM/AAAA COM APENAS NÚMEROS","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
@@ -359,7 +370,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "MÊS DE NASCIMENTO INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
-		else if (Integer.parseInt(ano) < anoMinimiPermitido){
+		else if (Integer.parseInt(ano) < anoMinimiPermitido || Integer.parseInt(ano) >= anoVigente){
 			JOptionPane.showMessageDialog(null, "ANO DE NASCIMENTO INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
@@ -386,61 +397,51 @@ public class CadastroUser extends JFrame implements ActionListener {
 			CadastroUserVO.setNome(nome);
 			CadastroUserVO.setDataNasc(data);
 			CadastroUserVO.setCPF(cpf);
+				
+			//Realiza uma consulta no banco e verifica a disponibilidade do nome e cadastro por CPF
+			try {
+				dao.buscarDadosNaBaseUser(cadastroVO);
+				NomeUserVO = cadastroVO.getNomeUser();
+				dao.buscarDadosNaBaseCPF(cadastroVO);
+				CPFVO = CadastroUserVO.getCPF();
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (cpf.equals(CPFVO)){
+				System.out.println("Já existe um usuário para o CPF informado: " + cpf);
+				JOptionPane.showMessageDialog(null,"JÁ EXISTE UM USUÁRIO CADASTRADO PARA O CPF: " + cpf + System.lineSeparator() + 
+						"POR FAVOR, CASO SEJA NECESSÁRIO ALTERAR O NOME DE USUÁRIO, VÁ AO MENU PRINCIPAL E SELECIONE E OPÇÃO ALTERAR USUÁRIO", 
+						"CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
+			}
 			
-			//Valida número do CPF
-			retornoValidador = ValidaCPF.validaCPF();
-			if (retornoValidador.equals("NOK")){
-				JOptionPane.showMessageDialog(null, "O CPF INFORMADO NÃO É VÁLIDO!", "ERRO", JOptionPane.ERROR_MESSAGE);
+			else if (user.equalsIgnoreCase(NomeUserVO)){
+				System.out.println("Usuário "+ user.toUpperCase() + " já existe na base." );
+				JOptionPane.showMessageDialog(null,"JÁ EXISTE UM USUÁRIO " + user.toUpperCase() +" CADASTRADO." + System.lineSeparator() + 
+						"POR FAVOR, ESCOLHA OUTRO NOME DE USUÁRIO.", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
 			else {
 				
-				//Realiza uma conulta no banco e verifica a disponibilidade do nome e cadastro por CPF
 				try {
-					dao.buscarDadosNaBaseUser(cadastroVO);
-					NomeUserVO = cadastroVO.getNomeUser();
-					dao.buscarDadosNaBaseCPF(cadastroVO);
-					CPFVO = CadastroUserVO.getCPF();
-					
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				if (cpf.equals(CPFVO)){
-					System.out.println("Já existe um usuário para o CPF informado: " + cpf);
-					JOptionPane.showMessageDialog(null,"JÁ EXISTE UM USUÁRIO CADASTRADO PARA O CPF: " + cpf + System.lineSeparator() + 
-							"POR FAVOR, CASO SEJA NECESSÁRIO ALTERAR O NOME DE USUÁRIO, VÁ AO MENU PRINCIPAL E SELECIONE E OPÇÃO ALTERAR USUÁRIO", 
+					cadastroVO.setUser(user);
+					CadastroUserVO.setCPF(cpf);
+					CadastroUserVO.setDataNasc(data);
+					dao.insereDadosNaBase(cadastroVO);
+					System.out.println("Usuário "+ user.toUpperCase() + " cadastrado." );
+					JOptionPane.showMessageDialog(null,"USUÁRIO " + user.toUpperCase() +" CADASTRADO COM SUCESSO.", 
 							"CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
-				}
+					dispose();
+					CadastroUser cadastroUser = new CadastroUser();
+					cadastroUser.criaTelaCadastroUser();
+					cadastroUser.criaBotoes();
+					cadastroUser.setVisible(true);
 				
-				else if (user.equalsIgnoreCase(NomeUserVO)){
-					System.out.println("Usuário "+ user.toUpperCase() + " já existe na base." );
-					JOptionPane.showMessageDialog(null,"JÁ EXISTE UM USUÁRIO " + user.toUpperCase() +" CADASTRADO." + System.lineSeparator() + 
-							"POR FAVOR, ESCOLHA OUTRO NOME DE USUÁRIO.", "CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
-				}
-				
-				else {
-					
-					try {
-						cadastroVO.setUser(user);
-						CadastroUserVO.setCPF(cpf);
-						data = ano + "-" + mes + "-" + dia;
-						CadastroUserVO.setDataNasc(data);
-						dao.insereDadosNaBase(cadastroVO);
-						System.out.println("Usuário "+ user.toUpperCase() + " cadastrado." );
-						JOptionPane.showMessageDialog(null,"USUÁRIO " + user.toUpperCase() +" CADASTRADO COM SUCESSO.", 
-								"CADASTRAMENTO DE USUÁRIO", JOptionPane.INFORMATION_MESSAGE);
-						dispose();
-						CadastroUser cadastroUser = new CadastroUser();
-						cadastroUser.criaTelaCadastroUser();
-						cadastroUser.criaBotoes();
-						cadastroUser.setVisible(true);
-					
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-	
-					}
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+
 				}	
 			}
 		}
