@@ -2,8 +2,10 @@ package produto;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.util.Calendar;
 import javax.swing.*;
-
+import javax.swing.text.MaskFormatter;
 import sistema.cadastro.Botao;
 import sistema.cadastro.Tela;
 
@@ -27,49 +29,66 @@ public class CadastroProduto extends JFrame implements ActionListener{
 	String altPrdSta = cadastroVO.getPRDSTA();
 	JTextField tAltCod = new JTextField(altCodPrd);
 	JTextField tAltNome = new JTextField(altNomePrd);	
-	JTextField tAltIniVig = new JTextField(altInicioVig);
-	JTextField tAltFimVig = new JTextField(altFimVig);
+	JFormattedTextField tAltIniVig;
+	JFormattedTextField tAltFimVig;
 	JTextField tAltCodSeg = new JTextField(altCodSeg);
 	JTextField tAltPrdSta = new JTextField(altPrdSta);
 	
 	public void criaTelaCadastroProd(){
 	
-	//Tela
-	setTitle("CADASTRAMENTO DE PRODUTO");
-	setSize(700, 500);
-	//setLocation(450, 100);
-	setLocationRelativeTo(null);
-	setResizable(false);
-	setLayout(null);
-	getContentPane().setBackground(Color.LIGHT_GRAY);
-	setDefaultCloseOperation(EXIT_ON_CLOSE);
-	
-	//Label
-	tNome.setBounds(150,50,165,25);
-	tSeg.setBounds(150,80,70,25);
-	tInicioVig.setBounds(150,110,70,25);
-	tFimVig.setBounds(245,110,70,25);
-	JLabel l1 = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
-	l1.setBounds(30,15,330,30);
-	JLabel l2 = new JLabel("NOME DO PRODUTO:");
-	l2.setBounds(30,50,200,30);
-	JLabel l3 = new JLabel("SEGMENTO:");
-	l3.setBounds(80,80,85,30);
-	JLabel l4 = new JLabel("VIGÊNCIA:");
-	l4.setBounds(91,110,85,30);
-	JLabel l5 = new JLabel("Á");
-	l5.setBounds(228,110,85,30);
-	
-	//Add
-	getContentPane().add(tNome);
-	getContentPane().add(tSeg);
-	getContentPane().add(tInicioVig);
-	getContentPane().add(tFimVig);
-	getContentPane().add(l1);
-	getContentPane().add(l2);
-	getContentPane().add(l3);
-	getContentPane().add(l4);
-	getContentPane().add(l5);
+		//Cria campos formatados
+		try {	
+			MaskFormatter data;
+			data = new MaskFormatter("##/##/####");
+			data.setValidCharacters("0123456789");
+			tInicioVig = new JFormattedTextField(data);	
+			tFimVig = new JFormattedTextField(data);
+			
+			MaskFormatter segmento;
+			segmento = new MaskFormatter("###");
+			segmento.setValidCharacters("0123456789");
+			tSeg = new JFormattedTextField(segmento);	
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		//Tela
+		setTitle("CADASTRAMENTO DE PRODUTO");
+		setSize(700, 500);
+		//setLocation(450, 100);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setLayout(null);
+		getContentPane().setBackground(Color.LIGHT_GRAY);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		//Label
+		tNome.setBounds(150,50,165,25);
+		tSeg.setBounds(150,80,70,25);
+		tInicioVig.setBounds(150,110,70,25);
+		tFimVig.setBounds(245,110,70,25);
+		JLabel l1 = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
+		l1.setBounds(30,15,330,30);
+		JLabel l2 = new JLabel("NOME DO PRODUTO:");
+		l2.setBounds(30,50,200,30);
+		JLabel l3 = new JLabel("SEGMENTO:");
+		l3.setBounds(80,80,85,30);
+		JLabel l4 = new JLabel("VIGÊNCIA:");
+		l4.setBounds(91,110,85,30);
+		JLabel l5 = new JLabel("Á");
+		l5.setBounds(228,110,85,30);
+		
+		//Add
+		getContentPane().add(tNome);
+		getContentPane().add(tSeg);
+		getContentPane().add(tInicioVig);
+		getContentPane().add(tFimVig);
+		getContentPane().add(l1);
+		getContentPane().add(l2);
+		getContentPane().add(l3);
+		getContentPane().add(l4);
+		getContentPane().add(l5);
 	}
 	
 	public void criaBotoes() {
@@ -106,54 +125,83 @@ public class CadastroProduto extends JFrame implements ActionListener{
 	}
 	
 	public void criaTelaAlteraProd(){
-
-	//Tela
-	setTitle("ALTERAÇÃO DO PRODUTO: " + altCodPrd + " - " + altNomePrd);
-	setSize(700, 500);
-	//setLocation(450, 100);
-	setLocationRelativeTo(null);
-	setResizable(false);
-	setLayout(null);
-	getContentPane().setBackground(Color.LIGHT_GRAY);
-	setDefaultCloseOperation(EXIT_ON_CLOSE);
-	
-	//Label
-	tAltNome.setBounds(150,50,165,25);
-	tAltCod.setBounds(150,80,70,25);
-	tAltCod.setEnabled(false);
-	tAltCodSeg.setBounds(150,110,70,25);
-	tAltIniVig.setBounds(150,140,70,25);
-	tAltFimVig.setBounds(245,140,70,25);
-	tAltPrdSta.setBounds(150,170,70,25);
-	JLabel l1 = new JLabel("INFORME OS DADOS DO PRODUTO QUE DESEJA ALTERAR.");
-	l1.setBounds(30,15,330,30);
-	JLabel l2 = new JLabel("NOME DO PRODUTO:");
-	l2.setBounds(30,50,200,30);
-	JLabel l3 = new JLabel("COD. DO PRODUTO:");
-	l3.setBounds(36,80,200,30);
-	JLabel l4 = new JLabel("SEGMENTO:");
-	l4.setBounds(80,110,85,30);
-	JLabel l5 = new JLabel("VIGÊNCIA:");
-	l5.setBounds(91,140,85,30);
-	JLabel l6 = new JLabel("Á");
-	l6.setBounds(228,140,85,30);
-	JLabel l7 = new JLabel("STATUS:");
-	l7.setBounds(98,170,85,30);
-	
-	//Add
-	getContentPane().add(tAltNome);
-	getContentPane().add(tAltCod);
-	getContentPane().add(tAltCodSeg);
-	getContentPane().add(tAltIniVig);
-	getContentPane().add(tAltFimVig);
-	getContentPane().add(tAltPrdSta);
-	getContentPane().add(l1);
-	getContentPane().add(l2);
-	getContentPane().add(l3);
-	getContentPane().add(l4);
-	getContentPane().add(l5);
-	getContentPane().add(l6);
-	getContentPane().add(l7);
+		
+		String[] dataSeparadaInicio = altInicioVig.split("-");
+		String anoInicio = dataSeparadaInicio[0];
+		String mesInicio = dataSeparadaInicio[1];
+		String diaInicio = dataSeparadaInicio[2];
+		String dataInicio = diaInicio + "/" + mesInicio + "/" + anoInicio;
+		tAltIniVig = new JFormattedTextField(dataInicio);
+		
+		String[] dataSeparadaFim = altFimVig.split("-");
+		String anoFim = dataSeparadaFim[0];
+		String mesFim = dataSeparadaFim[1];
+		String diaFim = dataSeparadaFim[2];
+		String dataFim = diaFim + "/" + mesFim + "/" + anoFim;
+		tAltFimVig = new JFormattedTextField(dataFim);
+		
+		try {
+			MaskFormatter maskDataIni;
+			maskDataIni = new MaskFormatter("##/##/####");
+			maskDataIni.setValidCharacters("0123456789");
+			maskDataIni.install(tAltIniVig);
+			
+			MaskFormatter maskDataFim;
+			maskDataFim = new MaskFormatter("##/##/####");
+			maskDataFim.install(tAltFimVig);
+		
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Tela
+		setTitle("ALTERAÇÃO DO PRODUTO: " + altCodPrd + " - " + altNomePrd);
+		setSize(700, 500);
+		//setLocation(450, 100);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setLayout(null);
+		getContentPane().setBackground(Color.LIGHT_GRAY);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		//Label
+		tAltNome.setBounds(150,50,165,25);
+		tAltCod.setBounds(150,80,70,25);
+		tAltCod.setEnabled(false);
+		tAltCodSeg.setBounds(150,110,70,25);
+		tAltIniVig.setBounds(150,140,70,25);
+		tAltFimVig.setBounds(245,140,70,25);
+		tAltPrdSta.setBounds(150,170,70,25);
+		JLabel l1 = new JLabel("INFORME OS DADOS DO PRODUTO QUE DESEJA ALTERAR.");
+		l1.setBounds(30,15,330,30);
+		JLabel l2 = new JLabel("NOME DO PRODUTO:");
+		l2.setBounds(30,50,200,30);
+		JLabel l3 = new JLabel("COD. DO PRODUTO:");
+		l3.setBounds(36,80,200,30);
+		JLabel l4 = new JLabel("SEGMENTO:");
+		l4.setBounds(80,110,85,30);
+		JLabel l5 = new JLabel("VIGÊNCIA:");
+		l5.setBounds(91,140,85,30);
+		JLabel l6 = new JLabel("Á");
+		l6.setBounds(228,140,85,30);
+		JLabel l7 = new JLabel("STATUS:");
+		l7.setBounds(98,170,85,30);
+		
+		//Add
+		getContentPane().add(tAltNome);
+		getContentPane().add(tAltCod);
+		getContentPane().add(tAltCodSeg);
+		getContentPane().add(tAltIniVig);
+		getContentPane().add(tAltFimVig);
+		getContentPane().add(tAltPrdSta);
+		getContentPane().add(l1);
+		getContentPane().add(l2);
+		getContentPane().add(l3);
+		getContentPane().add(l4);
+		getContentPane().add(l5);
+		getContentPane().add(l6);
+		getContentPane().add(l7);
 	}
 	
 	public void criaBotoesAlteraProd() {
@@ -190,13 +238,13 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE PRODUTO:" + System.lineSeparator() + 
 					"O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
 					"O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES E DEVE EXISTIR NA TABELA DE SEGMENTOS." + System.lineSeparator() + 
-					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM BARRAS.","INFO", JOptionPane.WARNING_MESSAGE);
+					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM APENAS NÚMEROS.","INFO", JOptionPane.WARNING_MESSAGE);
 			break;
 		case "command_info_altera":
 			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O ALTERAÇÃO DE PRODUTO:" + System.lineSeparator() + 
 					"O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
 					"O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES E DEVE EXISTIR NA TABELA DE SEGMENTOS." + System.lineSeparator() + 
-					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM BARRAS." + System.lineSeparator() + 
+					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM APENAS NÚMEROS." + System.lineSeparator() + 
 					"O CAMPO STATUS DEVE CONTER 1 CARACTERE, INDICANDO STATUS ATIVO/INATIVO (1/0).","INFO", JOptionPane.WARNING_MESSAGE);
 			break;
 		}
@@ -212,24 +260,66 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		String nomePRDVO = "";
 		String prdsta = "1";
 		
+		//Para validação de data
+		int anoVigente = Calendar.getInstance().get(Calendar.YEAR);
+		
+		String[] separador = inicioVig.split("/");
+		String diaInicio = separador[0];
+		String mesInicio = separador[1];
+		String anoInicio = separador[2];
+		inicioVig = anoInicio + "-" + mesInicio + "-" + diaInicio;
+		inicioVig = inicioVig.trim();
+		
+		String[] separador2 = fimVig.split("/");
+		String diaFim = separador2[0];
+		String mesFim = separador2[1];
+		String anoFim = separador2[2];
+		fimVig = anoFim + "-" + mesFim + "-" + diaFim;
+		fimVig = fimVig.trim();
+		
+		
 		if (nomePRD.length()<4 || nomePRD.length()>25){
 			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO INVÁLIDO!" + System.lineSeparator() + 
 					"O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		else if (segmento.length()<3 || segmento.length()>6){
+		else if (segmento.length()<3 || segmento.length()>3){
 			JOptionPane.showMessageDialog(null, "CAMPO SEGMENTO INVÁLIDO!" + System.lineSeparator() + 
-					"O CAMPO SEGMENTO DEVE CONTER DE 3 A 6 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
+					"O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (inicioVig.length()<10 || inicioVig.length()>10){
-			JOptionPane.showMessageDialog(null, "CAMPO INÍCIO DE VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + 
-					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM BARRAS.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + 
+					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM APENAS NÚMEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(diaInicio) < 1 || (Integer.parseInt(diaInicio) > 31)){
+			JOptionPane.showMessageDialog(null,  "DIA DE INÍCIO DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(mesInicio) < 1 || Integer.parseInt(mesInicio) > 12){
+			JOptionPane.showMessageDialog(null, "MÊS DE INÍCIO DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(anoInicio) < anoVigente){
+			JOptionPane.showMessageDialog(null, "ANO DE INÍCIO DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (fimVig.length()<10 || fimVig.length()>10){
-			JOptionPane.showMessageDialog(null, "CAMPO INÍCIO DE VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + 
-					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM BARRAS.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + 
+					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM APENAS NÚMEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(diaFim) < 1 || (Integer.parseInt(diaFim) > 31)){
+			JOptionPane.showMessageDialog(null,  "DIA DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(mesFim) < 1 || Integer.parseInt(mesFim) > 12){
+			JOptionPane.showMessageDialog(null, "MÊS DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(anoFim) < anoVigente){
+			JOptionPane.showMessageDialog(null, "ANO DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
@@ -284,7 +374,6 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			}
 		}
 	}
-	
 	
 	//Busca de produto
 	public void pegaValorTelaBuscaProd(){
@@ -353,29 +442,65 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		String nomePRDVO = "";
 		String nomeOldPrd = cadastroVO.getNomePRD();
 		
+		//Para validação de data
+		int anoVigente = Calendar.getInstance().get(Calendar.YEAR);
+		
+		String[] separador = inicioVig.split("/");
+		String diaInicio = separador[0];
+		String mesInicio = separador[1];
+		String anoInicio = separador[2];
+		inicioVig = anoInicio + "-" + mesInicio + "-" + diaInicio;
+		inicioVig = inicioVig.trim();
+		
+		String[] separador2 = fimVig.split("/");
+		String diaFim = separador2[0];
+		String mesFim = separador2[1];
+		String anoFim = separador2[2];
+		fimVig = anoFim + "-" + mesFim + "-" + diaFim;
+		fimVig = fimVig.trim();
+		
 		if (nomePRD.length()<4 || nomePRD.length()>25){
 			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO INVÁLIDO!" + System.lineSeparator() + 
 					"O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 			
-		else if (segmento.length()<1 || segmento.length()>6){
+		else if (segmento.length()<3 || segmento.length()>3){
 			JOptionPane.showMessageDialog(null, "CAMPO SEGMENTO INVÁLIDO!" + System.lineSeparator() + 
-					"O CAMPO SEGMENTO DEVE CONTER DE 1 A 6 CARACTERES", "ERRO", JOptionPane.ERROR_MESSAGE);
+					"O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (inicioVig.length()<10 || inicioVig.length()>10){
-			JOptionPane.showMessageDialog(null, "CAMPO INÍCIO DE VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + 
-					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM BARRAS.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + 
+					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM APENAS NÚMEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(diaInicio) < 1 || (Integer.parseInt(diaInicio) > 31)){
+			JOptionPane.showMessageDialog(null,  "DIA DE INÍCIO DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(mesInicio) < 1 || Integer.parseInt(mesInicio) > 12){
+			JOptionPane.showMessageDialog(null, "MÊS DE INÍCIO DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(anoInicio) < anoVigente){
+			JOptionPane.showMessageDialog(null, "ANO DE INÍCIO DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (fimVig.length()<10 || fimVig.length()>10){
-			JOptionPane.showMessageDialog(null, "CAMPO INÍCIO DE VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + 
-					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM BARRAS.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + 
+					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM APENAS NÚMEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		else if (prdsta.equals("1")==false && prdsta.equals("0")==false){
-			JOptionPane.showMessageDialog(null, "CAMPO STATUS INVÁLIDO!" + System.lineSeparator() + 
-					"O CAMPO STATUS DEVE CONTER 1 CARACTERE, INDICANDO STATUS ATIVO/INATIVO (1/0).", "ERRO", JOptionPane.ERROR_MESSAGE);
+		else if (Integer.parseInt(diaFim) < 1 || (Integer.parseInt(diaFim) > 31)){
+			JOptionPane.showMessageDialog(null,  "DIA DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(mesFim) < 1 || Integer.parseInt(mesFim) > 12){
+			JOptionPane.showMessageDialog(null, "MÊS DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(anoFim) < anoVigente){
+			JOptionPane.showMessageDialog(null, "ANO DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
@@ -406,6 +531,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 						else {
 							cadastroVO.setCodPRD(codPRD);
 							cadastroVO.setNomePRD(nomePRD);
+							inicioVig = anoInicio + "-" + mesInicio + "-" + diaInicio;
 							cadastroVO.setInicioVig(inicioVig);
 							cadastroVO.setFimVig(fimVig);
 							cadastroVO.setCodSeg(segmento);

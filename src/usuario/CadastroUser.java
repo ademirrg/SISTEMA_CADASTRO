@@ -47,12 +47,12 @@ public class CadastroUser extends JFrame implements ActionListener {
 		//Cria campos formatados
 		try {
 			MaskFormatter cpf;
-			cpf = new MaskFormatter( "###.###.###-##" );
+			cpf = new MaskFormatter("###.###.###-##");
 			cpf.setValidCharacters("0123456789");
 			tCPF = new JFormattedTextField(cpf);
 			
 			MaskFormatter data;
-			data = new MaskFormatter( "##/##/####" );
+			data = new MaskFormatter("##/##/####");
 			data.setValidCharacters("0123456789");
 			tData = new JFormattedTextField(data);	
 		} catch (ParseException e) {
