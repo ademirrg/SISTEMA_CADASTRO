@@ -302,7 +302,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		else if (Integer.parseInt(anoInicio) < anoVigente){
-			JOptionPane.showMessageDialog(null, "ANO DE INÍCIO DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "O INÍCIO DA VIGÊNCIA DEVE SER À PARTIR DE: " + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (fimVig.length()<10 || fimVig.length()>10){
@@ -318,8 +318,22 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			JOptionPane.showMessageDialog(null, "MÊS DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
-		else if (Integer.parseInt(anoFim) < anoVigente){
-			JOptionPane.showMessageDialog(null, "ANO DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		else if (Integer.parseInt(anoFim) < Integer.parseInt(anoInicio)){
+			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIGÊNCIA ANTERIOR A DATA INICIAL DA VIGÊNCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(anoFim) == Integer.parseInt(anoInicio) && Integer.parseInt(diaFim) < Integer.parseInt(diaInicio)){
+			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIGÊNCIA ANTERIOR A DATA INICIAL DA VIGÊNCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(anoFim) == Integer.parseInt(anoInicio) && Integer.parseInt(mesFim) < Integer.parseInt(mesInicio)){
+			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIGÊNCIA ANTERIOR A DATA INICIAL DA VIGÊNCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(diaFim) == Integer.parseInt(diaInicio) && 
+				Integer.parseInt(mesFim) == Integer.parseInt(mesInicio) && 
+				Integer.parseInt(anoFim) == Integer.parseInt(anoInicio)){
+			JOptionPane.showMessageDialog(null, "A VIGÊNCIA DO PRODUTO DEVE DURAR POR PELO MENOS 1 DIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok

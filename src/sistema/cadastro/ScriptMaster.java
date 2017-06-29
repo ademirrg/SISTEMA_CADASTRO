@@ -29,7 +29,7 @@ public class ScriptMaster {
 				+ "PRIMARY KEY (`CPF`));";
 		
 		String sqlTable3 = "CREATE TABLE `sistema_cadastro`.`produto` ("
-				+ "`CodPRD` VARCHAR(3) NOT NULL AUTO_INCREMENT, "
+				+ "`CodPRD` INT NOT NULL AUTO_INCREMENT, "
 				+ "`NomePRD` VARCHAR(25) NULL,"
 				+ "`InicioVigencia` VARCHAR(10) NULL,"
 				+ "`FimVigencia` VARCHAR(10) NULL,"
@@ -40,7 +40,7 @@ public class ScriptMaster {
 				+ "PRIMARY KEY (`CodPRD`)) AUTO_INCREMENT = 10;";
 		
 		String sqlTable4 = "CREATE TABLE `sistema_cadastro`.`segmento` ("
-				+ "`CodSegmento` VARCHAR(4) NOT NULL AUTO_INCREMENT,"
+				+ "`CodSegmento` INT NOT NULL AUTO_INCREMENT,"
 				+ "`NomeSegmento` VARCHAR(25) NULL,"
 				+ "`TPContrato` VARCHAR(25) NULL,"
 				+ "`TPPessoa` VARCHAR(2) NULL, "
