@@ -294,11 +294,11 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		else if (Integer.parseInt(diaInicio) < 1 || (Integer.parseInt(diaInicio) > 31)){
-			JOptionPane.showMessageDialog(null,  "DIA DE INÍCIO DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,  "DATA INÍCIO DA VIGÊNCIA INVÁLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(mesInicio) < 1 || Integer.parseInt(mesInicio) > 12){
-			JOptionPane.showMessageDialog(null, "MÊS DE INÍCIO DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA INÍCIO DA VIGÊNCIA INVÁLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(anoInicio) < anoVigente){
@@ -311,11 +311,11 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		else if (Integer.parseInt(diaFim) < 1 || (Integer.parseInt(diaFim) > 31)){
-			JOptionPane.showMessageDialog(null,  "DIA DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,  "DATA FIM DA VIGÊNCIA INVÁLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(mesFim) < 1 || Integer.parseInt(mesFim) > 12){
-			JOptionPane.showMessageDialog(null, "MÊS DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA FIM DA VIGÊNCIA INVÁLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(anoFim) < Integer.parseInt(anoInicio)){
@@ -435,6 +435,9 @@ public class CadastroProduto extends JFrame implements ActionListener{
 					altera.criaTelaAlteraProd();
 					altera.criaBotoesAlteraProd();
 					altera.setVisible(true);
+				}
+				else if (nomeCodPRD.equalsIgnoreCase(codPRDVO) == false && nomeCodPRD.equalsIgnoreCase(nomePRDVO) == false){
+					JOptionPane.showMessageDialog(null, "O PRODUTO INFORMADO NÃO EXISTE NA BASE.", "CONSULTA DE PRODUTO", JOptionPane.INFORMATION_MESSAGE);
 				}
 				
 			} catch (Exception exception) {
