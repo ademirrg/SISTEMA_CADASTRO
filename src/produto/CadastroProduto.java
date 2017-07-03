@@ -31,8 +31,8 @@ public class CadastroProduto extends JFrame implements ActionListener{
 	JTextField tAltNome = new JTextField(altNomePrd);	
 	JFormattedTextField tAltIniVig;
 	JFormattedTextField tAltFimVig;
-	JTextField tAltCodSeg = new JTextField(altCodSeg);
-	JTextField tAltPrdSta = new JTextField(altPrdSta);
+	JFormattedTextField tAltCodSeg = new JFormattedTextField(altCodSeg);
+	JFormattedTextField tAltPrdSta = new JFormattedTextField(altPrdSta);
 	
 	public void criaTelaCadastroProd(){
 	
@@ -141,6 +141,11 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		tAltFimVig = new JFormattedTextField(dataFim);
 		
 		try {
+			MaskFormatter maskSegmento;
+			maskSegmento = new MaskFormatter("###");
+			maskSegmento.setValidCharacters("0123456789");
+			maskSegmento.install(tAltCodSeg);
+			
 			MaskFormatter maskDataIni;
 			maskDataIni = new MaskFormatter("##/##/####");
 			maskDataIni.setValidCharacters("0123456789");
@@ -148,7 +153,13 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			
 			MaskFormatter maskDataFim;
 			maskDataFim = new MaskFormatter("##/##/####");
+			maskDataIni.setValidCharacters("0123456789");
 			maskDataFim.install(tAltFimVig);
+			
+			MaskFormatter maskStatus;
+			maskStatus = new MaskFormatter("#");
+			maskStatus.setValidCharacters("01");
+			maskStatus.install(tAltPrdSta);
 		
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -459,9 +470,34 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		String nomePRDVO = "";
 		String nomeOldPrd = cadastroVO.getNomePRD();
 		
+		try {
+			MaskFormatter maskSegmento;
+			maskSegmento = new MaskFormatter("###");
+			maskSegmento.setValidCharacters("0123456789");
+			maskSegmento.install(tAltCodSeg);
+			
+			MaskFormatter maskDataIni;
+			maskDataIni = new MaskFormatter("##/##/####");
+			maskDataIni.setValidCharacters("0123456789");
+			maskDataIni.install(tAltIniVig);
+			
+			MaskFormatter maskDataFim;
+			maskDataFim = new MaskFormatter("##/##/####");
+			maskDataIni.setValidCharacters("0123456789");
+			maskDataFim.install(tAltFimVig);
+			
+			MaskFormatter maskStatus;
+			maskStatus = new MaskFormatter("#");
+			maskStatus.setValidCharacters("01");
+			maskStatus.install(tAltPrdSta);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		//Para validação de data
 		int anoVigente = Calendar.getInstance().get(Calendar.YEAR);
-		
 		String[] separador = inicioVig.split("/");
 		String diaInicio = separador[0];
 		String mesInicio = separador[1];
@@ -475,6 +511,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		String anoFim = separador2[2];
 		fimVig = anoFim + "-" + mesFim + "-" + diaFim;
 		fimVig = fimVig.trim();
+		
 		
 		if (nomePRD.length()<4 || nomePRD.length()>25){
 			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO INVÁLIDO!" + System.lineSeparator() + 
