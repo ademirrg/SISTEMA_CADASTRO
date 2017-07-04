@@ -295,7 +295,8 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 					CadastroSegmento tela = new CadastroSegmento();
 					tela.criaTelaCadastroSeg();
 					tela.criaBotoes();
-					tela.setVisible(true);	
+					tela.setVisible(true);
+					tela.criaFocoCadastroSeg();
 				}
 				
 			} catch (Exception exception) {

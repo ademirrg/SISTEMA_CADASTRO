@@ -277,6 +277,9 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		
 		//Para validação de data
 		int anoVigente = Calendar.getInstance().get(Calendar.YEAR);
+		int mesVigente = Calendar.getInstance().get(Calendar.MONTH);
+		mesVigente = mesVigente + 1;
+		int diaAtual = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 		
 		String[] separador = inicioVig.split("/");
 		String diaInicio = separador[0];
@@ -317,7 +320,18 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		else if (Integer.parseInt(anoInicio) < anoVigente){
-			JOptionPane.showMessageDialog(null, "O INÍCIO DA VIGÊNCIA DEVE SER À PARTIR DE: " + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "O INÍCIO DA VIGÊNCIA DEVE SER À PARTIR DE HOJE: " + 
+		diaAtual + "/" + mesVigente + "/" + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(anoInicio) == anoVigente && Integer.parseInt(mesInicio) < mesVigente){
+			JOptionPane.showMessageDialog(null, "O INÍCIO DA VIGÊNCIA DEVE SER À PARTIR DE HOJE: " + 
+		diaAtual + "/" + mesVigente + "/" + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if (Integer.parseInt(anoInicio) == anoVigente && Integer.parseInt(mesInicio) == mesVigente && Integer.parseInt(diaInicio) < diaAtual){
+			JOptionPane.showMessageDialog(null, "O INÍCIO DA VIGÊNCIA DEVE SER À PARTIR DE HOJE: " + 
+		diaAtual + "/" + mesVigente + "/" + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (fimVig.length()<10 || fimVig.length()>10){
@@ -396,6 +410,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 						tela.criaTelaCadastroProd();
 						tela.criaBotoes();
 						tela.setVisible(true);
+						tela.criaFocoCadastroProd();
 					}
 				}
 				
@@ -473,6 +488,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		segmento = segmento.trim();
 		String segmentoVO = "";
 		String inicioVig = tAltIniVig.getText();
+		String inicioVigOld = cadastroVO.getInicioVig();
 		String fimVig = tAltFimVig.getText();
 		String prdsta = tAltPrdSta.getText();
 		prdsta = prdsta.trim();
@@ -481,20 +497,27 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		
 		//Para validação de data
 		int anoVigente = Calendar.getInstance().get(Calendar.YEAR);
+		int mesVigente = Calendar.getInstance().get(Calendar.MONTH);
+		mesVigente = mesVigente + 1;
+		int diaAtual = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+		
 		String[] separador = inicioVig.split("/");
 		String diaInicio = separador[0];
 		String mesInicio = separador[1];
 		String anoInicio = separador[2];
-		inicioVig = anoInicio + "-" + mesInicio + "-" + diaInicio;
 		inicioVig = inicioVig.trim();
 		
 		String[] separador2 = fimVig.split("/");
 		String diaFim = separador2[0];
 		String mesFim = separador2[1];
 		String anoFim = separador2[2];
-		fimVig = anoFim + "-" + mesFim + "-" + diaFim;
 		fimVig = fimVig.trim();
 		
+		String[] dataSeparadaInicio = inicioVigOld.split("-");
+		String anoInicioOld = dataSeparadaInicio[0];
+		String mesInicioOld = dataSeparadaInicio[1];
+		String diaInicioOld = dataSeparadaInicio[2];
+		inicioVigOld = diaInicioOld + "/" + mesInicioOld + "/" + anoInicioOld;
 		
 		if (nomePRD.length()<4 || nomePRD.length()>25){
 			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO INVÁLIDO!" + System.lineSeparator() + 
@@ -515,42 +538,65 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			tela.criaBotoesAlteraProd();
 			tela.setVisible(true);
 		}
-		
-		else if (inicioVig.length()<10 || inicioVig.length()>10){
-			JOptionPane.showMessageDialog(null, "CAMPO VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + 
-					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM APENAS NÚMEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
-			dispose();
-			CadastroProduto tela = new CadastroProduto();
-			tela.criaTelaAlteraProd();
-			tela.criaBotoesAlteraProd();
-			tela.setVisible(true);
-		}
-		
-		else if (Integer.parseInt(diaInicio) < 1 || (Integer.parseInt(diaInicio) > 31)){
-			JOptionPane.showMessageDialog(null,  "DATA INÍCIO DA VIGÊNCIA INVÁLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
-			dispose();
-			CadastroProduto tela = new CadastroProduto();
-			tela.criaTelaAlteraProd();
-			tela.criaBotoesAlteraProd();
-			tela.setVisible(true);
-		}
-		
-		else if (Integer.parseInt(mesInicio) < 1 || Integer.parseInt(mesInicio) > 12){
-			JOptionPane.showMessageDialog(null, "DATA INÍCIO DA VIGÊNCIA INVÁLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
-			dispose();
-			CadastroProduto tela = new CadastroProduto();
-			tela.criaTelaAlteraProd();
-			tela.criaBotoesAlteraProd();
-			tela.setVisible(true);
-		}
-		
-		else if (Integer.parseInt(anoInicio) < anoVigente){
-			JOptionPane.showMessageDialog(null, "O INÍCIO DA VIGÊNCIA DEVE SER À PARTIR DE: " + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
-			dispose();
-			CadastroProduto tela = new CadastroProduto();
-			tela.criaTelaAlteraProd();
-			tela.criaBotoesAlteraProd();
-			tela.setVisible(true);
+		else if(inicioVig.equals(inicioVigOld)==false){
+			
+			if (inicioVig.length()<10 || inicioVig.length()>10){
+				JOptionPane.showMessageDialog(null, "CAMPO VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + 
+						"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM APENAS NÚMEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
+				dispose();
+				CadastroProduto tela = new CadastroProduto();
+				tela.criaTelaAlteraProd();
+				tela.criaBotoesAlteraProd();
+				tela.setVisible(true);
+			}
+			
+			else if (Integer.parseInt(diaInicio) < 1 || (Integer.parseInt(diaInicio) > 31)){
+				JOptionPane.showMessageDialog(null,  "DATA INÍCIO DA VIGÊNCIA INVÁLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+				dispose();
+				CadastroProduto tela = new CadastroProduto();
+				tela.criaTelaAlteraProd();
+				tela.criaBotoesAlteraProd();
+				tela.setVisible(true);
+			}
+			
+			else if (Integer.parseInt(mesInicio) < 1 || Integer.parseInt(mesInicio) > 12){
+				JOptionPane.showMessageDialog(null, "DATA INÍCIO DA VIGÊNCIA INVÁLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+				dispose();
+				CadastroProduto tela = new CadastroProduto();
+				tela.criaTelaAlteraProd();
+				tela.criaBotoesAlteraProd();
+				tela.setVisible(true);
+			}
+			
+			else if (Integer.parseInt(anoInicio) < anoVigente){
+				JOptionPane.showMessageDialog(null, "SE A DATA DE INÍCIO DA VIGÊNCIA FOR ALTERADA, DEVERÁ SER À PARTIR DE HOJE: " + 
+			diaAtual + "/" + mesVigente + "/" + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
+				dispose();
+				CadastroProduto tela = new CadastroProduto();
+				tela.criaTelaAlteraProd();
+				tela.criaBotoesAlteraProd();
+				tela.setVisible(true);
+			}
+			
+			else if (Integer.parseInt(anoInicio) == anoVigente && Integer.parseInt(mesInicio) < mesVigente){
+				JOptionPane.showMessageDialog(null, "SE A DATA DE INÍCIO DA VIGÊNCIA FOR ALTERADA, DEVERÁ SER À PARTIR DE HOJE: " + 
+			diaAtual + "/" + mesVigente + "/" + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
+				dispose();
+				CadastroProduto tela = new CadastroProduto();
+				tela.criaTelaAlteraProd();
+				tela.criaBotoesAlteraProd();
+				tela.setVisible(true);
+			}
+			
+			else if (Integer.parseInt(anoInicio) == anoVigente && Integer.parseInt(mesInicio) == mesVigente && Integer.parseInt(diaInicio) < diaAtual){
+				JOptionPane.showMessageDialog(null, "SE A DATA DE INÍCIO DA VIGÊNCIA FOR ALTERADA, DEVERÁ SER À PARTIR DE HOJE: " + 
+			diaAtual + "/" + mesVigente + "/" + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
+				dispose();
+				CadastroProduto tela = new CadastroProduto();
+				tela.criaTelaAlteraProd();
+				tela.criaBotoesAlteraProd();
+				tela.setVisible(true);
+			}
 		}
 		
 		else if (fimVig.length()<10 || fimVig.length()>10){
@@ -667,6 +713,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 							cadastroVO.setNomePRD(nomePRD);
 							inicioVig = anoInicio + "-" + mesInicio + "-" + diaInicio;
 							cadastroVO.setInicioVig(inicioVig);
+							fimVig = anoFim + "-" + mesFim + "-" + diaFim;
 							cadastroVO.setFimVig(fimVig);
 							cadastroVO.setCodSeg(segmento);
 							cadastroVO.setPRDSTA(prdsta);
@@ -701,7 +748,9 @@ public class CadastroProduto extends JFrame implements ActionListener{
 					else {
 						cadastroVO.setCodPRD(codPRD);
 						cadastroVO.setNomePRD(nomePRD);
+						inicioVig = anoInicio + "-" + mesInicio + "-" + diaInicio;
 						cadastroVO.setInicioVig(inicioVig);
+						fimVig = anoFim + "-" + mesFim + "-" + diaFim;
 						cadastroVO.setFimVig(fimVig);
 						cadastroVO.setCodSeg(segmento);
 						cadastroVO.setPRDSTA(prdsta);
@@ -716,7 +765,6 @@ public class CadastroProduto extends JFrame implements ActionListener{
 						tela.setVisible(true);
 					}
 				}
-				
 				
 			} catch (Exception exception) {
 				// TODO Auto-generated catch block

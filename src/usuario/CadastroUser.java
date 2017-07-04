@@ -441,6 +441,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 					cadastroUser.criaTelaCadastroUser();
 					cadastroUser.criaBotoes();
 					cadastroUser.setVisible(true);
+					cadastroUser.criaFocoCadastroUser();
 				
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
