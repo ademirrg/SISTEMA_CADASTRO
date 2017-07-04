@@ -2,7 +2,11 @@ package segmento;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
+
 import sistema.cadastro.Botao;
 import sistema.cadastro.Tela;
 
@@ -24,43 +28,60 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	String altSegSta = cadastroVO.getSegSta();
 	JTextField tAltCod = new JTextField(altCodSeg);
 	JTextField tAltNome = new JTextField(altNomeSeg);	
-	JTextField tAltTpCtt = new JTextField(altTpCtt);
-	JTextField tAltTpPessoa = new JTextField(altTpPessoa);
-	JTextField tAltSegSta = new JTextField(altSegSta);
+	JFormattedTextField tAltTpCtt = new JFormattedTextField(altTpCtt);
+	JFormattedTextField tAltTpPessoa = new JFormattedTextField(altTpPessoa);
+	JFormattedTextField tAltSegSta = new JFormattedTextField(altSegSta);
 	
 	public void criaTelaCadastroSeg(){
-	
-	//Tela
-	setTitle("CADASTRAMENTO DE SEGMENTO");
-	setSize(700, 500);
-	//setLocation(450, 100);
-	setLocationRelativeTo(null);
-	setResizable(false);
-	setLayout(null);
-	getContentPane().setBackground(Color.LIGHT_GRAY);
-	setDefaultCloseOperation(EXIT_ON_CLOSE);
-	
-	//Label
-	tNome.setBounds(157,50,165,25);
-	tTpCtt.setBounds(157,80,70,25);
-	tTpPessoa.setBounds(157,110,70,25);
-	JLabel l1 = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
-	l1.setBounds(30,15,330,30);
-	JLabel l2 = new JLabel("NOME DO SEGMENTO:");
-	l2.setBounds(30,50,200,30);
-	JLabel l3 = new JLabel("TIPO CONTRATO:");
-	l3.setBounds(57,80,200,30);
-	JLabel l4 = new JLabel("TIPO PESSOA:");
-	l4.setBounds(73,110,200,30);
-	
-	//Add
-	getContentPane().add(tNome);
-	getContentPane().add(tTpCtt);
-	getContentPane().add(tTpPessoa);
-	getContentPane().add(l1);
-	getContentPane().add(l2);
-	getContentPane().add(l3);
-	getContentPane().add(l4);
+		
+		//Cria campos formatados
+		try {
+			MaskFormatter tpCtt;
+			tpCtt = new MaskFormatter("***");
+			tpCtt.setValidCharacters("cCdDlLsSgG");
+			tTpCtt = new JFormattedTextField(tpCtt);
+			
+			MaskFormatter tpPessoa;
+			tpPessoa = new MaskFormatter("**");
+			tpPessoa.setValidCharacters("pPfFjJ");
+			tTpPessoa = new JFormattedTextField(tpPessoa);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		//Tela
+		setTitle("CADASTRAMENTO DE SEGMENTO");
+		setSize(700, 500);
+		//setLocation(450, 100);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setLayout(null);
+		getContentPane().setBackground(Color.LIGHT_GRAY);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		//Label
+		tNome.setBounds(157,50,165,25);
+		tTpCtt.setBounds(157,80,70,25);
+		tTpPessoa.setBounds(157,110,70,25);
+		JLabel l1 = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
+		l1.setBounds(30,15,330,30);
+		JLabel l2 = new JLabel("NOME DO SEGMENTO:");
+		l2.setBounds(30,50,200,30);
+		JLabel l3 = new JLabel("TIPO CONTRATO:");
+		l3.setBounds(57,80,200,30);
+		JLabel l4 = new JLabel("TIPO PESSOA:");
+		l4.setBounds(73,110,200,30);
+		
+		//Add
+		getContentPane().add(tNome);
+		getContentPane().add(tTpCtt);
+		getContentPane().add(tTpPessoa);
+		getContentPane().add(l1);
+		getContentPane().add(l2);
+		getContentPane().add(l3);
+		getContentPane().add(l4);
 	}
 	
 	public void criaBotoes() {	
@@ -68,28 +89,28 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	}
 
 	public void criaTelaBuscaSeg(){
+			
+		//Tela
+		setTitle("ALTERAÇÃO DE SEGMENTO");
+		setSize(700, 500);
+		//setLocation(450, 100);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setLayout(null);
+		getContentPane().setBackground(Color.LIGHT_GRAY);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-	//Tela
-	setTitle("ALTERAÇÃO DE SEGMENTO");
-	setSize(700, 500);
-	//setLocation(450, 100);
-	setLocationRelativeTo(null);
-	setResizable(false);
-	setLayout(null);
-	getContentPane().setBackground(Color.LIGHT_GRAY);
-	setDefaultCloseOperation(EXIT_ON_CLOSE);
+		//Label
+		tNome.setBounds(210,50,165,25);
+		JLabel l1 = new JLabel("INFORME OS DADOS DO SEGMENTO QUE DESEJA ALTERAR E PRESSIONE BUSCAR.");
+		l1.setBounds(30,15,500,30);
+		JLabel l2 = new JLabel("NOME OU COD. DO SEGMENTO:");
+		l2.setBounds(30,50,250,30);
 	
-	//Label
-	tNome.setBounds(210,50,165,25);
-	JLabel l1 = new JLabel("INFORME OS DADOS DO SEGMENTO QUE DESEJA ALTERAR E PRESSIONE BUSCAR.");
-	l1.setBounds(30,15,500,30);
-	JLabel l2 = new JLabel("NOME OU COD. DO SEGMENTO:");
-	l2.setBounds(30,50,250,30);
-
-	//Add
-	getContentPane().add(tNome);
-	getContentPane().add(l1);
-	getContentPane().add(l2);
+		//Add
+		getContentPane().add(tNome);
+		getContentPane().add(l1);
+		getContentPane().add(l2);
 	}
 	
 	public void criaBotoesBuscaSeg() {
@@ -98,48 +119,70 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	
 	public void criaTelaAlteraSeg(){
 		
-	//Tela
-	setTitle("ALTERAÇÃO DO SEGMENTO: " + altCodSeg + " - " + altNomeSeg);
-	setSize(700, 500);
-	//setLocation(450, 100);
-	setLocationRelativeTo(null);
-	setResizable(false);
-	setLayout(null);
-	getContentPane().setBackground(Color.LIGHT_GRAY);
-	setDefaultCloseOperation(EXIT_ON_CLOSE);
-	
-	//Label
-	tAltNome.setBounds(157,50,165,25);
-	tAltCod.setBounds(157,80,70,25);
-	tAltCod.setEnabled(false);
-	tAltTpCtt.setBounds(157,110,70,25);
-	tAltTpPessoa.setBounds(157,140,70,25);
-	tAltSegSta.setBounds(157,170,70,25);
-	JLabel l1 = new JLabel("INFORME OS DADOS DO SEGMENTO QUE DESEJA ALTERAR.");
-	l1.setBounds(30,15,350,30);
-	JLabel l2 = new JLabel("NOME DO SEGMENTO:");
-	l2.setBounds(30,50,200,30);
-	JLabel l3 = new JLabel("COD. DO SEGMENTO:");
-	l3.setBounds(36,80,200,30);
-	JLabel l4 = new JLabel("TIPO CONTRATO:");
-	l4.setBounds(57,110,200,30);
-	JLabel l5 = new JLabel("TIPO PESSOA:");
-	l5.setBounds(73,140,200,30);
-	JLabel l6 = new JLabel("STATUS:");
-	l6.setBounds(98,170,85,30);
-	
-	//Add
-	getContentPane().add(tAltNome);
-	getContentPane().add(tAltCod);
-	getContentPane().add(tAltTpCtt);
-	getContentPane().add(tAltTpPessoa);
-	getContentPane().add(tAltSegSta);
-	getContentPane().add(l1);
-	getContentPane().add(l2);
-	getContentPane().add(l3);
-	getContentPane().add(l4);
-	getContentPane().add(l5);
-	getContentPane().add(l6);
+		//Cria campos formatados
+		try {
+			MaskFormatter tpCtt;
+			tpCtt = new MaskFormatter("***");
+			tpCtt.setValidCharacters("cCdDlLsSgG");
+			tpCtt.install(tAltTpCtt);
+			
+			MaskFormatter tpPessoa;
+			tpPessoa = new MaskFormatter("**");
+			tpPessoa.setValidCharacters("pPfFjJ");
+			tpPessoa.install(tAltTpPessoa);
+			
+			MaskFormatter segStatus;
+			segStatus = new MaskFormatter("#");
+			segStatus.setValidCharacters("01");
+			segStatus.install(tAltSegSta);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Tela
+		setTitle("ALTERAÇÃO DO SEGMENTO: " + altCodSeg + " - " + altNomeSeg);
+		setSize(700, 500);
+		//setLocation(450, 100);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setLayout(null);
+		getContentPane().setBackground(Color.LIGHT_GRAY);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		//Label
+		tAltNome.setBounds(157,50,165,25);
+		tAltCod.setBounds(157,80,70,25);
+		tAltCod.setEnabled(false);
+		tAltTpCtt.setBounds(157,110,70,25);
+		tAltTpPessoa.setBounds(157,140,70,25);
+		tAltSegSta.setBounds(157,170,70,25);
+		JLabel l1 = new JLabel("INFORME OS DADOS DO SEGMENTO QUE DESEJA ALTERAR.");
+		l1.setBounds(30,15,350,30);
+		JLabel l2 = new JLabel("NOME DO SEGMENTO:");
+		l2.setBounds(30,50,200,30);
+		JLabel l3 = new JLabel("COD. DO SEGMENTO:");
+		l3.setBounds(36,80,200,30);
+		JLabel l4 = new JLabel("TIPO CONTRATO:");
+		l4.setBounds(57,110,200,30);
+		JLabel l5 = new JLabel("TIPO PESSOA:");
+		l5.setBounds(73,140,200,30);
+		JLabel l6 = new JLabel("STATUS:");
+		l6.setBounds(98,170,85,30);
+		
+		//Add
+		getContentPane().add(tAltNome);
+		getContentPane().add(tAltCod);
+		getContentPane().add(tAltTpCtt);
+		getContentPane().add(tAltTpPessoa);
+		getContentPane().add(tAltSegSta);
+		getContentPane().add(l1);
+		getContentPane().add(l2);
+		getContentPane().add(l3);
+		getContentPane().add(l4);
+		getContentPane().add(l5);
+		getContentPane().add(l6);
 	}
 	
 	public void criaBotoesAlteraSeg() {
@@ -305,6 +348,9 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 					altera.criaBotoesAlteraSeg();
 					altera.setVisible(true);
 				}
+				else if (nomeCodSeg.equalsIgnoreCase(codSegVO) == false && nomeCodSeg.equalsIgnoreCase(nomeSegVO) == false){
+					JOptionPane.showMessageDialog(null, "O SEGMENTO INFORMADO NÃO EXISTE NA BASE.", "CONSULTA DE SEGMENTO", JOptionPane.INFORMATION_MESSAGE);
+				}
 				
 			} catch (Exception exception) {
 				// TODO Auto-generated catch block
@@ -322,6 +368,28 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 		String segSta = tAltSegSta.getText();
 		String nomeSegVO = "";
 		String nomeOldSeg = cadastroVO.getNomeSeg();
+		
+		//Cria campos formatados
+		try {
+			MaskFormatter maskTpCtt;
+			maskTpCtt = new MaskFormatter("***");
+			maskTpCtt.setValidCharacters("cCdDlLsSgG");
+			maskTpCtt.install(tAltTpCtt);
+			
+			MaskFormatter maskTpPessoa;
+			maskTpPessoa = new MaskFormatter("**");
+			maskTpPessoa.setValidCharacters("pPfFjJ");
+			maskTpPessoa.install(tAltTpPessoa);
+			
+			MaskFormatter maskSegStatus;
+			maskSegStatus = new MaskFormatter("#");
+			maskSegStatus.setValidCharacters("01");
+			maskSegStatus.install(tAltSegSta);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		if (nomeSeg.length()<4 || nomeSeg.length()>25){
 			JOptionPane.showMessageDialog(null, "NOME DO SEGMENTO INVÁLIDO!" + System.lineSeparator() + 
