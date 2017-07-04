@@ -458,43 +458,20 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 	}
 	
-	
 	//Alteração de produto
 	public void pegaValorTelaAlteraProd(){
 		String nomePRD = tAltNome.getText();
 		String codPRD = tAltCod.getText();
+		String segmentoOld = cadastroVO.getCodSeg();//Mantem o ultimo segmento valido na VO
 		String segmento = tAltCodSeg.getText();
+		segmento = segmento.trim();
+		String segmentoVO = "";
 		String inicioVig = tAltIniVig.getText();
 		String fimVig = tAltFimVig.getText();
 		String prdsta = tAltPrdSta.getText();
+		prdsta = prdsta.trim();
 		String nomePRDVO = "";
 		String nomeOldPrd = cadastroVO.getNomePRD();
-		
-		try {
-			MaskFormatter maskSegmento;
-			maskSegmento = new MaskFormatter("###");
-			maskSegmento.setValidCharacters("0123456789");
-			maskSegmento.install(tAltCodSeg);
-			
-			MaskFormatter maskDataIni;
-			maskDataIni = new MaskFormatter("##/##/####");
-			maskDataIni.setValidCharacters("0123456789");
-			maskDataIni.install(tAltIniVig);
-			
-			MaskFormatter maskDataFim;
-			maskDataFim = new MaskFormatter("##/##/####");
-			maskDataIni.setValidCharacters("0123456789");
-			maskDataFim.install(tAltFimVig);
-			
-			MaskFormatter maskStatus;
-			maskStatus = new MaskFormatter("#");
-			maskStatus.setValidCharacters("01");
-			maskStatus.install(tAltPrdSta);
-			
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		//Para validação de data
 		int anoVigente = Calendar.getInstance().get(Calendar.YEAR);
@@ -516,45 +493,105 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		if (nomePRD.length()<4 || nomePRD.length()>25){
 			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO INVÁLIDO!" + System.lineSeparator() + 
 					"O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroProduto tela = new CadastroProduto();
+			tela.criaTelaAlteraProd();
+			tela.criaBotoesAlteraProd();
+			tela.setVisible(true);
 		}
 			
 		else if (segmento.length()<3 || segmento.length()>3){
 			JOptionPane.showMessageDialog(null, "CAMPO SEGMENTO INVÁLIDO!" + System.lineSeparator() + 
 					"O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroProduto tela = new CadastroProduto();
+			tela.criaTelaAlteraProd();
+			tela.criaBotoesAlteraProd();
+			tela.setVisible(true);
 		}
 		
 		else if (inicioVig.length()<10 || inicioVig.length()>10){
 			JOptionPane.showMessageDialog(null, "CAMPO VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + 
 					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM APENAS NÚMEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroProduto tela = new CadastroProduto();
+			tela.criaTelaAlteraProd();
+			tela.criaBotoesAlteraProd();
+			tela.setVisible(true);
 		}
 		
 		else if (Integer.parseInt(diaInicio) < 1 || (Integer.parseInt(diaInicio) > 31)){
 			JOptionPane.showMessageDialog(null,  "DIA DE INÍCIO DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroProduto tela = new CadastroProduto();
+			tela.criaTelaAlteraProd();
+			tela.criaBotoesAlteraProd();
+			tela.setVisible(true);
 		}
 		
 		else if (Integer.parseInt(mesInicio) < 1 || Integer.parseInt(mesInicio) > 12){
 			JOptionPane.showMessageDialog(null, "MÊS DE INÍCIO DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroProduto tela = new CadastroProduto();
+			tela.criaTelaAlteraProd();
+			tela.criaBotoesAlteraProd();
+			tela.setVisible(true);
 		}
 		
 		else if (Integer.parseInt(anoInicio) < anoVigente){
 			JOptionPane.showMessageDialog(null, "ANO DE INÍCIO DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroProduto tela = new CadastroProduto();
+			tela.criaTelaAlteraProd();
+			tela.criaBotoesAlteraProd();
+			tela.setVisible(true);
 		}
 		
 		else if (fimVig.length()<10 || fimVig.length()>10){
 			JOptionPane.showMessageDialog(null, "CAMPO VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + 
 					"O CAMPO VIGÊNCIA DEVE CONTER A DATA DE INÍCIO E FIM DE VIGÊNCIA DO PRODUTO NO PADRÃO DD/MM/AAAA COM APENAS NÚMEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroProduto tela = new CadastroProduto();
+			tela.criaTelaAlteraProd();
+			tela.criaBotoesAlteraProd();
+			tela.setVisible(true);
 		}
 		
 		else if (Integer.parseInt(diaFim) < 1 || (Integer.parseInt(diaFim) > 31)){
 			JOptionPane.showMessageDialog(null,  "DIA DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroProduto tela = new CadastroProduto();
+			tela.criaTelaAlteraProd();
+			tela.criaBotoesAlteraProd();
+			tela.setVisible(true);
 		}
 		
 		else if (Integer.parseInt(mesFim) < 1 || Integer.parseInt(mesFim) > 12){
 			JOptionPane.showMessageDialog(null, "MÊS DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroProduto tela = new CadastroProduto();
+			tela.criaTelaAlteraProd();
+			tela.criaBotoesAlteraProd();
+			tela.setVisible(true);
 		}
 		
 		else if (Integer.parseInt(anoFim) < anoVigente){
 			JOptionPane.showMessageDialog(null, "ANO DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroProduto tela = new CadastroProduto();
+			tela.criaTelaAlteraProd();
+			tela.criaBotoesAlteraProd();
+			tela.setVisible(true);
+		}
+		
+		else if (prdsta.equals("1")==false && prdsta.equals("0")==false){
+			JOptionPane.showMessageDialog(null, "CAMPO STATUS INVÁLIDO!" + System.lineSeparator() + 
+					"O CAMPO STATUS DEVE CONTER 1 CARACTERE, INDICANDO STATUS ATIVO/INATIVO (1/0).", "ERRO", JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroProduto tela = new CadastroProduto();
+			tela.criaTelaAlteraProd();
+			tela.criaBotoesAlteraProd();
+			tela.setVisible(true);
 		}
 		
 		//Se todos os campos estiverem ok
@@ -577,10 +614,16 @@ public class CadastroProduto extends JFrame implements ActionListener{
 						cadastroVO.setCodSeg(segmento);
 						//Verifica se existe o segmento informado
 						dao.buscarDadosNaBaseSeg(cadastroVO);
-						segmento = cadastroVO.getCodSeg();
+						segmentoVO = cadastroVO.getCodSeg();
 						
-						if(segmento.length()==0){
+						if(segmentoVO.length()==0){
 							JOptionPane.showMessageDialog(null, "O SEGMENTO INFORMADO NÃO EXISTE NA BASE.", "ERRO", JOptionPane.ERROR_MESSAGE);
+							cadastroVO.setCodSeg(segmentoOld);
+							dispose();
+							CadastroProduto tela = new CadastroProduto();
+							tela.criaTelaAlteraProd();
+							tela.criaBotoesAlteraProd();
+							tela.setVisible(true);
 						}
 						else {
 							cadastroVO.setCodPRD(codPRD);
@@ -607,10 +650,16 @@ public class CadastroProduto extends JFrame implements ActionListener{
 					cadastroVO.setCodSeg(segmento);
 					//Verifica se existe o segmento informado
 					dao.buscarDadosNaBaseSeg(cadastroVO);
-					segmento = cadastroVO.getCodSeg();
+					segmentoVO = cadastroVO.getCodSeg();
 					
-					if(segmento.length()==0){
+					if(segmentoVO.length()==0){
 						JOptionPane.showMessageDialog(null, "O SEGMENTO INFORMADO NÃO EXISTE NA BASE.", "ERRO", JOptionPane.ERROR_MESSAGE);
+						cadastroVO.setCodSeg(segmentoOld);
+						dispose();
+						CadastroProduto tela = new CadastroProduto();
+						tela.criaTelaAlteraProd();
+						tela.criaBotoesAlteraProd();
+						tela.setVisible(true);
 					}
 					else {
 						cadastroVO.setCodPRD(codPRD);

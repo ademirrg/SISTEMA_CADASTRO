@@ -364,51 +364,52 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 		String nomeSeg = tAltNome.getText();
 		String codSeg = cadastroVO.getCodSeg();
 		String tpCtt = tAltTpCtt.getText();
+		tpCtt = tpCtt.trim();
 		String tpPessoa = tAltTpPessoa.getText();
+		tpPessoa = tpPessoa.trim();
 		String segSta = tAltSegSta.getText();
+		segSta = segSta.trim();
 		String nomeSegVO = "";
 		String nomeOldSeg = cadastroVO.getNomeSeg();
-		
-		//Cria campos formatados
-		try {
-			MaskFormatter maskTpCtt;
-			maskTpCtt = new MaskFormatter("***");
-			maskTpCtt.setValidCharacters("cCdDlLsSgG");
-			maskTpCtt.install(tAltTpCtt);
-			
-			MaskFormatter maskTpPessoa;
-			maskTpPessoa = new MaskFormatter("**");
-			maskTpPessoa.setValidCharacters("pPfFjJ");
-			maskTpPessoa.install(tAltTpPessoa);
-			
-			MaskFormatter maskSegStatus;
-			maskSegStatus = new MaskFormatter("#");
-			maskSegStatus.setValidCharacters("01");
-			maskSegStatus.install(tAltSegSta);
-			
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		if (nomeSeg.length()<4 || nomeSeg.length()>25){
 			JOptionPane.showMessageDialog(null, "NOME DO SEGMENTO INVÁLIDO!" + System.lineSeparator() + 
 					"O CAMPO NOME DO SEGMENTO DEVE CONTER DE 4 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroSegmento tela = new CadastroSegmento();
+			tela.criaTelaAlteraSeg();
+			tela.criaBotoesAlteraSeg();
+			tela.setVisible(true);
 		}
 		
 		else if (tpCtt.equalsIgnoreCase("CDC")==false && tpCtt.equalsIgnoreCase("LSG")==false){
 			JOptionPane.showMessageDialog(null, "CAMPO TIPO DE CONTRATO INVÁLIDO!" + System.lineSeparator() + 
 					"O CAMPO TIPO CONTRATO DEVE CONTER 3 CARACTERES (CDC OU LSG).", "ERRO", JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroSegmento tela = new CadastroSegmento();
+			tela.criaTelaAlteraSeg();
+			tela.criaBotoesAlteraSeg();
+			tela.setVisible(true);
 		}
 		
 		else if (tpPessoa.equalsIgnoreCase("PF")==false && tpPessoa.equalsIgnoreCase("PJ")==false){
-			JOptionPane.showMessageDialog(null, "CAMPO INÍCIO DE VIGÊNCIA INVÁLIDO!" + System.lineSeparator() + 
-					"O CAMPO TIPO PESSOA DEVE CONTER 2 CARACTERES (PF OU PJ).", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO TIPO DE PESSOA INVÁLIDO!" + System.lineSeparator() + 
+					"O CAMPO TIPO DE PESSOA DEVE CONTER 2 CARACTERES (PF OU PJ).", "ERRO", JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroSegmento tela = new CadastroSegmento();
+			tela.criaTelaAlteraSeg();
+			tela.criaBotoesAlteraSeg();
+			tela.setVisible(true);
 		}
 		
 		else if (segSta.equals("1")==false && segSta.equals("0")==false){
 			JOptionPane.showMessageDialog(null, "CAMPO STATUS INVÁLIDO!" + System.lineSeparator() + 
 					"O CAMPO STATUS DEVE CONTER 1 CARACTERE, INDICANDO STATUS ATIVO/INATIVO (1/0).", "ERRO", JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroSegmento tela = new CadastroSegmento();
+			tela.criaTelaAlteraSeg();
+			tela.criaBotoesAlteraSeg();
+			tela.setVisible(true);
 		}
 		
 		//Se todos os campos estiverem ok
