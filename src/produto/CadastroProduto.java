@@ -333,11 +333,13 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIGÊNCIA ANTERIOR A DATA INICIAL DA VIGÊNCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
-		else if (Integer.parseInt(anoFim) == Integer.parseInt(anoInicio) && Integer.parseInt(diaFim) < Integer.parseInt(diaInicio)){
+		else if (Integer.parseInt(anoFim) == Integer.parseInt(anoInicio) && Integer.parseInt(mesFim) < Integer.parseInt(mesInicio)){
 			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIGÊNCIA ANTERIOR A DATA INICIAL DA VIGÊNCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
-		else if (Integer.parseInt(anoFim) == Integer.parseInt(anoInicio) && Integer.parseInt(mesFim) < Integer.parseInt(mesInicio)){
+		else if (Integer.parseInt(anoFim) == Integer.parseInt(anoInicio) && 
+				Integer.parseInt(mesFim) == Integer.parseInt(mesInicio) &&
+				Integer.parseInt(diaFim) < Integer.parseInt(diaInicio)){
 			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIGÊNCIA ANTERIOR A DATA INICIAL DA VIGÊNCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
@@ -521,7 +523,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		else if (Integer.parseInt(diaInicio) < 1 || (Integer.parseInt(diaInicio) > 31)){
-			JOptionPane.showMessageDialog(null,  "DIA DE INÍCIO DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,  "DATA INÍCIO DA VIGÊNCIA INVÁLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
 			tela.criaTelaAlteraProd();
@@ -530,7 +532,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		else if (Integer.parseInt(mesInicio) < 1 || Integer.parseInt(mesInicio) > 12){
-			JOptionPane.showMessageDialog(null, "MÊS DE INÍCIO DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA INÍCIO DA VIGÊNCIA INVÁLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
 			tela.criaTelaAlteraProd();
@@ -539,7 +541,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		else if (Integer.parseInt(anoInicio) < anoVigente){
-			JOptionPane.showMessageDialog(null, "ANO DE INÍCIO DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "O INÍCIO DA VIGÊNCIA DEVE SER À PARTIR DE: " + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
 			tela.criaTelaAlteraProd();
@@ -558,7 +560,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		else if (Integer.parseInt(diaFim) < 1 || (Integer.parseInt(diaFim) > 31)){
-			JOptionPane.showMessageDialog(null,  "DIA DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,  "DATA FIM DA VIGÊNCIA INVÁLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
 			tela.criaTelaAlteraProd();
@@ -567,7 +569,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		else if (Integer.parseInt(mesFim) < 1 || Integer.parseInt(mesFim) > 12){
-			JOptionPane.showMessageDialog(null, "MÊS DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA FIM DA VIGÊNCIA INVÁLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
 			tela.criaTelaAlteraProd();
@@ -575,8 +577,39 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			tela.setVisible(true);
 		}
 		
-		else if (Integer.parseInt(anoFim) < anoVigente){
-			JOptionPane.showMessageDialog(null, "ANO DE FIM DE VIGÊNCIA INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+		else if (Integer.parseInt(anoFim) < Integer.parseInt(anoInicio)){
+			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIGÊNCIA ANTERIOR A DATA INICIAL DA VIGÊNCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroProduto tela = new CadastroProduto();
+			tela.criaTelaAlteraProd();
+			tela.criaBotoesAlteraProd();
+			tela.setVisible(true);
+		}
+		
+		else if (Integer.parseInt(anoFim) == Integer.parseInt(anoInicio) && Integer.parseInt(mesFim) < Integer.parseInt(mesInicio)){
+			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIGÊNCIA ANTERIOR A DATA INICIAL DA VIGÊNCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroProduto tela = new CadastroProduto();
+			tela.criaTelaAlteraProd();
+			tela.criaBotoesAlteraProd();
+			tela.setVisible(true);
+		}
+		
+		else if (Integer.parseInt(anoFim) == Integer.parseInt(anoInicio) && 
+				Integer.parseInt(mesFim) == Integer.parseInt(mesInicio) && 
+				Integer.parseInt(diaFim) < Integer.parseInt(diaInicio)){
+			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIGÊNCIA ANTERIOR A DATA INICIAL DA VIGÊNCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			dispose();
+			CadastroProduto tela = new CadastroProduto();
+			tela.criaTelaAlteraProd();
+			tela.criaBotoesAlteraProd();
+			tela.setVisible(true);
+		}
+		
+		else if (Integer.parseInt(diaFim) == Integer.parseInt(diaInicio) && 
+				Integer.parseInt(mesFim) == Integer.parseInt(mesInicio) && 
+				Integer.parseInt(anoFim) == Integer.parseInt(anoInicio)){
+			JOptionPane.showMessageDialog(null, "A VIGÊNCIA DO PRODUTO DEVE DURAR POR PELO MENOS 1 DIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
 			tela.criaTelaAlteraProd();
