@@ -112,15 +112,15 @@ public class EsqueciUser extends JFrame implements ActionListener{
 		}
 		
 		else if (Integer.parseInt(dia) < 1 || (Integer.parseInt(dia) > 31)){
-			JOptionPane.showMessageDialog(null,  "DIA DE NASCIMENTO INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,  "DATA DE NASCIMENTO INVÁLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(mes) < 1 || Integer.parseInt(mes) > 12){
-			JOptionPane.showMessageDialog(null, "MÊS DE NASCIMENTO INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA DE NASCIMENTO INVÁLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(ano) < anoMinimiPermitido || Integer.parseInt(ano) >= anoVigente){
-			JOptionPane.showMessageDialog(null, "ANO DE NASCIMENTO INVÁLIDO!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA DE NASCIMENTO INVÁLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(ano) > anoMaximoPermitido){
