@@ -111,6 +111,10 @@ public class CadastroUser extends JFrame implements ActionListener {
 		botoes.definirBotoesTelaCadastroUser(this, this);
 	}
 	
+	public void criaFocoCadastroUser(){
+		tUser.requestFocusInWindow();
+	}
+	
 	public void criaTelaAlteraUser(){	
 		tUser.setBounds(180,50,120,25);
 		tPass.setBounds(180,130,120,25);

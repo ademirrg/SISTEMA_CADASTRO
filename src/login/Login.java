@@ -209,6 +209,7 @@ public class Login extends JFrame implements ActionListener {
 			cadastroUser.criaTelaCadastroUser();
 			cadastroUser.criaBotoes();
 			cadastroUser.setVisible(true);
+			cadastroUser.criaFocoCadastroUser();
 			dispose();
 			System.out.println("Usuário mestre acessou tela de cadastro de usuários.");
 			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE USUÁRIO:" + System.lineSeparator() + 
@@ -266,6 +267,7 @@ public class Login extends JFrame implements ActionListener {
 			cadastroProd.criaTelaCadastroProd();
 			cadastroProd.criaBotoes();
 			cadastroProd.setVisible(true);
+			cadastroProd.criaFocoCadastroProd();
 			dispose();
 			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE PRODUTO:" + System.lineSeparator() + 
 					"O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
@@ -284,6 +286,7 @@ public class Login extends JFrame implements ActionListener {
 			cadastroSeg.criaTelaCadastroSeg();
 			cadastroSeg.criaBotoes();
 			cadastroSeg.setVisible(true);
+			cadastroSeg.criaFocoCadastroSeg();
 			dispose();
 			JOptionPane.showMessageDialog(null, "INSTRUÇÕES PARA O CADASTRAMENTO DE SEGMENTO:" + System.lineSeparator() + 
 					"O CAMPO NOME DO SEGMENTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 

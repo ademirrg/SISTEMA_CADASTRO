@@ -87,6 +87,10 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	public void criaBotoes() {	
 		botoes.definirBotoesTelaCadastroSeg(this, this);
 	}
+	
+	public void criaFocoCadastroSeg(){
+		tNome.requestFocusInWindow();
+	}
 
 	public void criaTelaBuscaSeg(){
 			

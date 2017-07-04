@@ -339,11 +339,13 @@ public class Botao {
 		bt_consulta_user.setBounds(565, 45, 90, 30);
 		bt_consulta_user.addActionListener(loginUser);
 		bt_consulta_user.setActionCommand("command_encontrar_usuario");
+		bt_consulta_user.setFocusable(false);
 		
 		bt_nova_senha = new JButton("Alterar");
 		bt_nova_senha.setBounds(565, 110, 90, 30);
 		bt_nova_senha.addActionListener(loginUser);
 		bt_nova_senha.setActionCommand("command_nova_senha");
+		bt_nova_senha.setFocusable(false);
 		
 		frame.add(bt_voltar);
 		frame.add(bt_entrar);

@@ -95,6 +95,10 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		botoes.definirBotoesTelaCadastroProd(this, this);
 	}
 	
+	public void criaFocoCadastroProd(){
+		tNome.requestFocusInWindow();
+	}
+	
 	public void criaTelaBuscaProd(){
 		
 		//Tela
