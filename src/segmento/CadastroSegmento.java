@@ -308,7 +308,7 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	
 	//Busca de segmento
 	public void pegaValorTelaBuscaSeg(){
-		String nomeCodSeg = tNome.getText();
+		String nomeCodSeg = tNome.getText().trim();
 		String nomeSegVO = "";
 		String codSegVO = "";
 		
@@ -366,14 +366,11 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 	
 	//Alteração de segmento
 	public void pegaValorTelaAlteraSeg(){
-		String nomeSeg = tAltNome.getText();
+		String nomeSeg = tAltNome.getText().trim();
 		String codSeg = cadastroVO.getCodSeg();
-		String tpCtt = tAltTpCtt.getText();
-		tpCtt = tpCtt.trim();
-		String tpPessoa = tAltTpPessoa.getText();
-		tpPessoa = tpPessoa.trim();
-		String segSta = tAltSegSta.getText();
-		segSta = segSta.trim();
+		String tpCtt = tAltTpCtt.getText().trim();
+		String tpPessoa = tAltTpPessoa.getText().trim();
+		String segSta = tAltSegSta.getText().trim();
 		String nomeSegVO = "";
 		String nomeOldSeg = cadastroVO.getNomeSeg();
 		

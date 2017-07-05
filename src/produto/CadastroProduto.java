@@ -268,7 +268,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 	//Cadastro de produto
 	public void pegaValor(){
 		String nomePRD = tNome.getText().trim();
-		String segmento = tSeg.getText();
+		String segmento = tSeg.getText().trim();
 		String inicioVig = tInicioVig.getText();
 		String fimVig = tFimVig.getText();
 		String codPRDVO = "";
@@ -423,7 +423,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 	
 	//Busca de produto
 	public void pegaValorTelaBuscaProd(){
-		String nomeCodPRD = tNome.getText();
+		String nomeCodPRD = tNome.getText().trim();
 		String nomePRDVO = "";
 		String codPRDVO = "";
 		
@@ -481,17 +481,15 @@ public class CadastroProduto extends JFrame implements ActionListener{
 	
 	//Alteração de produto
 	public void pegaValorTelaAlteraProd(){
-		String nomePRD = tAltNome.getText();
+		String nomePRD = tAltNome.getText().trim();
 		String codPRD = tAltCod.getText();
 		String segmentoOld = cadastroVO.getCodSeg();//Mantem o ultimo segmento valido na VO
-		String segmento = tAltCodSeg.getText();
-		segmento = segmento.trim();
+		String segmento = tAltCodSeg.getText().trim();
 		String segmentoVO = "";
 		String inicioVig = tAltIniVig.getText();
 		String inicioVigOld = cadastroVO.getInicioVig();
 		String fimVig = tAltFimVig.getText();
-		String prdsta = tAltPrdSta.getText();
-		prdsta = prdsta.trim();
+		String prdsta = tAltPrdSta.getText().trim();
 		String nomePRDVO = "";
 		String nomeOldPrd = cadastroVO.getNomePRD();
 		
