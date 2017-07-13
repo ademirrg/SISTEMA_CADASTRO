@@ -2,6 +2,8 @@ package produto;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.text.ParseException;
 import java.util.Calendar;
 import javax.swing.*;
@@ -78,6 +80,29 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		l4.setBounds(91,110,85,30);
 		JLabel l5 = new JLabel("Á");
 		l5.setBounds(228,110,85,30);
+		JLabel l6 = new JLabel("CARACTERES: 0");
+		l6.setBounds(325,50,200,30);
+		
+		//Contador de caracteres
+		KeyListener kl = new KeyListener(){
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				String nome = tNome.getText().trim();
+				l6.setText("CARACTERES: " + nome.length());
+			}
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+			
+		};
+		
+		tNome.addKeyListener(kl);
 		
 		//Add
 		getContentPane().add(tNome);
@@ -89,6 +114,8 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		getContentPane().add(l3);
 		getContentPane().add(l4);
 		getContentPane().add(l5);
+		getContentPane().add(l6);
+		
 	}
 	
 	public void criaBotoes() {
