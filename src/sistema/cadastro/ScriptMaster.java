@@ -11,13 +11,13 @@ public class ScriptMaster {
 		
 		String sqlSCHEMA = "CREATE SCHEMA `Sistema_Cadastro`";
 		
-		String sqlTable1 = "CREATE TABLE `sistema_cadastro`.`master` ("
+		String sqlTabelaMaster = "CREATE TABLE `sistema_cadastro`.`master` ("
 				+ "`MasterUser` VARCHAR(25) NOT NULL,"
 				+ "`SenhaMaster` VARCHAR(12) NULL,"
 				+ "`DataCri` DATETIME NULL,"
 				+ "PRIMARY KEY (`MasterUser`));";
 		
-		String sqlTable2 = "CREATE TABLE `sistema_cadastro`.`usuario` ("
+		String sqlTabelaUsuario = "CREATE TABLE `sistema_cadastro`.`usuario` ("
 				+ "`NomeUser` VARCHAR(25) NULL,"
 				+ "`SenhaUser` VARCHAR(32) NULL,"
 				+ "`DataCadastro` DATETIME NULL,"
@@ -28,7 +28,7 @@ public class ScriptMaster {
 				+ "`DataNasc` VARCHAR(10) NULL,"
 				+ "PRIMARY KEY (`CPF`));";
 		
-		String sqlTable3 = "CREATE TABLE `sistema_cadastro`.`produto` ("
+		String sqlTabelaProduto = "CREATE TABLE `sistema_cadastro`.`produto` ("
 				+ "`CodPRD` INT NOT NULL AUTO_INCREMENT, "
 				+ "`NomePRD` VARCHAR(25) NULL,"
 				+ "`InicioVigencia` VARCHAR(10) NULL,"
@@ -39,17 +39,28 @@ public class ScriptMaster {
 				+ "`DataAlteracao` DATETIME NULL,"
 				+ "PRIMARY KEY (`CodPRD`)) AUTO_INCREMENT = 10;";
 		
-		String sqlTable4 = "CREATE TABLE `sistema_cadastro`.`segmento` ("
+		String sqlTabelaSegmento = "CREATE TABLE `sistema_cadastro`.`segmento` ("
 				+ "`CodSegmento` INT NOT NULL AUTO_INCREMENT,"
 				+ "`NomeSegmento` VARCHAR(25) NULL,"
 				+ "`TPContrato` VARCHAR(25) NULL,"
 				+ "`TPPessoa` VARCHAR(2) NULL, "
 				+ "`SEGSTA` VARCHAR(1) NULL,"
 				+ "`DataCadastro` DATETIME NULL,"
-				+ "`DataAlteracao` DATETIME NULL, "
+				+ "`DataAlteracao` DATETIME NULL,"
 				+ "PRIMARY KEY (`CodSegmento`)) AUTO_INCREMENT = 100;";
 		
-		String sqlInsert = "INSERT INTO sistema_cadastro.master VALUES ('admin','admin',now())";
+//		String sqlTabelaMensageria = "CREATE TABLE `sistema_cadastro`.`mensageria` ("
+//				+ "`CodMSG` VARCHAR(6) NOT NULL,"
+//				+ "`TextoMSG` VARCHAR(900) NULL,"
+//				+ "`TipoMSG` VARCHAR(25) NULL,"
+//				+ "PRIMARY KEY (`CodMSG`));";
+		
+		String sqlInsertMaster = "INSERT INTO sistema_cadastro.master VALUES ('admin','admin',now());";
+		
+//		String sqlInsertMensageria = "INSERT INTO sistema_cadastro.mensageria VALUES "
+//				+ "('MSG001','','INFORMATIVA'),"
+//				+ "(),"
+//				+ "();";
 		
 		System.out.println("Criando banco de dados...");
 		
@@ -59,23 +70,23 @@ public class ScriptMaster {
 		comando1.execute();
 		comando1.close();
 		
-		PreparedStatement comando2 = (PreparedStatement) conn.prepareStatement(sqlTable1);
+		PreparedStatement comando2 = (PreparedStatement) conn.prepareStatement(sqlTabelaMaster);
 		comando2.execute();
 		comando2.close();
 		
-		PreparedStatement comando3 = (PreparedStatement) conn.prepareStatement(sqlTable2);
+		PreparedStatement comando3 = (PreparedStatement) conn.prepareStatement(sqlTabelaUsuario);
 		comando3.execute();
 		comando3.close();
 		
-		PreparedStatement comando4 = (PreparedStatement) conn.prepareStatement(sqlTable3);
+		PreparedStatement comando4 = (PreparedStatement) conn.prepareStatement(sqlTabelaProduto);
 		comando4.execute();
 		comando4.close();
 		
-		PreparedStatement comando5 = (PreparedStatement) conn.prepareStatement(sqlTable4);
+		PreparedStatement comando5 = (PreparedStatement) conn.prepareStatement(sqlTabelaSegmento);
 		comando5.execute();
 		comando5.close();
 		
-		PreparedStatement comando6 = (PreparedStatement) conn.prepareStatement(sqlInsert);
+		PreparedStatement comando6 = (PreparedStatement) conn.prepareStatement(sqlInsertMaster);
 		comando6.execute();
 		comando6.close();
 		
