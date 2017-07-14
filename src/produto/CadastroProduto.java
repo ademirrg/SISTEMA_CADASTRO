@@ -155,6 +155,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 	
 	public void criaTelaAlteraProd(){
 		
+		//Cria campos formatados
 		String[] dataSeparadaInicio = altInicioVig.split("-");
 		String anoInicio = dataSeparadaInicio[0];
 		String mesInicio = dataSeparadaInicio[1];
