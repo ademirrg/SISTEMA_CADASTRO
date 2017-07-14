@@ -58,7 +58,6 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		//Tela
 		setTitle("CADASTRAMENTO DE PRODUTO");
 		setSize(700, 500);
-		//setLocation(450, 100);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(null);
@@ -70,18 +69,18 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		tSeg.setBounds(150,80,70,25);
 		tInicioVig.setBounds(150,110,70,25);
 		tFimVig.setBounds(245,110,70,25);
-		JLabel l1 = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
-		l1.setBounds(30,15,330,30);
-		JLabel l2 = new JLabel("NOME DO PRODUTO:");
-		l2.setBounds(30,50,200,30);
-		JLabel l3 = new JLabel("SEGMENTO:");
-		l3.setBounds(80,80,85,30);
-		JLabel l4 = new JLabel("VIGÊNCIA:");
-		l4.setBounds(91,110,85,30);
-		JLabel l5 = new JLabel("Á");
-		l5.setBounds(228,110,85,30);
-		JLabel l6 = new JLabel("CARACTERES: 0");
-		l6.setBounds(325,50,200,30);
+		JLabel info = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
+		info.setBounds(30,15,330,30);
+		JLabel nome = new JLabel("NOME DO PRODUTO:");
+		nome.setBounds(30,50,200,30);
+		JLabel segmento = new JLabel("SEGMENTO:");
+		segmento.setBounds(80,80,85,30);
+		JLabel vigencia = new JLabel("VIGÊNCIA:");
+		vigencia.setBounds(91,110,85,30);
+		JLabel a = new JLabel("Á");
+		a.setBounds(228,110,85,30);
+		JLabel caracteres = new JLabel("CARACTERES: 0");
+		caracteres.setBounds(323,50,200,30);
 		
 		//Contador de caracteres
 		KeyListener kl = new KeyListener(){
@@ -93,7 +92,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String nome = tNome.getText().trim();
-				l6.setText("CARACTERES: " + nome.length());
+				caracteres.setText("CARACTERES: " + nome.length());
 			}
 			
 			@Override
@@ -109,12 +108,12 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		getContentPane().add(tSeg);
 		getContentPane().add(tInicioVig);
 		getContentPane().add(tFimVig);
-		getContentPane().add(l1);
-		getContentPane().add(l2);
-		getContentPane().add(l3);
-		getContentPane().add(l4);
-		getContentPane().add(l5);
-		getContentPane().add(l6);
+		getContentPane().add(info);
+		getContentPane().add(nome);
+		getContentPane().add(segmento);
+		getContentPane().add(vigencia);
+		getContentPane().add(a);
+		getContentPane().add(caracteres);
 		
 	}
 	
@@ -131,7 +130,6 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		//Tela
 		setTitle("ALTERAÇÃO DE PRODUTO");
 		setSize(700, 500);
-		//setLocation(450, 100);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(null);
@@ -140,15 +138,15 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		
 		//Label
 		tNome.setBounds(200,50,165,25);
-		JLabel l1 = new JLabel("INFORME OS DADOS DO PRODUTO QUE DESEJA ALTERAR E PRESSIONE BUSCAR.");
-		l1.setBounds(30,15,500,30);
-		JLabel l2 = new JLabel("NOME OU COD. DO PRODUTO:");
-		l2.setBounds(30,50,250,30);
+		JLabel info = new JLabel("INFORME OS DADOS DO PRODUTO QUE DESEJA ALTERAR E PRESSIONE BUSCAR.");
+		info.setBounds(30,15,500,30);
+		JLabel nomeCod = new JLabel("NOME OU COD. DO PRODUTO:");
+		nomeCod.setBounds(30,50,250,30);
 		
 		//Add
 		getContentPane().add(tNome);
-		getContentPane().add(l1);
-		getContentPane().add(l2);
+		getContentPane().add(info);
+		getContentPane().add(nomeCod);
 	}
 	
 	public void criaBotoesBuscaProd() {
@@ -200,7 +198,6 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		//Tela
 		setTitle("ALTERAÇÃO DO PRODUTO: " + altCodPrd + " - " + altNomePrd);
 		setSize(700, 500);
-		//setLocation(450, 100);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(null);
@@ -215,20 +212,43 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		tAltIniVig.setBounds(150,140,70,25);
 		tAltFimVig.setBounds(245,140,70,25);
 		tAltPrdSta.setBounds(150,170,70,25);
-		JLabel l1 = new JLabel("INFORME OS DADOS DO PRODUTO QUE DESEJA ALTERAR.");
-		l1.setBounds(30,15,330,30);
-		JLabel l2 = new JLabel("NOME DO PRODUTO:");
-		l2.setBounds(30,50,200,30);
-		JLabel l3 = new JLabel("COD. DO PRODUTO:");
-		l3.setBounds(36,80,200,30);
-		JLabel l4 = new JLabel("SEGMENTO:");
-		l4.setBounds(80,110,85,30);
-		JLabel l5 = new JLabel("VIGÊNCIA:");
-		l5.setBounds(91,140,85,30);
-		JLabel l6 = new JLabel("Á");
-		l6.setBounds(228,140,85,30);
-		JLabel l7 = new JLabel("STATUS:");
-		l7.setBounds(98,170,85,30);
+		JLabel info = new JLabel("INFORME OS DADOS DO PRODUTO QUE DESEJA ALTERAR.");
+		info.setBounds(30,15,330,30);
+		JLabel nome = new JLabel("NOME DO PRODUTO:");
+		nome.setBounds(30,50,200,30);
+		JLabel cod = new JLabel("COD. DO PRODUTO:");
+		cod.setBounds(36,80,200,30);
+		JLabel segmento = new JLabel("SEGMENTO:");
+		segmento.setBounds(80,110,85,30);
+		JLabel vigencia = new JLabel("VIGÊNCIA:");
+		vigencia.setBounds(91,140,85,30);
+		JLabel a = new JLabel("Á");
+		a.setBounds(228,140,85,30);
+		JLabel status = new JLabel("STATUS:");
+		status.setBounds(98,170,85,30);
+		JLabel caracteres = new JLabel("CARACTERES: " + tAltNome.getText().length());
+		caracteres.setBounds(323,50,200,30);
+		
+		//Contador de caracteres
+		KeyListener kl = new KeyListener(){
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				String nome = tAltNome.getText().trim();
+				caracteres.setText("CARACTERES: " + nome.length());
+			}
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+			
+		};
+		
+		tAltNome.addKeyListener(kl);
 		
 		//Add
 		getContentPane().add(tAltNome);
@@ -237,13 +257,14 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		getContentPane().add(tAltIniVig);
 		getContentPane().add(tAltFimVig);
 		getContentPane().add(tAltPrdSta);
-		getContentPane().add(l1);
-		getContentPane().add(l2);
-		getContentPane().add(l3);
-		getContentPane().add(l4);
-		getContentPane().add(l5);
-		getContentPane().add(l6);
-		getContentPane().add(l7);
+		getContentPane().add(info);
+		getContentPane().add(nome);
+		getContentPane().add(cod);
+		getContentPane().add(segmento);
+		getContentPane().add(vigencia);
+		getContentPane().add(a);
+		getContentPane().add(status);
+		getContentPane().add(caracteres);
 	}
 	
 	public void criaBotoesAlteraProd() {

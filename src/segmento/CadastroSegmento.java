@@ -2,6 +2,8 @@ package segmento;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.text.ParseException;
 
 import javax.swing.*;
@@ -54,7 +56,6 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 		//Tela
 		setTitle("CADASTRAMENTO DE SEGMENTO");
 		setSize(700, 500);
-		//setLocation(450, 100);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(null);
@@ -65,23 +66,47 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 		tNome.setBounds(157,50,165,25);
 		tTpCtt.setBounds(157,80,70,25);
 		tTpPessoa.setBounds(157,110,70,25);
-		JLabel l1 = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
-		l1.setBounds(30,15,330,30);
-		JLabel l2 = new JLabel("NOME DO SEGMENTO:");
-		l2.setBounds(30,50,200,30);
-		JLabel l3 = new JLabel("TIPO CONTRATO:");
-		l3.setBounds(57,80,200,30);
-		JLabel l4 = new JLabel("TIPO PESSOA:");
-		l4.setBounds(73,110,200,30);
+		JLabel info = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
+		info.setBounds(30,15,330,30);
+		JLabel nome = new JLabel("NOME DO SEGMENTO:");
+		nome.setBounds(30,50,200,30);
+		JLabel tpCtt = new JLabel("TIPO CONTRATO:");
+		tpCtt.setBounds(57,80,200,30);
+		JLabel tpPessoa = new JLabel("TIPO PESSOA:");
+		tpPessoa.setBounds(73,110,200,30);
+		JLabel caracteres = new JLabel("CARACTERES: 0");
+		caracteres.setBounds(330,50,200,30);
+		
+		//Contador de caracteres
+		KeyListener kl = new KeyListener(){
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				String nome = tNome.getText().trim();
+				caracteres.setText("CARACTERES: " + nome.length());
+			}
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+			
+		};
+		
+		tNome.addKeyListener(kl);
 		
 		//Add
 		getContentPane().add(tNome);
 		getContentPane().add(tTpCtt);
 		getContentPane().add(tTpPessoa);
-		getContentPane().add(l1);
-		getContentPane().add(l2);
-		getContentPane().add(l3);
-		getContentPane().add(l4);
+		getContentPane().add(info);
+		getContentPane().add(nome);
+		getContentPane().add(tpCtt);
+		getContentPane().add(tpPessoa);
+		getContentPane().add(caracteres);
 	}
 	
 	public void criaBotoes() {	
@@ -97,7 +122,6 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 		//Tela
 		setTitle("ALTERAÇÃO DE SEGMENTO");
 		setSize(700, 500);
-		//setLocation(450, 100);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(null);
@@ -106,15 +130,15 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 		
 		//Label
 		tNome.setBounds(210,50,165,25);
-		JLabel l1 = new JLabel("INFORME OS DADOS DO SEGMENTO QUE DESEJA ALTERAR E PRESSIONE BUSCAR.");
-		l1.setBounds(30,15,500,30);
-		JLabel l2 = new JLabel("NOME OU COD. DO SEGMENTO:");
-		l2.setBounds(30,50,250,30);
+		JLabel info = new JLabel("INFORME OS DADOS DO SEGMENTO QUE DESEJA ALTERAR E PRESSIONE BUSCAR.");
+		info.setBounds(30,15,500,30);
+		JLabel nomeCod = new JLabel("NOME OU COD. DO SEGMENTO:");
+		nomeCod.setBounds(30,50,250,30);
 	
 		//Add
 		getContentPane().add(tNome);
-		getContentPane().add(l1);
-		getContentPane().add(l2);
+		getContentPane().add(info);
+		getContentPane().add(nomeCod);
 	}
 	
 	public void criaBotoesBuscaSeg() {
@@ -148,7 +172,6 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 		//Tela
 		setTitle("ALTERAÇÃO DO SEGMENTO: " + altCodSeg + " - " + altNomeSeg);
 		setSize(700, 500);
-		//setLocation(450, 100);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(null);
@@ -162,18 +185,41 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 		tAltTpCtt.setBounds(157,110,70,25);
 		tAltTpPessoa.setBounds(157,140,70,25);
 		tAltSegSta.setBounds(157,170,70,25);
-		JLabel l1 = new JLabel("INFORME OS DADOS DO SEGMENTO QUE DESEJA ALTERAR.");
-		l1.setBounds(30,15,350,30);
-		JLabel l2 = new JLabel("NOME DO SEGMENTO:");
-		l2.setBounds(30,50,200,30);
-		JLabel l3 = new JLabel("COD. DO SEGMENTO:");
-		l3.setBounds(36,80,200,30);
-		JLabel l4 = new JLabel("TIPO CONTRATO:");
-		l4.setBounds(57,110,200,30);
-		JLabel l5 = new JLabel("TIPO PESSOA:");
-		l5.setBounds(73,140,200,30);
-		JLabel l6 = new JLabel("STATUS:");
-		l6.setBounds(98,170,85,30);
+		JLabel info = new JLabel("INFORME OS DADOS DO SEGMENTO QUE DESEJA ALTERAR.");
+		info.setBounds(30,15,350,30);
+		JLabel nome = new JLabel("NOME DO SEGMENTO:");
+		nome.setBounds(30,50,200,30);
+		JLabel cod = new JLabel("COD. DO SEGMENTO:");
+		cod.setBounds(36,80,200,30);
+		JLabel tpCtt = new JLabel("TIPO CONTRATO:");
+		tpCtt.setBounds(57,110,200,30);
+		JLabel tpPessoa = new JLabel("TIPO PESSOA:");
+		tpPessoa.setBounds(73,140,200,30);
+		JLabel status = new JLabel("STATUS:");
+		status.setBounds(98,170,85,30);
+		JLabel caracteres = new JLabel("CARACTERES: " + tAltNome.getText().length());
+		caracteres.setBounds(330,50,200,30);
+		
+		//Contador de caracteres
+		KeyListener kl = new KeyListener(){
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				String nome = tAltNome.getText().trim();
+				caracteres.setText("CARACTERES: " + nome.length());
+			}
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+			
+		};
+		
+		tAltNome.addKeyListener(kl);
 		
 		//Add
 		getContentPane().add(tAltNome);
@@ -181,12 +227,13 @@ public class CadastroSegmento extends JFrame implements ActionListener{
 		getContentPane().add(tAltTpCtt);
 		getContentPane().add(tAltTpPessoa);
 		getContentPane().add(tAltSegSta);
-		getContentPane().add(l1);
-		getContentPane().add(l2);
-		getContentPane().add(l3);
-		getContentPane().add(l4);
-		getContentPane().add(l5);
-		getContentPane().add(l6);
+		getContentPane().add(info);
+		getContentPane().add(nome);
+		getContentPane().add(cod);
+		getContentPane().add(tpCtt);
+		getContentPane().add(tpPessoa);
+		getContentPane().add(status);
+		getContentPane().add(caracteres);
 	}
 	
 	public void criaBotoesAlteraSeg() {

@@ -60,31 +60,31 @@ public class CadastroUser extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 		
+		//Label
 		tUser.setBounds(150,50,120,25);
 		tPass.setBounds(150,80,120,25);
 		tPass2.setBounds(150,110,120,25);
 		tNome.setBounds(150,140,120,25);
 		tCPF.setBounds(150,170,120,25);
 		tData.setBounds(150,200,120,25);
-		JLabel l1 = new JLabel("USUÁRIO:");
-		l1.setBounds(90,50,60,30);
-		JLabel l2 = new JLabel("SENHA:");
-		l2.setBounds(103,80,47,30);
-		JLabel l3 = new JLabel("CONFIRME A SENHA:");
-		l3.setBounds(31,110,120,30);
-		JLabel l5 = new JLabel("NOME:");
-		l5.setBounds(109,140,45,30);
-		JLabel l6 = new JLabel("CPF:");
-		l6.setBounds(120,170,30,30);
-		JLabel l7 = new JLabel("DATA DE NASC.:");
-		l7.setBounds(55,200,120,30);
-		JLabel l4 = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
-		l4.setBounds(31,15,330,30);
+		JLabel info = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
+		info.setBounds(31,15,330,30);
+		JLabel usuario = new JLabel("USUÁRIO:");
+		usuario.setBounds(90,50,60,30);
+		JLabel senha = new JLabel("SENHA:");
+		senha.setBounds(103,80,47,30);
+		JLabel confirmeSenha = new JLabel("CONFIRME A SENHA:");
+		confirmeSenha.setBounds(31,110,120,30);
+		JLabel nome = new JLabel("NOME:");
+		nome.setBounds(109,140,50,30);
+		JLabel cpf = new JLabel("CPF:");
+		cpf.setBounds(120,170,30,30);
+		JLabel dtNasc = new JLabel("DATA DE NASC.:");
+		dtNasc.setBounds(55,200,120,30);
 		
 		//Tela
 		setTitle("CADASTRAMENTO DE USUÁRIO");
 		setSize(700, 500);
-		//setLocation(450, 100);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(null);
@@ -92,19 +92,19 @@ public class CadastroUser extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		//Add
-		getContentPane().add(l1);
-		getContentPane().add(l2);
-		getContentPane().add(l3);
-		getContentPane().add(l4);
-		getContentPane().add(l5);
-		getContentPane().add(l6);
-		getContentPane().add(l7);
 		getContentPane().add(tUser);
 		getContentPane().add(tPass);
 		getContentPane().add(tPass2);
 		getContentPane().add(tNome);
 		getContentPane().add(tCPF);
 		getContentPane().add(tData);
+		getContentPane().add(info);
+		getContentPane().add(usuario);
+		getContentPane().add(senha);
+		getContentPane().add(confirmeSenha);
+		getContentPane().add(nome);
+		getContentPane().add(cpf);
+		getContentPane().add(dtNasc);
 	}
 	
 	public void criaBotoes() {	
@@ -120,21 +120,20 @@ public class CadastroUser extends JFrame implements ActionListener {
 		tPass.setBounds(180,130,120,25);
 		tPass2.setBounds(180,160,120,25);
 		tPass3.setBounds(180,190,120,25);
-		JLabel l1 = new JLabel("NOVO USUÁRIO:");
-		l1.setBounds(84,50,120,30);
-		JLabel l2 = new JLabel("SENHA ANTIGA:");
-		l2.setBounds(88,130,100,30);
-		JLabel l3 = new JLabel("NOVA SENHA:");
-		l3.setBounds(97,160,120,30);
-		JLabel l4 = new JLabel("CONFIRME A NOVA SENHA:");
-		l4.setBounds(25,190,160,30);
-		JLabel l5 = new JLabel("PARA ALTERAÇÃO DE NOME DE USUÁRIO OU SENHA, INFORME OS DADOS ABAIXO E PRESSIONE ALTERAR.");
-		l5.setBounds(25,15,615,30);
+		JLabel info = new JLabel("PARA ALTERAÇÃO DE NOME DE USUÁRIO OU SENHA, INFORME OS DADOS ABAIXO E PRESSIONE ALTERAR.");
+		info.setBounds(25,15,615,30);
+		JLabel novoUsuario = new JLabel("NOVO USUÁRIO:");
+		novoUsuario.setBounds(84,50,120,30);
+		JLabel senhaAntiga = new JLabel("SENHA ANTIGA:");
+		senhaAntiga.setBounds(88,130,100,30);
+		JLabel novaSenha = new JLabel("NOVA SENHA:");
+		novaSenha.setBounds(97,160,120,30);
+		JLabel confirmeSenha = new JLabel("CONFIRME A NOVA SENHA:");
+		confirmeSenha.setBounds(25,190,160,30);
 		
 		//Tela
 		setTitle("ALTERAÇÃO DE USUÁRIO - USUÁRIO LOGADO: " + CadastroUserVO.getOldUser().toUpperCase());
 		setSize(700, 500);
-		//setLocation(450, 100);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(null);
@@ -142,15 +141,15 @@ public class CadastroUser extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		//Add
-		getContentPane().add(l1);
-		getContentPane().add(l2);
-		getContentPane().add(l3);
-		getContentPane().add(l4);
-		getContentPane().add(l5);
 		getContentPane().add(tUser);
 		getContentPane().add(tPass);
 		getContentPane().add(tPass2);
 		getContentPane().add(tPass3);	
+		getContentPane().add(info);
+		getContentPane().add(novoUsuario);
+		getContentPane().add(senhaAntiga);
+		getContentPane().add(novaSenha);
+		getContentPane().add(confirmeSenha);
 	}
 	
 	public void criaBotoesAltera() {
@@ -165,18 +164,17 @@ public class CadastroUser extends JFrame implements ActionListener {
 			//Tela
 			setTitle("CONSULTA DE USUÁRIOS");
 			setSize(1200, 500);
-			//setLocation(200, 100);
 			setLocationRelativeTo(null);
 			setResizable(false);
 			getContentPane().setBackground(Color.LIGHT_GRAY);
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			JPanel painel = new JPanel();
 			setContentPane(painel);
-			JLabel l1 = new JLabel("CONSULTA DE USUÁRIOS CADASTRADOS");
-			l1.setFont(new Font("Dialog",Font.PLAIN, 15));
-			l1.setBounds(430,15,300,30);
-			//setLocationRelativeTo(null);
-			//painel.setSize(1200,320);
+			
+			//Label
+			JLabel consulta = new JLabel("CONSULTA DE USUÁRIOS CADASTRADOS");
+			consulta.setFont(new Font("Dialog",Font.PLAIN, 15));
+			consulta.setBounds(430,15,300,30);
 			painel.setLayout(null);
 				
 			//Tabela
@@ -196,7 +194,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 				
 			//Add
 			getContentPane().add(tabela);
-			getContentPane().add(l1);
+			getContentPane().add(consulta);
 //	        getContentPane().add(scroll);
 			
 			//Mouse Scroll
