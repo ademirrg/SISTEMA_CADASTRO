@@ -18,7 +18,6 @@ public class Tela extends JFrame implements ActionListener {
 		// Tela
 		setTitle("SISTEMA DE CADASTRAMENTO");
 		setSize(700, 500);
-		//setLocation(450, 100);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		getContentPane().setBackground(Color.DARK_GRAY);
