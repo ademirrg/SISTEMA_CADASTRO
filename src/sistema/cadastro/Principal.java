@@ -1,6 +1,8 @@
 package sistema.cadastro;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 public class Principal {
 		
 	public static void main(String args[]){
@@ -17,6 +19,7 @@ public class Principal {
 		catch (SQLException sql) {
 			if(sql.getErrorCode() != 1007) {
 				System.out.println("Erro: "+sql);
+				JOptionPane.showMessageDialog(null, "Erro de conexão:\n" + sql, "ERRO DE CONEXÃO", JOptionPane.ERROR_MESSAGE);
 			}
 			else {
 				System.out.println("Banco de dados já existente.");
