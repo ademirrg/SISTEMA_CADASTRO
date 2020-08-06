@@ -27,9 +27,9 @@ public class CadastroUserDAO {
 		cadastroVO.setSenhaUser(SenhaUser);
 		
 		comando.close();
-		System.out.println("Consulta de nome de usuário realizada na base.");
+		System.out.println("Consulta de nome de usuÃ¡rio realizada na base.");
 		conn.close();
-		System.out.println("Conexão encerrada.");
+		System.out.println("ConexÃ£o encerrada.");
 		
 		}
 	
@@ -37,7 +37,7 @@ public class CadastroUserDAO {
 		String sql = "SELECT * FROM sistema_cadastro.usuario WHERE cpf = (?)";
 		String cpf = "";
 		String data = "";
-		String NomeUser = ""; //Para recuperação de usuário no login - Esqueci meu usuário
+		String NomeUser = ""; //Para recuperaï¿½ï¿½o de usuï¿½rio no login - Esqueci meu usuï¿½rio
 		
 		Connection conn = Conexao.abrir();
 		
@@ -57,7 +57,7 @@ public class CadastroUserDAO {
 		comando.close();
 		System.out.println("Consulta de CPF realizada na base.");
 		conn.close();
-		System.out.println("Conexão encerrada.");
+		System.out.println("Conexï¿½o encerrada.");
 		
 		}
 		
@@ -74,9 +74,9 @@ public class CadastroUserDAO {
 		comando.setString(5, CadastroUserVO.getDataNasc());
 		comando.execute();
 		comando.close();
-		System.out.println("Inserção realizada na base.");
+		System.out.println("Inserï¿½ï¿½o realizada na base.");
 		conn.close();
-		System.out.println("Conexão encerrada.");
+		System.out.println("Conexï¿½o encerrada.");
 	
 	}
 	
@@ -99,9 +99,9 @@ public class CadastroUserDAO {
 		comando2.close();
 		
 		
-		System.out.println("Atualização realizada na base.");
+		System.out.println("Atualizaï¿½ï¿½o realizada na base.");
 		conn.close();
-		System.out.println("Conexão encerrada.");
+		System.out.println("Conexï¿½o encerrada.");
 	
 	}
 	
@@ -124,9 +124,9 @@ public class CadastroUserDAO {
 		comando2.close();
 		
 		
-		System.out.println("Atualização realizada na base.");
+		System.out.println("Atualizaï¿½ï¿½o realizada na base.");
 		conn.close();
-		System.out.println("Conexão encerrada.");
+		System.out.println("Conexï¿½o encerrada.");
 	
 	}
 	
@@ -153,9 +153,9 @@ public class CadastroUserDAO {
 			lista.add(consultaVO);
 		}
 		comando.close();
-		System.out.println("Consulta de usuários realizada na base.");
+		System.out.println("Consulta de usuï¿½rios realizada na base.");
 		conn.close();
-		System.out.println("Conexão encerrada.");
+		System.out.println("Conexï¿½o encerrada.");
 		return lista;
 	}
 	

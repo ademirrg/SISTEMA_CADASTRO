@@ -25,6 +25,8 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.text.MaskFormatter;
+
+import enums.UsuarioEnum;
 import login.Login;
 import sistema.cadastro.Botao;
 import sistema.cadastro.Tela;
@@ -69,7 +71,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		tData.setBounds(150,200,120,25);
 		JLabel info = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE SALVAR.");
 		info.setBounds(31,15,330,30);
-		JLabel usuario = new JLabel("USU¡RIO:");
+		JLabel usuario = new JLabel("USU√ÅRIO:");
 		usuario.setBounds(90,50,60,30);
 		JLabel senha = new JLabel("SENHA:");
 		senha.setBounds(103,80,47,30);
@@ -83,7 +85,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		dtNasc.setBounds(55,200,120,30);
 		
 		//Tela
-		setTitle("CADASTRAMENTO DE USU¡RIO");
+		setTitle("CADASTRAMENTO DE USU√ÅRIO");
 		setSize(700, 500);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -120,9 +122,9 @@ public class CadastroUser extends JFrame implements ActionListener {
 		tPass.setBounds(180,130,120,25);
 		tPass2.setBounds(180,160,120,25);
 		tPass3.setBounds(180,190,120,25);
-		JLabel info = new JLabel("PARA ALTERA«√O DE NOME DE USU¡RIO OU SENHA, INFORME OS DADOS ABAIXO E PRESSIONE ALTERAR.");
+		JLabel info = new JLabel("PARA ALTERA√á√ÉO DE NOME DE USU√ÅRIO OU SENHA, INFORME OS DADOS ABAIXO E PRESSIONE ALTERAR.");
 		info.setBounds(25,15,615,30);
-		JLabel novoUsuario = new JLabel("NOVO USU¡RIO:");
+		JLabel novoUsuario = new JLabel("NOVO USU√ÅRIO:");
 		novoUsuario.setBounds(84,50,120,30);
 		JLabel senhaAntiga = new JLabel("SENHA ANTIGA:");
 		senhaAntiga.setBounds(88,130,100,30);
@@ -132,7 +134,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		confirmeSenha.setBounds(25,190,160,30);
 		
 		//Tela
-		setTitle("ALTERA«√O DE USU¡RIO - USU¡RIO LOGADO: " + CadastroUserVO.getOldUser().toUpperCase());
+		setTitle("ALTERA√á√ÉO DE USU√ÅRIO - USU√ÅRIO LOGADO: " + CadastroUserVO.getOldUser().toUpperCase());
 		setSize(700, 500);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -162,7 +164,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 			List<ConsultaVO> list = dao.consultaUsuario();
 			
 			//Tela
-			setTitle("CONSULTA DE USU¡RIOS");
+			setTitle("CONSULTA DE USU√ÅRIOS");
 			setSize(1200, 500);
 			setLocationRelativeTo(null);
 			setResizable(false);
@@ -172,7 +174,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 			setContentPane(painel);
 			
 			//Label
-			JLabel consulta = new JLabel("CONSULTA DE USU¡RIOS CADASTRADOS");
+			JLabel consulta = new JLabel("CONSULTA DE USU√ÅRIOS CADASTRADOS");
 			consulta.setFont(new Font("Dialog",Font.PLAIN, 15));
 			consulta.setBounds(430,15,300,30);
 			painel.setLayout(null);
@@ -207,7 +209,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 //			 tabela.addMouseMotionListener(doScrollRectToVisible);
 			
 			//Definir colunas
-			Object[] cabecalho = {"NOME USU¡RIO", "DATA CRIA«√O", "DATA ALTERA«√O USU¡RIO", "DATA ALTERA«√O SENHA", "NOME",  "CPF", "DATA NASCIMENTO"};
+			Object[] cabecalho = {"NOME USU√ÅRIO", "DATA CRIA√á√ÉO", "DATA ALTERA√á√ÉO USU√ÅRIO", "DATA ALTERA√á√ÉO SENHA", "NOME",  "CPF", "DATA NASCIMENTO"};
 			List<Object[]> linhas = new ArrayList<Object[]>();
 			
 			Object[][] cabecalhoTopoEEsquerdo= new Object[1][];
@@ -225,7 +227,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 				
 			}  
 			
-			//Modificador cabeÁalho
+			//Modificador cabe√ßalho
 			final TableCellRenderer hr = tabela.getTableHeader().getDefaultRenderer();
 			JTableHeader th = tabela.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
@@ -255,7 +257,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		}
 		catch (Exception e) {
 			System.out.println(e);
-			JOptionPane.showMessageDialog(null, "ERRO AO CONSULTAR USU¡RIOS.", "ERRO", JOptionPane.ERROR_MESSAGE);		
+			JOptionPane.showMessageDialog(null, "ERRO AO CONSULTAR USU√ÅRIOS.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -263,7 +265,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		botoes.definirBotoesTelaConsultaUser(this, this);
 	}
 
-	//AÁ„o dos botıes
+	//A√ß√£o dos bot√µes
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -276,13 +278,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 			}
 			break;
 		case "command_info":
-			JOptionPane.showMessageDialog(null, "INSTRU«’ES PARA O CADASTRAMENTO DE USU¡RIO:" + System.lineSeparator() + 
-					"O CAMPO USU¡RIO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO SENHA DEVE CONTER DE 5 A 12 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO NOME DEVE CONTER DE 5 A 25 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO CPF DEVE SER PREENCHIDO COM APENAS N⁄MEROS E DEVE CONTER 11 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO DATA DE NASCIMENTO DEVE SER PREENCHIDO NO PADR√O DD/MM/AAAA COM APENAS N⁄MEROS." + System.lineSeparator() + 
-					"N√O SER¡ REALIZADA VALIDA«√O DE LETRAS MAI⁄SCULAS OU MIN⁄SCULAS PARA O USU¡RIO CRIADO, APENAS PARA SENHA.", "ATEN«√O", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, UsuarioEnum.CADASTRO_USUARIO.getMessage(), "ATEN√á√ÉO", JOptionPane.WARNING_MESSAGE);
 			break;
 		case "command_alterar_usuario":
 			pegaValorTelaAlteraNomeUser();
@@ -313,11 +309,11 @@ public class CadastroUser extends JFrame implements ActionListener {
 		String CPFVO = "";
 		String retornoValidador = "";
 		
-		//Valida n˙mero do CPF
+		//Valida nÔøΩmero do CPF
 		CadastroUserVO.setCPF(cpf);
 		retornoValidador = ValidaCPF.validaCPF();
 		
-		//Para validaÁ„o de data
+		//Para validaÔøΩÔøΩo de data
 		String[] separador = data.split("/");
 		String dia = separador[0];
 		String mes = separador[1];
@@ -325,55 +321,55 @@ public class CadastroUser extends JFrame implements ActionListener {
 		data = ano + "-" + mes + "-" + dia;
 		data = data.trim();
 		
-		//Para validaÁ„o de maioridade
+		//Para validaÔøΩÔøΩo de maioridade
 		int anoVigente = Calendar.getInstance().get(Calendar.YEAR);
 		int anoMinimiPermitido = anoVigente - 120;
 		int anoMaximoPermitido = anoVigente - 18;
 		
 		if (user.length()==0 || user.length() <4 || user.length()>25){
-			JOptionPane.showMessageDialog(null, "CAMPO USU¡RIO INV¡LIDO!" + System.lineSeparator() +
-					"O USU¡RIO DEVE CONTER DE 4 A 25 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO USUÔøΩRIO INVÔøΩLIDO!" + System.lineSeparator() +
+					"O USUÔøΩRIO DEVE CONTER DE 4 A 25 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 
 		else if (pass.length()==0 || pass.length() <5 || pass.length()>12){
-			JOptionPane.showMessageDialog(null, "CAMPO SENHA INV¡LIDO!" + System.lineSeparator() +
+			JOptionPane.showMessageDialog(null, "CAMPO SENHA INVÔøΩLIDO!" + System.lineSeparator() +
 					"A SENHA DEVE CONTER DE 5 A 12 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (pass.equals(pass2)==false){
-			JOptionPane.showMessageDialog(null, "AS SENHAS DIGITADAS N√O CONFEREM!" + System.lineSeparator() +
+			JOptionPane.showMessageDialog(null, "AS SENHAS DIGITADAS NÔøΩO CONFEREM!" + System.lineSeparator() +
 					"POR FAVOR, DIGITE NOVAMENTE.","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (nome.length()==0 || nome.length() <4 || nome.length()>25){
-			JOptionPane.showMessageDialog(null, "CAMPO NOME INV¡LIDO!" + System.lineSeparator() +
+			JOptionPane.showMessageDialog(null, "CAMPO NOME INVÔøΩLIDO!" + System.lineSeparator() +
 					"A NOME DEVE CONTER DE 4 A 25 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (cpf.length()==0 || cpf.length() <11 || cpf.length()>11){
-			JOptionPane.showMessageDialog(null, "CAMPO CPF INV¡LIDO!" + System.lineSeparator() +
-					"O CPF DEVE CONTER 11 CARACTERES, SOMENTE N⁄MEROS","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO CPF INVÔøΩLIDO!" + System.lineSeparator() +
+					"O CPF DEVE CONTER 11 CARACTERES, SOMENTE N√öMEROS","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (retornoValidador.equals("NOK")){
-			JOptionPane.showMessageDialog(null, "O CPF INFORMADO N√O … V¡LIDO!", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "O CPF INFORMADO N√ÉO √â V√ÅLIDO!", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (data.length() <10 || data.length()>10){
-			JOptionPane.showMessageDialog(null, "CAMPO DATA INV¡LIDO!" + System.lineSeparator() +
-					"A DATA DEVE SER PREENCHIDA NO PADR√O DD/MM/AAAA COM APENAS N⁄MEROS","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO DATA INV√ÅLIDO!" + System.lineSeparator() +
+					"A DATA DEVE SER PREENCHIDA NO PADRÔøΩO DD/MM/AAAA COM APENAS N√öMEROS","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(dia) < 1 || (Integer.parseInt(dia) > 31)){
-			JOptionPane.showMessageDialog(null,  "DATA DE NASCIMENTO INV¡LIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,  "DATA DE NASCIMENTO INVÔøΩLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(mes) < 1 || Integer.parseInt(mes) > 12){
-			JOptionPane.showMessageDialog(null, "DATA DE NASCIMENTO INV¡LIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA DE NASCIMENTO INVÔøΩLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(ano) < anoMinimiPermitido || Integer.parseInt(ano) >= anoVigente){
-			JOptionPane.showMessageDialog(null, "DATA DE NASCIMENTO INV¡LIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA DE NASCIMENTO INVÔøΩLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(ano) > anoMaximoPermitido){
@@ -384,7 +380,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		else {
 			cadastroVO.setUser(user);
 			
-			//Gera hash da senha para inserÁ„o no banco
+			//Gera hash da senha para inserÔøΩÔøΩo no banco
 			MessageDigest algorithm = MessageDigest.getInstance("MD5");
 			byte messageDigest[] = algorithm.digest(pass.getBytes("UTF-8"));
 			
@@ -412,16 +408,16 @@ public class CadastroUser extends JFrame implements ActionListener {
 				e.printStackTrace();
 			}
 			if (cpf.equals(CPFVO)){
-				System.out.println("J· existe um usu·rio para o CPF informado: " + cpf);
-				JOptionPane.showMessageDialog(null,"J¡ EXISTE UM USU¡RIO CADASTRADO PARA O CPF: " + cpf + System.lineSeparator() + 
-						"POR FAVOR, CASO SEJA NECESS¡RIO ALTERAR O NOME DE USU¡RIO, V¡ AO MENU PRINCIPAL E SELECIONE E OP«√O ALTERAR USU¡RIO", 
-						"CADASTRAMENTO DE USU¡RIO", JOptionPane.INFORMATION_MESSAGE);
+				System.out.println("JÔøΩ existe um usuÔøΩrio para o CPF informado: " + cpf);
+				JOptionPane.showMessageDialog(null,"JÔøΩ EXISTE UM USUÔøΩRIO CADASTRADO PARA O CPF: " + cpf + System.lineSeparator() + 
+						"POR FAVOR, CASO SEJA NECESSÔøΩRIO ALTERAR O NOME DE USUÔøΩRIO, VÔøΩ AO MENU PRINCIPAL E SELECIONE E OPÔøΩÔøΩO ALTERAR USUÔøΩRIO", 
+						"CADASTRAMENTO DE USUÔøΩRIO", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
 			else if (user.equalsIgnoreCase(NomeUserVO)){
-				System.out.println("Usu·rio "+ user.toUpperCase() + " j· existe na base." );
-				JOptionPane.showMessageDialog(null,"J¡ EXISTE UM USU¡RIO " + user.toUpperCase() +" CADASTRADO." + System.lineSeparator() + 
-						"POR FAVOR, ESCOLHA OUTRO NOME DE USU¡RIO.", "CADASTRAMENTO DE USU¡RIO", JOptionPane.INFORMATION_MESSAGE);
+				System.out.println("UsuÔøΩrio "+ user.toUpperCase() + " jÔøΩ existe na base." );
+				JOptionPane.showMessageDialog(null,"JÔøΩ EXISTE UM USUÔøΩRIO " + user.toUpperCase() +" CADASTRADO." + System.lineSeparator() + 
+						"POR FAVOR, ESCOLHA OUTRO NOME DE USUÔøΩRIO.", "CADASTRAMENTO DE USUÔøΩRIO", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
 			else {
@@ -431,9 +427,9 @@ public class CadastroUser extends JFrame implements ActionListener {
 					CadastroUserVO.setCPF(cpf);
 					CadastroUserVO.setDataNasc(data);
 					dao.insereDadosNaBase(cadastroVO);
-					System.out.println("Usu·rio "+ user.toUpperCase() + " cadastrado." );
-					JOptionPane.showMessageDialog(null,"USU¡RIO " + user.toUpperCase() +" CADASTRADO COM SUCESSO.", 
-							"CADASTRAMENTO DE USU¡RIO", JOptionPane.INFORMATION_MESSAGE);
+					System.out.println("UsuÔøΩrio "+ user.toUpperCase() + " cadastrado." );
+					JOptionPane.showMessageDialog(null,"USUÔøΩRIO " + user.toUpperCase() +" CADASTRADO COM SUCESSO.", 
+							"CADASTRAMENTO DE USUÔøΩRIO", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 					CadastroUser cadastroUser = new CadastroUser();
 					cadastroUser.criaTelaCadastroUser();
@@ -457,7 +453,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		String NomeUserVO = "";
 		
 		if (newUser.length()==0 || newUser.length() <4 || newUser.length()>25){
-			JOptionPane.showMessageDialog(null, "CAMPO USU¡RIO INV¡LIDO!" + System.lineSeparator() +"O USU¡RIO DEVE CONTER DE 4 A 25 CARACTERES",
+			JOptionPane.showMessageDialog(null, "CAMPO USUÔøΩRIO INVÔøΩLIDO!" + System.lineSeparator() +"O USUÔøΩRIO DEVE CONTER DE 4 A 25 CARACTERES",
 					"ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 
@@ -475,24 +471,24 @@ public class CadastroUser extends JFrame implements ActionListener {
 				e.printStackTrace();
 			}
 			if (newUser.equalsIgnoreCase(NomeUserVO)){
-				System.out.println("Usu·rio "+ newUser.toUpperCase() + " j· existe na base." );
-				JOptionPane.showMessageDialog(null,"J¡ EXISTE UM USU¡RIO " + newUser.toUpperCase() +" CADASTRADO." + System.lineSeparator() + 
-						"POR FAVOR, ESCOLHA OUTRO NOME DE USU¡RIO.", "CADASTRAMENTO DE USU¡RIO", JOptionPane.INFORMATION_MESSAGE);
+				System.out.println("UsuÔøΩrio "+ newUser.toUpperCase() + " jÔøΩ existe na base." );
+				JOptionPane.showMessageDialog(null,"JÔøΩ EXISTE UM USUÔøΩRIO " + newUser.toUpperCase() +" CADASTRADO." + System.lineSeparator() + 
+						"POR FAVOR, ESCOLHA OUTRO NOME DE USUÔøΩRIO.", "CADASTRAMENTO DE USUÔøΩRIO", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
 			
 				try {
 					cadastroVO.setUser(newUser);
 					dao.atualizaUsuarioNaBase(cadastroVO);
-					System.out.println("Usu·rio "+ oldUser.toUpperCase() + " alterado para " + newUser.toUpperCase() + ".");
-					JOptionPane.showMessageDialog(null,"O USU¡RIO " + oldUser.toUpperCase() +" FOI ALTERADO PARA: " + newUser.toUpperCase() + "." + System.lineSeparator() + 
-							"POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "CADASTRAMENTO DE USU¡RIO", JOptionPane.INFORMATION_MESSAGE);
+					System.out.println("UsuÔøΩrio "+ oldUser.toUpperCase() + " alterado para " + newUser.toUpperCase() + ".");
+					JOptionPane.showMessageDialog(null,"O USUÔøΩRIO " + oldUser.toUpperCase() +" FOI ALTERADO PARA: " + newUser.toUpperCase() + "." + System.lineSeparator() + 
+							"POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "CADASTRAMENTO DE USUÔøΩRIO", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 					Login login = new Login(Login.COMMAND_ALTERAR_USUARIO);
 					login.criaTela();
 					login.criaBotoesLogin();
 					login.setVisible(true);
-					cadastroVO.setNomeUser(newUser);//Para utilizaÁ„o na classe LoginUser, onde È comparada a vari·vel NomeUser.
+					cadastroVO.setNomeUser(newUser);//Para utilizaÔøΩÔøΩo na classe LoginUser, onde ÔøΩ comparada a variÔøΩvel NomeUser.
 					
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -510,17 +506,17 @@ public class CadastroUser extends JFrame implements ActionListener {
 		String SenhaUserVO = "";
 		
 		if (oldPass.length()==0 || oldPass.length() <5 || oldPass.length()>12){
-			JOptionPane.showMessageDialog(null, "CAMPO SENHA INV¡LIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES",
+			JOptionPane.showMessageDialog(null, "CAMPO SENHA INVÔøΩLIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES",
 					"ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (newPass.length()==0 || newPass.length() <5 || newPass.length()>12){
-			JOptionPane.showMessageDialog(null, "CAMPO NOVA SENHA INV¡LIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES",
+			JOptionPane.showMessageDialog(null, "CAMPO NOVA SENHA INVÔøΩLIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES",
 					"ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (newPass.equals(newPass2)==false){
-			JOptionPane.showMessageDialog(null, "AS SENHAS DIGITADAS N√O CONFEREM!" + System.lineSeparator() +"POR FAVOR, DIGITE NOVAMENTE.",
+			JOptionPane.showMessageDialog(null, "AS SENHAS DIGITADAS NÔøΩO CONFEREM!" + System.lineSeparator() +"POR FAVOR, DIGITE NOVAMENTE.",
 					"ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
@@ -528,7 +524,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 		else {
 			
 			try {
-				//Gera hash da senha antiga para comparaÁ„o com banco
+				//Gera hash da senha antiga para comparaÔøΩÔøΩo com banco
 				MessageDigest algorithm = MessageDigest.getInstance("MD5");
 				byte messageDigest[] = algorithm.digest(oldPass.getBytes("UTF-8"));
 				
@@ -540,18 +536,18 @@ public class CadastroUser extends JFrame implements ActionListener {
 				dao.buscarDadosNaBaseUser(cadastroVO);
 				SenhaUserVO = cadastroVO.getSenhaUser();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, UsuarioEnum.CADASTRO_USUARIO.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
 			}
 
 			if (oldPass.equals(SenhaUserVO)==false){
 				System.out.println("Senha antiga informada incorreta." );
-				JOptionPane.showMessageDialog(null,"A SENHA ANTIGA INFORMADA EST¡ INCORRETA!", "ERRO", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,"A SENHA ANTIGA INFORMADA EST√Å INCORRETA!", "ERRO", JOptionPane.ERROR_MESSAGE);
 			}
 			
 			else {
 				try {
-					//Gera hash da senha para inserÁ„o no banco
+					//Gera hash da senha para inser√ß√£o no banco
 					MessageDigest algorithm = MessageDigest.getInstance("MD5");
 					byte messageDigest[] = algorithm.digest(newPass.getBytes("UTF-8"));
 					
@@ -563,9 +559,9 @@ public class CadastroUser extends JFrame implements ActionListener {
 					cadastroVO.setPass(newPass);
 					
 					dao.atualizaSenhaNaBase(cadastroVO);
-					System.out.println("O usu·rio " + oldUser.toUpperCase() + " alterou a senha.");
+					System.out.println("O usuÔøΩrio " + oldUser.toUpperCase() + " alterou a senha.");
 					JOptionPane.showMessageDialog(null, "A SENHA FOI ALTERADA COM SUCESSO!" + System.lineSeparator() + 
-							"POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "ALTERA«√O DE SENHA", JOptionPane.INFORMATION_MESSAGE);
+							"POR FAVOR, EFETUE O LOGIN NOVAMENTE.", "ALTERA√á√ÉO DE SENHA", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 					Login login = new Login(Login.COMMAND_ALTERAR_USUARIO);
 					login.criaTela();
@@ -573,7 +569,7 @@ public class CadastroUser extends JFrame implements ActionListener {
 					login.setVisible(true);
 					
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "ERRO", "ERRO", JOptionPane.ERROR_MESSAGE);
 					e.printStackTrace();
 				}
 			

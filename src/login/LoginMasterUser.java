@@ -27,7 +27,7 @@ public class LoginMasterUser extends Login {
 		
 		tUser.setBounds(150,50,120,25);
 		tPass.setBounds(150,80,120,25);
-		JLabel l1 = new JLabel("USU¡RIO:");
+		JLabel l1 = new JLabel("USU√ÅRIO:");
 		l1.setBounds(90,50,60,30);
 		l1.setForeground(Color.WHITE);
 		JLabel l2 = new JLabel("SENHA:");
@@ -38,7 +38,7 @@ public class LoginMasterUser extends Login {
 		l3.setForeground(Color.WHITE);
 		
 		//Tela
-		setTitle("LOGIN DE USU¡RIO MASTER");
+		setTitle("LOGIN DE USU√ÅRIO MASTER");
 		setSize(700, 500);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -62,12 +62,12 @@ public class LoginMasterUser extends Login {
 		String SenhaMasterVO ="";
 		
 		if(user.length()==0 || user.length() <4 || user.length()>25){
-			JOptionPane.showMessageDialog(null, "CAMPO USU¡RIO INV¡LIDO!" + System.lineSeparator() +"O USU¡RIO DEVE CONTER DE 4 A 25 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO USU√ÅRIO INV√ÅLIDO!" + System.lineSeparator() +"O USU√ÅRIO DEVE CONTER DE 4 A 25 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
 
 		}
 
 		else if(pass.length()==0 || pass.length() <5 || pass.length()>12){
-			JOptionPane.showMessageDialog(null, "CAMPO SENHA INV¡LIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO SENHA INV√ÅLIDO!" + System.lineSeparator() +"A SENHA DEVE CONTER DE 5 A 12 CARACTERES","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
@@ -75,7 +75,7 @@ public class LoginMasterUser extends Login {
 			cadastroVO.setUser(user);
 			cadastroVO.setPass(pass);
 			
-			//Realiza uma conulta no banco e verifica o usu·rio e senha informado.
+			//Realiza uma conulta no banco e verifica o usu√°rio e senha informado.
 			try {
 				dao.buscarDadosNaBaseMaster(cadastroVO);
 				MasterUserVO = CadastroUserVO.getMasterUser();
@@ -87,13 +87,13 @@ public class LoginMasterUser extends Login {
 			}
 			
 			if(user.equalsIgnoreCase(MasterUserVO) == false){
-				System.out.println("Tentativa de login com o usu·rio mestre: " + user.toUpperCase() + ", usu·rio mestre inv·lido.");
-				JOptionPane.showMessageDialog(null,"O USU¡RIO " + user.toUpperCase() + " N√O EST¡ CADASTRADO COMO USU¡RIO MESTRE.", "ERRO DE LOGIN", JOptionPane.ERROR_MESSAGE);
+				System.out.println("Tentativa de login com o usu√°rio mestre: " + user.toUpperCase() + ", usu√°rio mestre inv√°lido.");
+				JOptionPane.showMessageDialog(null,"O USU√ÅRIO " + user.toUpperCase() + " N√ÉO EST√Å CADASTRADO COMO USU√ÅRIO MESTRE.", "ERRO DE LOGIN", JOptionPane.ERROR_MESSAGE);
 			
 			}	
 			
 			else if(pass.equals(SenhaMasterVO) == false){
-				System.out.println("Tentativa de login com o usu·rio mestre, senha incorreta.");
+				System.out.println("Tentativa de login com o usu√°rio mestre, senha incorreta.");
 				JOptionPane.showMessageDialog(null, "SENHA INCORRETA.", "ERRO DE LOGIN", JOptionPane.ERROR_MESSAGE);
 			}
 			

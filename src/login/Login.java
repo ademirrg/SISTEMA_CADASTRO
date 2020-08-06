@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import enums.ProdutoEnum;
+import enums.UsuarioEnum;
 import produto.CadastroProduto;
 import segmento.CadastroSegmento;
 import sistema.cadastro.Botao;
@@ -59,19 +61,19 @@ public class Login extends JFrame implements ActionListener {
 
 		tUser.setBounds(150, 50, 120, 25);
 		tPass.setBounds(150, 80, 120, 25);
-		JLabel l1 = new JLabel("USU¡RIO:");
+		JLabel l1 = new JLabel("USU√ÅRIO:");
 		l1.setBounds(90, 50, 60, 30);
 		JLabel l2 = new JLabel("SENHA:");
 		l2.setBounds(103, 80, 47, 30);
 		JLabel l3 = new JLabel("INFORME OS DADOS SOLICITADOS E PRESSIONE ENTRAR.");
 		l3.setBounds(31, 15, 330, 30);
-		JLabel l4 = new JLabel("ESQUECI MEU USU¡RIO.");
+		JLabel l4 = new JLabel("ESQUECI MEU USU√ÅRIO.");
 		l4.setBounds(540, 15, 180, 30);
 		JLabel l5 = new JLabel("ESQUECI MINHA SENHA.");
 		l5.setBounds(540, 75, 180, 30);
 
 		// Tela
-		setTitle("LOGIN DE USU¡RIO");
+		setTitle("LOGIN DE USU√ÅRIO");
 		setSize(700, 500);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -134,14 +136,14 @@ public class Login extends JFrame implements ActionListener {
 
 		if (user.length() == 0 || user.length() < 4 || user.length() > 25) {
 			JOptionPane.showMessageDialog(null,
-					"CAMPO USU¡RIO INV¡LIDO!" + System.lineSeparator() + "O USU¡RIO DEVE CONTER DE 4 A 25 CARACTERES",
+					"CAMPO USU√ÅRIO INV√ÅLIDO!" + System.lineSeparator() + "O USU√ÅRIO DEVE CONTER DE 4 A 25 CARACTERES",
 					"ERRO", JOptionPane.ERROR_MESSAGE);
 
 		}
 
 		else if (pass.length() == 0 || pass.length() < 5 || pass.length() > 12) {
 			JOptionPane.showMessageDialog(null,
-					"CAMPO SENHA INV¡LIDO!" + System.lineSeparator() + "A SENHA DEVE CONTER DE 5 A 12 CARACTERES",
+					"CAMPO SENHA INV√ÅLIDO!" + System.lineSeparator() + "A SENHA DEVE CONTER DE 5 A 12 CARACTERES",
 					"ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 
@@ -149,7 +151,7 @@ public class Login extends JFrame implements ActionListener {
 		else {
 			cadastroVO.setUser(user);
 
-			//Gera hash da senha para comparaÁ„o com o banco
+			//Gera hash da senha para compara√ß√£o com o banco
 			MessageDigest algorithm = MessageDigest.getInstance("MD5");
 			byte messageDigest[] = algorithm.digest(pass.getBytes("UTF-8"));
 			
@@ -161,7 +163,7 @@ public class Login extends JFrame implements ActionListener {
 			
 			cadastroVO.setPass(pass);
 
-			// Realiza uma conulta no banco e verifica o usu·rio e senha
+			// Realiza uma conulta no banco e verifica o usu√°rio e senha
 			// informado.
 			try {
 				dao.buscarDadosNaBaseUser(cadastroVO);
@@ -175,14 +177,14 @@ public class Login extends JFrame implements ActionListener {
 
 			if (user.equalsIgnoreCase(NomeUserVO) == false) {
 				System.out.println(
-						"Tentativa de login com o usu·rio " + user.toUpperCase() + ", usu·rio n„o cadastrado.");
-				JOptionPane.showMessageDialog(null, "O USU¡RIO " + user.toUpperCase() + " N√O EXISTE NA BASE.",
+						"Tentativa de login com o usu√°rio " + user.toUpperCase() + ", usu√°rio n√°o cadastrado.");
+				JOptionPane.showMessageDialog(null, "O USU√ÅRIO " + user.toUpperCase() + " N√ÉO EXISTE NA BASE.",
 						"ERRO DE LOGIN", JOptionPane.ERROR_MESSAGE);
 
 			}
 
 			else if (pass.equals(SenhaUserVO) == false) {
-				System.out.println("Tentativa de login com o usu·rio " + user.toUpperCase() + ", senha incorreta.");
+				System.out.println("Tentativa de login com o usu√°rio " + user.toUpperCase() + ", senha incorreta.");
 				JOptionPane.showMessageDialog(null, "SENHA INCORRETA.", "ERRO DE LOGIN", JOptionPane.ERROR_MESSAGE);
 			}
 
@@ -203,21 +205,15 @@ public class Login extends JFrame implements ActionListener {
 			System.exit(0);
 			break;
 		case COMMAND_CADASTRO_USUARIO:
-			//Regra de apresentaÁ„o
+			//Regra de apresenta√ß√£o
 			cadastroUser = new CadastroUser();
 			cadastroUser.criaTelaCadastroUser();
 			cadastroUser.criaBotoes();
 			cadastroUser.setVisible(true);
 			cadastroUser.criaFocoCadastroUser();
 			dispose();
-			System.out.println("Usu·rio mestre acessou tela de cadastro de usu·rios.");
-			JOptionPane.showMessageDialog(null, "INSTRU«’ES PARA O CADASTRAMENTO DE USU¡RIO:" + System.lineSeparator() + 
-					"O CAMPO USU¡RIO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO SENHA DEVE CONTER DE 5 A 12 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO NOME DEVE CONTER DE 5 A 25 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO CPF DEVE SER PREENCHIDO COM APENAS N⁄MEROS E DEVE CONTER 11 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO DATA DE NASCIMENTO DEVE SER PREENCHIDO NO PADR√O DD/MM/AAAA COM APENAS N⁄MEROS." + System.lineSeparator() + 
-					"N√O SER¡ REALIZADA VALIDA«√O DE LETRAS MAI⁄SCULAS OU MIN⁄SCULAS PARA O USU¡RIO CRIADO, APENAS PARA SENHA.", "ATEN«√O", JOptionPane.WARNING_MESSAGE);
+			System.out.println("Usu√°rio mestre acessou tela de cadastro de usu√°rios.");
+			JOptionPane.showMessageDialog(null, UsuarioEnum.CADASTRO_USUARIO.getMessage(), "ATEN√á√ÉO", JOptionPane.WARNING_MESSAGE);
 			break;
 		case COMMAND_ALTERAR_USUARIO:
 			cadastroUser = new CadastroUser();
@@ -231,8 +227,8 @@ public class Login extends JFrame implements ActionListener {
 				List<ConsultaVO> list = dao.consultaUsuario();
 				
 				if (list.size()==0){
-					System.out.println("N„o existem usu·rios cadastrados na base.");
-					JOptionPane.showMessageDialog(null, "N√O EXISTEM USU¡RIOS CADASTRADOS NA BASE.", "INFO", JOptionPane.INFORMATION_MESSAGE);
+					System.out.println("N√£o existem usu√°rios cadastrados na base.");
+					JOptionPane.showMessageDialog(null, "N√ÉO EXISTEM USU√ÅRIOS CADASTRADOS NA BASE.", "INFO", JOptionPane.INFORMATION_MESSAGE);
 					Tela tela = new Tela();
 					tela.criaTela();
 					tela.criaBotoes();
@@ -241,7 +237,7 @@ public class Login extends JFrame implements ActionListener {
 				}
 				
 				else {
-					System.out.println("Usu·rio mestre acessou tela de consulta de usu·rios.");
+					System.out.println("Usu√°rio mestre acessou tela de consulta de usu√°rios.");
 					cadastroUser = new CadastroUser();
 					cadastroUser.criaTelaConsultaUser();
 					cadastroUser.criaBotoesConsulta();
@@ -251,7 +247,7 @@ public class Login extends JFrame implements ActionListener {
 			}
 				catch (Exception e) {
 					System.out.println(e);
-					JOptionPane.showMessageDialog(null, "ERRO AO CONSULTAR USU¡RIOS.", "ERRO", JOptionPane.ERROR_MESSAGE);		
+					JOptionPane.showMessageDialog(null, "ERRO AO CONSULTAR USU√ÅRIOS.", "ERRO", JOptionPane.ERROR_MESSAGE);
 				}
 			break;
 //		case COMMAND_CADASTRO_VENDEDOR:
@@ -268,10 +264,7 @@ public class Login extends JFrame implements ActionListener {
 			cadastroProd.setVisible(true);
 			cadastroProd.criaFocoCadastroProd();
 			dispose();
-			JOptionPane.showMessageDialog(null, "INSTRU«’ES PARA O CADASTRAMENTO DE PRODUTO:" + System.lineSeparator() + 
-					"O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES E DEVE EXISTIR NA TABELA DE SEGMENTOS." + System.lineSeparator() + 
-					"O CAMPO VIG NCIA DEVE CONTER A DATA DE INÕCIO E FIM DE VIG NCIA DO PRODUTO NO PADR√O DD/MM/AAAA COM APENAS N⁄MEROS.","INFO", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, ProdutoEnum.CADASTRO_PRODUTO.getMessage(),"INFO", JOptionPane.WARNING_MESSAGE);
 			break;
 		case COMMAND_ALTERAR_PRODUTO:
 			CadastroProduto alteraProd = new CadastroProduto();
@@ -287,7 +280,7 @@ public class Login extends JFrame implements ActionListener {
 			cadastroSeg.setVisible(true);
 			cadastroSeg.criaFocoCadastroSeg();
 			dispose();
-			JOptionPane.showMessageDialog(null, "INSTRU«’ES PARA O CADASTRAMENTO DE SEGMENTO:" + System.lineSeparator() + 
+			JOptionPane.showMessageDialog(null, "INSTRU√á√ïES PARA O CADASTRAMENTO DE SEGMENTO:" + System.lineSeparator() +
 					"O CAMPO NOME DO SEGMENTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
 					"O CAMPO TIPO CONTRATO DEVE CONTER 3 CARACTERES (CDC OU LSG)." + System.lineSeparator() + 
 					"O CAMPO TIPO PESSOA DEVE CONTER 2 CARACTERES (PF OU PJ).","INFO", JOptionPane.WARNING_MESSAGE);
@@ -300,8 +293,8 @@ public class Login extends JFrame implements ActionListener {
 			dispose();
 			break;
 		case COMMAND_INFO:
-			JOptionPane.showMessageDialog(null, "Vers„o: 0.1" + System.lineSeparator() + 
-					"Data de criaÁ„o: 09/02/2017" + System.lineSeparator() + 
+			JOptionPane.showMessageDialog(null, "Vers√£o: 0.1" + System.lineSeparator() +
+					"Data de cria√ß√£o: 09/02/2017" + System.lineSeparator() +
 					"Criado por: Ademir Rocha", "SOBRE",JOptionPane.INFORMATION_MESSAGE);
 			break;
 		}

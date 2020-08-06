@@ -40,9 +40,9 @@ public class CadastroProdutoDAO {
 		cadastroVO.setPRDSTA(prdSta);
 		
 		comando.close();
-		System.out.println("Consulta de cÛdigo de produto realizada na base.");
+		System.out.println("Consulta de c√≥digo de produto realizada na base.");
 		conn.close();
-		System.out.println("Conex„o encerrada.");
+		System.out.println("Conex√£o encerrada.");
 		
 	}
 	
@@ -79,7 +79,7 @@ public class CadastroProdutoDAO {
 		comando.close();
 		System.out.println("Consulta de produto realizada na base.");
 		conn.close();
-		System.out.println("Conex„o encerrada.");
+		System.out.println("Conex√£o encerrada.");
 		
 	}
 	
@@ -100,7 +100,7 @@ public class CadastroProdutoDAO {
 		comando.close();
 		System.out.println("Consulta de segmento realizada na base.");
 		conn.close();
-		System.out.println("Conex„o encerrada.");
+		System.out.println("Conex√£o encerrada.");
 		
 	}
 		
@@ -117,9 +117,9 @@ public class CadastroProdutoDAO {
 		comando.setString(5, cadastroVO.getPRDSTA());
 		comando.execute();
 		comando.close();
-		System.out.println("InserÁ„o realizada na base.");
+		System.out.println("Inser√ß√£o realizada na base.");
 		conn.close();
-		System.out.println("Conex„o encerrada.");
+		System.out.println("Conex√£o encerrada.");
 	
 	}
 	
@@ -169,9 +169,9 @@ public class CadastroProdutoDAO {
 		comando6.execute();
 		comando6.close();
 		
-		System.out.println("AtualizaÁ„o realizada na base.");
+		System.out.println("Atualiza√ß√£o realizada na base.");
 		conn.close();
-		System.out.println("Conex„o encerrada.");
+		System.out.println("Conex√£o encerrada.");
 	
 	}
 	
@@ -199,9 +199,9 @@ public class CadastroProdutoDAO {
 			lista.add(consultaVO);
 		}
 		comando.close();
-		System.out.println("Consulta de usu·rios realizada na base.");
+		System.out.println("Consulta de usuÔøΩrios realizada na base.");
 		conn.close();
-		System.out.println("Conex„o encerrada.");
+		System.out.println("Conex√£o encerrada.");
 		return lista;
 	}
 	

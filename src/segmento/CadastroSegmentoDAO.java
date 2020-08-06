@@ -40,7 +40,7 @@ public class CadastroSegmentoDAO {
 		comando.close();
 		System.out.println("Consulta de segmento realizada na base.");
 		conn.close();
-		System.out.println("Conex„o encerrada.");
+		System.out.println("Conex√£o encerrada.");
 		
 		}
 	
@@ -74,7 +74,7 @@ public class CadastroSegmentoDAO {
 		comando.close();
 		System.out.println("Consulta de segmento realizada na base.");
 		conn.close();
-		System.out.println("Conex„o encerrada.");
+		System.out.println("Conex√£o encerrada.");
 		
 		}
 		
@@ -90,9 +90,9 @@ public class CadastroSegmentoDAO {
 		comando.setString(4, cadastroVO.getSegSta());
 		comando.execute();
 		comando.close();
-		System.out.println("InserÁ„o realizada na base.");
+		System.out.println("Inser√ß√£o realizada na base.");
 		conn.close();
-		System.out.println("Conex„o encerrada.");
+		System.out.println("Conex√£o encerrada.");
 	
 	}
 	
@@ -136,9 +136,9 @@ public class CadastroSegmentoDAO {
 		comando5.close();
 		
 		
-		System.out.println("AtualizaÁ„o realizada na base.");
+		System.out.println("Atualiza√ß√£o realizada na base.");
 		conn.close();
-		System.out.println("Conex„o encerrada.");
+		System.out.println("Conex√£o encerrada.");
 	
 	}
 	
@@ -166,9 +166,9 @@ public class CadastroSegmentoDAO {
 			lista.add(consultaVO);
 		}
 		comando.close();
-		System.out.println("Consulta de usu·rios realizada na base.");
+		System.out.println("Consulta de usu√°rios realizada na base.");
 		conn.close();
-		System.out.println("Conex„o encerrada.");
+		System.out.println("Conex√£o encerrada.");
 		return lista;
 	}
 	

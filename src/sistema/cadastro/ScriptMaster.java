@@ -5,11 +5,11 @@ import com.mysql.jdbc.PreparedStatement;
 import usuario.CadastroUserVO;
 
 public class ScriptMaster {
-	//Script Master - Cria Base de dados e popula tabela de usu·rio master
+	//Script Master - Cria Base de dados e popula tabela de usu√°rio master
 		
-	public static void executaScriptMaster (CadastroUserVO cadastroVO) throws Exception{
+	public static void executaScriptMaster () throws Exception{
 		
-		String sqlSCHEMA = "CREATE SCHEMA `Sistema_Cadastro`";
+		String sqlSCHEMA = "CREATE SCHEMA `sistema_cadastro`";
 		
 		String sqlTabelaMaster = "CREATE TABLE `sistema_cadastro`.`master` ("
 				+ "`MasterUser` VARCHAR(25) NOT NULL,"
@@ -92,7 +92,7 @@ public class ScriptMaster {
 		
 		System.out.println("Banco de dados criado com sucesso.");
 		conn.close();
-		System.out.println("Conex„o encerrada.");
+		System.out.println("Conex√£o encerrada.");
 	
 	}
 	
@@ -117,7 +117,7 @@ public class ScriptMaster {
 		comando.close();
 		System.out.println("Consulta realizada na base.");
 		conn.close();
-		System.out.println("Conex„o encerrada.");
+		System.out.println("Conex√£o encerrada.");
 		
 		}
 }

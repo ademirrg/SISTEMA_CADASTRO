@@ -8,6 +8,8 @@ import java.text.ParseException;
 import java.util.Calendar;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
+
+import enums.ProdutoEnum;
 import sistema.cadastro.Botao;
 import sistema.cadastro.Tela;
 
@@ -22,7 +24,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 	CadastroProdutoDAO dao = new CadastroProdutoDAO();
 	CadastroProdutoVO cadastroVO = new CadastroProdutoVO();
 	
-	//Campos necess·rios para exibiÁ„o dos valores na tela de alteraÁ„o de produto
+	//Campos necess√°rios para exibi√ß√£o dos valores na tela de altera√ß√£o de produto
 	String altCodPrd = cadastroVO.getCodPRD();
 	String altNomePrd = cadastroVO.getNomePRD();
 	String altInicioVig = cadastroVO.getInicioVig();
@@ -75,9 +77,9 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		nome.setBounds(30,50,200,30);
 		JLabel segmento = new JLabel("SEGMENTO:");
 		segmento.setBounds(80,80,85,30);
-		JLabel vigencia = new JLabel("VIG NCIA:");
+		JLabel vigencia = new JLabel("VIG√äNCIA:");
 		vigencia.setBounds(91,110,85,30);
-		JLabel a = new JLabel("¡");
+		JLabel a = new JLabel("√Ä");
 		a.setBounds(228,110,85,30);
 		JLabel caracteres = new JLabel("CARACTERES: 0");
 		caracteres.setBounds(323,50,200,30);
@@ -128,7 +130,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 	public void criaTelaBuscaProd(){
 		
 		//Tela
-		setTitle("ALTERA«√O DE PRODUTO");
+		setTitle("ALTERA√á√ÉO DE PRODUTO");
 		setSize(700, 500);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -197,7 +199,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		//Tela
-		setTitle("ALTERA«√O DO PRODUTO: " + altCodPrd + " - " + altNomePrd);
+		setTitle("ALTERA√á√ÉO DO PRODUTO: " + altCodPrd + " - " + altNomePrd);
 		setSize(700, 500);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -221,9 +223,9 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		cod.setBounds(36,80,200,30);
 		JLabel segmento = new JLabel("SEGMENTO:");
 		segmento.setBounds(80,110,85,30);
-		JLabel vigencia = new JLabel("VIG NCIA:");
+		JLabel vigencia = new JLabel("VIG√äNCIA:");
 		vigencia.setBounds(91,140,85,30);
-		JLabel a = new JLabel("¡");
+		JLabel a = new JLabel("√Å");
 		a.setBounds(228,140,85,30);
 		JLabel status = new JLabel("STATUS:");
 		status.setBounds(98,170,85,30);
@@ -272,7 +274,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		botoes.definirBotoesTelaAlteraProd(this, this);
 	}
 	
-	//AÁ„o dos botıes
+	//A√ß√£o dos bot√µes
 	public void actionPerformed(ActionEvent e){
 		switch (e.getActionCommand()) {
 		case "command_salvar":
@@ -299,17 +301,10 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			dispose();
 			break;
 		case "command_info":
-			JOptionPane.showMessageDialog(null, "INSTRU«’ES PARA O CADASTRAMENTO DE PRODUTO:" + System.lineSeparator() + 
-					"O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES E DEVE EXISTIR NA TABELA DE SEGMENTOS." + System.lineSeparator() + 
-					"O CAMPO VIG NCIA DEVE CONTER A DATA DE INÕCIO E FIM DE VIG NCIA DO PRODUTO NO PADR√O DD/MM/AAAA COM APENAS N⁄MEROS.","INFO", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, ProdutoEnum.CADASTRO_PRODUTO.getMessage(),"INFO", JOptionPane.WARNING_MESSAGE);
 			break;
 		case "command_info_altera":
-			JOptionPane.showMessageDialog(null, "INSTRU«’ES PARA O ALTERA«√O DE PRODUTO:" + System.lineSeparator() + 
-					"O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES." + System.lineSeparator() + 
-					"O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES E DEVE EXISTIR NA TABELA DE SEGMENTOS." + System.lineSeparator() + 
-					"O CAMPO VIG NCIA DEVE CONTER A DATA DE INÕCIO E FIM DE VIG NCIA DO PRODUTO NO PADR√O DD/MM/AAAA COM APENAS N⁄MEROS." + System.lineSeparator() + 
-					"O CAMPO STATUS DEVE CONTER 1 CARACTERE, INDICANDO STATUS ATIVO/INATIVO (1/0).","INFO", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, ProdutoEnum.ALTERACAO_PRODUTO.getMessage(),"INFO", JOptionPane.WARNING_MESSAGE);
 			break;
 		}
 	}
@@ -324,7 +319,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		String nomePRDVO = "";
 		String prdsta = "1";
 		
-		//Para validaÁ„o de data
+		//Para valida√ß√£o de data
 		int anoVigente = Calendar.getInstance().get(Calendar.YEAR);
 		int mesVigente = Calendar.getInstance().get(Calendar.MONTH);
 		mesVigente = mesVigente + 1;
@@ -346,87 +341,88 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		
 		
 		if (nomePRD.length()<4 || nomePRD.length()>25){
-			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO INV¡LIDO!" + System.lineSeparator() + 
+			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO INV√ÅLIDO!" + System.lineSeparator() +
 					"O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (segmento.length()<3 || segmento.length()>3){
-			JOptionPane.showMessageDialog(null, "CAMPO SEGMENTO INV¡LIDO!" + System.lineSeparator() + 
+			JOptionPane.showMessageDialog(null, "CAMPO SEGMENTO INV√ÅLIDO!" + System.lineSeparator() +
 					"O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (inicioVig.length()<10 || inicioVig.length()>10){
-			JOptionPane.showMessageDialog(null, "CAMPO VIG NCIA INV¡LIDO!" + System.lineSeparator() + 
-					"O CAMPO VIG NCIA DEVE CONTER A DATA DE INÕCIO E FIM DE VIG NCIA DO PRODUTO NO PADR√O DD/MM/AAAA COM APENAS N⁄MEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO VIG√äNCIA INV√ÅLIDO!" + System.lineSeparator() +
+					"O CAMPO VIG√äNCIA DEVE CONTER A DATA DE IN√çCIO E FIM DE VIG√äNCIA DO PRODUTO NO PADR√ÉO DD/MM/AAAA COM APENAS N√öMEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(diaInicio) < 1 || (Integer.parseInt(diaInicio) > 31)){
-			JOptionPane.showMessageDialog(null,  "DATA INÕCIO DA VIG NCIA INV¡LIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,  "DATA IN√çCIO DA VIG√äNCIA INV√ÅLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(mesInicio) < 1 || Integer.parseInt(mesInicio) > 12){
-			JOptionPane.showMessageDialog(null, "DATA INÕCIO DA VIG NCIA INV¡LIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA IN√çCIO DA VIG√äNCIA INV√ÅLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(anoInicio) < anoVigente){
-			JOptionPane.showMessageDialog(null, "O INÕCIO DA VIG NCIA DEVE SER ¿ PARTIR DE HOJE: " + 
+			JOptionPane.showMessageDialog(null, "O IN√çCIO DA VIG√äNCIA DEVE SER √Å PARTIR DE HOJE: " +
 		diaAtual + "/" + mesVigente + "/" + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(anoInicio) == anoVigente && Integer.parseInt(mesInicio) < mesVigente){
-			JOptionPane.showMessageDialog(null, "O INÕCIO DA VIG NCIA DEVE SER ¿ PARTIR DE HOJE: " + 
+			JOptionPane.showMessageDialog(null, "O IN√çCIO DA VIG√äNCIA DEVE SER √Å PARTIR DE HOJE: " +
 		diaAtual + "/" + mesVigente + "/" + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(anoInicio) == anoVigente && Integer.parseInt(mesInicio) == mesVigente && Integer.parseInt(diaInicio) < diaAtual){
-			JOptionPane.showMessageDialog(null, "O INÕCIO DA VIG NCIA DEVE SER ¿ PARTIR DE HOJE: " + 
+			JOptionPane.showMessageDialog(null, "O IN√çCIO DA VIG√äNCIA DEVE SER √Å PARTIR DE HOJE: " +
 		diaAtual + "/" + mesVigente + "/" + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (fimVig.length()<10 || fimVig.length()>10){
-			JOptionPane.showMessageDialog(null, "CAMPO VIG NCIA INV¡LIDO!" + System.lineSeparator() + 
-					"O CAMPO VIG NCIA DEVE CONTER A DATA DE INÕCIO E FIM DE VIG NCIA DO PRODUTO NO PADR√O DD/MM/AAAA COM APENAS N⁄MEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO VIG√äNCIA INV√ÅLIDO" +
+					"!" + System.lineSeparator() +
+					"O CAMPO VIG√äNCIA DEVE CONTER A DATA DE IN√çCIO E FIM DE VIG√äNCIA DO PRODUTO NO PADR√ÉO DD/MM/AAAA COM APENAS N√öMEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(diaFim) < 1 || (Integer.parseInt(diaFim) > 31)){
-			JOptionPane.showMessageDialog(null,  "DATA FIM DA VIG NCIA INV¡LIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,  "DATA FIM DA VIG√äNCIA INV√ÅLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(mesFim) < 1 || Integer.parseInt(mesFim) > 12){
-			JOptionPane.showMessageDialog(null, "DATA FIM DA VIG NCIA INV¡LIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA FIM DA VIG√äNCIA INV√ÅLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(anoFim) < Integer.parseInt(anoInicio)){
-			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIG NCIA ANTERIOR A DATA INICIAL DA VIG NCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIG√äNCIA ANTERIOR A DATA INICIAL DA VIG√äNCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(anoFim) == Integer.parseInt(anoInicio) && Integer.parseInt(mesFim) < Integer.parseInt(mesInicio)){
-			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIG NCIA ANTERIOR A DATA INICIAL DA VIG NCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIG√äNCIA ANTERIOR A DATA INICIAL DA VIG√äNCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(anoFim) == Integer.parseInt(anoInicio) && 
 				Integer.parseInt(mesFim) == Integer.parseInt(mesInicio) &&
 				Integer.parseInt(diaFim) < Integer.parseInt(diaInicio)){
-			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIG NCIA ANTERIOR A DATA INICIAL DA VIG NCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIG√äNCIA ANTERIOR A DATA INICIAL DA VIG√äNCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(diaFim) == Integer.parseInt(diaInicio) && 
 				Integer.parseInt(mesFim) == Integer.parseInt(mesInicio) && 
 				Integer.parseInt(anoFim) == Integer.parseInt(anoInicio)){
-			JOptionPane.showMessageDialog(null, "A VIG NCIA DO PRODUTO DEVE DURAR POR PELO MENOS 1 DIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "A VIG√äNCIA DO PRODUTO DEVE DURAR POR PELO MENOS 1 DIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
 		else {
 			
-			//Busca cÛdigo e nome do produto na base
+			//Busca c√≥digo e nome do produto na base
 			try {	
 				cadastroVO.setNomePRD(nomePRD);
 				dao.buscarNomeNaBasePRD(cadastroVO);
 				nomePRDVO = cadastroVO.getNomePRD();
 				
 				if (nomePRD.equalsIgnoreCase(nomePRDVO)){
-					JOptionPane.showMessageDialog(null, "J¡ EXISTE UM PRODUTO CADASTRADO COM ESTE NOME, POR FAVOR ESCOLHA OUTRO NOME DE PRODUTO.", 
+					JOptionPane.showMessageDialog(null, "J√Å EXISTE UM PRODUTO CADASTRADO COM ESTE NOME, POR FAVOR ESCOLHA OUTRO NOME DE PRODUTO.",
 							"ERRO", JOptionPane.ERROR_MESSAGE);
 				}
 				else if (nomePRD.equalsIgnoreCase(nomePRDVO)==false) {
@@ -436,7 +432,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 					segmento = cadastroVO.getCodSeg();
 					
 					if (segmento.length()==0){
-						JOptionPane.showMessageDialog(null, "O SEGMENTO INFORMADO N√O EXISTE NA BASE.", "ERRO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "O SEGMENTO INFORMADO N√ÉO EXISTE NA BASE.", "ERRO", JOptionPane.ERROR_MESSAGE);
 					}
 					else{
 						cadastroVO.setNomePRD(nomePRD);
@@ -448,7 +444,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 						//Insere dados na base
 						dao.insereDadosNaBasePRD(cadastroVO);
 						
-						//Busca cod de produto para apresentaÁ„o em tela
+						//Busca cod de produto para apresenta√ß√£o em tela
 						dao.buscarNomeNaBasePRD(cadastroVO);	
 						codPRDVO = cadastroVO.getCodPRD();
 						
@@ -477,14 +473,15 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		String codPRDVO = "";
 		
 		if (nomeCodPRD.length()<2 || nomeCodPRD.length()>25){
-			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO/COD. INV¡LIDO!" + System.lineSeparator() + 
+			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO/COD. INV√ÅLIDO" +
+					"!" + System.lineSeparator() +
 					"O CAMPO NOME/COD. DO PRODUTO DEVE CONTER DE 2 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		//Se todos os campos estiverem ok
 		else {
 			
-			//Busca cÛdigo e nome do produto na base
+			//Busca c√≥digo e nome do produto na base
 			try {
 				cadastroVO.setCodPRD(nomeCodPRD);
 				dao.buscarCodNaBasePRD(cadastroVO);
@@ -495,10 +492,10 @@ public class CadastroProduto extends JFrame implements ActionListener{
 				nomePRDVO = cadastroVO.getNomePRD();
 				
 				if (codPRDVO.length()==0 && nomePRDVO.length()==0){
-					JOptionPane.showMessageDialog(null, "O PRODUTO INFORMADO N√O EXISTE NA BASE.", "CONSULTA DE PRODUTO", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "O PRODUTO INFORMADO N√ÉO EXISTE NA BASE.", "CONSULTA DE PRODUTO", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else if (nomeCodPRD.equalsIgnoreCase(codPRDVO)){
-					//Chamada DAO para atualizaÁ„o dos valores VO
+					//Chamada DAO para atualiza√ß√£o dos valores VO
 					cadastroVO.setCodPRD(nomeCodPRD);
 					dao.buscarCodNaBasePRD(cadastroVO);
 					dispose();
@@ -508,7 +505,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 					altera.setVisible(true);
 				}
 				else if (nomeCodPRD.equalsIgnoreCase(nomePRDVO)){
-					//Chamada DAO para atualizaÁ„o dos valores VO
+					//Chamada DAO para atualiza√ß√£o dos valores VO
 					cadastroVO.setNomePRD(nomeCodPRD);
 					dao.buscarNomeNaBasePRD(cadastroVO);
 					dispose();
@@ -518,17 +515,17 @@ public class CadastroProduto extends JFrame implements ActionListener{
 					altera.setVisible(true);
 				}
 				else if (nomeCodPRD.equalsIgnoreCase(codPRDVO) == false && nomeCodPRD.equalsIgnoreCase(nomePRDVO) == false){
-					JOptionPane.showMessageDialog(null, "O PRODUTO INFORMADO N√O EXISTE NA BASE.", "CONSULTA DE PRODUTO", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "O PRODUTO INFORMADO N√ÉO EXISTE NA BASE.", "CONSULTA DE PRODUTO", JOptionPane.INFORMATION_MESSAGE);
 				}
 				
 			} catch (Exception exception) {
-				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, "ERRO!", "CONSULTA DE PRODUTO", JOptionPane.ERROR_MESSAGE);
 				exception.printStackTrace();
 			}
 		}
 	}
 	
-	//AlteraÁ„o de produto
+	//Altera√ß√£o de produto
 	public void pegaValorTelaAlteraProd(){
 		String nomePRD = tAltNome.getText().trim();
 		String codPRD = tAltCod.getText();
@@ -542,7 +539,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		String nomePRDVO = "";
 		String nomeOldPrd = cadastroVO.getNomePRD();
 		
-		//Para validaÁ„o de data
+		//Para valida√ß√£o de data
 		int anoVigente = Calendar.getInstance().get(Calendar.YEAR);
 		int mesVigente = Calendar.getInstance().get(Calendar.MONTH);
 		mesVigente = mesVigente + 1;
@@ -567,7 +564,8 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		inicioVigOld = diaInicioOld + "/" + mesInicioOld + "/" + anoInicioOld;
 		
 		if (nomePRD.length()<4 || nomePRD.length()>25){
-			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO INV¡LIDO!" + System.lineSeparator() + 
+			JOptionPane.showMessageDialog(null, "NOME DO PRODUTO INV√ÅLIDO" +
+					"!" + System.lineSeparator() +
 					"O CAMPO NOME DO PRODUTO DEVE CONTER DE 4 A 25 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
@@ -577,7 +575,8 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 			
 		else if (segmento.length()<3 || segmento.length()>3){
-			JOptionPane.showMessageDialog(null, "CAMPO SEGMENTO INV¡LIDO!" + System.lineSeparator() + 
+			JOptionPane.showMessageDialog(null, "CAMPO SEGMENTO INV√ÅLIDO" +
+					"!" + System.lineSeparator() +
 					"O CAMPO SEGMENTO DEVE CONTER 3 CARACTERES.", "ERRO", JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
@@ -588,8 +587,9 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		else if(inicioVig.equals(inicioVigOld)==false){
 			
 			if (inicioVig.length()<10 || inicioVig.length()>10){
-				JOptionPane.showMessageDialog(null, "CAMPO VIG NCIA INV¡LIDO!" + System.lineSeparator() + 
-						"O CAMPO VIG NCIA DEVE CONTER A DATA DE INÕCIO E FIM DE VIG NCIA DO PRODUTO NO PADR√O DD/MM/AAAA COM APENAS N⁄MEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "CAMPO VIG√äNCIA INV√ÅLIDO" +
+						"!" + System.lineSeparator() +
+						"O CAMPO VIG√äNCIA DEVE CONTER A DATA DE IN√çCIO E FIM DE VIG√äNCIA DO PRODUTO NO PADR√ÉO DD/MM/AAAA COM APENAS N√öMEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
 				dispose();
 				CadastroProduto tela = new CadastroProduto();
 				tela.criaTelaAlteraProd();
@@ -598,7 +598,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			}
 			
 			else if (Integer.parseInt(diaInicio) < 1 || (Integer.parseInt(diaInicio) > 31)){
-				JOptionPane.showMessageDialog(null,  "DATA INÕCIO DA VIG NCIA INV¡LIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,  "DATA IN√çCIO DA VIG√äNCIA INV√ÅLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 				dispose();
 				CadastroProduto tela = new CadastroProduto();
 				tela.criaTelaAlteraProd();
@@ -607,7 +607,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			}
 			
 			else if (Integer.parseInt(mesInicio) < 1 || Integer.parseInt(mesInicio) > 12){
-				JOptionPane.showMessageDialog(null, "DATA INÕCIO DA VIG NCIA INV¡LIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "DATA IN√çCIO DA VIG√äNCIA INV√ÅLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 				dispose();
 				CadastroProduto tela = new CadastroProduto();
 				tela.criaTelaAlteraProd();
@@ -616,7 +616,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			}
 			
 			else if (Integer.parseInt(anoInicio) < anoVigente){
-				JOptionPane.showMessageDialog(null, "SE A DATA DE INÕCIO DA VIG NCIA FOR ALTERADA, DEVER¡ SER ¿ PARTIR DE HOJE: " + 
+				JOptionPane.showMessageDialog(null, "SE A DATA DE IN√çCIO DA VIG√äNCIA FOR ALTERADA, DEVER√Å SER √Ä PARTIR DE HOJE: " +
 			diaAtual + "/" + mesVigente + "/" + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
 				dispose();
 				CadastroProduto tela = new CadastroProduto();
@@ -626,7 +626,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			}
 			
 			else if (Integer.parseInt(anoInicio) == anoVigente && Integer.parseInt(mesInicio) < mesVigente){
-				JOptionPane.showMessageDialog(null, "SE A DATA DE INÕCIO DA VIG NCIA FOR ALTERADA, DEVER¡ SER ¿ PARTIR DE HOJE: " + 
+				JOptionPane.showMessageDialog(null, "SE A DATA DE IN√çCIO DA VIG√äNCIA FOR ALTERADA, DEVER√Å SER √Ä PARTIR DE HOJE: " +
 			diaAtual + "/" + mesVigente + "/" + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
 				dispose();
 				CadastroProduto tela = new CadastroProduto();
@@ -636,7 +636,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 			}
 			
 			else if (Integer.parseInt(anoInicio) == anoVigente && Integer.parseInt(mesInicio) == mesVigente && Integer.parseInt(diaInicio) < diaAtual){
-				JOptionPane.showMessageDialog(null, "SE A DATA DE INÕCIO DA VIG NCIA FOR ALTERADA, DEVER¡ SER ¿ PARTIR DE HOJE: " + 
+				JOptionPane.showMessageDialog(null, "SE A DATA DE IN√çCIO DA VIG√äNCIA FOR ALTERADA, DEVER√Å SER √Ä PARTIR DE HOJE: " +
 			diaAtual + "/" + mesVigente + "/" + anoVigente + ".", "ERRO",JOptionPane.ERROR_MESSAGE);
 				dispose();
 				CadastroProduto tela = new CadastroProduto();
@@ -647,8 +647,9 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		else if (fimVig.length()<10 || fimVig.length()>10){
-			JOptionPane.showMessageDialog(null, "CAMPO VIG NCIA INV¡LIDO!" + System.lineSeparator() + 
-					"O CAMPO VIG NCIA DEVE CONTER A DATA DE INÕCIO E FIM DE VIG NCIA DO PRODUTO NO PADR√O DD/MM/AAAA COM APENAS N⁄MEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO VIG√äNCIA INV√ÅLIDO" +
+					"!" + System.lineSeparator() +
+					"O CAMPO VIG√äNCIA DEVE CONTER A DATA DE IN√çCIO E FIM DE VIG√äNCIA DO PRODUTO NO PADR√ÉO DD/MM/AAAA COM APENAS N√öMEROS.", "ERRO", JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
 			tela.criaTelaAlteraProd();
@@ -657,7 +658,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		else if (Integer.parseInt(diaFim) < 1 || (Integer.parseInt(diaFim) > 31)){
-			JOptionPane.showMessageDialog(null,  "DATA FIM DA VIG NCIA INV¡LIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,  "DATA FIM DA VIG√äNCIA INV√ÅLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
 			tela.criaTelaAlteraProd();
@@ -666,7 +667,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		else if (Integer.parseInt(mesFim) < 1 || Integer.parseInt(mesFim) > 12){
-			JOptionPane.showMessageDialog(null, "DATA FIM DA VIG NCIA INV¡LIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA FIM DA VIG√äNCIA INV√ÅLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
 			tela.criaTelaAlteraProd();
@@ -675,7 +676,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		else if (Integer.parseInt(anoFim) < Integer.parseInt(anoInicio)){
-			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIG NCIA ANTERIOR A DATA INICIAL DA VIG NCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIG√äNCIA ANTERIOR A DATA INICIAL DA VIG√äNCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
 			tela.criaTelaAlteraProd();
@@ -684,7 +685,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		else if (Integer.parseInt(anoFim) == Integer.parseInt(anoInicio) && Integer.parseInt(mesFim) < Integer.parseInt(mesInicio)){
-			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIG NCIA ANTERIOR A DATA INICIAL DA VIG NCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIG√äNCIA ANTERIOR A DATA INICIAL DA VIG√äNCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
 			tela.criaTelaAlteraProd();
@@ -695,7 +696,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		else if (Integer.parseInt(anoFim) == Integer.parseInt(anoInicio) && 
 				Integer.parseInt(mesFim) == Integer.parseInt(mesInicio) && 
 				Integer.parseInt(diaFim) < Integer.parseInt(diaInicio)){
-			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIG NCIA ANTERIOR A DATA INICIAL DA VIG NCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA FINAL DA VIG√äNCIA ANTERIOR A DATA INICIAL DA VIG√äNCIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
 			tela.criaTelaAlteraProd();
@@ -706,7 +707,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		else if (Integer.parseInt(diaFim) == Integer.parseInt(diaInicio) && 
 				Integer.parseInt(mesFim) == Integer.parseInt(mesInicio) && 
 				Integer.parseInt(anoFim) == Integer.parseInt(anoInicio)){
-			JOptionPane.showMessageDialog(null, "A VIG NCIA DO PRODUTO DEVE DURAR POR PELO MENOS 1 DIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "A VIG√äNCIA DO PRODUTO DEVE DURAR POR PELO MENOS 1 DIA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
 			tela.criaTelaAlteraProd();
@@ -715,7 +716,8 @@ public class CadastroProduto extends JFrame implements ActionListener{
 		}
 		
 		else if (prdsta.equals("1")==false && prdsta.equals("0")==false){
-			JOptionPane.showMessageDialog(null, "CAMPO STATUS INV¡LIDO!" + System.lineSeparator() + 
+			JOptionPane.showMessageDialog(null, "CAMPO STATUS INV√ÅLIDO" +
+					"!" + System.lineSeparator() +
 					"O CAMPO STATUS DEVE CONTER 1 CARACTERE, INDICANDO STATUS ATIVO/INATIVO (1/0).", "ERRO", JOptionPane.ERROR_MESSAGE);
 			dispose();
 			CadastroProduto tela = new CadastroProduto();
@@ -736,7 +738,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 				if (nomePRD.equalsIgnoreCase(nomeOldPrd)==false){
 					
 					if (nomePRD.equalsIgnoreCase(nomePRDVO)){
-						JOptionPane.showMessageDialog(null, "J¡ EXISTE UM PRODUTO CADASTRADO COM ESTE NOME, POR FAVOR ESCOLHA OUTRO NOME DE PRODUTO.", 
+						JOptionPane.showMessageDialog(null, "J√Å EXISTE UM PRODUTO CADASTRADO COM ESTE NOME, POR FAVOR ESCOLHA OUTRO NOME DE PRODUTO.",
 								"ERRO", JOptionPane.ERROR_MESSAGE);
 					}
 					
@@ -747,7 +749,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 						segmentoVO = cadastroVO.getCodSeg();
 						
 						if(segmentoVO.length()==0){
-							JOptionPane.showMessageDialog(null, "O SEGMENTO INFORMADO N√O EXISTE NA BASE.", "ERRO", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "O SEGMENTO INFORMADO N√ÉO EXISTE NA BASE.", "ERRO", JOptionPane.ERROR_MESSAGE);
 							cadastroVO.setCodSeg(segmentoOld);
 							dispose();
 							CadastroProduto tela = new CadastroProduto();
@@ -767,7 +769,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 							//Atualiza dados na base
 							dao.atualizaDadosNaBasePRD(cadastroVO);
 							JOptionPane.showMessageDialog(null, "O PRODUTO: " + codPRD + " - " + nomePRD.toUpperCase() + 
-									" FOI ALTERADO COM SUCESSO.","ALTERA«√O DE PRODUTO", JOptionPane.INFORMATION_MESSAGE);
+									" FOI ALTERADO COM SUCESSO.","ALTERAÔøΩÔøΩO DE PRODUTO", JOptionPane.INFORMATION_MESSAGE);
 							dispose();
 							CadastroProduto tela = new CadastroProduto();
 							tela.criaTelaAlteraProd();
@@ -784,7 +786,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 					segmentoVO = cadastroVO.getCodSeg();
 					
 					if(segmentoVO.length()==0){
-						JOptionPane.showMessageDialog(null, "O SEGMENTO INFORMADO N√O EXISTE NA BASE.", "ERRO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "O SEGMENTO INFORMADO NÔøΩO EXISTE NA BASE.", "ERRO", JOptionPane.ERROR_MESSAGE);
 						cadastroVO.setCodSeg(segmentoOld);
 						dispose();
 						CadastroProduto tela = new CadastroProduto();
@@ -804,7 +806,7 @@ public class CadastroProduto extends JFrame implements ActionListener{
 						//Atualiza dados na base
 						dao.atualizaDadosNaBasePRD(cadastroVO);
 						JOptionPane.showMessageDialog(null, "O PRODUTO: " + codPRD + " - " + nomePRD.toUpperCase() + 
-								" FOI ALTERADO COM SUCESSO.","ALTERA«√O DE PRODUTO", JOptionPane.INFORMATION_MESSAGE);
+								" FOI ALTERADO COM SUCESSO.","ALTERAÔøΩÔøΩO DE PRODUTO", JOptionPane.INFORMATION_MESSAGE);
 						dispose();
 						CadastroProduto tela = new CadastroProduto();
 						tela.criaTelaAlteraProd();

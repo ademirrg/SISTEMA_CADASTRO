@@ -7,8 +7,8 @@ public class Principal {
 		
 	public static void main(String args[]){
 		try {
-			//Executar script de criaÁ„o da base de dados	
-			ScriptMaster.executaScriptMaster(null);
+			//Executar script de cria√ß√£o da base de dados
+			ScriptMaster.executaScriptMaster();
 			
 			// Chama Tela
 			Tela tela = new Tela();
@@ -19,10 +19,10 @@ public class Principal {
 		catch (SQLException sql) {
 			if(sql.getErrorCode() != 1007) {
 				System.out.println("Erro: "+sql);
-				JOptionPane.showMessageDialog(null, "Erro de conex„o:\n" + sql, "ERRO DE CONEX√O", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Erro de conex√£o:\n" + sql, "ERRO DE CONEX√ÉO", JOptionPane.ERROR_MESSAGE);
 			}
 			else {
-				System.out.println("Banco de dados j· existente.");
+				System.out.println("Banco de dados j√° existente.");
 				// Chama Tela
 				Tela tela = new Tela();
 				tela.criaTela();
@@ -31,7 +31,7 @@ public class Principal {
 			}
 		}
 		catch (Exception e) {
-			// TODO: handle exception
+			throw new RuntimeException("Erro", e);
 		}
 		
 	}

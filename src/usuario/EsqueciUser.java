@@ -52,7 +52,7 @@ public class EsqueciUser extends JFrame implements ActionListener{
 
 		
 		//Tela
-		setTitle("RECUPERA«√O DE USU¡RIO");
+		setTitle("RECUPERA√á√ÉO DE USU√ÅRIO");
 		setSize(700, 500);
 		//setLocation(450, 100);
 		setLocationRelativeTo(null);
@@ -80,11 +80,11 @@ public class EsqueciUser extends JFrame implements ActionListener{
 		String DataVO = "";
 		String retornoValidador = "";
 		
-		//Valida n˙mero do CPF
+		//Valida n√∫mero do CPF
 		CadastroUserVO.setCPF(cpf);
 		retornoValidador = ValidaCPF.validaCPF();
 		
-		//Para validaÁ„o de data
+		//Para valida√ß√£o de data
 		String[] separador = data.split("/");
 		String dia = separador[0];
 		String mes = separador[1];
@@ -92,35 +92,35 @@ public class EsqueciUser extends JFrame implements ActionListener{
 		data = ano + "-" + mes + "-" + dia;
 		data = data.trim();
 		
-		//Para validaÁ„o de maioridade
+		//Para valida√ß√£o de maioridade
 		int anoVigente = Calendar.getInstance().get(Calendar.YEAR);
 		int anoMinimiPermitido = anoVigente - 120;
 		int anoMaximoPermitido = anoVigente - 18;
 		
 		if (cpf.length()==0 || cpf.length() <11 || cpf.length()>11){
-			JOptionPane.showMessageDialog(null, "CAMPO CPF INV¡LIDO!" + System.lineSeparator() +
-					"O CPF DEVE CONTER 11 CARACTERES, SOMENTE N⁄MEROS","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO CPF INV√ÅLIDO!" + System.lineSeparator() +
+					"O CPF DEVE CONTER 11 CARACTERES, SOMENTE N√öMEROS","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (retornoValidador.equals("NOK")){
-			JOptionPane.showMessageDialog(null, "O CPF INFORMADO N√O … V¡LIDO!", "ERRO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "O CPF INFORMADO N√ÉO √â V√ÅLIDO!", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (data.length()==0 || data.length() <10 || data.length()>10){
-			JOptionPane.showMessageDialog(null, "CAMPO DATA INV¡LIDO!" + System.lineSeparator() +
-					"A DATA DEVE SER PREENCHIDA NO PADR√O DD/MM/AAAA COM BARRAS","ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CAMPO DATA INV√ÅLIDO!" + System.lineSeparator() +
+					"A DATA DEVE SER PREENCHIDA NO PADR√ÉO DD/MM/AAAA COM BARRAS","ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(dia) < 1 || (Integer.parseInt(dia) > 31)){
-			JOptionPane.showMessageDialog(null,  "DATA DE NASCIMENTO INV¡LIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,  "DATA DE NASCIMENTO INV√ÅLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(mes) < 1 || Integer.parseInt(mes) > 12){
-			JOptionPane.showMessageDialog(null, "DATA DE NASCIMENTO INV¡LIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA DE NASCIMENTO INV√ÅLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(ano) < anoMinimiPermitido || Integer.parseInt(ano) >= anoVigente){
-			JOptionPane.showMessageDialog(null, "DATA DE NASCIMENTO INV¡LIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DATA DE NASCIMENTO INV√ÅLIDA!", "ERRO",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		else if (Integer.parseInt(ano) > anoMaximoPermitido){
@@ -138,17 +138,17 @@ public class EsqueciUser extends JFrame implements ActionListener{
 				DataVO = CadastroUserVO.getDataNasc();
 				
 				if (cpf.equals(CPFVO)==false){
-					System.out.println("CPF n„o encontrado na base.");
-					JOptionPane.showMessageDialog(null, "N√O EXISTE USU¡RIO CADASTRADO PARA O CPF INFORMADO: " + cpf,"ERRO", JOptionPane.ERROR_MESSAGE);
+					System.out.println("CPF n√£o encontrado na base.");
+					JOptionPane.showMessageDialog(null, "N√ÉO EXISTE USU√ÅRIO CADASTRADO PARA O CPF INFORMADO: " + cpf,"ERRO", JOptionPane.ERROR_MESSAGE);
 				}
 				
 				else if (data.equals(DataVO)==false){
-					JOptionPane.showMessageDialog(null, "A DATA DE NASCIMENTO INFORMADA EST¡ INCORRETA PARA O CPF INFORMADO: " + cpf, "ERRO", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "A DATA DE NASCIMENTO INFORMADA EST√Å INCORRETA PARA O CPF INFORMADO: " + cpf, "ERRO", JOptionPane.ERROR_MESSAGE);
 				}
 				
 				else {
 					NomeUserVO = cadastroVO.getNomeUser();
-					JOptionPane.showMessageDialog(null, "SEU USU¡RIO …: " + NomeUserVO, "RECUPERA«√O DE USU¡RIO", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "SEU USU√ÅRIO √â: " + NomeUserVO, "RECUPERA√á√ÉO DE USU√ÅRIO", JOptionPane.INFORMATION_MESSAGE);
 					Tela tela = new Tela();
 					tela.criaTela();
 					tela.criaBotoes();

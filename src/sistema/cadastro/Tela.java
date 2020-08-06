@@ -1,12 +1,12 @@
 package sistema.cadastro;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.*;
 
 import login.Login;
 import login.LoginMasterUser;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Tela extends JFrame implements ActionListener {
 
@@ -70,8 +70,8 @@ public class Tela extends JFrame implements ActionListener {
 			login = new Login(e.getActionCommand());
 			break;
 		case "command_info":
-			JOptionPane.showMessageDialog(null, "Vers„o: 1.1" + System.lineSeparator() + 
-					"Data de criaÁ„o: 09/02/2017" + System.lineSeparator() + 
+			JOptionPane.showMessageDialog(null, "Vers√£o: 1.1" + System.lineSeparator() +
+					"Data de cria√ß√£o: 09/02/2017" + System.lineSeparator() +
 					"Criado por: Ademir Rocha" + System.lineSeparator() + 
 					"STAFF: Kaiservog, RCToscano, Soldado, Kyoshi, MajorGalopante", "SOBRE",JOptionPane.INFORMATION_MESSAGE);
 			break;

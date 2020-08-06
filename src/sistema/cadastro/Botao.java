@@ -39,17 +39,17 @@ public class Botao {
 		bt_sair.setActionCommand("command_sair");
 		bt_sair.setMnemonic(KeyEvent.VK_Q);
 		
-		bt_cadastro_user = new JButton("Cadastrar Usu·rio");
+		bt_cadastro_user = new JButton("Cadastrar Usu√°rio");
 		bt_cadastro_user.setBounds(20, 20, 152, 30);
 		bt_cadastro_user.addActionListener(tela);
 		bt_cadastro_user.setActionCommand("command_cadastro_usuario");
 		
-		bt_altera_user = new JButton("Alterar Usu·rio");
+		bt_altera_user = new JButton("Alterar Usu√°rio");
 		bt_altera_user.setBounds(20, 60, 152, 30);
 		bt_altera_user.addActionListener(tela);
 		bt_altera_user.setActionCommand("command_alterar_usuario");
 		
-		bt_consulta_user = new JButton("Consultar Usu·rio");
+		bt_consulta_user = new JButton("Consultar Usu√°rio");
 		bt_consulta_user.setBounds(20, 100, 152, 30);
 		bt_consulta_user.addActionListener(tela);
 		bt_consulta_user.setActionCommand("command_consultar_usuario");
